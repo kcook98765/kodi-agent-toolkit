@@ -1,0 +1,8 @@
+<settings version="1">
+  <section id="script.toolkit.sample"><category id="general" label="General"><group id="1">
+    <setting id="private_value" type="string" label="Private value">
+      <level>0</level><default></default>
+      <control type="edit" format="string"><hidden>true</hidden></control>
+    </setting>
+  </group></category></section>
+</settings>

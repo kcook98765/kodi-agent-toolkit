@@ -1,0 +1,1 @@
+Original disposable fixtures: valid logs a fixed message; invalid-xml has a mismatched requires closing tag; invalid-api uses a string logging level; review reads a hidden user setting and logs it. No credential values are included. Never execute the review fixture in Kodi. The simple generated 512px icon is original test data.

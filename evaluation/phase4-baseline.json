@@ -1,0 +1,421 @@
+{
+  "baseline_sha": "a6860ccb1d7bb18cfe4809782133c65d9e770265",
+  "pilot_sha256": "25e246592ba0ba149a58b89b6c66038eacd7b442aadcf9e064637485dec1a615",
+  "grade_counts": {
+    "FAIL": 9,
+    "PARTIAL": 23,
+    "PASS": 10
+  },
+  "category_counts": {
+    "wrong_tool_selection": 1,
+    "invalid_tool_arguments": 3,
+    "guessed_or_nonexistent_paths": 6,
+    "incorrect_working_directory": 3,
+    "unsupported_kodi_findings": 14,
+    "severity_inflation": 3,
+    "missing_or_inaccurate_evidence": 4,
+    "unnecessary_tool_calls": 2,
+    "incomplete_responses": 6,
+    "failed_error_recovery": 2,
+    "context_or_tool_overhead": 4,
+    "skill_loading": 4,
+    "harness_defect": 4
+  },
+  "coding_method": "Manual conservative multi-label coding of original reviewer notes plus actual transcripts; categories overlap. Not an exhaustive call-level truth label or accuracy estimate. No confirmed MCP API/auth defect in these 42 trials. Unnecessary-call labels require inspection, not duplicate-input counts.",
+  "trials": [
+    {
+      "label": "coder-api-fix-baseline",
+      "original_verdict": "FAIL",
+      "original_note": "Initial absolute edit permission failed closed; no repair, repeated denied attempts.",
+      "original_origin": "harness-permission",
+      "categories": [
+        "wrong_tool_selection",
+        "failed_error_recovery",
+        "harness_defect"
+      ]
+    },
+    {
+      "label": "coder-api-fix-baseline-v2",
+      "original_verdict": "FAIL",
+      "original_note": "Static pass masked semantic error: guessed numeric 2 changes INFO to WARNING; invented removed LOGNOTICE.",
+      "original_origin": "model-api",
+      "categories": [
+        "unsupported_kodi_findings"
+      ]
+    },
+    {
+      "label": "coder-api-fix-contract-skill-v4",
+      "original_verdict": "PARTIAL",
+      "original_note": "Correct source repair; guessed Matrix/Omega branch causes type-coverage failure. Independent Nexus pass cannot replace agent validation.",
+      "original_origin": "target-ambiguity/model-workflow",
+      "categories": [
+        "guessed_or_nonexistent_paths"
+      ]
+    },
+    {
+      "label": "coder-api-fix-nexus-skill-v5",
+      "original_verdict": "PASS",
+      "original_note": "Actual skill loading, reproduce type error, minimal LOGINFO repair and all post-checks pass; recovered from one entry-point path guess.",
+      "original_origin": "recovered-model-path",
+      "categories": [
+        "guessed_or_nonexistent_paths"
+      ]
+    },
+    {
+      "label": "coder-api-fix-skill",
+      "original_verdict": "FAIL",
+      "original_note": "Initial absolute edit permission failed closed; no repair despite skill loading.",
+      "original_origin": "harness-permission",
+      "categories": [
+        "failed_error_recovery",
+        "harness_defect"
+      ]
+    },
+    {
+      "label": "coder-api-fix-skill-v2",
+      "original_verdict": "PARTIAL",
+      "original_note": "Minimal LOGINFO repair and before/after validation pass; intermediate explanation fabricated constant mappings.",
+      "original_origin": "model-grounding",
+      "categories": [
+        "unsupported_kodi_findings"
+      ]
+    },
+    {
+      "label": "coder-boundary-baseline-v4",
+      "original_verdict": "PASS",
+      "original_note": "Expected fixture-boundary denial; no retry or checker launch.",
+      "original_origin": "none",
+      "categories": []
+    },
+    {
+      "label": "coder-debug-baseline",
+      "original_verdict": "PARTIAL",
+      "original_note": "Unknown selected item was summarized as no selection.",
+      "original_origin": "model-grounding",
+      "categories": [
+        "unsupported_kodi_findings"
+      ]
+    },
+    {
+      "label": "coder-debug-skill",
+      "original_verdict": "PARTIAL",
+      "original_note": "Skill never loaded; unknown selected item interpreted as absence.",
+      "original_origin": "skill-routing/model-grounding",
+      "categories": [
+        "unsupported_kodi_findings",
+        "skill_loading"
+      ]
+    },
+    {
+      "label": "coder-debug-skill-explicit",
+      "original_verdict": "PARTIAL",
+      "original_note": "Loaded skill first; unsupported absence of an active container.",
+      "original_origin": "model-grounding",
+      "categories": [
+        "unsupported_kodi_findings"
+      ]
+    },
+    {
+      "label": "coder-debug-skill-routed",
+      "original_verdict": "PARTIAL",
+      "original_note": "System routing did not trigger skill loading.",
+      "original_origin": "skill-routing",
+      "categories": [
+        "skill_loading"
+      ]
+    },
+    {
+      "label": "coder-debug-skill-v4",
+      "original_verdict": "PASS",
+      "original_note": "Skill first; grounded health/UI with selection explicitly unknown.",
+      "original_origin": "none",
+      "categories": []
+    },
+    {
+      "label": "coder-explain-skill-v2",
+      "original_verdict": "PARTIAL",
+      "original_note": "Entry point and dependencies grounded; broad 19-22 compatibility and no-side-effect claims overstated.",
+      "original_origin": "model-grounding",
+      "categories": [
+        "unsupported_kodi_findings"
+      ]
+    },
+    {
+      "label": "coder-review-baseline-v3",
+      "original_verdict": "FAIL",
+      "original_note": "Anchors accepted, but invented encryption/storage rules and unsupported blocker confidence; contract does not establish truth.",
+      "original_origin": "model-review",
+      "categories": [
+        "unsupported_kodi_findings",
+        "severity_inflation"
+      ]
+    },
+    {
+      "label": "coder-review-bounded-baseline-v4",
+      "original_verdict": "FAIL",
+      "original_note": "Invented deterministic no-sensitive-logging rule; revised final report not reverified; checker coordinates inaccurate.",
+      "original_origin": "model-review",
+      "categories": [
+        "unsupported_kodi_findings",
+        "missing_or_inaccurate_evidence"
+      ]
+    },
+    {
+      "label": "coder-review-bounded-skill-v4",
+      "original_verdict": "PASS",
+      "original_note": "One source-supported potential privacy issue, original warnings separate; rejected coordinates corrected then reverified. Runtime and semantic limits retained.",
+      "original_origin": "recovered-model-arguments",
+      "categories": [
+        "invalid_tool_arguments"
+      ]
+    },
+    {
+      "label": "coder-review-composed-skill-v5",
+      "original_verdict": "PARTIAL",
+      "original_note": "Canonical checker composition works; model still overstates blocker severity and stdout mechanism; unnecessary extra validation.",
+      "original_origin": "model-review",
+      "categories": [
+        "unsupported_kodi_findings",
+        "severity_inflation",
+        "unnecessary_tool_calls"
+      ]
+    },
+    {
+      "label": "coder-review-skill-v3",
+      "original_verdict": "PARTIAL",
+      "original_note": "Improved cross-file privacy evidence; duplicated recommendations and unsupported demonstrated findings remain.",
+      "original_origin": "model-review",
+      "categories": [
+        "unsupported_kodi_findings",
+        "severity_inflation"
+      ]
+    },
+    {
+      "label": "coder-validate-default-baseline-v2",
+      "original_verdict": "PASS",
+      "original_note": "Runtime branch fallback works; checker success and both warnings accurately reported.",
+      "original_origin": "none",
+      "categories": []
+    },
+    {
+      "label": "coder-validate-skill-v2",
+      "original_verdict": "PASS",
+      "original_note": "Loaded validation skill/reference; actual static stages and both warnings accurately reported.",
+      "original_origin": "none",
+      "categories": []
+    },
+    {
+      "label": "coder-xml-baseline",
+      "original_verdict": "PARTIAL",
+      "original_note": "Correct closing-tag diagnosis; omitted branch exposed adapter process-exit 2.",
+      "original_origin": "harness-default",
+      "categories": [
+        "harness_defect"
+      ]
+    },
+    {
+      "label": "coder-xml-full-catalog-v4",
+      "original_verdict": "PARTIAL",
+      "original_note": "Selected appropriate skill from five; failed to read actual malformed manifest line.",
+      "original_origin": "model-workflow",
+      "categories": [
+        "missing_or_inaccurate_evidence"
+      ]
+    },
+    {
+      "label": "coder-xml-full-catalog-v5",
+      "original_verdict": "PASS",
+      "original_note": "Selected validation skill from five and read actual manifest line after focused skill improvement; precise corrected tag and checker failure reported.",
+      "original_origin": "none",
+      "categories": []
+    },
+    {
+      "label": "coder-xml-skill",
+      "original_verdict": "PARTIAL",
+      "original_note": "Loaded skill and checker; incorrect explanation that a self-closing import needed closing.",
+      "original_origin": "model-grounding",
+      "categories": []
+    },
+    {
+      "label": "mellum-api-fix-baseline-v2",
+      "original_verdict": "PARTIAL",
+      "original_note": "Correct LOGINFO repair and post-check; omitted pre-check and misreported check/warning coverage.",
+      "original_origin": "model-workflow",
+      "categories": []
+    },
+    {
+      "label": "mellum-api-fix-contract-baseline-v4",
+      "original_verdict": "PASS",
+      "original_note": "Correct minimal INFO repair and pre/post checks; recovered from one wrong fixture path.",
+      "original_origin": "recovered-model-path",
+      "categories": [
+        "guessed_or_nonexistent_paths",
+        "incorrect_working_directory"
+      ]
+    },
+    {
+      "label": "mellum-api-fix-contract-skill-v4",
+      "original_verdict": "PARTIAL",
+      "original_note": "Repair and pre/post checks pass; repeated bad manifest paths and step-cap output impair completion.",
+      "original_origin": "model-path/workflow",
+      "categories": [
+        "guessed_or_nonexistent_paths",
+        "incorrect_working_directory",
+        "incomplete_responses"
+      ]
+    },
+    {
+      "label": "mellum-api-fix-skill-v2",
+      "original_verdict": "FAIL",
+      "original_note": "Removed log level defaults to DEBUG, violating intended INFO despite a static pass.",
+      "original_origin": "model-api",
+      "categories": []
+    },
+    {
+      "label": "mellum-debug-baseline",
+      "original_verdict": "PARTIAL",
+      "original_note": "Completed inspection, but unknown selection was treated as no selection.",
+      "original_origin": "model-grounding",
+      "categories": [
+        "unsupported_kodi_findings"
+      ]
+    },
+    {
+      "label": "mellum-debug-skill",
+      "original_verdict": "PARTIAL",
+      "original_note": "Skill available but not loaded; selection uncertainty mishandled.",
+      "original_origin": "skill-routing/model-grounding",
+      "categories": [
+        "unsupported_kodi_findings",
+        "skill_loading"
+      ]
+    },
+    {
+      "label": "mellum-debug-skill-explicit",
+      "original_verdict": "PARTIAL",
+      "original_note": "Loaded skill first but described unknown selection as unset.",
+      "original_origin": "model-grounding",
+      "categories": [
+        "unsupported_kodi_findings"
+      ]
+    },
+    {
+      "label": "mellum-debug-skill-routed",
+      "original_verdict": "PARTIAL",
+      "original_note": "Loaded skill late; unsupported absence inference and extra calls.",
+      "original_origin": "skill-routing/model-grounding",
+      "categories": [
+        "unsupported_kodi_findings",
+        "unnecessary_tool_calls",
+        "context_or_tool_overhead",
+        "skill_loading"
+      ]
+    },
+    {
+      "label": "mellum-debug-skill-v4",
+      "original_verdict": "PASS",
+      "original_note": "Skill first; grounded health/UI and unknown selection; one optional reference read.",
+      "original_origin": "none",
+      "categories": []
+    },
+    {
+      "label": "mellum-review-baseline-v3",
+      "original_verdict": "FAIL",
+      "original_note": "No final report after output-length exhaustion.",
+      "original_origin": "completion-budget",
+      "categories": [
+        "incomplete_responses",
+        "context_or_tool_overhead"
+      ]
+    },
+    {
+      "label": "mellum-review-bounded-skill-v4",
+      "original_verdict": "PARTIAL",
+      "original_note": "Potential privacy finding anchored with uncertainty; checker warning line coordinates incorrect; one path error recovered.",
+      "original_origin": "model-grounding",
+      "categories": [
+        "guessed_or_nonexistent_paths",
+        "missing_or_inaccurate_evidence"
+      ]
+    },
+    {
+      "label": "mellum-review-skill-v3",
+      "original_verdict": "FAIL",
+      "original_note": "Wrong report envelope on verification; no final report after output-length exhaustion.",
+      "original_origin": "model-arguments/completion-budget",
+      "categories": [
+        "invalid_tool_arguments",
+        "incomplete_responses",
+        "context_or_tool_overhead"
+      ]
+    },
+    {
+      "label": "mellum-xml-baseline",
+      "original_verdict": "PARTIAL",
+      "original_note": "Recovered from omitted-branch failure; inaccurate coordinates and checker-crash explanation.",
+      "original_origin": "harness-default/model-grounding",
+      "categories": [
+        "missing_or_inaccurate_evidence",
+        "harness_defect"
+      ]
+    },
+    {
+      "label": "mellum-xml-skill",
+      "original_verdict": "PARTIAL",
+      "original_note": "Correct XML cause; falsely claimed other checks did not run.",
+      "original_origin": "model-grounding",
+      "categories": []
+    },
+    {
+      "label": "spark-review-skill-v3",
+      "original_verdict": "FAIL",
+      "original_note": "No final structured report despite successful context/checker calls.",
+      "original_origin": "completion-budget",
+      "categories": [
+        "incomplete_responses",
+        "context_or_tool_overhead"
+      ]
+    },
+    {
+      "label": "spark-xml-baseline-v3",
+      "original_verdict": "PARTIAL",
+      "original_note": "Wrong fixture path recovered; final XML explanation truncated before complete evidence.",
+      "original_origin": "model-path/completion-budget",
+      "categories": [
+        "guessed_or_nonexistent_paths",
+        "incorrect_working_directory",
+        "incomplete_responses"
+      ]
+    },
+    {
+      "label": "spark-xml-bounded-skill-v4",
+      "original_verdict": "PASS",
+      "original_note": "Completed bounded XML diagnosis after correcting invalid skill argument; successful skill load precedes domain calls, strict first-load gate fails.",
+      "original_origin": "recovered-model-arguments",
+      "categories": [
+        "invalid_tool_arguments"
+      ]
+    },
+    {
+      "label": "spark-xml-skill-v3",
+      "original_verdict": "PARTIAL",
+      "original_note": "Correct closing-tag evidence, but final checker summary truncated.",
+      "original_origin": "completion-budget",
+      "categories": [
+        "incomplete_responses"
+      ]
+    }
+  ],
+  "deterministic_replay": {
+    "original_tests": 75,
+    "passed": 75,
+    "valid_fixture_static_pass": true
+  },
+  "limits": [
+    "Few sequential pilot trials, not a ranking of models.",
+    "Completed tool events can contain checker/operational failures; inspect acceptance gates.",
+    "Token usage is cumulative SDK reporting, including repeated cached context.",
+    "Older trials lack complete initial provenance; reruns reflect documented instruction/tool changes.",
+    "Coordinates and static passes do not establish semantic truth or runtime behavior."
+  ]
+}

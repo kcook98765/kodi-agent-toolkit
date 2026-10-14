@@ -1,0 +1,156 @@
+{
+  "scope": "Offline replay of preserved submissions, not new model trials or changed historical grades",
+  "replays": [
+    {
+      "label": "p5-coder-clean-C",
+      "original_verdict": "FAIL",
+      "original_structurally_retained": 1,
+      "current_structurally_accepted": 0,
+      "current_structurally_rejected": 1,
+      "current_categories": {
+        "confirmed_deterministic_errors": 0,
+        "evidence_supported_contextual_issues": 0,
+        "recommendations": 0,
+        "unverified_observations": 1,
+        "duplicate_findings": 0
+      },
+      "current_contract_passed": false
+    },
+    {
+      "label": "p5-coder-clean-C2",
+      "original_verdict": "PARTIAL",
+      "original_structurally_retained": 1,
+      "current_structurally_accepted": 1,
+      "current_structurally_rejected": 0,
+      "current_categories": {
+        "confirmed_deterministic_errors": 0,
+        "evidence_supported_contextual_issues": 0,
+        "recommendations": 0,
+        "unverified_observations": 1,
+        "duplicate_findings": 0
+      },
+      "current_contract_passed": true
+    },
+    {
+      "label": "p5-coder-review-A",
+      "original_verdict": "PARTIAL",
+      "original_structurally_retained": 1,
+      "current_structurally_accepted": 0,
+      "current_structurally_rejected": 1,
+      "current_categories": {
+        "confirmed_deterministic_errors": 0,
+        "evidence_supported_contextual_issues": 0,
+        "recommendations": 0,
+        "unverified_observations": 1,
+        "duplicate_findings": 0
+      },
+      "current_contract_passed": false
+    },
+    {
+      "label": "p5-coder-review-B",
+      "original_verdict": "PARTIAL",
+      "original_structurally_retained": 1,
+      "current_structurally_accepted": 0,
+      "current_structurally_rejected": 1,
+      "current_categories": {
+        "confirmed_deterministic_errors": 0,
+        "evidence_supported_contextual_issues": 0,
+        "recommendations": 0,
+        "unverified_observations": 1,
+        "duplicate_findings": 0
+      },
+      "current_contract_passed": false
+    },
+    {
+      "label": "p5-coder-review-C",
+      "original_verdict": "PARTIAL",
+      "original_structurally_retained": 1,
+      "current_structurally_accepted": 0,
+      "current_structurally_rejected": 1,
+      "current_categories": {
+        "confirmed_deterministic_errors": 0,
+        "evidence_supported_contextual_issues": 0,
+        "recommendations": 0,
+        "unverified_observations": 1,
+        "duplicate_findings": 0
+      },
+      "current_contract_passed": false
+    },
+    {
+      "label": "p5-coder-review-C2",
+      "original_verdict": "PARTIAL",
+      "original_structurally_retained": 1,
+      "current_structurally_accepted": 1,
+      "current_structurally_rejected": 0,
+      "current_categories": {
+        "confirmed_deterministic_errors": 0,
+        "evidence_supported_contextual_issues": 1,
+        "recommendations": 0,
+        "unverified_observations": 0,
+        "duplicate_findings": 0
+      },
+      "current_contract_passed": true
+    },
+    {
+      "label": "p5-mellum-clean-C",
+      "status": "invalid transport",
+      "original_verdict": "FAIL"
+    },
+    {
+      "label": "p5-mellum-clean-C3",
+      "original_verdict": "FAIL",
+      "original_structurally_retained": 0,
+      "current_structurally_accepted": 0,
+      "current_structurally_rejected": 1,
+      "current_categories": {
+        "confirmed_deterministic_errors": 0,
+        "evidence_supported_contextual_issues": 0,
+        "recommendations": 0,
+        "unverified_observations": 1,
+        "duplicate_findings": 0
+      },
+      "current_contract_passed": false
+    },
+    {
+      "label": "p5-mellum-review-C2",
+      "original_verdict": "FAIL",
+      "original_structurally_retained": 0,
+      "current_structurally_accepted": 0,
+      "current_structurally_rejected": 1,
+      "current_categories": {
+        "confirmed_deterministic_errors": 0,
+        "evidence_supported_contextual_issues": 0,
+        "recommendations": 0,
+        "unverified_observations": 1,
+        "duplicate_findings": 0
+      },
+      "current_contract_passed": false
+    },
+    {
+      "label": "p5-mellum-review-C3",
+      "original_verdict": "PARTIAL",
+      "original_structurally_retained": 0,
+      "current_structurally_accepted": 0,
+      "current_structurally_rejected": 3,
+      "current_categories": {
+        "confirmed_deterministic_errors": 0,
+        "evidence_supported_contextual_issues": 0,
+        "recommendations": 0,
+        "unverified_observations": 3,
+        "duplicate_findings": 0
+      },
+      "current_contract_passed": false
+    }
+  ],
+  "source_hashes": {
+    "reporting.py": "3281b4c3d18130bf2d70a61d7f264f83d6532a64dd0afd901109d93e1f6884ea",
+    "paths.py": "501526b354e837acbf8e225f4616471c8fb5ddec8712929d51bcf6d3da174934",
+    "checker_runner.py": "6cb1fd2aa142d84e09eab81d7038efc8537302cefb3e49f1e917757bdcbe97b2",
+    "__init__.py": "c63b5d6b312154e486bff8aea06976f0a7f949186fe99d0a4ec28df00c381000",
+    "evidence.py": "93f865fca52f9eee81b28aa91791c63279039b31081f1cb8383d794f15832ea1",
+    "cli.py": "085aca96ebdd08d3f750e500b27da65754eb8019d3d5e3feb47584a986fa6232",
+    "review.py": "994d3d3eefff3a07acbc1c6716a4465d64d116e04c45c3d47e40bd85d2357679",
+    "validate.py": "724848af8b4134947ccf7644302ea69b0dfa6b533fec56440a3ff428d446430d",
+    "compose.py": "9a8eb6683601b2f9f603c408d002e699727ae75d349bbdf92e41597f62a7348c"
+  }
+}

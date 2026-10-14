@@ -1,0 +1,6 @@
+# Evidence-based debugging
+Health evidence means exactly the process/runtime/JSON-RPC/readiness fields returned. Do not extend this to complete add-on integrity or performance.
+UI window, focus and selected_item are separate. If selected_item.associated=false or fields are null, report UNKNOWN. Dialog.active=false is an observed absence; do not conflate it with an unassociated item. changed_during_collection=true invalidates a single-state summary; repeat only that read once and report remaining ambiguity.
+For add-ons, follow next_cursor to null and count actual unique records. Unknown provenance does not establish an official source, malware or distrust. Tool-not-exposed differs from API-not-existent. Report only diagnostics actually retrieved; the workstation read-only API does not supply raw logs.
+A screenshot claim needs an actual image-capable model request containing the image. Text metadata/filename is not visual evidence. Distinguish a screen message from an inferred cause.
+When logs are available, retain error, surrounding bounded context, timestamp, add-on/revision, reproduced steps and source coordinates; redact credentials and user content. Record checker errors separately from runtime hypotheses. Verify fixes against the original reproduction and relevant regression, not just absence of a log line.

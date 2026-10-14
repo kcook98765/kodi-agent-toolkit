@@ -1,0 +1,38 @@
+{
+  "$schema": "https://opencode.ai/config.json",
+  "share": "disabled",
+  "autoupdate": false,
+  "agent": {
+    "kodi-validation": {
+      "mode": "primary",
+      "description": "Static disposable add-on validation without Kodi Lab",
+      "prompt": "Load kodi-addon-validation, discover the actual fixture root, run static checks for the explicitly requested release, and summarize evidence and limits.",
+      "permission": {
+        "*": "deny",
+        "external_directory": "deny",
+        "read": "allow",
+        "kodi_validate": "allow",
+        "skill": {
+          "*": "deny",
+          "kodi-addon-validation": "allow"
+        }
+      }
+    },
+    "kodi-review": {
+      "mode": "primary",
+      "description": "Contextual review with canonical checker composition",
+      "prompt": "Load kodi-addon-validation, get numbered context, then compose a short evidence-backed draft. Empty findings are valid. Do not promote uncertain observations to errors.",
+      "permission": {
+        "*": "deny",
+        "external_directory": "deny",
+        "read": "allow",
+        "kodi_review": "allow",
+        "skill": {
+          "*": "deny",
+          "kodi-addon-validation": "allow"
+        },
+        "kodi_validate": "allow"
+      }
+    }
+  }
+}

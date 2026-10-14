@@ -1,0 +1,264 @@
+[
+  {
+    "name": "ast_serialize",
+    "version": "0.13.0",
+    "license": "MIT",
+    "home_page": {
+      "Homepage": "https://github.com/mypyc/ast_serialize",
+      "Issues": "https://github.com/mypyc/ast_serialize/issues"
+    },
+    "wheel_hash_count": 56
+  },
+  {
+    "name": "certifi",
+    "version": "2026.7.22",
+    "license": "MPL-2.0",
+    "home_page": {
+      "Homepage": "https://github.com/certifi/python-certifi",
+      "Source": "https://github.com/certifi/python-certifi"
+    },
+    "wheel_hash_count": 1
+  },
+  {
+    "name": "charset-normalizer",
+    "version": "3.5.2",
+    "license": "MIT",
+    "home_page": {
+      "Changelog": "https://github.com/jawah/charset_normalizer/blob/master/CHANGELOG.md",
+      "Code": "https://github.com/jawah/charset_normalizer",
+      "Documentation": "https://charset-normalizer.readthedocs.io/",
+      "Issue tracker": "https://github.com/jawah/charset_normalizer/issues"
+    },
+    "wheel_hash_count": 171
+  },
+  {
+    "name": "colorama",
+    "version": "0.4.6",
+    "license": "BSD-3-Clause",
+    "home_page": {
+      "Homepage": "https://github.com/tartley/colorama"
+    },
+    "wheel_hash_count": 1,
+    "license_verification": "Phase 5 installed distribution metadata/license text; addon-check pinned upstream SPDX license"
+  },
+  {
+    "name": "elementpath",
+    "version": "5.1.4",
+    "license": "MIT",
+    "home_page": {
+      "Homepage": "https://github.com/sissaschool/elementpath"
+    },
+    "wheel_hash_count": 1
+  },
+  {
+    "name": "idna",
+    "version": "3.20",
+    "license": "BSD-3-Clause",
+    "home_page": {
+      "Changelog": "https://github.com/kjd/idna/blob/master/HISTORY.md",
+      "Issue tracker": "https://github.com/kjd/idna/issues",
+      "Source": "https://github.com/kjd/idna"
+    },
+    "wheel_hash_count": 1
+  },
+  {
+    "name": "kodi-addon-checker",
+    "version": "0.0.36",
+    "license": "GPL-3.0-only",
+    "home_page": {
+      "Download": "https://github.com/xbmc/addon-check/archive/master.zip",
+      "Homepage": "https://github.com/xbmc/addon-check"
+    },
+    "wheel_hash_count": 1,
+    "license_verification": "Phase 5 installed distribution metadata/license text; addon-check pinned upstream SPDX license"
+  },
+  {
+    "name": "Kodistubs",
+    "version": "20.0.1",
+    "license": "GPL-3.0-only",
+    "home_page": {
+      "Homepage": "https://github.com/romanvm/Kodistubs"
+    },
+    "wheel_hash_count": 1
+  },
+  {
+    "name": "librt",
+    "version": "0.16.0",
+    "license": "MIT",
+    "home_page": {
+      "Homepage": "https://github.com/mypyc/librt",
+      "Issues": "https://github.com/mypyc/mypyc/issues"
+    },
+    "wheel_hash_count": 136
+  },
+  {
+    "name": "mando",
+    "version": "0.7.1",
+    "license": "MIT",
+    "home_page": {
+      "Download": "https://pypi.python.org/mando/",
+      "Homepage": "https://mando.readthedocs.org/"
+    },
+    "wheel_hash_count": 1
+  },
+  {
+    "name": "mypy",
+    "version": "2.4.0",
+    "license": "MIT",
+    "home_page": {
+      "Changelog": "https://github.com/python/mypy/blob/master/CHANGELOG.md",
+      "Documentation": "https://mypy.readthedocs.io/en/stable/index.html",
+      "Homepage": "https://www.mypy-lang.org/",
+      "Issues": "https://github.com/python/mypy/issues",
+      "Repository": "https://github.com/python/mypy"
+    },
+    "wheel_hash_count": 51
+  },
+  {
+    "name": "mypy_extensions",
+    "version": "1.1.0",
+    "license": "MIT",
+    "home_page": {
+      "Homepage": "https://github.com/python/mypy_extensions"
+    },
+    "wheel_hash_count": 1,
+    "license_verification": "Phase 5 installed distribution metadata/license text; addon-check pinned upstream SPDX license"
+  },
+  {
+    "name": "packaging",
+    "version": "26.3",
+    "license": "Apache-2.0 OR BSD-2-Clause",
+    "home_page": {
+      "Documentation": "https://packaging.pypa.io/",
+      "Source": "https://github.com/pypa/packaging"
+    },
+    "wheel_hash_count": 1
+  },
+  {
+    "name": "pathspec",
+    "version": "1.1.1",
+    "license": "MPL-2.0",
+    "home_page": {
+      "Change Log": "https://python-path-specification.readthedocs.io/en/latest/changes.html",
+      "Documentation": "https://python-path-specification.readthedocs.io/en/latest/index.html",
+      "Issue Tracker": "https://github.com/cpburnz/python-pathspec/issues",
+      "Source Code": "https://github.com/cpburnz/python-pathspec"
+    },
+    "wheel_hash_count": 1,
+    "license_verification": "Phase 5 installed distribution metadata/license text; addon-check pinned upstream SPDX license"
+  },
+  {
+    "name": "pillow",
+    "version": "12.3.0",
+    "license": "MIT-CMU",
+    "home_page": {
+      "Changelog": "https://github.com/python-pillow/Pillow/releases",
+      "Documentation": "https://pillow.readthedocs.io",
+      "Funding": "https://tidelift.com/subscription/pkg/pypi-pillow?utm_source=pypi-pillow&utm_medium=pypi",
+      "Homepage": "https://python-pillow.github.io",
+      "Mastodon": "https://fosstodon.org/@pillow",
+      "Release notes": "https://pillow.readthedocs.io/en/stable/releasenotes/index.html",
+      "Source": "https://github.com/python-pillow/Pillow"
+    },
+    "wheel_hash_count": 86
+  },
+  {
+    "name": "polib",
+    "version": "1.2.0",
+    "license": "MIT",
+    "home_page": {
+      "Download": "https://pypi.python.org/packages/source/p/polib/polib-1.2.0.tar.gz",
+      "Homepage": "https://github.com/izimobil/polib/"
+    },
+    "wheel_hash_count": 1
+  },
+  {
+    "name": "radon",
+    "version": "6.0.1",
+    "license": "MIT",
+    "home_page": {
+      "Download": "https://pypi.python.org/radon/",
+      "Homepage": "https://radon.readthedocs.org/",
+      "Source": "https://github.com/rubik/radon"
+    },
+    "wheel_hash_count": 1
+  },
+  {
+    "name": "requests",
+    "version": "2.34.2",
+    "license": "Apache-2.0",
+    "home_page": {
+      "Documentation": "https://requests.readthedocs.io",
+      "Source": "https://github.com/psf/requests"
+    },
+    "wheel_hash_count": 1
+  },
+  {
+    "name": "setuptools",
+    "version": "84.0.0",
+    "license": "MIT",
+    "home_page": {
+      "Changelog": "https://setuptools.pypa.io/en/stable/history.html",
+      "Documentation": "https://setuptools.pypa.io/",
+      "Source": "https://github.com/pypa/setuptools"
+    },
+    "wheel_hash_count": 1
+  },
+  {
+    "name": "six",
+    "version": "1.17.0",
+    "license": "MIT",
+    "home_page": {
+      "Homepage": "https://github.com/benjaminp/six"
+    },
+    "wheel_hash_count": 1
+  },
+  {
+    "name": "typing_extensions",
+    "version": "4.16.0",
+    "license": "PSF-2.0",
+    "home_page": {
+      "Bug Tracker": "https://github.com/python/typing_extensions/issues",
+      "Changes": "https://github.com/python/typing_extensions/blob/main/CHANGELOG.md",
+      "Documentation": "https://typing-extensions.readthedocs.io/",
+      "Home": "https://github.com/python/typing_extensions",
+      "Q & A": "https://github.com/python/typing/discussions",
+      "Repository": "https://github.com/python/typing_extensions"
+    },
+    "wheel_hash_count": 1
+  },
+  {
+    "name": "urllib3",
+    "version": "2.8.0",
+    "license": "MIT",
+    "home_page": {
+      "Changelog": "https://github.com/urllib3/urllib3/blob/main/CHANGES.rst",
+      "Code": "https://github.com/urllib3/urllib3",
+      "Documentation": "https://urllib3.readthedocs.io",
+      "Issue tracker": "https://github.com/urllib3/urllib3/issues",
+      "Security policy": "https://urllib3.readthedocs.io/en/latest/security.html"
+    },
+    "wheel_hash_count": 1
+  },
+  {
+    "name": "wheel",
+    "version": "0.48.0",
+    "license": "MIT",
+    "home_page": {
+      "Changelog": "https://wheel.readthedocs.io/en/stable/news.html",
+      "Documentation": "https://wheel.readthedocs.io/",
+      "Issue Tracker": "https://github.com/pypa/wheel/issues",
+      "Source": "https://github.com/pypa/wheel"
+    },
+    "wheel_hash_count": 1
+  },
+  {
+    "name": "xmlschema",
+    "version": "4.3.2",
+    "license": "MIT",
+    "home_page": {
+      "Homepage": "https://github.com/sissaschool/xmlschema"
+    },
+    "wheel_hash_count": 1
+  }
+]

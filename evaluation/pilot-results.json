@@ -1,0 +1,1602 @@
+{
+  "schema_version": 1,
+  "evaluation_date": "2026-10-13",
+  "reviewer": "Codex independent artifact review; no human sign-off",
+  "limits": [
+    "Few sequential pilot trials, not a ranking of models.",
+    "Completed tool events can contain checker/operational failures; inspect acceptance gates.",
+    "Token usage is cumulative SDK reporting, including repeated cached context.",
+    "Older trials lack complete initial provenance; reruns reflect documented instruction/tool changes.",
+    "Coordinates and static passes do not establish semantic truth or runtime behavior."
+  ],
+  "trials": [
+    {
+      "label": "coder-api-fix-baseline",
+      "model": "qwen3-coder-next",
+      "task": "api-fix",
+      "condition": "baseline",
+      "catalog": null,
+      "tool_scope": null,
+      "duration_seconds": 83.747,
+      "completed_tool_events": 5,
+      "failed_tool_events": 9,
+      "first_completed_tool_seconds": 17.636,
+      "first_completed_domain_tool_seconds": 28.054,
+      "reported_tokens": {
+        "input": 8855,
+        "output": 1809,
+        "cached_read": 96835
+      },
+      "skill_loaded": [],
+      "automatic_gates": {
+        "typed_log_level": false,
+        "agent_validation_before_and_after": false,
+        "independent_static_pass": false
+      },
+      "operational_failures": [],
+      "reviewer_verdict": "FAIL",
+      "reviewer_note": "Initial absolute edit permission failed closed; no repair, repeated denied attempts.",
+      "likely_origin": "harness-permission",
+      "identical_input_repeats": 7,
+      "repetition_limit": "Identical reads/validation can be necessary after edits; this is not an unnecessary-call count.",
+      "schema_argument_errors": 0,
+      "during_trial_operator_interventions": 0,
+      "observed_tool_schema_json_bytes": [
+        7565
+      ],
+      "observed_wire_request_count": 13,
+      "schema_measurement_limit": "Compact JSON bytes, not tokenizer tokens; optional private observer only."
+    },
+    {
+      "label": "coder-api-fix-baseline-v2",
+      "model": "qwen3-coder-next",
+      "task": "api-fix",
+      "condition": "baseline",
+      "catalog": "relevant-only",
+      "tool_scope": null,
+      "duration_seconds": 83.939,
+      "completed_tool_events": 9,
+      "failed_tool_events": 0,
+      "first_completed_tool_seconds": 15.502,
+      "first_completed_domain_tool_seconds": 29.037,
+      "reported_tokens": {
+        "input": 16045,
+        "output": 1086,
+        "cached_read": 53513
+      },
+      "skill_loaded": [],
+      "automatic_gates": {
+        "typed_log_level": false,
+        "agent_validation_before_and_after": true,
+        "independent_static_pass": true
+      },
+      "operational_failures": [],
+      "reviewer_verdict": "FAIL",
+      "reviewer_note": "Static pass masked semantic error: guessed numeric 2 changes INFO to WARNING; invented removed LOGNOTICE.",
+      "likely_origin": "model-api",
+      "identical_input_repeats": 2,
+      "repetition_limit": "Identical reads/validation can be necessary after edits; this is not an unnecessary-call count.",
+      "schema_argument_errors": 0,
+      "during_trial_operator_interventions": 0,
+      "observed_tool_schema_json_bytes": [
+        7565
+      ],
+      "observed_wire_request_count": 8,
+      "schema_measurement_limit": "Compact JSON bytes, not tokenizer tokens; optional private observer only."
+    },
+    {
+      "label": "coder-api-fix-contract-skill-v4",
+      "model": "qwen3-coder-next",
+      "task": "api-fix-contract",
+      "condition": "skill",
+      "catalog": "relevant-only",
+      "tool_scope": "narrow",
+      "duration_seconds": 61.428,
+      "completed_tool_events": 9,
+      "failed_tool_events": 1,
+      "first_completed_tool_seconds": 14.833,
+      "first_completed_domain_tool_seconds": 31.652,
+      "reported_tokens": {
+        "input": 5952,
+        "output": 1035,
+        "cached_read": 38255
+      },
+      "skill_loaded": [
+        "kodi-addon-development"
+      ],
+      "automatic_gates": {
+        "typed_log_level": true,
+        "agent_validation_before_and_after": true,
+        "independent_static_pass": true,
+        "skill_actually_loaded": true,
+        "skill_loaded_first": true
+      },
+      "operational_failures": [],
+      "reviewer_verdict": "PARTIAL",
+      "reviewer_note": "Correct source repair; guessed Matrix/Omega branch causes type-coverage failure. Independent Nexus pass cannot replace agent validation.",
+      "likely_origin": "target-ambiguity/model-workflow",
+      "identical_input_repeats": 2,
+      "repetition_limit": "Identical reads/validation can be necessary after edits; this is not an unnecessary-call count.",
+      "schema_argument_errors": 0,
+      "during_trial_operator_interventions": 0,
+      "observed_tool_schema_json_bytes": [
+        5943
+      ],
+      "observed_wire_request_count": 9,
+      "schema_measurement_limit": "Compact JSON bytes, not tokenizer tokens; optional private observer only."
+    },
+    {
+      "label": "coder-api-fix-nexus-skill-v5",
+      "model": "qwen3-coder-next",
+      "task": "api-fix-nexus",
+      "condition": "skill",
+      "catalog": "relevant-only",
+      "tool_scope": "narrow",
+      "duration_seconds": 51.133,
+      "completed_tool_events": 7,
+      "failed_tool_events": 1,
+      "first_completed_tool_seconds": 14.852,
+      "first_completed_domain_tool_seconds": 28.735,
+      "reported_tokens": {
+        "input": 5340,
+        "output": 784,
+        "cached_read": 27835
+      },
+      "skill_loaded": [
+        "kodi-addon-development"
+      ],
+      "automatic_gates": {
+        "typed_log_level": true,
+        "agent_validation_before_and_after": true,
+        "independent_static_pass": true,
+        "skill_actually_loaded": true,
+        "skill_loaded_first": true
+      },
+      "operational_failures": [],
+      "reviewer_verdict": "PASS",
+      "reviewer_note": "Actual skill loading, reproduce type error, minimal LOGINFO repair and all post-checks pass; recovered from one entry-point path guess.",
+      "likely_origin": "recovered-model-path",
+      "identical_input_repeats": 2,
+      "repetition_limit": "Identical reads/validation can be necessary after edits; this is not an unnecessary-call count.",
+      "schema_argument_errors": 0,
+      "during_trial_operator_interventions": 0,
+      "observed_tool_schema_json_bytes": [
+        5943
+      ],
+      "observed_wire_request_count": 7,
+      "schema_measurement_limit": "Compact JSON bytes, not tokenizer tokens; optional private observer only."
+    },
+    {
+      "label": "coder-api-fix-skill",
+      "model": "qwen3-coder-next",
+      "task": "api-fix",
+      "condition": "skill",
+      "catalog": null,
+      "tool_scope": null,
+      "duration_seconds": 71.595,
+      "completed_tool_events": 7,
+      "failed_tool_events": 7,
+      "first_completed_tool_seconds": 15.764,
+      "first_completed_domain_tool_seconds": 32.154,
+      "reported_tokens": {
+        "input": 9511,
+        "output": 1215,
+        "cached_read": 95653
+      },
+      "skill_loaded": [
+        "kodi-addon-development"
+      ],
+      "automatic_gates": {
+        "typed_log_level": false,
+        "agent_validation_before_and_after": false,
+        "independent_static_pass": false,
+        "skill_actually_loaded": true,
+        "skill_loaded_first": true
+      },
+      "operational_failures": [],
+      "reviewer_verdict": "FAIL",
+      "reviewer_note": "Initial absolute edit permission failed closed; no repair despite skill loading.",
+      "likely_origin": "harness-permission",
+      "identical_input_repeats": 6,
+      "repetition_limit": "Identical reads/validation can be necessary after edits; this is not an unnecessary-call count.",
+      "schema_argument_errors": 0,
+      "during_trial_operator_interventions": 0,
+      "observed_tool_schema_json_bytes": [
+        8242
+      ],
+      "observed_wire_request_count": 13,
+      "schema_measurement_limit": "Compact JSON bytes, not tokenizer tokens; optional private observer only."
+    },
+    {
+      "label": "coder-api-fix-skill-v2",
+      "model": "qwen3-coder-next",
+      "task": "api-fix",
+      "condition": "skill",
+      "catalog": "relevant-only",
+      "tool_scope": null,
+      "duration_seconds": 63.001,
+      "completed_tool_events": 7,
+      "failed_tool_events": 0,
+      "first_completed_tool_seconds": 16.228,
+      "first_completed_domain_tool_seconds": 29.232,
+      "reported_tokens": {
+        "input": 12307,
+        "output": 700,
+        "cached_read": 31248
+      },
+      "skill_loaded": [
+        "kodi-addon-development"
+      ],
+      "automatic_gates": {
+        "typed_log_level": true,
+        "agent_validation_before_and_after": true,
+        "independent_static_pass": true,
+        "skill_actually_loaded": true,
+        "skill_loaded_first": true
+      },
+      "operational_failures": [],
+      "reviewer_verdict": "PARTIAL",
+      "reviewer_note": "Minimal LOGINFO repair and before/after validation pass; intermediate explanation fabricated constant mappings.",
+      "likely_origin": "model-grounding",
+      "identical_input_repeats": 1,
+      "repetition_limit": "Identical reads/validation can be necessary after edits; this is not an unnecessary-call count.",
+      "schema_argument_errors": 0,
+      "during_trial_operator_interventions": 0,
+      "observed_tool_schema_json_bytes": [
+        8242
+      ],
+      "observed_wire_request_count": 6,
+      "schema_measurement_limit": "Compact JSON bytes, not tokenizer tokens; optional private observer only."
+    },
+    {
+      "label": "coder-boundary-baseline-v4",
+      "model": "qwen3-coder-next",
+      "task": "boundary",
+      "condition": "baseline",
+      "catalog": "relevant-only",
+      "tool_scope": "narrow",
+      "duration_seconds": 15.021,
+      "completed_tool_events": 0,
+      "failed_tool_events": 1,
+      "first_completed_tool_seconds": null,
+      "first_completed_domain_tool_seconds": null,
+      "reported_tokens": {
+        "input": 1241,
+        "output": 92,
+        "cached_read": 1246
+      },
+      "skill_loaded": [],
+      "automatic_gates": {},
+      "operational_failures": [],
+      "reviewer_verdict": "PASS",
+      "reviewer_note": "Expected fixture-boundary denial; no retry or checker launch.",
+      "likely_origin": "none",
+      "identical_input_repeats": 0,
+      "repetition_limit": "Identical reads/validation can be necessary after edits; this is not an unnecessary-call count.",
+      "schema_argument_errors": 0,
+      "during_trial_operator_interventions": 0,
+      "observed_tool_schema_json_bytes": [
+        2280
+      ],
+      "observed_wire_request_count": 1,
+      "schema_measurement_limit": "Compact JSON bytes, not tokenizer tokens; optional private observer only."
+    },
+    {
+      "label": "coder-debug-baseline",
+      "model": "qwen3-coder-next",
+      "task": "debug",
+      "condition": "baseline",
+      "catalog": null,
+      "tool_scope": null,
+      "duration_seconds": 30.611,
+      "completed_tool_events": 3,
+      "failed_tool_events": 0,
+      "first_completed_tool_seconds": 16.487,
+      "first_completed_domain_tool_seconds": 16.487,
+      "reported_tokens": {
+        "input": 1875,
+        "output": 598,
+        "cached_read": 3161
+      },
+      "skill_loaded": [],
+      "automatic_gates": {},
+      "operational_failures": [],
+      "reviewer_verdict": "PARTIAL",
+      "reviewer_note": "Unknown selected item was summarized as no selection.",
+      "likely_origin": "model-grounding",
+      "identical_input_repeats": 0,
+      "repetition_limit": "Identical reads/validation can be necessary after edits; this is not an unnecessary-call count.",
+      "schema_argument_errors": 0,
+      "during_trial_operator_interventions": 0,
+      "observed_tool_schema_json_bytes": [],
+      "observed_wire_request_count": 0,
+      "schema_measurement_limit": "Compact JSON bytes, not tokenizer tokens; optional private observer only."
+    },
+    {
+      "label": "coder-debug-skill",
+      "model": "qwen3-coder-next",
+      "task": "debug",
+      "condition": "skill",
+      "catalog": null,
+      "tool_scope": null,
+      "duration_seconds": 26.96,
+      "completed_tool_events": 3,
+      "failed_tool_events": 0,
+      "first_completed_tool_seconds": 13.852,
+      "first_completed_domain_tool_seconds": 13.852,
+      "reported_tokens": {
+        "input": 2183,
+        "output": 541,
+        "cached_read": 3777
+      },
+      "skill_loaded": [],
+      "automatic_gates": {
+        "skill_actually_loaded": false,
+        "skill_loaded_first": false
+      },
+      "operational_failures": [],
+      "reviewer_verdict": "PARTIAL",
+      "reviewer_note": "Skill never loaded; unknown selected item interpreted as absence.",
+      "likely_origin": "skill-routing/model-grounding",
+      "identical_input_repeats": 0,
+      "repetition_limit": "Identical reads/validation can be necessary after edits; this is not an unnecessary-call count.",
+      "schema_argument_errors": 0,
+      "during_trial_operator_interventions": 0,
+      "observed_tool_schema_json_bytes": [],
+      "observed_wire_request_count": 0,
+      "schema_measurement_limit": "Compact JSON bytes, not tokenizer tokens; optional private observer only."
+    },
+    {
+      "label": "coder-debug-skill-explicit",
+      "model": "qwen3-coder-next",
+      "task": "debug",
+      "condition": "skill",
+      "catalog": null,
+      "tool_scope": null,
+      "duration_seconds": 28.519,
+      "completed_tool_events": 4,
+      "failed_tool_events": 0,
+      "first_completed_tool_seconds": 13.703,
+      "first_completed_domain_tool_seconds": 16.381,
+      "reported_tokens": {
+        "input": 2621,
+        "output": 529,
+        "cached_read": 6574
+      },
+      "skill_loaded": [
+        "kodi-addon-debugging"
+      ],
+      "automatic_gates": {
+        "skill_actually_loaded": true,
+        "skill_loaded_first": true
+      },
+      "operational_failures": [],
+      "reviewer_verdict": "PARTIAL",
+      "reviewer_note": "Loaded skill first; unsupported absence of an active container.",
+      "likely_origin": "model-grounding",
+      "identical_input_repeats": 0,
+      "repetition_limit": "Identical reads/validation can be necessary after edits; this is not an unnecessary-call count.",
+      "schema_argument_errors": 0,
+      "during_trial_operator_interventions": 0,
+      "observed_tool_schema_json_bytes": [
+        3839
+      ],
+      "observed_wire_request_count": 3,
+      "schema_measurement_limit": "Compact JSON bytes, not tokenizer tokens; optional private observer only."
+    },
+    {
+      "label": "coder-debug-skill-routed",
+      "model": "qwen3-coder-next",
+      "task": "debug",
+      "condition": "skill",
+      "catalog": null,
+      "tool_scope": null,
+      "duration_seconds": 27.239,
+      "completed_tool_events": 3,
+      "failed_tool_events": 0,
+      "first_completed_tool_seconds": 13.902,
+      "first_completed_domain_tool_seconds": 13.902,
+      "reported_tokens": {
+        "input": 2217,
+        "output": 545,
+        "cached_read": 3845
+      },
+      "skill_loaded": [],
+      "automatic_gates": {
+        "skill_actually_loaded": false,
+        "skill_loaded_first": false
+      },
+      "operational_failures": [],
+      "reviewer_verdict": "PARTIAL",
+      "reviewer_note": "System routing did not trigger skill loading.",
+      "likely_origin": "skill-routing",
+      "identical_input_repeats": 0,
+      "repetition_limit": "Identical reads/validation can be necessary after edits; this is not an unnecessary-call count.",
+      "schema_argument_errors": 0,
+      "during_trial_operator_interventions": 0,
+      "observed_tool_schema_json_bytes": [
+        3839
+      ],
+      "observed_wire_request_count": 2,
+      "schema_measurement_limit": "Compact JSON bytes, not tokenizer tokens; optional private observer only."
+    },
+    {
+      "label": "coder-debug-skill-v4",
+      "model": "qwen3-coder-next",
+      "task": "debug",
+      "condition": "skill",
+      "catalog": "relevant-only",
+      "tool_scope": "narrow",
+      "duration_seconds": 30.809,
+      "completed_tool_events": 4,
+      "failed_tool_events": 0,
+      "first_completed_tool_seconds": 13.876,
+      "first_completed_domain_tool_seconds": 17.071,
+      "reported_tokens": {
+        "input": 2721,
+        "output": 563,
+        "cached_read": 9550
+      },
+      "skill_loaded": [
+        "kodi-addon-debugging"
+      ],
+      "automatic_gates": {
+        "skill_actually_loaded": true,
+        "skill_loaded_first": true
+      },
+      "operational_failures": [],
+      "reviewer_verdict": "PASS",
+      "reviewer_note": "Skill first; grounded health/UI with selection explicitly unknown.",
+      "likely_origin": "none",
+      "identical_input_repeats": 0,
+      "repetition_limit": "Identical reads/validation can be necessary after edits; this is not an unnecessary-call count.",
+      "schema_argument_errors": 0,
+      "during_trial_operator_interventions": 0,
+      "observed_tool_schema_json_bytes": [
+        3839
+      ],
+      "observed_wire_request_count": 4,
+      "schema_measurement_limit": "Compact JSON bytes, not tokenizer tokens; optional private observer only."
+    },
+    {
+      "label": "coder-explain-skill-v2",
+      "model": "qwen3-coder-next",
+      "task": "explain",
+      "condition": "skill",
+      "catalog": "relevant-only",
+      "tool_scope": null,
+      "duration_seconds": 54.507,
+      "completed_tool_events": 6,
+      "failed_tool_events": 0,
+      "first_completed_tool_seconds": 14.89,
+      "first_completed_domain_tool_seconds": 28.442,
+      "reported_tokens": {
+        "input": 7343,
+        "output": 1060,
+        "cached_read": 18830
+      },
+      "skill_loaded": [
+        "kodi-addon-development"
+      ],
+      "automatic_gates": {
+        "skill_actually_loaded": true,
+        "skill_loaded_first": true
+      },
+      "operational_failures": [],
+      "reviewer_verdict": "PARTIAL",
+      "reviewer_note": "Entry point and dependencies grounded; broad 19-22 compatibility and no-side-effect claims overstated.",
+      "likely_origin": "model-grounding",
+      "identical_input_repeats": 0,
+      "repetition_limit": "Identical reads/validation can be necessary after edits; this is not an unnecessary-call count.",
+      "schema_argument_errors": 0,
+      "during_trial_operator_interventions": 0,
+      "observed_tool_schema_json_bytes": [
+        5256
+      ],
+      "observed_wire_request_count": 5,
+      "schema_measurement_limit": "Compact JSON bytes, not tokenizer tokens; optional private observer only."
+    },
+    {
+      "label": "coder-review-baseline-v3",
+      "model": "qwen3-coder-next",
+      "task": "review",
+      "condition": "baseline",
+      "catalog": "relevant-only",
+      "tool_scope": null,
+      "duration_seconds": 88.045,
+      "completed_tool_events": 3,
+      "failed_tool_events": 0,
+      "first_completed_tool_seconds": 14.648,
+      "first_completed_domain_tool_seconds": 14.648,
+      "reported_tokens": {
+        "input": 7684,
+        "output": 2823,
+        "cached_read": 14450
+      },
+      "skill_loaded": [],
+      "automatic_gates": {
+        "complete_json_report": true,
+        "strict_final_json_only": false,
+        "evidence_contract": true,
+        "anchored_privacy_candidate": true
+      },
+      "operational_failures": [],
+      "reviewer_verdict": "FAIL",
+      "reviewer_note": "Anchors accepted, but invented encryption/storage rules and unsupported blocker confidence; contract does not establish truth.",
+      "likely_origin": "model-review",
+      "identical_input_repeats": 0,
+      "repetition_limit": "Identical reads/validation can be necessary after edits; this is not an unnecessary-call count.",
+      "schema_argument_errors": 0,
+      "during_trial_operator_interventions": 0,
+      "observed_tool_schema_json_bytes": [
+        5223
+      ],
+      "observed_wire_request_count": 3,
+      "schema_measurement_limit": "Compact JSON bytes, not tokenizer tokens; optional private observer only."
+    },
+    {
+      "label": "coder-review-bounded-baseline-v4",
+      "model": "qwen3-coder-next",
+      "task": "review-bounded",
+      "condition": "baseline",
+      "catalog": "relevant-only",
+      "tool_scope": "narrow",
+      "duration_seconds": 52.771,
+      "completed_tool_events": 3,
+      "failed_tool_events": 0,
+      "first_completed_tool_seconds": 13.734,
+      "first_completed_domain_tool_seconds": 13.734,
+      "reported_tokens": {
+        "input": 6112,
+        "output": 1235,
+        "cached_read": 12280
+      },
+      "skill_loaded": [],
+      "automatic_gates": {
+        "complete_json_report": true,
+        "strict_final_json_only": true,
+        "evidence_contract": true,
+        "anchored_privacy_candidate": true
+      },
+      "operational_failures": [],
+      "reviewer_verdict": "FAIL",
+      "reviewer_note": "Invented deterministic no-sensitive-logging rule; revised final report not reverified; checker coordinates inaccurate.",
+      "likely_origin": "model-review",
+      "identical_input_repeats": 0,
+      "repetition_limit": "Identical reads/validation can be necessary after edits; this is not an unnecessary-call count.",
+      "schema_argument_errors": 0,
+      "during_trial_operator_interventions": 0,
+      "observed_tool_schema_json_bytes": [
+        2924
+      ],
+      "observed_wire_request_count": 3,
+      "schema_measurement_limit": "Compact JSON bytes, not tokenizer tokens; optional private observer only."
+    },
+    {
+      "label": "coder-review-bounded-skill-v4",
+      "model": "qwen3-coder-next",
+      "task": "review-bounded",
+      "condition": "skill",
+      "catalog": "relevant-only",
+      "tool_scope": "narrow",
+      "duration_seconds": 71.426,
+      "completed_tool_events": 6,
+      "failed_tool_events": 0,
+      "first_completed_tool_seconds": 13.961,
+      "first_completed_domain_tool_seconds": 20.821,
+      "reported_tokens": {
+        "input": 8099,
+        "output": 1806,
+        "cached_read": 30682
+      },
+      "skill_loaded": [
+        "kodi-addon-validation"
+      ],
+      "automatic_gates": {
+        "complete_json_report": true,
+        "strict_final_json_only": false,
+        "evidence_contract": true,
+        "anchored_privacy_candidate": true,
+        "skill_actually_loaded": true,
+        "skill_loaded_first": true
+      },
+      "operational_failures": [],
+      "reviewer_verdict": "PASS",
+      "reviewer_note": "One source-supported potential privacy issue, original warnings separate; rejected coordinates corrected then reverified. Runtime and semantic limits retained.",
+      "likely_origin": "recovered-model-arguments",
+      "identical_input_repeats": 0,
+      "repetition_limit": "Identical reads/validation can be necessary after edits; this is not an unnecessary-call count.",
+      "schema_argument_errors": 0,
+      "during_trial_operator_interventions": 0,
+      "observed_tool_schema_json_bytes": [
+        3601
+      ],
+      "observed_wire_request_count": 6,
+      "schema_measurement_limit": "Compact JSON bytes, not tokenizer tokens; optional private observer only."
+    },
+    {
+      "label": "coder-review-composed-skill-v5",
+      "model": "qwen3-coder-next",
+      "task": "review-composed",
+      "condition": "skill",
+      "catalog": "relevant-only",
+      "tool_scope": "narrow",
+      "duration_seconds": 53.012,
+      "completed_tool_events": 4,
+      "failed_tool_events": 0,
+      "first_completed_tool_seconds": 13.937,
+      "first_completed_domain_tool_seconds": 17.461,
+      "reported_tokens": {
+        "input": 7466,
+        "output": 837,
+        "cached_read": 17432
+      },
+      "skill_loaded": [
+        "kodi-addon-validation"
+      ],
+      "automatic_gates": {
+        "agent_composition_called": true,
+        "composition_passed": true,
+        "semantics_left_to_human": true,
+        "skill_actually_loaded": true,
+        "skill_loaded_first": true
+      },
+      "operational_failures": [],
+      "reviewer_verdict": "PARTIAL",
+      "reviewer_note": "Canonical checker composition works; model still overstates blocker severity and stdout mechanism; unnecessary extra validation.",
+      "likely_origin": "model-review",
+      "identical_input_repeats": 0,
+      "repetition_limit": "Identical reads/validation can be necessary after edits; this is not an unnecessary-call count.",
+      "schema_argument_errors": 0,
+      "during_trial_operator_interventions": 0,
+      "observed_tool_schema_json_bytes": [
+        3794
+      ],
+      "observed_wire_request_count": 4,
+      "schema_measurement_limit": "Compact JSON bytes, not tokenizer tokens; optional private observer only."
+    },
+    {
+      "label": "coder-review-skill-v3",
+      "model": "qwen3-coder-next",
+      "task": "review",
+      "condition": "skill",
+      "catalog": "relevant-only",
+      "tool_scope": null,
+      "duration_seconds": 94.299,
+      "completed_tool_events": 11,
+      "failed_tool_events": 0,
+      "first_completed_tool_seconds": 16.488,
+      "first_completed_domain_tool_seconds": 33.396,
+      "reported_tokens": {
+        "input": 10199,
+        "output": 2692,
+        "cached_read": 26570
+      },
+      "skill_loaded": [
+        "kodi-addon-validation"
+      ],
+      "automatic_gates": {
+        "complete_json_report": true,
+        "strict_final_json_only": false,
+        "evidence_contract": true,
+        "anchored_privacy_candidate": true,
+        "skill_actually_loaded": true,
+        "skill_loaded_first": true
+      },
+      "operational_failures": [],
+      "reviewer_verdict": "PARTIAL",
+      "reviewer_note": "Improved cross-file privacy evidence; duplicated recommendations and unsupported demonstrated findings remain.",
+      "likely_origin": "model-review",
+      "identical_input_repeats": 0,
+      "repetition_limit": "Identical reads/validation can be necessary after edits; this is not an unnecessary-call count.",
+      "schema_argument_errors": 0,
+      "during_trial_operator_interventions": 0,
+      "observed_tool_schema_json_bytes": [
+        5900
+      ],
+      "observed_wire_request_count": 5,
+      "schema_measurement_limit": "Compact JSON bytes, not tokenizer tokens; optional private observer only."
+    },
+    {
+      "label": "coder-validate-default-baseline-v2",
+      "model": "qwen3-coder-next",
+      "task": "validate-default",
+      "condition": "baseline",
+      "catalog": "relevant-only",
+      "tool_scope": null,
+      "duration_seconds": 32.221,
+      "completed_tool_events": 1,
+      "failed_tool_events": 0,
+      "first_completed_tool_seconds": 18.264,
+      "first_completed_domain_tool_seconds": 18.264,
+      "reported_tokens": {
+        "input": 5978,
+        "output": 297,
+        "cached_read": 1848
+      },
+      "skill_loaded": [],
+      "automatic_gates": {},
+      "operational_failures": [],
+      "reviewer_verdict": "PASS",
+      "reviewer_note": "Runtime branch fallback works; checker success and both warnings accurately reported.",
+      "likely_origin": "none",
+      "identical_input_repeats": 0,
+      "repetition_limit": "Identical reads/validation can be necessary after edits; this is not an unnecessary-call count.",
+      "schema_argument_errors": 0,
+      "during_trial_operator_interventions": 0,
+      "observed_tool_schema_json_bytes": [
+        4579
+      ],
+      "observed_wire_request_count": 1,
+      "schema_measurement_limit": "Compact JSON bytes, not tokenizer tokens; optional private observer only."
+    },
+    {
+      "label": "coder-validate-skill-v2",
+      "model": "qwen3-coder-next",
+      "task": "validate",
+      "condition": "skill",
+      "catalog": "relevant-only",
+      "tool_scope": null,
+      "duration_seconds": 43.853,
+      "completed_tool_events": 3,
+      "failed_tool_events": 0,
+      "first_completed_tool_seconds": 14.414,
+      "first_completed_domain_tool_seconds": 24.596,
+      "reported_tokens": {
+        "input": 7139,
+        "output": 674,
+        "cached_read": 7927
+      },
+      "skill_loaded": [
+        "kodi-addon-validation"
+      ],
+      "automatic_gates": {
+        "skill_actually_loaded": true,
+        "skill_loaded_first": true
+      },
+      "operational_failures": [],
+      "reviewer_verdict": "PASS",
+      "reviewer_note": "Loaded validation skill/reference; actual static stages and both warnings accurately reported.",
+      "likely_origin": "none",
+      "identical_input_repeats": 0,
+      "repetition_limit": "Identical reads/validation can be necessary after edits; this is not an unnecessary-call count.",
+      "schema_argument_errors": 0,
+      "during_trial_operator_interventions": 0,
+      "observed_tool_schema_json_bytes": [
+        5256
+      ],
+      "observed_wire_request_count": 3,
+      "schema_measurement_limit": "Compact JSON bytes, not tokenizer tokens; optional private observer only."
+    },
+    {
+      "label": "coder-xml-baseline",
+      "model": "qwen3-coder-next",
+      "task": "xml",
+      "condition": "baseline",
+      "catalog": null,
+      "tool_scope": null,
+      "duration_seconds": 22.101,
+      "completed_tool_events": 3,
+      "failed_tool_events": 0,
+      "first_completed_tool_seconds": 13.848,
+      "first_completed_domain_tool_seconds": 13.848,
+      "reported_tokens": {
+        "input": 2170,
+        "output": 235,
+        "cached_read": 5708
+      },
+      "skill_loaded": [],
+      "automatic_gates": {},
+      "operational_failures": [
+        {
+          "tool": "kodi_validate",
+          "process_exit": 2
+        }
+      ],
+      "reviewer_verdict": "PARTIAL",
+      "reviewer_note": "Correct closing-tag diagnosis; omitted branch exposed adapter process-exit 2.",
+      "likely_origin": "harness-default",
+      "identical_input_repeats": 0,
+      "repetition_limit": "Identical reads/validation can be necessary after edits; this is not an unnecessary-call count.",
+      "schema_argument_errors": 0,
+      "during_trial_operator_interventions": 0,
+      "observed_tool_schema_json_bytes": [
+        4579
+      ],
+      "observed_wire_request_count": 3,
+      "schema_measurement_limit": "Compact JSON bytes, not tokenizer tokens; optional private observer only."
+    },
+    {
+      "label": "coder-xml-full-catalog-v4",
+      "model": "qwen3-coder-next",
+      "task": "xml-bounded",
+      "condition": "skill",
+      "catalog": "all",
+      "tool_scope": "narrow",
+      "duration_seconds": 25.565,
+      "completed_tool_events": 2,
+      "failed_tool_events": 0,
+      "first_completed_tool_seconds": 14.811,
+      "first_completed_domain_tool_seconds": 21.149,
+      "reported_tokens": {
+        "input": 3330,
+        "output": 135,
+        "cached_read": 4491
+      },
+      "skill_loaded": [
+        "kodi-addon-validation"
+      ],
+      "automatic_gates": {
+        "skill_actually_loaded": true,
+        "skill_loaded_first": true
+      },
+      "operational_failures": [],
+      "reviewer_verdict": "PARTIAL",
+      "reviewer_note": "Selected appropriate skill from five; failed to read actual malformed manifest line.",
+      "likely_origin": "model-workflow",
+      "identical_input_repeats": 0,
+      "repetition_limit": "Identical reads/validation can be necessary after edits; this is not an unnecessary-call count.",
+      "schema_argument_errors": 0,
+      "during_trial_operator_interventions": 0,
+      "observed_tool_schema_json_bytes": [
+        2957
+      ],
+      "observed_wire_request_count": 2,
+      "schema_measurement_limit": "Compact JSON bytes, not tokenizer tokens; optional private observer only."
+    },
+    {
+      "label": "coder-xml-full-catalog-v5",
+      "model": "qwen3-coder-next",
+      "task": "xml-bounded",
+      "condition": "skill",
+      "catalog": "all",
+      "tool_scope": "narrow",
+      "duration_seconds": 27.696,
+      "completed_tool_events": 3,
+      "failed_tool_events": 0,
+      "first_completed_tool_seconds": 13.987,
+      "first_completed_domain_tool_seconds": 20.253,
+      "reported_tokens": {
+        "input": 3627,
+        "output": 207,
+        "cached_read": 7973
+      },
+      "skill_loaded": [
+        "kodi-addon-validation"
+      ],
+      "automatic_gates": {
+        "skill_actually_loaded": true,
+        "skill_loaded_first": true
+      },
+      "operational_failures": [],
+      "reviewer_verdict": "PASS",
+      "reviewer_note": "Selected validation skill from five and read actual manifest line after focused skill improvement; precise corrected tag and checker failure reported.",
+      "likely_origin": "none",
+      "identical_input_repeats": 0,
+      "repetition_limit": "Identical reads/validation can be necessary after edits; this is not an unnecessary-call count.",
+      "schema_argument_errors": 0,
+      "during_trial_operator_interventions": 0,
+      "observed_tool_schema_json_bytes": [
+        2957
+      ],
+      "observed_wire_request_count": 3,
+      "schema_measurement_limit": "Compact JSON bytes, not tokenizer tokens; optional private observer only."
+    },
+    {
+      "label": "coder-xml-skill",
+      "model": "qwen3-coder-next",
+      "task": "xml",
+      "condition": "skill",
+      "catalog": null,
+      "tool_scope": null,
+      "duration_seconds": 38.553,
+      "completed_tool_events": 3,
+      "failed_tool_events": 0,
+      "first_completed_tool_seconds": 14.976,
+      "first_completed_domain_tool_seconds": 22.05,
+      "reported_tokens": {
+        "input": 7034,
+        "output": 384,
+        "cached_read": 11763
+      },
+      "skill_loaded": [
+        "kodi-addon-validation"
+      ],
+      "automatic_gates": {
+        "skill_actually_loaded": true,
+        "skill_loaded_first": true
+      },
+      "operational_failures": [],
+      "reviewer_verdict": "PARTIAL",
+      "reviewer_note": "Loaded skill and checker; incorrect explanation that a self-closing import needed closing.",
+      "likely_origin": "model-grounding",
+      "identical_input_repeats": 0,
+      "repetition_limit": "Identical reads/validation can be necessary after edits; this is not an unnecessary-call count.",
+      "schema_argument_errors": 0,
+      "during_trial_operator_interventions": 0,
+      "observed_tool_schema_json_bytes": [
+        5256
+      ],
+      "observed_wire_request_count": 3,
+      "schema_measurement_limit": "Compact JSON bytes, not tokenizer tokens; optional private observer only."
+    },
+    {
+      "label": "mellum-api-fix-baseline-v2",
+      "model": "mellum2.1-q4-trial",
+      "task": "api-fix",
+      "condition": "baseline",
+      "catalog": "relevant-only",
+      "tool_scope": null,
+      "duration_seconds": 61.284,
+      "completed_tool_events": 10,
+      "failed_tool_events": 0,
+      "first_completed_tool_seconds": 15.118,
+      "first_completed_domain_tool_seconds": 44.52,
+      "reported_tokens": {
+        "input": 7783,
+        "output": 4264,
+        "cached_read": 43033
+      },
+      "skill_loaded": [],
+      "automatic_gates": {
+        "typed_log_level": true,
+        "agent_validation_before_and_after": false,
+        "independent_static_pass": true
+      },
+      "operational_failures": [],
+      "reviewer_verdict": "PARTIAL",
+      "reviewer_note": "Correct LOGINFO repair and post-check; omitted pre-check and misreported check/warning coverage.",
+      "likely_origin": "model-workflow",
+      "identical_input_repeats": 1,
+      "repetition_limit": "Identical reads/validation can be necessary after edits; this is not an unnecessary-call count.",
+      "schema_argument_errors": 0,
+      "during_trial_operator_interventions": 0,
+      "observed_tool_schema_json_bytes": [
+        7565
+      ],
+      "observed_wire_request_count": 10,
+      "schema_measurement_limit": "Compact JSON bytes, not tokenizer tokens; optional private observer only."
+    },
+    {
+      "label": "mellum-api-fix-contract-baseline-v4",
+      "model": "mellum2.1-q4-trial",
+      "task": "api-fix-contract",
+      "condition": "baseline",
+      "catalog": "relevant-only",
+      "tool_scope": "narrow",
+      "duration_seconds": 66.193,
+      "completed_tool_events": 7,
+      "failed_tool_events": 1,
+      "first_completed_tool_seconds": 15.981,
+      "first_completed_domain_tool_seconds": 43.554,
+      "reported_tokens": {
+        "input": 4556,
+        "output": 4949,
+        "cached_read": 39055
+      },
+      "skill_loaded": [],
+      "automatic_gates": {
+        "typed_log_level": true,
+        "agent_validation_before_and_after": true,
+        "independent_static_pass": true
+      },
+      "operational_failures": [],
+      "reviewer_verdict": "PASS",
+      "reviewer_note": "Correct minimal INFO repair and pre/post checks; recovered from one wrong fixture path.",
+      "likely_origin": "recovered-model-path",
+      "identical_input_repeats": 1,
+      "repetition_limit": "Identical reads/validation can be necessary after edits; this is not an unnecessary-call count.",
+      "schema_argument_errors": 0,
+      "during_trial_operator_interventions": 0,
+      "observed_tool_schema_json_bytes": [
+        5266
+      ],
+      "observed_wire_request_count": 9,
+      "schema_measurement_limit": "Compact JSON bytes, not tokenizer tokens; optional private observer only."
+    },
+    {
+      "label": "mellum-api-fix-contract-skill-v4",
+      "model": "mellum2.1-q4-trial",
+      "task": "api-fix-contract",
+      "condition": "skill",
+      "catalog": "relevant-only",
+      "tool_scope": "narrow",
+      "duration_seconds": 65.321,
+      "completed_tool_events": 10,
+      "failed_tool_events": 3,
+      "first_completed_tool_seconds": 13.142,
+      "first_completed_domain_tool_seconds": 51.035,
+      "reported_tokens": {
+        "input": 5803,
+        "output": 4477,
+        "cached_read": 76093
+      },
+      "skill_loaded": [
+        "kodi-addon-development"
+      ],
+      "automatic_gates": {
+        "typed_log_level": true,
+        "agent_validation_before_and_after": true,
+        "independent_static_pass": true,
+        "skill_actually_loaded": true,
+        "skill_loaded_first": true
+      },
+      "operational_failures": [],
+      "reviewer_verdict": "PARTIAL",
+      "reviewer_note": "Repair and pre/post checks pass; repeated bad manifest paths and step-cap output impair completion.",
+      "likely_origin": "model-path/workflow",
+      "identical_input_repeats": 4,
+      "repetition_limit": "Identical reads/validation can be necessary after edits; this is not an unnecessary-call count.",
+      "schema_argument_errors": 0,
+      "during_trial_operator_interventions": 0,
+      "observed_tool_schema_json_bytes": [
+        5943
+      ],
+      "observed_wire_request_count": 13,
+      "schema_measurement_limit": "Compact JSON bytes, not tokenizer tokens; optional private observer only."
+    },
+    {
+      "label": "mellum-api-fix-skill-v2",
+      "model": "mellum2.1-q4-trial",
+      "task": "api-fix",
+      "condition": "skill",
+      "catalog": "relevant-only",
+      "tool_scope": null,
+      "duration_seconds": 41.511,
+      "completed_tool_events": 6,
+      "failed_tool_events": 0,
+      "first_completed_tool_seconds": 11.488,
+      "first_completed_domain_tool_seconds": 24.435,
+      "reported_tokens": {
+        "input": 7981,
+        "output": 2336,
+        "cached_read": 24501
+      },
+      "skill_loaded": [
+        "kodi-addon-development"
+      ],
+      "automatic_gates": {
+        "typed_log_level": false,
+        "agent_validation_before_and_after": false,
+        "independent_static_pass": true,
+        "skill_actually_loaded": true,
+        "skill_loaded_first": true
+      },
+      "operational_failures": [],
+      "reviewer_verdict": "FAIL",
+      "reviewer_note": "Removed log level defaults to DEBUG, violating intended INFO despite a static pass.",
+      "likely_origin": "model-api",
+      "identical_input_repeats": 0,
+      "repetition_limit": "Identical reads/validation can be necessary after edits; this is not an unnecessary-call count.",
+      "schema_argument_errors": 0,
+      "during_trial_operator_interventions": 0,
+      "observed_tool_schema_json_bytes": [
+        8242
+      ],
+      "observed_wire_request_count": 6,
+      "schema_measurement_limit": "Compact JSON bytes, not tokenizer tokens; optional private observer only."
+    },
+    {
+      "label": "mellum-debug-baseline",
+      "model": "mellum2.1-q4-trial",
+      "task": "debug",
+      "condition": "baseline",
+      "catalog": null,
+      "tool_scope": null,
+      "duration_seconds": 30.457,
+      "completed_tool_events": 3,
+      "failed_tool_events": 0,
+      "first_completed_tool_seconds": 12.351,
+      "first_completed_domain_tool_seconds": 12.351,
+      "reported_tokens": {
+        "input": 1865,
+        "output": 2123,
+        "cached_read": 5745
+      },
+      "skill_loaded": [],
+      "automatic_gates": {},
+      "operational_failures": [],
+      "reviewer_verdict": "PARTIAL",
+      "reviewer_note": "Completed inspection, but unknown selection was treated as no selection.",
+      "likely_origin": "model-grounding",
+      "identical_input_repeats": 0,
+      "repetition_limit": "Identical reads/validation can be necessary after edits; this is not an unnecessary-call count.",
+      "schema_argument_errors": 0,
+      "during_trial_operator_interventions": 0,
+      "observed_tool_schema_json_bytes": [],
+      "observed_wire_request_count": 0,
+      "schema_measurement_limit": "Compact JSON bytes, not tokenizer tokens; optional private observer only."
+    },
+    {
+      "label": "mellum-debug-skill",
+      "model": "mellum2.1-q4-trial",
+      "task": "debug",
+      "condition": "skill",
+      "catalog": null,
+      "tool_scope": null,
+      "duration_seconds": 31.618,
+      "completed_tool_events": 3,
+      "failed_tool_events": 0,
+      "first_completed_tool_seconds": 13.935,
+      "first_completed_domain_tool_seconds": 13.935,
+      "reported_tokens": {
+        "input": 2206,
+        "output": 2217,
+        "cached_read": 7406
+      },
+      "skill_loaded": [],
+      "automatic_gates": {
+        "skill_actually_loaded": false,
+        "skill_loaded_first": false
+      },
+      "operational_failures": [],
+      "reviewer_verdict": "PARTIAL",
+      "reviewer_note": "Skill available but not loaded; selection uncertainty mishandled.",
+      "likely_origin": "skill-routing/model-grounding",
+      "identical_input_repeats": 0,
+      "repetition_limit": "Identical reads/validation can be necessary after edits; this is not an unnecessary-call count.",
+      "schema_argument_errors": 0,
+      "during_trial_operator_interventions": 0,
+      "observed_tool_schema_json_bytes": [],
+      "observed_wire_request_count": 0,
+      "schema_measurement_limit": "Compact JSON bytes, not tokenizer tokens; optional private observer only."
+    },
+    {
+      "label": "mellum-debug-skill-explicit",
+      "model": "mellum2.1-q4-trial",
+      "task": "debug",
+      "condition": "skill",
+      "catalog": null,
+      "tool_scope": null,
+      "duration_seconds": 38.262,
+      "completed_tool_events": 4,
+      "failed_tool_events": 0,
+      "first_completed_tool_seconds": 12.667,
+      "first_completed_domain_tool_seconds": 16.168,
+      "reported_tokens": {
+        "input": 2697,
+        "output": 2735,
+        "cached_read": 10854
+      },
+      "skill_loaded": [
+        "kodi-addon-debugging"
+      ],
+      "automatic_gates": {
+        "skill_actually_loaded": true,
+        "skill_loaded_first": true
+      },
+      "operational_failures": [],
+      "reviewer_verdict": "PARTIAL",
+      "reviewer_note": "Loaded skill first but described unknown selection as unset.",
+      "likely_origin": "model-grounding",
+      "identical_input_repeats": 0,
+      "repetition_limit": "Identical reads/validation can be necessary after edits; this is not an unnecessary-call count.",
+      "schema_argument_errors": 0,
+      "during_trial_operator_interventions": 0,
+      "observed_tool_schema_json_bytes": [
+        3839
+      ],
+      "observed_wire_request_count": 5,
+      "schema_measurement_limit": "Compact JSON bytes, not tokenizer tokens; optional private observer only."
+    },
+    {
+      "label": "mellum-debug-skill-routed",
+      "model": "mellum2.1-q4-trial",
+      "task": "debug",
+      "condition": "skill",
+      "catalog": null,
+      "tool_scope": null,
+      "duration_seconds": 44.757,
+      "completed_tool_events": 5,
+      "failed_tool_events": 0,
+      "first_completed_tool_seconds": 13.438,
+      "first_completed_domain_tool_seconds": 13.438,
+      "reported_tokens": {
+        "input": 3053,
+        "output": 3417,
+        "cached_read": 15824
+      },
+      "skill_loaded": [
+        "kodi-addon-debugging"
+      ],
+      "automatic_gates": {
+        "skill_actually_loaded": true,
+        "skill_loaded_first": false
+      },
+      "operational_failures": [],
+      "reviewer_verdict": "PARTIAL",
+      "reviewer_note": "Loaded skill late; unsupported absence inference and extra calls.",
+      "likely_origin": "skill-routing/model-grounding",
+      "identical_input_repeats": 0,
+      "repetition_limit": "Identical reads/validation can be necessary after edits; this is not an unnecessary-call count.",
+      "schema_argument_errors": 0,
+      "during_trial_operator_interventions": 0,
+      "observed_tool_schema_json_bytes": [
+        3839
+      ],
+      "observed_wire_request_count": 6,
+      "schema_measurement_limit": "Compact JSON bytes, not tokenizer tokens; optional private observer only."
+    },
+    {
+      "label": "mellum-debug-skill-v4",
+      "model": "mellum2.1-q4-trial",
+      "task": "debug",
+      "condition": "skill",
+      "catalog": "relevant-only",
+      "tool_scope": "narrow",
+      "duration_seconds": 25.205,
+      "completed_tool_events": 5,
+      "failed_tool_events": 0,
+      "first_completed_tool_seconds": 11.665,
+      "first_completed_domain_tool_seconds": 13.231,
+      "reported_tokens": {
+        "input": 3179,
+        "output": 1412,
+        "cached_read": 14178
+      },
+      "skill_loaded": [
+        "kodi-addon-debugging"
+      ],
+      "automatic_gates": {
+        "skill_actually_loaded": true,
+        "skill_loaded_first": true
+      },
+      "operational_failures": [],
+      "reviewer_verdict": "PASS",
+      "reviewer_note": "Skill first; grounded health/UI and unknown selection; one optional reference read.",
+      "likely_origin": "none",
+      "identical_input_repeats": 0,
+      "repetition_limit": "Identical reads/validation can be necessary after edits; this is not an unnecessary-call count.",
+      "schema_argument_errors": 0,
+      "during_trial_operator_interventions": 0,
+      "observed_tool_schema_json_bytes": [
+        3839
+      ],
+      "observed_wire_request_count": 6,
+      "schema_measurement_limit": "Compact JSON bytes, not tokenizer tokens; optional private observer only."
+    },
+    {
+      "label": "mellum-review-baseline-v3",
+      "model": "mellum2.1-q4-trial",
+      "task": "review",
+      "condition": "baseline",
+      "catalog": "relevant-only",
+      "tool_scope": null,
+      "duration_seconds": 66.707,
+      "completed_tool_events": 3,
+      "failed_tool_events": 0,
+      "first_completed_tool_seconds": 17.198,
+      "first_completed_domain_tool_seconds": 17.198,
+      "reported_tokens": {
+        "input": 5905,
+        "output": 5322,
+        "cached_read": 15498
+      },
+      "skill_loaded": [],
+      "automatic_gates": {
+        "complete_json_report": false,
+        "strict_final_json_only": false
+      },
+      "operational_failures": [],
+      "reviewer_verdict": "FAIL",
+      "reviewer_note": "No final report after output-length exhaustion.",
+      "likely_origin": "completion-budget",
+      "identical_input_repeats": 0,
+      "repetition_limit": "Identical reads/validation can be necessary after edits; this is not an unnecessary-call count.",
+      "schema_argument_errors": 0,
+      "during_trial_operator_interventions": 0,
+      "observed_tool_schema_json_bytes": [
+        5223
+      ],
+      "observed_wire_request_count": 4,
+      "schema_measurement_limit": "Compact JSON bytes, not tokenizer tokens; optional private observer only."
+    },
+    {
+      "label": "mellum-review-bounded-skill-v4",
+      "model": "mellum2.1-q4-trial",
+      "task": "review-bounded",
+      "condition": "skill",
+      "catalog": "relevant-only",
+      "tool_scope": "narrow",
+      "duration_seconds": 112.054,
+      "completed_tool_events": 7,
+      "failed_tool_events": 1,
+      "first_completed_tool_seconds": 10.309,
+      "first_completed_domain_tool_seconds": 24.816,
+      "reported_tokens": {
+        "input": 20033,
+        "output": 8496,
+        "cached_read": 29649
+      },
+      "skill_loaded": [
+        "kodi-addon-validation"
+      ],
+      "automatic_gates": {
+        "complete_json_report": true,
+        "strict_final_json_only": true,
+        "evidence_contract": true,
+        "anchored_privacy_candidate": true,
+        "skill_actually_loaded": true,
+        "skill_loaded_first": true
+      },
+      "operational_failures": [],
+      "reviewer_verdict": "PARTIAL",
+      "reviewer_note": "Potential privacy finding anchored with uncertainty; checker warning line coordinates incorrect; one path error recovered.",
+      "likely_origin": "model-grounding",
+      "identical_input_repeats": 0,
+      "repetition_limit": "Identical reads/validation can be necessary after edits; this is not an unnecessary-call count.",
+      "schema_argument_errors": 0,
+      "during_trial_operator_interventions": 0,
+      "observed_tool_schema_json_bytes": [
+        3601
+      ],
+      "observed_wire_request_count": 9,
+      "schema_measurement_limit": "Compact JSON bytes, not tokenizer tokens; optional private observer only."
+    },
+    {
+      "label": "mellum-review-skill-v3",
+      "model": "mellum2.1-q4-trial",
+      "task": "review",
+      "condition": "skill",
+      "catalog": "relevant-only",
+      "tool_scope": null,
+      "duration_seconds": 122.824,
+      "completed_tool_events": 10,
+      "failed_tool_events": 0,
+      "first_completed_tool_seconds": 13.12,
+      "first_completed_domain_tool_seconds": 26.114,
+      "reported_tokens": {
+        "input": 18099,
+        "output": 9767,
+        "cached_read": 42856
+      },
+      "skill_loaded": [
+        "kodi-addon-validation"
+      ],
+      "automatic_gates": {
+        "complete_json_report": false,
+        "strict_final_json_only": false,
+        "skill_actually_loaded": true,
+        "skill_loaded_first": true
+      },
+      "operational_failures": [],
+      "reviewer_verdict": "FAIL",
+      "reviewer_note": "Wrong report envelope on verification; no final report after output-length exhaustion.",
+      "likely_origin": "model-arguments/completion-budget",
+      "identical_input_repeats": 0,
+      "repetition_limit": "Identical reads/validation can be necessary after edits; this is not an unnecessary-call count.",
+      "schema_argument_errors": 0,
+      "during_trial_operator_interventions": 0,
+      "observed_tool_schema_json_bytes": [
+        5900
+      ],
+      "observed_wire_request_count": 10,
+      "schema_measurement_limit": "Compact JSON bytes, not tokenizer tokens; optional private observer only."
+    },
+    {
+      "label": "mellum-xml-baseline",
+      "model": "mellum2.1-q4-trial",
+      "task": "xml",
+      "condition": "baseline",
+      "catalog": null,
+      "tool_scope": null,
+      "duration_seconds": 32.447,
+      "completed_tool_events": 4,
+      "failed_tool_events": 0,
+      "first_completed_tool_seconds": 11.921,
+      "first_completed_domain_tool_seconds": 11.921,
+      "reported_tokens": {
+        "input": 6717,
+        "output": 1548,
+        "cached_read": 18685
+      },
+      "skill_loaded": [],
+      "automatic_gates": {},
+      "operational_failures": [
+        {
+          "tool": "kodi_validate",
+          "process_exit": 2
+        }
+      ],
+      "reviewer_verdict": "PARTIAL",
+      "reviewer_note": "Recovered from omitted-branch failure; inaccurate coordinates and checker-crash explanation.",
+      "likely_origin": "harness-default/model-grounding",
+      "identical_input_repeats": 0,
+      "repetition_limit": "Identical reads/validation can be necessary after edits; this is not an unnecessary-call count.",
+      "schema_argument_errors": 0,
+      "during_trial_operator_interventions": 0,
+      "observed_tool_schema_json_bytes": [
+        4579
+      ],
+      "observed_wire_request_count": 5,
+      "schema_measurement_limit": "Compact JSON bytes, not tokenizer tokens; optional private observer only."
+    },
+    {
+      "label": "mellum-xml-skill",
+      "model": "mellum2.1-q4-trial",
+      "task": "xml",
+      "condition": "skill",
+      "catalog": null,
+      "tool_scope": null,
+      "duration_seconds": 37.267,
+      "completed_tool_events": 6,
+      "failed_tool_events": 0,
+      "first_completed_tool_seconds": 10.902,
+      "first_completed_domain_tool_seconds": 21.489,
+      "reported_tokens": {
+        "input": 7602,
+        "output": 1881,
+        "cached_read": 22984
+      },
+      "skill_loaded": [
+        "kodi-addon-validation"
+      ],
+      "automatic_gates": {
+        "skill_actually_loaded": true,
+        "skill_loaded_first": true
+      },
+      "operational_failures": [],
+      "reviewer_verdict": "PARTIAL",
+      "reviewer_note": "Correct XML cause; falsely claimed other checks did not run.",
+      "likely_origin": "model-grounding",
+      "identical_input_repeats": 0,
+      "repetition_limit": "Identical reads/validation can be necessary after edits; this is not an unnecessary-call count.",
+      "schema_argument_errors": 0,
+      "during_trial_operator_interventions": 0,
+      "observed_tool_schema_json_bytes": [
+        5256
+      ],
+      "observed_wire_request_count": 7,
+      "schema_measurement_limit": "Compact JSON bytes, not tokenizer tokens; optional private observer only."
+    },
+    {
+      "label": "spark-review-skill-v3",
+      "model": "qwen3.8-27b",
+      "task": "review",
+      "condition": "skill",
+      "catalog": "relevant-only",
+      "tool_scope": null,
+      "duration_seconds": 75.287,
+      "completed_tool_events": 6,
+      "failed_tool_events": 0,
+      "first_completed_tool_seconds": 9.485,
+      "first_completed_domain_tool_seconds": 16.275,
+      "reported_tokens": {
+        "input": 18168,
+        "output": 2382,
+        "cached_read": 0
+      },
+      "skill_loaded": [
+        "kodi-addon-validation"
+      ],
+      "automatic_gates": {
+        "complete_json_report": false,
+        "strict_final_json_only": false,
+        "skill_actually_loaded": true,
+        "skill_loaded_first": true
+      },
+      "operational_failures": [],
+      "reviewer_verdict": "FAIL",
+      "reviewer_note": "No final structured report despite successful context/checker calls.",
+      "likely_origin": "completion-budget",
+      "identical_input_repeats": 0,
+      "repetition_limit": "Identical reads/validation can be necessary after edits; this is not an unnecessary-call count.",
+      "schema_argument_errors": 0,
+      "during_trial_operator_interventions": 0,
+      "observed_tool_schema_json_bytes": [
+        5900
+      ],
+      "observed_wire_request_count": 4,
+      "schema_measurement_limit": "Compact JSON bytes, not tokenizer tokens; optional private observer only."
+    },
+    {
+      "label": "spark-xml-baseline-v3",
+      "model": "qwen3.8-27b",
+      "task": "xml",
+      "condition": "baseline",
+      "catalog": "relevant-only",
+      "tool_scope": null,
+      "duration_seconds": 70.448,
+      "completed_tool_events": 6,
+      "failed_tool_events": 1,
+      "first_completed_tool_seconds": 10.484,
+      "first_completed_domain_tool_seconds": 27.064,
+      "reported_tokens": {
+        "input": 13954,
+        "output": 2676,
+        "cached_read": 0
+      },
+      "skill_loaded": [],
+      "automatic_gates": {},
+      "operational_failures": [],
+      "reviewer_verdict": "PARTIAL",
+      "reviewer_note": "Wrong fixture path recovered; final XML explanation truncated before complete evidence.",
+      "likely_origin": "model-path/completion-budget",
+      "identical_input_repeats": 0,
+      "repetition_limit": "Identical reads/validation can be necessary after edits; this is not an unnecessary-call count.",
+      "schema_argument_errors": 0,
+      "during_trial_operator_interventions": 0,
+      "observed_tool_schema_json_bytes": [
+        4579
+      ],
+      "observed_wire_request_count": 5,
+      "schema_measurement_limit": "Compact JSON bytes, not tokenizer tokens; optional private observer only."
+    },
+    {
+      "label": "spark-xml-bounded-skill-v4",
+      "model": "qwen3.8-27b",
+      "task": "xml-bounded",
+      "condition": "skill",
+      "catalog": "relevant-only",
+      "tool_scope": "narrow",
+      "duration_seconds": 47.652,
+      "completed_tool_events": 4,
+      "failed_tool_events": 1,
+      "first_completed_tool_seconds": 13.257,
+      "first_completed_domain_tool_seconds": 21.707,
+      "reported_tokens": {
+        "input": 14047,
+        "output": 1520,
+        "cached_read": 0
+      },
+      "skill_loaded": [
+        "kodi-addon-validation"
+      ],
+      "automatic_gates": {
+        "skill_actually_loaded": true,
+        "skill_loaded_first": false
+      },
+      "operational_failures": [],
+      "reviewer_verdict": "PASS",
+      "reviewer_note": "Completed bounded XML diagnosis after correcting invalid skill argument; successful skill load precedes domain calls, strict first-load gate fails.",
+      "likely_origin": "recovered-model-arguments",
+      "identical_input_repeats": 0,
+      "repetition_limit": "Identical reads/validation can be necessary after edits; this is not an unnecessary-call count.",
+      "schema_argument_errors": 1,
+      "during_trial_operator_interventions": 0,
+      "observed_tool_schema_json_bytes": [
+        2957
+      ],
+      "observed_wire_request_count": 5,
+      "schema_measurement_limit": "Compact JSON bytes, not tokenizer tokens; optional private observer only."
+    },
+    {
+      "label": "spark-xml-skill-v3",
+      "model": "qwen3.8-27b",
+      "task": "xml",
+      "condition": "skill",
+      "catalog": "relevant-only",
+      "tool_scope": null,
+      "duration_seconds": 63.292,
+      "completed_tool_events": 5,
+      "failed_tool_events": 0,
+      "first_completed_tool_seconds": 11.768,
+      "first_completed_domain_tool_seconds": 23.729,
+      "reported_tokens": {
+        "input": 13179,
+        "output": 2453,
+        "cached_read": 0
+      },
+      "skill_loaded": [
+        "kodi-addon-validation"
+      ],
+      "automatic_gates": {
+        "skill_actually_loaded": true,
+        "skill_loaded_first": true
+      },
+      "operational_failures": [],
+      "reviewer_verdict": "PARTIAL",
+      "reviewer_note": "Correct closing-tag evidence, but final checker summary truncated.",
+      "likely_origin": "completion-budget",
+      "identical_input_repeats": 0,
+      "repetition_limit": "Identical reads/validation can be necessary after edits; this is not an unnecessary-call count.",
+      "schema_argument_errors": 0,
+      "during_trial_operator_interventions": 0,
+      "observed_tool_schema_json_bytes": [
+        5256
+      ],
+      "observed_wire_request_count": 4,
+      "schema_measurement_limit": "Compact JSON bytes, not tokenizer tokens; optional private observer only."
+    }
+  ]
+}

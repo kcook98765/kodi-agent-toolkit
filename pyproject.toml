@@ -1,0 +1,25 @@
+[build-system]
+requires = ["setuptools>=68"]
+build-backend = "setuptools.build_meta"
+
+[project]
+name = "kodi-agent-toolkit"
+version = "0.1.0b1"
+description = "Portable skills and evidence-based Kodi addon validation"
+readme = "README.md"
+requires-python = ">=3.10"
+license = "MIT"
+
+[project.scripts]
+kodi-toolkit = "kodi_agent_toolkit.cli:main"
+
+[tool.setuptools.packages.find]
+where = ["src"]
+
+[tool.mypy]
+python_version = "3.10"
+strict = true
+
+[tool.pyright]
+pythonVersion = "3.10"
+typeCheckingMode = "basic"

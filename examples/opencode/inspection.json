@@ -1,0 +1,49 @@
+{
+  "$schema": "https://opencode.ai/config.json",
+  "share": "disabled",
+  "autoupdate": false,
+  "provider": {
+    "local": {
+      "npm": "@ai-sdk/openai-compatible",
+      "name": "Verified local model",
+      "options": {
+        "baseURL": "{env:LOCAL_MODEL_BASE_URL}"
+      },
+      "models": {
+        "MODEL_API_ID": {
+          "name": "Replace with verified model"
+        }
+      }
+    }
+  },
+  "mcp": {
+    "kodi_lab": {
+      "type": "remote",
+      "url": "{env:KODI_LAB_MCP_URL}",
+      "oauth": false,
+      "headers": {
+        "Authorization": "Bearer {file:REPLACE_WITH_PRIVATE_TOKEN_PATH}"
+      },
+      "enabled": false
+    }
+  },
+  "agent": {
+    "kodi-inspect": {
+      "mode": "primary",
+      "description": "Read-only disposable Kodi inspection",
+      "prompt": "First load kodi-addon-debugging using the native skill tool. Discover the authorized target, inspect health and UI. Null or associated=false means unknown selection. State diagnostic limits.",
+      "permission": {
+        "*": "deny",
+        "external_directory": "deny",
+        "skill": {
+          "*": "deny",
+          "kodi-addon-debugging": "allow"
+        },
+        "read": "allow",
+        "kodi_lab_target_list": "allow",
+        "kodi_lab_target_status": "allow",
+        "kodi_lab_inspect_ui_state": "allow"
+      }
+    }
+  }
+}

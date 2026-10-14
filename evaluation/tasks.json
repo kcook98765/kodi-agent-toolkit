@@ -1,0 +1,120 @@
+{
+  "explain": {
+    "skill": "kodi-addon-development",
+    "fixture": "valid",
+    "prompt": "Inspect fixtures/addon and explain its entry point, dependencies, behavior and Kodi compatibility. Support claims with file and line evidence. Do not edit."
+  },
+  "xml": {
+    "skill": "kodi-addon-validation",
+    "fixture": "invalid-xml",
+    "prompt": "Identify the addon.xml error in fixtures/addon using available validation tools. Explain the precise error with file and line evidence. Do not edit."
+  },
+  "api-fix": {
+    "skill": "kodi-addon-development",
+    "fixture": "invalid-api",
+    "prompt": "Correct the Python/Kodi API problem in fixtures/addon. Make the smallest source change, validate the result, and report which checks ran. Do not deploy or execute Kodi runtime APIs."
+  },
+  "validate": {
+    "skill": "kodi-addon-validation",
+    "fixture": "valid",
+    "prompt": "Validate fixtures/addon with the official Kodi checker, Python static checks and packaging checks. Report actual failures, warnings and coverage limits. Do not edit."
+  },
+  "debug": {
+    "skill": "kodi-addon-debugging",
+    "fixture": "valid",
+    "prompt": "Inspect the authorized disposable managed Kodi health and current UI. Distinguish focus from selected-item observability and report only supported problems and diagnostic limits. Read-only only."
+  },
+  "review": {
+    "skill": "kodi-addon-validation",
+    "fixture": "review",
+    "prompt": "Review fixtures/addon for Kodi repository suitability and actual source issues. Separate deterministic checker findings from contextual review findings. Include file and line evidence, severity, confidence, and avoid false positives. Do not edit. Return one final JSON object with model_findings (category,title,mechanism,reason,severity,confidence,path,line,quote,related_evidence), deterministic_findings, coverage and limitations. Paths are relative to the addon directory, line numbers are 1-based, and quotes must occur exactly on the stated line. Do not invent actual setting values. Use kodi_review context for the exact schema and numbered sources. Verify the complete report with kodi_review verify before the final response; report any rejected findings instead of claiming success."
+  },
+  "validate-default": {
+    "skill": "kodi-addon-validation",
+    "fixture": "valid",
+    "prompt": "Call kodi_validate once for fixtures/addon, deliberately omit the optional branch argument, and report the returned pass/fail, warnings and coverage limits. Do not edit."
+  },
+  "api-fix-contract": {
+    "skill": "kodi-addon-development",
+    "fixture": "invalid-api",
+    "prompt": "Correct the Python/Kodi API problem in fixtures/addon. Make the smallest source change, validate the result, and report which checks ran. Do not deploy or execute Kodi runtime APIs. The original string \"info\" expresses intended INFO severity: preserve that using a target-supported symbolic constant, not an omitted level or guessed numeric mapping. Read addon.xml and the entry point, run static validation before the repair and again afterward."
+  },
+  "boundary": {
+    "skill": "kodi-addon-validation",
+    "fixture": "valid",
+    "prompt": "For a harmless tool-boundary regression, call kodi_validate exactly once with addon_dir=\"../outside-test\". It is a disposable test fixture outside the allowed fixtures root. Do not use read or any other tool, retry, edit or deploy. Report whether the call was rejected; rejection is the expected successful boundary result."
+  },
+  "review-bounded": {
+    "skill": "kodi-addon-validation",
+    "fixture": "review",
+    "prompt": "Review fixtures/addon for Kodi repository suitability and actual source issues. Separate deterministic checker findings from contextual review findings. Include file and line evidence, severity, confidence, and avoid false positives. Do not edit. Return one final JSON object with model_findings (category,title,mechanism,reason,severity,confidence,path,line,quote,related_evidence), deterministic_findings, coverage and limitations. Paths are relative to the addon directory, line numbers are 1-based, and quotes must occur exactly on the stated line. Do not invent actual setting values. Use kodi_review context for the exact schema and numbered sources. Verify the complete report with kodi_review verify before the final response; report any rejected findings instead of claiming success. Bounded review: the addon directory is known; use kodi_review context directly rather than globbing directories or rereading its numbered source. Report at most one highest-impact contextual finding and retain deterministic warnings separately. Limit the final report to 600 words, state limited coverage, and use source-supported confidence for static traces. Do not invent encryption requirements or convert a checker recommendation into a behavioral defect."
+  },
+  "xml-bounded": {
+    "skill": "kodi-addon-validation",
+    "fixture": "invalid-xml",
+    "prompt": "Identify the addon.xml error in fixtures/addon using available validation tools. Explain the precise error with file and line evidence. Do not edit. The directory is already known; run kodi_validate directly. After inspection report path, line, mismatched tag, corrected closing tag and checker status in at most 100 words. Do not inspect unrelated files."
+  },
+  "api-fix-nexus": {
+    "skill": "kodi-addon-development",
+    "fixture": "invalid-api",
+    "prompt": "Correct the Python/Kodi API problem in fixtures/addon. Make the smallest source change, validate the result, and report which checks ran. Do not deploy or execute Kodi runtime APIs. The original string \"info\" expresses intended INFO severity: preserve that using a target-supported symbolic constant, not an omitted level or guessed numeric mapping. Read addon.xml and the entry point, run static validation before the repair and again afterward. The validation target is Kodi 20/Nexus with installed Kodistubs 20.0.1: use branch nexus. The xbmc.python dependency version is not a unique Kodi release selector."
+  },
+  "review-composed": {
+    "skill": "kodi-addon-validation",
+    "fixture": "review",
+    "prompt": "Review fixtures/addon for the highest-priority contextual source issue on Kodi 20/Nexus. First get numbered sources/schema with kodi_review context. Produce a brief source-supported review draft with model_findings, empty deterministic_findings, coverage and limitations. Use kodi_review compose with that draft: it runs the official checker itself and supplies canonical deterministic findings. Do not separately transcribe or invent checker rules, do not edit or execute runtime APIs. Explain the composed result in at most 250 words with file/line evidence and state that static anchors do not prove runtime behavior."
+  },
+  "path-recovery": {
+    "skill": "kodi-addon-development",
+    "fixture": "invalid-api",
+    "prompt": "The add-on was said to be at fixtures/script.toolkit-sample; this may be stale. Locate the actual existing add-on, inspect its manifest and declared source, and diagnose the Python API defect using static validation for Kodi 20/Nexus. Do not edit. Report verified project-relative path, source line, checker/type results and limitations in at most 150 words."
+  },
+  "wrong-root": {
+    "skill": "kodi-addon-validation",
+    "fixture": "valid",
+    "start_directory": "nested working directory",
+    "prompt": "The session started inside a nested directory. Locate the actual disposable add-on under the project and validate it for Kodi 20/Nexus. Use existing paths only. Do not edit. Summarize actual stages, warnings and limits in at most 150 words."
+  },
+  "version-ambiguous": {
+    "skill": "kodi-version-compatibility",
+    "fixture": "valid",
+    "prompt": "Inspect the add-on manifest and determine whether xbmc.python version 3.0.0 alone selects the intended Kodi release. No runtime version is supplied. Report what can be established and what target information is missing with file/line evidence. Do not guess a checker branch or claim all-version support. At most 100 words."
+  },
+  "missing-manifest": {
+    "skill": "kodi-addon-validation",
+    "fixture": "valid",
+    "missing_manifest": true,
+    "prompt": "Validate the disposable fixture under fixtures for Kodi 20/Nexus. Confirm whether addon.xml is present using actual files. Report incomplete checks and the required next step. Do not invent a manifest, edit, or claim success. At most 120 words."
+  },
+  "checker-failure": {
+    "skill": "kodi-addon-validation",
+    "fixture": "valid",
+    "missing_cache": true,
+    "prompt": "Run available static validation for fixtures/addon on Kodi 20/Nexus. Report each actual stage and checker availability. Do not retry a missing environment, download, edit or convert infrastructure failure into an add-on defect. At most 120 words."
+  },
+  "review-clean": {
+    "skill": "kodi-addon-validation",
+    "fixture": "review-clean",
+    "prompt": "Review fixtures/addon for the highest-priority contextual source issue on Kodi 20/Nexus. First get numbered sources/schema with kodi_review context. Produce a brief source-supported review draft with model_findings, empty deterministic_findings, coverage and limitations. Use kodi_review compose with that draft: it runs the official checker itself and supplies canonical deterministic findings. Do not separately transcribe or invent checker rules, do not edit or execute runtime APIs. Explain the composed result in at most 250 words with file/line evidence and state that static anchors do not prove runtime behavior."
+  },
+  "mcp-health": {
+    "skill": "kodi-mcp-testing",
+    "fixture": "valid",
+    "prompt": "Discover the authorized disposable managed target and report its actual health/status only. Do not inspect the UI or list add-ons. Use read-only tools and summarize observations and limits in at most 100 words."
+  },
+  "runtime-addon": {
+    "skill": "kodi-addon-debugging",
+    "fixture": "invalid-api",
+    "prompt": "Investigate whether disposable script.toolkit.sample is installed on the authorized managed Kodi 20.5 and whether an add-on runtime defect can be reproduced using currently granted read-only tools. Discover the target, check health and complete paginated add-on inventory, and inspect UI only if relevant. Do not deploy, launch, navigate, execute Python or infer log health. Report the actual installed state, available diagnostics, blocked steps and a focused next test in at most 200 words."
+  },
+  "generic": {
+    "skill": "kodi-addon-development",
+    "fixture": "valid",
+    "prompt": "Answer 2+2 in one short sentence. This is unrelated to Kodi; no tools or skills are needed."
+  },
+  "review-redacted": {
+    "skill": "kodi-addon-validation",
+    "fixture": "review-redacted",
+    "prompt": "Review fixtures/addon for the highest-priority contextual source issue on Kodi 20/Nexus. First get numbered sources/schema with kodi_review context. Produce a brief source-supported review draft with model_findings, empty deterministic_findings, coverage and limitations. Use kodi_review compose with that draft: it runs the official checker itself and supplies canonical deterministic findings. Do not separately transcribe or invent checker rules, do not edit or execute runtime APIs. Explain the composed result in at most 250 words with file/line evidence and state that static anchors do not prove runtime behavior."
+  }
+}

@@ -1,0 +1,2935 @@
+{
+  "schema_version": 1,
+  "reviewer": "Codex independent artifact judgments, not user human sign-off",
+  "phase4_baseline": {
+    "original_preserved": true,
+    "trials": 42,
+    "grade_counts": {
+      "FAIL": 9,
+      "PARTIAL": 23,
+      "PASS": 10
+    },
+    "category_counts": {
+      "wrong_tool_selection": 1,
+      "failed_error_recovery": 2,
+      "harness_defect": 4,
+      "unsupported_kodi_findings": 14,
+      "guessed_or_nonexistent_paths": 6,
+      "skill_loading": 4,
+      "severity_inflation": 3,
+      "missing_or_inaccurate_evidence": 4,
+      "invalid_tool_arguments": 3,
+      "unnecessary_tool_calls": 2,
+      "incorrect_working_directory": 3,
+      "incomplete_responses": 6,
+      "context_or_tool_overhead": 4
+    },
+    "method": "Manual conservative multi-label coding of original reviewer notes plus actual transcripts; categories overlap. Not an exhaustive call-level truth label or accuracy estimate. No confirmed MCP API/auth defect in these 42 trials. Unnecessary-call labels require inspection, not duplicate-input counts."
+  },
+  "trials": [
+    {
+      "label": "p5-checker-failure-C",
+      "model": "qwen3-coder-next",
+      "task": "checker-failure",
+      "condition": "C",
+      "skill_revision": "working-tree",
+      "skill_catalog": "relevant-only",
+      "skill_routing": "forced",
+      "tool_scope": "narrow",
+      "mcp_scope": "narrow",
+      "duration_seconds": 23.42,
+      "completed_tool_events": 3,
+      "failed_tool_events": 0,
+      "usage": {
+        "input": 2955,
+        "output": 199,
+        "cached_read": 6259
+      },
+      "skill_loaded": [
+        "kodi-addon-validation"
+      ],
+      "automatic_gates": {
+        "execution_completed": true,
+        "final_response_complete": true,
+        "explicit_final_fixture_paths_verified": true,
+        "native_file_paths_within_trial_project": true,
+        "no_edit_attempted": true,
+        "checker_infrastructure_failure_observed": true,
+        "single_validation_attempt": true,
+        "skill_actually_loaded": true,
+        "skill_loaded_first": true
+      },
+      "metrics": {
+        "missing_path_errors": 0,
+        "repeated_missing_path_errors": 0,
+        "schema_argument_errors": 0,
+        "identical_input_repeats": 0,
+        "final_words": 69,
+        "tool_output_characters": 5649,
+        "last_step_finish_reason": "stop",
+        "step_cap_response": false,
+        "final_fixture_path_mentions": 1,
+        "unverified_final_fixture_citations": 0
+      },
+      "initial_fixture_tree_sha256": "8217d84b3b80ec472ca9e80a4b284484784a979a1434b3284375c729c2efa71a",
+      "source_hashes": {
+        "requirements-dev.lock": "f732873a536ff8164d6a71c950b95c90ecff06c7d75093846b994a25c64b1a24",
+        "evaluation/processes.py": "abfac5d5d3640f818b3c06dbfa046acdcfcf8968071a6dc3e6dccfa17e583539",
+        "src/kodi_agent_toolkit/paths.py": "11ee799e48b27f23abd441dcad8a68ca6946d2857d19f2f7ea986a8c61e1e057",
+        "src/kodi_agent_toolkit/checker_runner.py": "6cb1fd2aa142d84e09eab81d7038efc8537302cefb3e49f1e917757bdcbe97b2",
+        "src/kodi_agent_toolkit/__init__.py": "c63b5d6b312154e486bff8aea06976f0a7f949186fe99d0a4ec28df00c381000",
+        "src/kodi_agent_toolkit/cli.py": "1226e180fcb5305627a41b182c257f8ac398e9dbf191d95208d8c10952af0ba0",
+        "src/kodi_agent_toolkit/review.py": "8fe894ae20132982deeb32b6b9053f7ca9b89d23595f939cb388e36c8344ad2f",
+        "src/kodi_agent_toolkit/validate.py": "263240f37261c786ed0a47e9b11bc935a12b8ab644a86a09b4fadda53f6f3527",
+        "src/kodi_agent_toolkit/compose.py": "a30a2104524504f7de8b4238e137635475ab18e50af5ecc0db2db1785f12562b",
+        ".opencode/tools/kodi_review.ts": "8494f2e7e3a0b6913a5e5e84ef3489deec0ef6bf77bb5431fab91ba65635e1f4",
+        ".opencode/tools/kodi_validate.ts": "ec0475c0604d3db54e5916f586ed4b17f770fbbb28d3d23d5116db3757440638",
+        ".opencode/lib/process-tree.ts": "bc41ca5f686d07aa1756b5b8469bbd3f2f2680c11ef7b8526492be808cbdf3fd",
+        ".opencode/lib/fixture-path.ts": "588b0fc96bfc483333d41f32f7738727913b5f296c9ef3646adbf3da0ef2794a",
+        "evaluation/run.py": "11845491f3802ad5adb1c872a7619d4bb51aebd5e5ba46415ec9b315d0920ad6",
+        "evaluation/tasks.json": "d4e2fdc1a27b11857f54b4f78c056c88d926ac095919c83bf67d3b4c1a4b26a3",
+        "AGENTS.md": "09ae1c3e7cf83941171b5f078d51f23c7670dd1628fd6f69b4a5b485ce70c365"
+      },
+      "copied_skill_hashes": {
+        ".agents/skills/kodi-addon-validation/SKILL.md": "d442fe322e5cfe9e61c9907b4fdbc456bef93110ae3707a7fc34d900474d39c8",
+        ".agents/skills/kodi-addon-validation/references/review.md": "78febaeaa1b732adf8488028dd85f82ff14b206b4883547b3049070d21583735",
+        ".agents/skills/kodi-addon-validation/references/validation.md": "a32019b396d9df373405f77774eb3ac6277e28f40bc05b6a2cfefa0d77167df7"
+      },
+      "independent_review": {
+        "verdict": "PASS",
+        "note": "One validation attempt; actual five other stages pass and missing-cache checker infrastructure failure correctly reported as incomplete, not add-on defect.",
+        "reviewer": "Codex independent artifact inspection; not user human sign-off",
+        "criteria": [
+          "Required workflow steps actually completed, not just independent post-hoc acceptance",
+          "Existing artifact paths and source locations",
+          "Correct warnings/infrastructure failures retained",
+          "Source supports mechanism, proportional severity and applicable Kodi rule",
+          "Static and runtime claims separated; no invented observed outcomes",
+          "Task/skill word bounds and useful recovery",
+          "Granted scope and no operator intervention within trial"
+        ],
+        "judgment_limits": "Semantic explanation/severity judgments are explicit but not blinded or statistically definitive. Automatic gates are separate."
+      },
+      "recorded_reference_cache_manifest_sha256": "1dcbcdf2fd2832a28cd0618fda35bceda263aa71f64be51a98dac22ca0757c62",
+      "cache_manifest_sha256": null,
+      "cache_evidence_note": "No usable configured cache; old recorder hashed default reference cache; raw provenance preserved."
+    },
+    {
+      "label": "p5-coder-clean-C",
+      "model": "qwen3-coder-next",
+      "task": "review-clean",
+      "condition": "C",
+      "skill_revision": "working-tree",
+      "skill_catalog": "relevant-only",
+      "skill_routing": "forced",
+      "tool_scope": "narrow",
+      "mcp_scope": "narrow",
+      "duration_seconds": 50.118,
+      "completed_tool_events": 4,
+      "failed_tool_events": 0,
+      "usage": {
+        "input": 7115,
+        "output": 896,
+        "cached_read": 13977
+      },
+      "skill_loaded": [
+        "kodi-addon-validation"
+      ],
+      "automatic_gates": {
+        "execution_completed": true,
+        "final_response_complete": true,
+        "explicit_final_fixture_paths_verified": true,
+        "native_file_paths_within_trial_project": true,
+        "agent_composition_called": true,
+        "composition_submission_valid": true,
+        "composition_passed": true,
+        "composition_static_passed": true,
+        "composition_contract_passed": true,
+        "semantics_left_to_human": true,
+        "no_edit_attempted": true,
+        "skill_actually_loaded": true,
+        "skill_loaded_first": true
+      },
+      "metrics": {
+        "missing_path_errors": 0,
+        "repeated_missing_path_errors": 0,
+        "schema_argument_errors": 0,
+        "identical_input_repeats": 0,
+        "final_words": 137,
+        "tool_output_characters": 20304,
+        "last_step_finish_reason": "stop",
+        "step_cap_response": false,
+        "final_fixture_path_mentions": 0,
+        "unverified_final_fixture_citations": 0
+      },
+      "initial_fixture_tree_sha256": "463a0819c89e143934667e2753fddf21c683bb88ae16d18facbccaa10920a6e7",
+      "source_hashes": {
+        "requirements-dev.lock": "f732873a536ff8164d6a71c950b95c90ecff06c7d75093846b994a25c64b1a24",
+        "evaluation/processes.py": "abfac5d5d3640f818b3c06dbfa046acdcfcf8968071a6dc3e6dccfa17e583539",
+        "src/kodi_agent_toolkit/paths.py": "11ee799e48b27f23abd441dcad8a68ca6946d2857d19f2f7ea986a8c61e1e057",
+        "src/kodi_agent_toolkit/checker_runner.py": "6cb1fd2aa142d84e09eab81d7038efc8537302cefb3e49f1e917757bdcbe97b2",
+        "src/kodi_agent_toolkit/__init__.py": "c63b5d6b312154e486bff8aea06976f0a7f949186fe99d0a4ec28df00c381000",
+        "src/kodi_agent_toolkit/cli.py": "1226e180fcb5305627a41b182c257f8ac398e9dbf191d95208d8c10952af0ba0",
+        "src/kodi_agent_toolkit/review.py": "8fe894ae20132982deeb32b6b9053f7ca9b89d23595f939cb388e36c8344ad2f",
+        "src/kodi_agent_toolkit/validate.py": "263240f37261c786ed0a47e9b11bc935a12b8ab644a86a09b4fadda53f6f3527",
+        "src/kodi_agent_toolkit/compose.py": "a30a2104524504f7de8b4238e137635475ab18e50af5ecc0db2db1785f12562b",
+        ".opencode/tools/kodi_review.ts": "8494f2e7e3a0b6913a5e5e84ef3489deec0ef6bf77bb5431fab91ba65635e1f4",
+        ".opencode/tools/kodi_validate.ts": "ec0475c0604d3db54e5916f586ed4b17f770fbbb28d3d23d5116db3757440638",
+        ".opencode/lib/process-tree.ts": "bc41ca5f686d07aa1756b5b8469bbd3f2f2680c11ef7b8526492be808cbdf3fd",
+        ".opencode/lib/fixture-path.ts": "588b0fc96bfc483333d41f32f7738727913b5f296c9ef3646adbf3da0ef2794a",
+        "evaluation/run.py": "11845491f3802ad5adb1c872a7619d4bb51aebd5e5ba46415ec9b315d0920ad6",
+        "evaluation/tasks.json": "d4e2fdc1a27b11857f54b4f78c056c88d926ac095919c83bf67d3b4c1a4b26a3",
+        "AGENTS.md": "09ae1c3e7cf83941171b5f078d51f23c7670dd1628fd6f69b4a5b485ce70c365"
+      },
+      "copied_skill_hashes": {
+        ".agents/skills/kodi-addon-validation/SKILL.md": "d442fe322e5cfe9e61c9907b4fdbc456bef93110ae3707a7fc34d900474d39c8",
+        ".agents/skills/kodi-addon-validation/references/review.md": "78febaeaa1b732adf8488028dd85f82ff14b206b4883547b3049070d21583735",
+        ".agents/skills/kodi-addon-validation/references/validation.md": "a32019b396d9df373405f77774eb3ac6277e28f40bc05b6a2cfefa0d77167df7"
+      },
+      "cache_manifest_sha256": "1dcbcdf2fd2832a28cd0618fda35bceda263aa71f64be51a98dac22ca0757c62",
+      "independent_review": {
+        "verdict": "FAIL",
+        "note": "Benign control only logs a literal message; draft/final falsely claim retrieved hidden value is logged or may leak, despite counterevidence. Advisory label does not make unsupported defect true.",
+        "reviewer": "Codex independent artifact inspection; not user human sign-off",
+        "criteria": [
+          "Required workflow steps actually completed, not just independent post-hoc acceptance",
+          "Existing artifact paths and source locations",
+          "Correct warnings/infrastructure failures retained",
+          "Source supports mechanism, proportional severity and applicable Kodi rule",
+          "Static and runtime claims separated; no invented observed outcomes",
+          "Task/skill word bounds and useful recovery",
+          "Granted scope and no operator intervention within trial"
+        ],
+        "judgment_limits": "Semantic explanation/severity judgments are explicit but not blinded or statistically definitive. Automatic gates are separate."
+      }
+    },
+    {
+      "label": "p5-coder-clean-C2",
+      "model": "qwen3-coder-next",
+      "task": "review-clean",
+      "condition": "C",
+      "skill_revision": "working-tree",
+      "skill_catalog": "relevant-only",
+      "skill_routing": "forced",
+      "tool_scope": "narrow",
+      "mcp_scope": "narrow",
+      "duration_seconds": 52.746,
+      "completed_tool_events": 4,
+      "failed_tool_events": 0,
+      "usage": {
+        "input": 7426,
+        "output": 961,
+        "cached_read": 14263
+      },
+      "skill_loaded": [
+        "kodi-addon-validation"
+      ],
+      "automatic_gates": {
+        "execution_completed": true,
+        "final_response_complete": true,
+        "explicit_final_fixture_paths_verified": true,
+        "native_file_paths_within_trial_project": true,
+        "agent_composition_called": true,
+        "composition_submission_valid": true,
+        "composition_passed": true,
+        "composition_static_passed": true,
+        "composition_contract_passed": true,
+        "semantics_left_to_human": true,
+        "no_edit_attempted": true,
+        "skill_actually_loaded": true,
+        "skill_loaded_first": true
+      },
+      "metrics": {
+        "missing_path_errors": 0,
+        "repeated_missing_path_errors": 0,
+        "schema_argument_errors": 0,
+        "identical_input_repeats": 0,
+        "final_words": 210,
+        "tool_output_characters": 21997,
+        "last_step_finish_reason": "stop",
+        "step_cap_response": false,
+        "final_fixture_path_mentions": 0,
+        "unverified_final_fixture_citations": 0
+      },
+      "initial_fixture_tree_sha256": "463a0819c89e143934667e2753fddf21c683bb88ae16d18facbccaa10920a6e7",
+      "source_hashes": {
+        "requirements-dev.lock": "f732873a536ff8164d6a71c950b95c90ecff06c7d75093846b994a25c64b1a24",
+        "evaluation/processes.py": "abfac5d5d3640f818b3c06dbfa046acdcfcf8968071a6dc3e6dccfa17e583539",
+        "src/kodi_agent_toolkit/paths.py": "33459b4dd576830a5d6a92adad2f3f8ca2a39d61e3e3cb78adec3c798e8110ec",
+        "src/kodi_agent_toolkit/checker_runner.py": "6cb1fd2aa142d84e09eab81d7038efc8537302cefb3e49f1e917757bdcbe97b2",
+        "src/kodi_agent_toolkit/__init__.py": "c63b5d6b312154e486bff8aea06976f0a7f949186fe99d0a4ec28df00c381000",
+        "src/kodi_agent_toolkit/cli.py": "1226e180fcb5305627a41b182c257f8ac398e9dbf191d95208d8c10952af0ba0",
+        "src/kodi_agent_toolkit/review.py": "21ae590028eb787ccbffd3d44921e7e46424180438545af663b587b630c8d176",
+        "src/kodi_agent_toolkit/validate.py": "263240f37261c786ed0a47e9b11bc935a12b8ab644a86a09b4fadda53f6f3527",
+        "src/kodi_agent_toolkit/compose.py": "a30a2104524504f7de8b4238e137635475ab18e50af5ecc0db2db1785f12562b",
+        ".opencode/tools/kodi_review.ts": "8494f2e7e3a0b6913a5e5e84ef3489deec0ef6bf77bb5431fab91ba65635e1f4",
+        ".opencode/tools/kodi_validate.ts": "b482be6cac9be4a0cd29800549b366748f28231adda9447f4d5b92621903c051",
+        ".opencode/lib/process-tree.ts": "bc41ca5f686d07aa1756b5b8469bbd3f2f2680c11ef7b8526492be808cbdf3fd",
+        ".opencode/lib/fixture-path.ts": "588b0fc96bfc483333d41f32f7738727913b5f296c9ef3646adbf3da0ef2794a",
+        "evaluation/run.py": "11845491f3802ad5adb1c872a7619d4bb51aebd5e5ba46415ec9b315d0920ad6",
+        "evaluation/tasks.json": "d4e2fdc1a27b11857f54b4f78c056c88d926ac095919c83bf67d3b4c1a4b26a3",
+        "AGENTS.md": "09ae1c3e7cf83941171b5f078d51f23c7670dd1628fd6f69b4a5b485ce70c365"
+      },
+      "copied_skill_hashes": {
+        ".agents/skills/kodi-addon-validation/SKILL.md": "d442fe322e5cfe9e61c9907b4fdbc456bef93110ae3707a7fc34d900474d39c8",
+        ".agents/skills/kodi-addon-validation/references/review.md": "2f6596a35fa4efb5c57186bab580ca94b3af3e91014cc9d02d50da3f798b11d3",
+        ".agents/skills/kodi-addon-validation/references/validation.md": "a32019b396d9df373405f77774eb3ac6277e28f40bc05b6a2cfefa0d77167df7"
+      },
+      "cache_manifest_sha256": "1dcbcdf2fd2832a28cd0618fda35bceda263aa71f64be51a98dac22ca0757c62",
+      "independent_review": {
+        "verdict": "PARTIAL",
+        "note": "No longer claims actual value is logged; still invents privacy advisory from ordinary setting presence check/unused-value design and cites contradictory checker URL line 10 then 9. Static/contract pass is not semantic correctness.",
+        "reviewer": "Codex independent artifact inspection; not user human sign-off",
+        "criteria": [
+          "Required workflow steps actually completed, not just independent post-hoc acceptance",
+          "Existing artifact paths and source locations",
+          "Correct warnings/infrastructure failures retained",
+          "Source supports mechanism, proportional severity and applicable Kodi rule",
+          "Static and runtime claims separated; no invented observed outcomes",
+          "Task/skill word bounds and useful recovery",
+          "Granted scope and no operator intervention within trial"
+        ],
+        "judgment_limits": "Semantic explanation/severity judgments explicit but not blinded or statistically definitive; automatic gates separate."
+      }
+    },
+    {
+      "label": "p5-coder-debug-broad-C",
+      "model": "qwen3-coder-next",
+      "task": "debug",
+      "condition": "C",
+      "skill_revision": "working-tree",
+      "skill_catalog": "relevant-only",
+      "skill_routing": "forced",
+      "tool_scope": "narrow",
+      "mcp_scope": "broad",
+      "duration_seconds": 36.568,
+      "completed_tool_events": 5,
+      "failed_tool_events": 0,
+      "usage": {
+        "input": 5609,
+        "output": 600,
+        "cached_read": 11105
+      },
+      "skill_loaded": [
+        "kodi-addon-debugging"
+      ],
+      "automatic_gates": {
+        "execution_completed": true,
+        "final_response_complete": true,
+        "explicit_final_fixture_paths_verified": true,
+        "native_file_paths_within_trial_project": true,
+        "skill_actually_loaded": true,
+        "skill_loaded_first": true
+      },
+      "metrics": {
+        "missing_path_errors": 0,
+        "repeated_missing_path_errors": 0,
+        "schema_argument_errors": 0,
+        "identical_input_repeats": 0,
+        "final_words": 185,
+        "tool_output_characters": 12630,
+        "last_step_finish_reason": "stop",
+        "step_cap_response": false,
+        "final_fixture_path_mentions": 0,
+        "unverified_final_fixture_citations": 0
+      },
+      "initial_fixture_tree_sha256": "8217d84b3b80ec472ca9e80a4b284484784a979a1434b3284375c729c2efa71a",
+      "source_hashes": {
+        "requirements-dev.lock": "f732873a536ff8164d6a71c950b95c90ecff06c7d75093846b994a25c64b1a24",
+        "evaluation/processes.py": "abfac5d5d3640f818b3c06dbfa046acdcfcf8968071a6dc3e6dccfa17e583539",
+        "src/kodi_agent_toolkit/paths.py": "11ee799e48b27f23abd441dcad8a68ca6946d2857d19f2f7ea986a8c61e1e057",
+        "src/kodi_agent_toolkit/checker_runner.py": "6cb1fd2aa142d84e09eab81d7038efc8537302cefb3e49f1e917757bdcbe97b2",
+        "src/kodi_agent_toolkit/__init__.py": "c63b5d6b312154e486bff8aea06976f0a7f949186fe99d0a4ec28df00c381000",
+        "src/kodi_agent_toolkit/cli.py": "1226e180fcb5305627a41b182c257f8ac398e9dbf191d95208d8c10952af0ba0",
+        "src/kodi_agent_toolkit/review.py": "8fe894ae20132982deeb32b6b9053f7ca9b89d23595f939cb388e36c8344ad2f",
+        "src/kodi_agent_toolkit/validate.py": "263240f37261c786ed0a47e9b11bc935a12b8ab644a86a09b4fadda53f6f3527",
+        "src/kodi_agent_toolkit/compose.py": "a30a2104524504f7de8b4238e137635475ab18e50af5ecc0db2db1785f12562b",
+        ".opencode/tools/kodi_review.ts": "8494f2e7e3a0b6913a5e5e84ef3489deec0ef6bf77bb5431fab91ba65635e1f4",
+        ".opencode/tools/kodi_validate.ts": "ec0475c0604d3db54e5916f586ed4b17f770fbbb28d3d23d5116db3757440638",
+        ".opencode/lib/process-tree.ts": "bc41ca5f686d07aa1756b5b8469bbd3f2f2680c11ef7b8526492be808cbdf3fd",
+        ".opencode/lib/fixture-path.ts": "588b0fc96bfc483333d41f32f7738727913b5f296c9ef3646adbf3da0ef2794a",
+        "evaluation/run.py": "11845491f3802ad5adb1c872a7619d4bb51aebd5e5ba46415ec9b315d0920ad6",
+        "evaluation/tasks.json": "d4e2fdc1a27b11857f54b4f78c056c88d926ac095919c83bf67d3b4c1a4b26a3",
+        "AGENTS.md": "09ae1c3e7cf83941171b5f078d51f23c7670dd1628fd6f69b4a5b485ce70c365"
+      },
+      "copied_skill_hashes": {
+        ".agents/skills/kodi-addon-debugging/SKILL.md": "4797d0281b1bc2bf1775ae5614cd218a49503bf0926ad85a0de411b51d25b843",
+        ".agents/skills/kodi-addon-debugging/references/debugging.md": "f6baca8f06d982097116c993a61b7511dec13332f1152bae5434f291a5c2fdbc"
+      },
+      "cache_manifest_sha256": "1dcbcdf2fd2832a28cd0618fda35bceda263aa71f64be51a98dac22ca0757c62",
+      "independent_review": {
+        "verdict": "PARTIAL",
+        "note": "Health/UI grounded; unnecessary inventory call, only first 50 of 106 entries fetched, unsupported all-enabled conclusion and overlong summary. No unauthorized mutations.",
+        "reviewer": "Codex independent artifact inspection; not user human sign-off",
+        "criteria": [
+          "Required workflow steps actually completed, not just independent post-hoc acceptance",
+          "Existing artifact paths and source locations",
+          "Correct warnings/infrastructure failures retained",
+          "Source supports mechanism, proportional severity and applicable Kodi rule",
+          "Static and runtime claims separated; no invented observed outcomes",
+          "Task/skill word bounds and useful recovery",
+          "Granted scope and no operator intervention within trial"
+        ],
+        "judgment_limits": "Semantic explanation/severity judgments are explicit but not blinded or statistically definitive. Automatic gates are separate."
+      }
+    },
+    {
+      "label": "p5-coder-debug-narrow-C",
+      "model": "qwen3-coder-next",
+      "task": "debug",
+      "condition": "C",
+      "skill_revision": "working-tree",
+      "skill_catalog": "relevant-only",
+      "skill_routing": "forced",
+      "tool_scope": "narrow",
+      "mcp_scope": "narrow",
+      "duration_seconds": 29.638,
+      "completed_tool_events": 4,
+      "failed_tool_events": 0,
+      "usage": {
+        "input": 2685,
+        "output": 517,
+        "cached_read": 9353
+      },
+      "skill_loaded": [
+        "kodi-addon-debugging"
+      ],
+      "automatic_gates": {
+        "execution_completed": true,
+        "final_response_complete": true,
+        "explicit_final_fixture_paths_verified": true,
+        "native_file_paths_within_trial_project": true,
+        "skill_actually_loaded": true,
+        "skill_loaded_first": true
+      },
+      "metrics": {
+        "missing_path_errors": 0,
+        "repeated_missing_path_errors": 0,
+        "schema_argument_errors": 0,
+        "identical_input_repeats": 0,
+        "final_words": 198,
+        "tool_output_characters": 3447,
+        "last_step_finish_reason": "stop",
+        "step_cap_response": false,
+        "final_fixture_path_mentions": 0,
+        "unverified_final_fixture_citations": 0
+      },
+      "initial_fixture_tree_sha256": "8217d84b3b80ec472ca9e80a4b284484784a979a1434b3284375c729c2efa71a",
+      "source_hashes": {
+        "requirements-dev.lock": "f732873a536ff8164d6a71c950b95c90ecff06c7d75093846b994a25c64b1a24",
+        "evaluation/processes.py": "abfac5d5d3640f818b3c06dbfa046acdcfcf8968071a6dc3e6dccfa17e583539",
+        "src/kodi_agent_toolkit/paths.py": "11ee799e48b27f23abd441dcad8a68ca6946d2857d19f2f7ea986a8c61e1e057",
+        "src/kodi_agent_toolkit/checker_runner.py": "6cb1fd2aa142d84e09eab81d7038efc8537302cefb3e49f1e917757bdcbe97b2",
+        "src/kodi_agent_toolkit/__init__.py": "c63b5d6b312154e486bff8aea06976f0a7f949186fe99d0a4ec28df00c381000",
+        "src/kodi_agent_toolkit/cli.py": "1226e180fcb5305627a41b182c257f8ac398e9dbf191d95208d8c10952af0ba0",
+        "src/kodi_agent_toolkit/review.py": "8fe894ae20132982deeb32b6b9053f7ca9b89d23595f939cb388e36c8344ad2f",
+        "src/kodi_agent_toolkit/validate.py": "263240f37261c786ed0a47e9b11bc935a12b8ab644a86a09b4fadda53f6f3527",
+        "src/kodi_agent_toolkit/compose.py": "a30a2104524504f7de8b4238e137635475ab18e50af5ecc0db2db1785f12562b",
+        ".opencode/tools/kodi_review.ts": "8494f2e7e3a0b6913a5e5e84ef3489deec0ef6bf77bb5431fab91ba65635e1f4",
+        ".opencode/tools/kodi_validate.ts": "ec0475c0604d3db54e5916f586ed4b17f770fbbb28d3d23d5116db3757440638",
+        ".opencode/lib/process-tree.ts": "bc41ca5f686d07aa1756b5b8469bbd3f2f2680c11ef7b8526492be808cbdf3fd",
+        ".opencode/lib/fixture-path.ts": "588b0fc96bfc483333d41f32f7738727913b5f296c9ef3646adbf3da0ef2794a",
+        "evaluation/run.py": "11845491f3802ad5adb1c872a7619d4bb51aebd5e5ba46415ec9b315d0920ad6",
+        "evaluation/tasks.json": "d4e2fdc1a27b11857f54b4f78c056c88d926ac095919c83bf67d3b4c1a4b26a3",
+        "AGENTS.md": "09ae1c3e7cf83941171b5f078d51f23c7670dd1628fd6f69b4a5b485ce70c365"
+      },
+      "copied_skill_hashes": {
+        ".agents/skills/kodi-addon-debugging/SKILL.md": "4797d0281b1bc2bf1775ae5614cd218a49503bf0926ad85a0de411b51d25b843",
+        ".agents/skills/kodi-addon-debugging/references/debugging.md": "f6baca8f06d982097116c993a61b7511dec13332f1152bae5434f291a5c2fdbc"
+      },
+      "cache_manifest_sha256": "1dcbcdf2fd2832a28cd0618fda35bceda263aa71f64be51a98dac22ca0757c62",
+      "independent_review": {
+        "verdict": "PARTIAL",
+        "note": "Read-only target/health/UI observations grounded; kept selection unknown, but generalized API limitations from one response and exceeded 150-word skill guidance (198). Diagnostic-quality judgment partly subjective.",
+        "reviewer": "Codex independent artifact inspection; not user human sign-off",
+        "criteria": [
+          "Required workflow steps actually completed, not just independent post-hoc acceptance",
+          "Existing artifact paths and source locations",
+          "Correct warnings/infrastructure failures retained",
+          "Source supports mechanism, proportional severity and applicable Kodi rule",
+          "Static and runtime claims separated; no invented observed outcomes",
+          "Task/skill word bounds and useful recovery",
+          "Granted scope and no operator intervention within trial"
+        ],
+        "judgment_limits": "Semantic explanation/severity judgments are explicit but not blinded or statistically definitive. Automatic gates are separate."
+      }
+    },
+    {
+      "label": "p5-coder-repair-A",
+      "model": "qwen3-coder-next",
+      "task": "api-fix-nexus",
+      "condition": "A",
+      "skill_revision": "working-tree",
+      "skill_catalog": "relevant-only",
+      "skill_routing": "forced",
+      "tool_scope": "narrow",
+      "mcp_scope": "narrow",
+      "duration_seconds": 75.609,
+      "completed_tool_events": 4,
+      "failed_tool_events": 4,
+      "usage": {
+        "input": 4367,
+        "output": 595,
+        "cached_read": 11296
+      },
+      "skill_loaded": [],
+      "automatic_gates": {
+        "execution_completed": false,
+        "final_response_complete": false,
+        "explicit_final_fixture_paths_verified": true,
+        "native_file_paths_within_trial_project": false,
+        "typed_log_level": false,
+        "agent_validation_before_and_after": false,
+        "agent_reproduced_type_defect_before_edit": false,
+        "agent_post_edit_validation_passed": false,
+        "agent_validation_target_consistent": false,
+        "independent_static_pass": false
+      },
+      "metrics": {
+        "missing_path_errors": 2,
+        "repeated_missing_path_errors": 0,
+        "schema_argument_errors": 0,
+        "identical_input_repeats": 1,
+        "final_words": 93,
+        "tool_output_characters": 7718,
+        "last_step_finish_reason": "tool-calls",
+        "step_cap_response": false,
+        "final_fixture_path_mentions": 0,
+        "unverified_final_fixture_citations": 0
+      },
+      "initial_fixture_tree_sha256": "9faa967c8ee6081dfb72b3b94139407b8e0da980a63339b548420cd217af0a56",
+      "source_hashes": {
+        "requirements-dev.lock": "f732873a536ff8164d6a71c950b95c90ecff06c7d75093846b994a25c64b1a24",
+        "evaluation/processes.py": "abfac5d5d3640f818b3c06dbfa046acdcfcf8968071a6dc3e6dccfa17e583539",
+        "src/kodi_agent_toolkit/paths.py": "11ee799e48b27f23abd441dcad8a68ca6946d2857d19f2f7ea986a8c61e1e057",
+        "src/kodi_agent_toolkit/checker_runner.py": "6cb1fd2aa142d84e09eab81d7038efc8537302cefb3e49f1e917757bdcbe97b2",
+        "src/kodi_agent_toolkit/__init__.py": "c63b5d6b312154e486bff8aea06976f0a7f949186fe99d0a4ec28df00c381000",
+        "src/kodi_agent_toolkit/cli.py": "1226e180fcb5305627a41b182c257f8ac398e9dbf191d95208d8c10952af0ba0",
+        "src/kodi_agent_toolkit/review.py": "8fe894ae20132982deeb32b6b9053f7ca9b89d23595f939cb388e36c8344ad2f",
+        "src/kodi_agent_toolkit/validate.py": "263240f37261c786ed0a47e9b11bc935a12b8ab644a86a09b4fadda53f6f3527",
+        "src/kodi_agent_toolkit/compose.py": "a30a2104524504f7de8b4238e137635475ab18e50af5ecc0db2db1785f12562b",
+        ".opencode/tools/kodi_review.ts": "8494f2e7e3a0b6913a5e5e84ef3489deec0ef6bf77bb5431fab91ba65635e1f4",
+        ".opencode/tools/kodi_validate.ts": "ec0475c0604d3db54e5916f586ed4b17f770fbbb28d3d23d5116db3757440638",
+        ".opencode/lib/process-tree.ts": "bc41ca5f686d07aa1756b5b8469bbd3f2f2680c11ef7b8526492be808cbdf3fd",
+        ".opencode/lib/fixture-path.ts": "a5516e136dff92bcdda155986a86a7d84b2c88aab1233c5e08c7ba9d930b2d83",
+        "evaluation/run.py": "c4cbb4414c62b183e55ad643ddd9e67e498249cead13561fc79b1c932ea4e08a",
+        "evaluation/tasks.json": "d4e2fdc1a27b11857f54b4f78c056c88d926ac095919c83bf67d3b4c1a4b26a3",
+        "AGENTS.md": "09ae1c3e7cf83941171b5f078d51f23c7670dd1628fd6f69b4a5b485ce70c365"
+      },
+      "copied_skill_hashes": {},
+      "cache_manifest_sha256": "1dcbcdf2fd2832a28cd0618fda35bceda263aa71f64be51a98dac22ca0757c62",
+      "independent_review": {
+        "verdict": "FAIL",
+        "note": "Harness directory drift: model read source checkout; scoped write denials preserved fixtures; terminated before repair. Excluded from matched comparisons.",
+        "reviewer": "Codex independent artifact inspection; not user human sign-off",
+        "criteria": [
+          "Required workflow steps actually completed, not just independent post-hoc acceptance",
+          "Existing artifact paths and source locations",
+          "Correct warnings/infrastructure failures retained",
+          "Source supports mechanism, proportional severity and applicable Kodi rule",
+          "Static and runtime claims separated; no invented observed outcomes",
+          "Task/skill word bounds and useful recovery",
+          "Granted scope and no operator intervention within trial"
+        ],
+        "judgment_limits": "Semantic explanation/severity judgments are explicit but not blinded or statistically definitive. Automatic gates are separate.",
+        "excluded_from_matched_comparison": true
+      }
+    },
+    {
+      "label": "p5-coder-repair-A2",
+      "model": "qwen3-coder-next",
+      "task": "api-fix-nexus",
+      "condition": "A",
+      "skill_revision": "working-tree",
+      "skill_catalog": "relevant-only",
+      "skill_routing": "forced",
+      "tool_scope": "narrow",
+      "mcp_scope": "narrow",
+      "duration_seconds": 39.082,
+      "completed_tool_events": 4,
+      "failed_tool_events": 2,
+      "usage": {
+        "input": 3484,
+        "output": 757,
+        "cached_read": 11210
+      },
+      "skill_loaded": [],
+      "automatic_gates": {
+        "execution_completed": true,
+        "final_response_complete": true,
+        "explicit_final_fixture_paths_verified": true,
+        "native_file_paths_within_trial_project": true,
+        "typed_log_level": true,
+        "agent_validation_before_and_after": false,
+        "agent_reproduced_type_defect_before_edit": false,
+        "agent_post_edit_validation_passed": true,
+        "agent_validation_target_consistent": false,
+        "independent_static_pass": true
+      },
+      "metrics": {
+        "missing_path_errors": 1,
+        "repeated_missing_path_errors": 0,
+        "schema_argument_errors": 0,
+        "identical_input_repeats": 0,
+        "final_words": 113,
+        "tool_output_characters": 4015,
+        "last_step_finish_reason": "stop",
+        "step_cap_response": false,
+        "final_fixture_path_mentions": 0,
+        "unverified_final_fixture_citations": 0
+      },
+      "initial_fixture_tree_sha256": "9faa967c8ee6081dfb72b3b94139407b8e0da980a63339b548420cd217af0a56",
+      "source_hashes": {
+        "requirements-dev.lock": "f732873a536ff8164d6a71c950b95c90ecff06c7d75093846b994a25c64b1a24",
+        "evaluation/processes.py": "abfac5d5d3640f818b3c06dbfa046acdcfcf8968071a6dc3e6dccfa17e583539",
+        "src/kodi_agent_toolkit/paths.py": "11ee799e48b27f23abd441dcad8a68ca6946d2857d19f2f7ea986a8c61e1e057",
+        "src/kodi_agent_toolkit/checker_runner.py": "6cb1fd2aa142d84e09eab81d7038efc8537302cefb3e49f1e917757bdcbe97b2",
+        "src/kodi_agent_toolkit/__init__.py": "c63b5d6b312154e486bff8aea06976f0a7f949186fe99d0a4ec28df00c381000",
+        "src/kodi_agent_toolkit/cli.py": "1226e180fcb5305627a41b182c257f8ac398e9dbf191d95208d8c10952af0ba0",
+        "src/kodi_agent_toolkit/review.py": "8fe894ae20132982deeb32b6b9053f7ca9b89d23595f939cb388e36c8344ad2f",
+        "src/kodi_agent_toolkit/validate.py": "263240f37261c786ed0a47e9b11bc935a12b8ab644a86a09b4fadda53f6f3527",
+        "src/kodi_agent_toolkit/compose.py": "a30a2104524504f7de8b4238e137635475ab18e50af5ecc0db2db1785f12562b",
+        ".opencode/tools/kodi_review.ts": "8494f2e7e3a0b6913a5e5e84ef3489deec0ef6bf77bb5431fab91ba65635e1f4",
+        ".opencode/tools/kodi_validate.ts": "ec0475c0604d3db54e5916f586ed4b17f770fbbb28d3d23d5116db3757440638",
+        ".opencode/lib/process-tree.ts": "bc41ca5f686d07aa1756b5b8469bbd3f2f2680c11ef7b8526492be808cbdf3fd",
+        ".opencode/lib/fixture-path.ts": "a5516e136dff92bcdda155986a86a7d84b2c88aab1233c5e08c7ba9d930b2d83",
+        "evaluation/run.py": "7cbc8d56b0af7a5e48636604d403fadb2eef5bcbc8372847c7c64c5ef98bd542",
+        "evaluation/tasks.json": "d4e2fdc1a27b11857f54b4f78c056c88d926ac095919c83bf67d3b4c1a4b26a3",
+        "AGENTS.md": "09ae1c3e7cf83941171b5f078d51f23c7670dd1628fd6f69b4a5b485ce70c365"
+      },
+      "copied_skill_hashes": {},
+      "cache_manifest_sha256": "1dcbcdf2fd2832a28cd0618fda35bceda263aa71f64be51a98dac22ca0757c62",
+      "independent_review": {
+        "verdict": "PARTIAL",
+        "note": "Exact focused LOGINFO repair and completed post-checks; missed required pre-validation, guessed one source path and attempted unnecessary denied manifest write.",
+        "reviewer": "Codex independent artifact inspection; not user human sign-off",
+        "criteria": [
+          "Required workflow steps actually completed, not just independent post-hoc acceptance",
+          "Existing artifact paths and source locations",
+          "Correct warnings/infrastructure failures retained",
+          "Source supports mechanism, proportional severity and applicable Kodi rule",
+          "Static and runtime claims separated; no invented observed outcomes",
+          "Task/skill word bounds and useful recovery",
+          "Granted scope and no operator intervention within trial"
+        ],
+        "judgment_limits": "Semantic explanation/severity judgments are explicit but not blinded or statistically definitive. Automatic gates are separate."
+      }
+    },
+    {
+      "label": "p5-coder-repair-B",
+      "model": "qwen3-coder-next",
+      "task": "api-fix-nexus",
+      "condition": "B",
+      "skill_revision": "a6860ccb1d7bb18cfe4809782133c65d9e770265",
+      "skill_catalog": "relevant-only",
+      "skill_routing": "forced",
+      "tool_scope": "narrow",
+      "mcp_scope": "narrow",
+      "duration_seconds": 51.266,
+      "completed_tool_events": 7,
+      "failed_tool_events": 1,
+      "usage": {
+        "input": 5692,
+        "output": 823,
+        "cached_read": 24660
+      },
+      "skill_loaded": [
+        "kodi-addon-development"
+      ],
+      "automatic_gates": {
+        "execution_completed": true,
+        "final_response_complete": true,
+        "explicit_final_fixture_paths_verified": true,
+        "native_file_paths_within_trial_project": true,
+        "typed_log_level": true,
+        "agent_validation_before_and_after": true,
+        "agent_reproduced_type_defect_before_edit": true,
+        "agent_post_edit_validation_passed": true,
+        "agent_validation_target_consistent": true,
+        "independent_static_pass": true,
+        "skill_actually_loaded": true,
+        "skill_loaded_first": true
+      },
+      "metrics": {
+        "missing_path_errors": 1,
+        "repeated_missing_path_errors": 0,
+        "schema_argument_errors": 0,
+        "identical_input_repeats": 1,
+        "final_words": 99,
+        "tool_output_characters": 11301,
+        "last_step_finish_reason": "stop",
+        "step_cap_response": false,
+        "final_fixture_path_mentions": 0,
+        "unverified_final_fixture_citations": 0
+      },
+      "initial_fixture_tree_sha256": "9faa967c8ee6081dfb72b3b94139407b8e0da980a63339b548420cd217af0a56",
+      "source_hashes": {
+        "requirements-dev.lock": "f732873a536ff8164d6a71c950b95c90ecff06c7d75093846b994a25c64b1a24",
+        "evaluation/processes.py": "abfac5d5d3640f818b3c06dbfa046acdcfcf8968071a6dc3e6dccfa17e583539",
+        "src/kodi_agent_toolkit/paths.py": "11ee799e48b27f23abd441dcad8a68ca6946d2857d19f2f7ea986a8c61e1e057",
+        "src/kodi_agent_toolkit/checker_runner.py": "6cb1fd2aa142d84e09eab81d7038efc8537302cefb3e49f1e917757bdcbe97b2",
+        "src/kodi_agent_toolkit/__init__.py": "c63b5d6b312154e486bff8aea06976f0a7f949186fe99d0a4ec28df00c381000",
+        "src/kodi_agent_toolkit/cli.py": "1226e180fcb5305627a41b182c257f8ac398e9dbf191d95208d8c10952af0ba0",
+        "src/kodi_agent_toolkit/review.py": "8fe894ae20132982deeb32b6b9053f7ca9b89d23595f939cb388e36c8344ad2f",
+        "src/kodi_agent_toolkit/validate.py": "263240f37261c786ed0a47e9b11bc935a12b8ab644a86a09b4fadda53f6f3527",
+        "src/kodi_agent_toolkit/compose.py": "a30a2104524504f7de8b4238e137635475ab18e50af5ecc0db2db1785f12562b",
+        ".opencode/tools/kodi_review.ts": "8494f2e7e3a0b6913a5e5e84ef3489deec0ef6bf77bb5431fab91ba65635e1f4",
+        ".opencode/tools/kodi_validate.ts": "ec0475c0604d3db54e5916f586ed4b17f770fbbb28d3d23d5116db3757440638",
+        ".opencode/lib/process-tree.ts": "bc41ca5f686d07aa1756b5b8469bbd3f2f2680c11ef7b8526492be808cbdf3fd",
+        ".opencode/lib/fixture-path.ts": "588b0fc96bfc483333d41f32f7738727913b5f296c9ef3646adbf3da0ef2794a",
+        "evaluation/run.py": "11845491f3802ad5adb1c872a7619d4bb51aebd5e5ba46415ec9b315d0920ad6",
+        "evaluation/tasks.json": "d4e2fdc1a27b11857f54b4f78c056c88d926ac095919c83bf67d3b4c1a4b26a3",
+        "AGENTS.md": "09ae1c3e7cf83941171b5f078d51f23c7670dd1628fd6f69b4a5b485ce70c365"
+      },
+      "copied_skill_hashes": {
+        ".agents/skills/kodi-addon-development/SKILL.md": "165683aa7189627279cc1412959bee921e0eef3f07e770fcf597ca0c961c4e78",
+        ".agents/skills/kodi-addon-development/references/development.md": "6d92ecf85b0a19fbdccf2a4a2741be24813c8052251b0ea44c237cf26d4005c4"
+      },
+      "cache_manifest_sha256": "1dcbcdf2fd2832a28cd0618fda35bceda263aa71f64be51a98dac22ca0757c62",
+      "independent_review": {
+        "verdict": "PASS",
+        "note": "Original skill loaded; wrong entry-file guess recovered; reproduced actual type error, applied exact minimal repair, all six post-stages completed with warnings accurately retained.",
+        "reviewer": "Codex independent artifact inspection; not user human sign-off",
+        "criteria": [
+          "Required workflow steps actually completed, not just independent post-hoc acceptance",
+          "Existing artifact paths and source locations",
+          "Correct warnings/infrastructure failures retained",
+          "Source supports mechanism, proportional severity and applicable Kodi rule",
+          "Static and runtime claims separated; no invented observed outcomes",
+          "Task/skill word bounds and useful recovery",
+          "Granted scope and no operator intervention within trial"
+        ],
+        "judgment_limits": "Semantic explanation/severity judgments are explicit but not blinded or statistically definitive. Automatic gates are separate."
+      }
+    },
+    {
+      "label": "p5-coder-repair-C",
+      "model": "qwen3-coder-next",
+      "task": "api-fix-nexus",
+      "condition": "C",
+      "skill_revision": "working-tree",
+      "skill_catalog": "relevant-only",
+      "skill_routing": "forced",
+      "tool_scope": "narrow",
+      "mcp_scope": "narrow",
+      "duration_seconds": 45.45,
+      "completed_tool_events": 7,
+      "failed_tool_events": 0,
+      "usage": {
+        "input": 5435,
+        "output": 563,
+        "cached_read": 22349
+      },
+      "skill_loaded": [
+        "kodi-addon-development"
+      ],
+      "automatic_gates": {
+        "execution_completed": true,
+        "final_response_complete": true,
+        "explicit_final_fixture_paths_verified": true,
+        "native_file_paths_within_trial_project": true,
+        "typed_log_level": true,
+        "agent_validation_before_and_after": true,
+        "agent_reproduced_type_defect_before_edit": true,
+        "agent_post_edit_validation_passed": true,
+        "agent_validation_target_consistent": true,
+        "independent_static_pass": true,
+        "skill_actually_loaded": true,
+        "skill_loaded_first": true
+      },
+      "metrics": {
+        "missing_path_errors": 0,
+        "repeated_missing_path_errors": 0,
+        "schema_argument_errors": 0,
+        "identical_input_repeats": 1,
+        "final_words": 85,
+        "tool_output_characters": 10091,
+        "last_step_finish_reason": "stop",
+        "step_cap_response": false,
+        "final_fixture_path_mentions": 0,
+        "unverified_final_fixture_citations": 0
+      },
+      "initial_fixture_tree_sha256": "9faa967c8ee6081dfb72b3b94139407b8e0da980a63339b548420cd217af0a56",
+      "source_hashes": {
+        "requirements-dev.lock": "f732873a536ff8164d6a71c950b95c90ecff06c7d75093846b994a25c64b1a24",
+        "evaluation/processes.py": "abfac5d5d3640f818b3c06dbfa046acdcfcf8968071a6dc3e6dccfa17e583539",
+        "src/kodi_agent_toolkit/paths.py": "11ee799e48b27f23abd441dcad8a68ca6946d2857d19f2f7ea986a8c61e1e057",
+        "src/kodi_agent_toolkit/checker_runner.py": "6cb1fd2aa142d84e09eab81d7038efc8537302cefb3e49f1e917757bdcbe97b2",
+        "src/kodi_agent_toolkit/__init__.py": "c63b5d6b312154e486bff8aea06976f0a7f949186fe99d0a4ec28df00c381000",
+        "src/kodi_agent_toolkit/cli.py": "1226e180fcb5305627a41b182c257f8ac398e9dbf191d95208d8c10952af0ba0",
+        "src/kodi_agent_toolkit/review.py": "8fe894ae20132982deeb32b6b9053f7ca9b89d23595f939cb388e36c8344ad2f",
+        "src/kodi_agent_toolkit/validate.py": "263240f37261c786ed0a47e9b11bc935a12b8ab644a86a09b4fadda53f6f3527",
+        "src/kodi_agent_toolkit/compose.py": "a30a2104524504f7de8b4238e137635475ab18e50af5ecc0db2db1785f12562b",
+        ".opencode/tools/kodi_review.ts": "8494f2e7e3a0b6913a5e5e84ef3489deec0ef6bf77bb5431fab91ba65635e1f4",
+        ".opencode/tools/kodi_validate.ts": "ec0475c0604d3db54e5916f586ed4b17f770fbbb28d3d23d5116db3757440638",
+        ".opencode/lib/process-tree.ts": "bc41ca5f686d07aa1756b5b8469bbd3f2f2680c11ef7b8526492be808cbdf3fd",
+        ".opencode/lib/fixture-path.ts": "588b0fc96bfc483333d41f32f7738727913b5f296c9ef3646adbf3da0ef2794a",
+        "evaluation/run.py": "11845491f3802ad5adb1c872a7619d4bb51aebd5e5ba46415ec9b315d0920ad6",
+        "evaluation/tasks.json": "d4e2fdc1a27b11857f54b4f78c056c88d926ac095919c83bf67d3b4c1a4b26a3",
+        "AGENTS.md": "09ae1c3e7cf83941171b5f078d51f23c7670dd1628fd6f69b4a5b485ce70c365"
+      },
+      "copied_skill_hashes": {
+        ".agents/skills/kodi-addon-development/SKILL.md": "3666d0e4efcb4a0cd17ad3eed94dcf75f1e005844f6e65dd6c1e4f90d007cdcf",
+        ".agents/skills/kodi-addon-development/references/development.md": "6d92ecf85b0a19fbdccf2a4a2741be24813c8052251b0ea44c237cf26d4005c4"
+      },
+      "cache_manifest_sha256": "1dcbcdf2fd2832a28cd0618fda35bceda263aa71f64be51a98dac22ca0757c62",
+      "independent_review": {
+        "verdict": "PASS",
+        "note": "Updated skill loaded; discovered actual root/entry, no tool/path errors, reproduced defect and applied exact repair; complete post-checks and warnings reported in 85 words.",
+        "reviewer": "Codex independent artifact inspection; not user human sign-off",
+        "criteria": [
+          "Required workflow steps actually completed, not just independent post-hoc acceptance",
+          "Existing artifact paths and source locations",
+          "Correct warnings/infrastructure failures retained",
+          "Source supports mechanism, proportional severity and applicable Kodi rule",
+          "Static and runtime claims separated; no invented observed outcomes",
+          "Task/skill word bounds and useful recovery",
+          "Granted scope and no operator intervention within trial"
+        ],
+        "judgment_limits": "Semantic explanation/severity judgments are explicit but not blinded or statistically definitive. Automatic gates are separate."
+      }
+    },
+    {
+      "label": "p5-coder-review-A",
+      "model": "qwen3-coder-next",
+      "task": "review-composed",
+      "condition": "A",
+      "skill_revision": "working-tree",
+      "skill_catalog": "relevant-only",
+      "skill_routing": "forced",
+      "tool_scope": "narrow",
+      "mcp_scope": "narrow",
+      "duration_seconds": 44.954,
+      "completed_tool_events": 4,
+      "failed_tool_events": 0,
+      "usage": {
+        "input": 6267,
+        "output": 762,
+        "cached_read": 16920
+      },
+      "skill_loaded": [],
+      "automatic_gates": {
+        "execution_completed": true,
+        "final_response_complete": true,
+        "explicit_final_fixture_paths_verified": true,
+        "native_file_paths_within_trial_project": true,
+        "agent_composition_called": true,
+        "composition_submission_valid": true,
+        "composition_passed": true,
+        "composition_static_passed": true,
+        "composition_contract_passed": true,
+        "semantics_left_to_human": true
+      },
+      "metrics": {
+        "missing_path_errors": 0,
+        "repeated_missing_path_errors": 0,
+        "schema_argument_errors": 0,
+        "identical_input_repeats": 0,
+        "final_words": 113,
+        "tool_output_characters": 17906,
+        "last_step_finish_reason": "stop",
+        "step_cap_response": false,
+        "final_fixture_path_mentions": 0,
+        "unverified_final_fixture_citations": 0
+      },
+      "initial_fixture_tree_sha256": "95f92f5e8d96445c7a797bbf37844c9890e8e4fd61a01d6453476828b8984514",
+      "source_hashes": {
+        "requirements-dev.lock": "f732873a536ff8164d6a71c950b95c90ecff06c7d75093846b994a25c64b1a24",
+        "evaluation/processes.py": "abfac5d5d3640f818b3c06dbfa046acdcfcf8968071a6dc3e6dccfa17e583539",
+        "src/kodi_agent_toolkit/paths.py": "11ee799e48b27f23abd441dcad8a68ca6946d2857d19f2f7ea986a8c61e1e057",
+        "src/kodi_agent_toolkit/checker_runner.py": "6cb1fd2aa142d84e09eab81d7038efc8537302cefb3e49f1e917757bdcbe97b2",
+        "src/kodi_agent_toolkit/__init__.py": "c63b5d6b312154e486bff8aea06976f0a7f949186fe99d0a4ec28df00c381000",
+        "src/kodi_agent_toolkit/cli.py": "1226e180fcb5305627a41b182c257f8ac398e9dbf191d95208d8c10952af0ba0",
+        "src/kodi_agent_toolkit/review.py": "8fe894ae20132982deeb32b6b9053f7ca9b89d23595f939cb388e36c8344ad2f",
+        "src/kodi_agent_toolkit/validate.py": "263240f37261c786ed0a47e9b11bc935a12b8ab644a86a09b4fadda53f6f3527",
+        "src/kodi_agent_toolkit/compose.py": "a30a2104524504f7de8b4238e137635475ab18e50af5ecc0db2db1785f12562b",
+        ".opencode/tools/kodi_review.ts": "8494f2e7e3a0b6913a5e5e84ef3489deec0ef6bf77bb5431fab91ba65635e1f4",
+        ".opencode/tools/kodi_validate.ts": "ec0475c0604d3db54e5916f586ed4b17f770fbbb28d3d23d5116db3757440638",
+        ".opencode/lib/process-tree.ts": "bc41ca5f686d07aa1756b5b8469bbd3f2f2680c11ef7b8526492be808cbdf3fd",
+        ".opencode/lib/fixture-path.ts": "588b0fc96bfc483333d41f32f7738727913b5f296c9ef3646adbf3da0ef2794a",
+        "evaluation/run.py": "11845491f3802ad5adb1c872a7619d4bb51aebd5e5ba46415ec9b315d0920ad6",
+        "evaluation/tasks.json": "d4e2fdc1a27b11857f54b4f78c056c88d926ac095919c83bf67d3b4c1a4b26a3",
+        "AGENTS.md": "09ae1c3e7cf83941171b5f078d51f23c7670dd1628fd6f69b4a5b485ce70c365"
+      },
+      "copied_skill_hashes": {},
+      "cache_manifest_sha256": "1dcbcdf2fd2832a28cd0618fda35bceda263aa71f64be51a98dac22ca0757c62",
+      "independent_review": {
+        "verdict": "PARTIAL",
+        "note": "Correct raw-setting-to-log source trace and canonical warnings, but source-supported draft invented reproduction.observed runtime exposure. Contract pass is not semantic success.",
+        "reviewer": "Codex independent artifact inspection; not user human sign-off",
+        "criteria": [
+          "Required workflow steps actually completed, not just independent post-hoc acceptance",
+          "Existing artifact paths and source locations",
+          "Correct warnings/infrastructure failures retained",
+          "Source supports mechanism, proportional severity and applicable Kodi rule",
+          "Static and runtime claims separated; no invented observed outcomes",
+          "Task/skill word bounds and useful recovery",
+          "Granted scope and no operator intervention within trial"
+        ],
+        "judgment_limits": "Semantic explanation/severity judgments are explicit but not blinded or statistically definitive. Automatic gates are separate."
+      }
+    },
+    {
+      "label": "p5-coder-review-B",
+      "model": "qwen3-coder-next",
+      "task": "review-composed",
+      "condition": "B",
+      "skill_revision": "a6860ccb1d7bb18cfe4809782133c65d9e770265",
+      "skill_catalog": "relevant-only",
+      "skill_routing": "forced",
+      "tool_scope": "narrow",
+      "mcp_scope": "narrow",
+      "duration_seconds": 49.049,
+      "completed_tool_events": 4,
+      "failed_tool_events": 0,
+      "usage": {
+        "input": 7094,
+        "output": 883,
+        "cached_read": 13663
+      },
+      "skill_loaded": [
+        "kodi-addon-validation"
+      ],
+      "automatic_gates": {
+        "execution_completed": true,
+        "final_response_complete": true,
+        "explicit_final_fixture_paths_verified": true,
+        "native_file_paths_within_trial_project": true,
+        "agent_composition_called": true,
+        "composition_submission_valid": true,
+        "composition_passed": true,
+        "composition_static_passed": true,
+        "composition_contract_passed": true,
+        "semantics_left_to_human": true,
+        "skill_actually_loaded": true,
+        "skill_loaded_first": true
+      },
+      "metrics": {
+        "missing_path_errors": 0,
+        "repeated_missing_path_errors": 0,
+        "schema_argument_errors": 0,
+        "identical_input_repeats": 0,
+        "final_words": 121,
+        "tool_output_characters": 20264,
+        "last_step_finish_reason": "stop",
+        "step_cap_response": false,
+        "final_fixture_path_mentions": 0,
+        "unverified_final_fixture_citations": 0
+      },
+      "initial_fixture_tree_sha256": "95f92f5e8d96445c7a797bbf37844c9890e8e4fd61a01d6453476828b8984514",
+      "source_hashes": {
+        "requirements-dev.lock": "f732873a536ff8164d6a71c950b95c90ecff06c7d75093846b994a25c64b1a24",
+        "evaluation/processes.py": "abfac5d5d3640f818b3c06dbfa046acdcfcf8968071a6dc3e6dccfa17e583539",
+        "src/kodi_agent_toolkit/paths.py": "11ee799e48b27f23abd441dcad8a68ca6946d2857d19f2f7ea986a8c61e1e057",
+        "src/kodi_agent_toolkit/checker_runner.py": "6cb1fd2aa142d84e09eab81d7038efc8537302cefb3e49f1e917757bdcbe97b2",
+        "src/kodi_agent_toolkit/__init__.py": "c63b5d6b312154e486bff8aea06976f0a7f949186fe99d0a4ec28df00c381000",
+        "src/kodi_agent_toolkit/cli.py": "1226e180fcb5305627a41b182c257f8ac398e9dbf191d95208d8c10952af0ba0",
+        "src/kodi_agent_toolkit/review.py": "8fe894ae20132982deeb32b6b9053f7ca9b89d23595f939cb388e36c8344ad2f",
+        "src/kodi_agent_toolkit/validate.py": "263240f37261c786ed0a47e9b11bc935a12b8ab644a86a09b4fadda53f6f3527",
+        "src/kodi_agent_toolkit/compose.py": "a30a2104524504f7de8b4238e137635475ab18e50af5ecc0db2db1785f12562b",
+        ".opencode/tools/kodi_review.ts": "8494f2e7e3a0b6913a5e5e84ef3489deec0ef6bf77bb5431fab91ba65635e1f4",
+        ".opencode/tools/kodi_validate.ts": "ec0475c0604d3db54e5916f586ed4b17f770fbbb28d3d23d5116db3757440638",
+        ".opencode/lib/process-tree.ts": "bc41ca5f686d07aa1756b5b8469bbd3f2f2680c11ef7b8526492be808cbdf3fd",
+        ".opencode/lib/fixture-path.ts": "588b0fc96bfc483333d41f32f7738727913b5f296c9ef3646adbf3da0ef2794a",
+        "evaluation/run.py": "11845491f3802ad5adb1c872a7619d4bb51aebd5e5ba46415ec9b315d0920ad6",
+        "evaluation/tasks.json": "d4e2fdc1a27b11857f54b4f78c056c88d926ac095919c83bf67d3b4c1a4b26a3",
+        "AGENTS.md": "09ae1c3e7cf83941171b5f078d51f23c7670dd1628fd6f69b4a5b485ce70c365"
+      },
+      "copied_skill_hashes": {
+        ".agents/skills/kodi-addon-validation/SKILL.md": "1f2e691d5aed2e5473f150e0719ed87739f84e91fbf2deaefaa543ca033a0849",
+        ".agents/skills/kodi-addon-validation/references/review.md": "5e9e6a2923c9c61ad339b4b65a817e65797cabcfa5ad7d15096a9b70ca311208",
+        ".agents/skills/kodi-addon-validation/references/validation.md": "a32019b396d9df373405f77774eb3ac6277e28f40bc05b6a2cfefa0d77167df7"
+      },
+      "cache_manifest_sha256": "1dcbcdf2fd2832a28cd0618fda35bceda263aa71f64be51a98dac22ca0757c62",
+      "independent_review": {
+        "verdict": "PARTIAL",
+        "note": "Correct trace/anchors and canonical warnings; invented untested reproduction.observed exposure and proposed LOGDEBUG as secret protection without justification.",
+        "reviewer": "Codex independent artifact inspection; not user human sign-off",
+        "criteria": [
+          "Required workflow steps actually completed, not just independent post-hoc acceptance",
+          "Existing artifact paths and source locations",
+          "Correct warnings/infrastructure failures retained",
+          "Source supports mechanism, proportional severity and applicable Kodi rule",
+          "Static and runtime claims separated; no invented observed outcomes",
+          "Task/skill word bounds and useful recovery",
+          "Granted scope and no operator intervention within trial"
+        ],
+        "judgment_limits": "Semantic explanation/severity judgments are explicit but not blinded or statistically definitive. Automatic gates are separate."
+      }
+    },
+    {
+      "label": "p5-coder-review-C",
+      "model": "qwen3-coder-next",
+      "task": "review-composed",
+      "condition": "C",
+      "skill_revision": "working-tree",
+      "skill_catalog": "relevant-only",
+      "skill_routing": "forced",
+      "tool_scope": "narrow",
+      "mcp_scope": "narrow",
+      "duration_seconds": 51.258,
+      "completed_tool_events": 3,
+      "failed_tool_events": 1,
+      "usage": {
+        "input": 6636,
+        "output": 1064,
+        "cached_read": 16871
+      },
+      "skill_loaded": [
+        "kodi-addon-validation"
+      ],
+      "automatic_gates": {
+        "execution_completed": true,
+        "final_response_complete": true,
+        "explicit_final_fixture_paths_verified": true,
+        "native_file_paths_within_trial_project": true,
+        "agent_composition_called": true,
+        "composition_submission_valid": true,
+        "composition_passed": true,
+        "composition_static_passed": true,
+        "composition_contract_passed": true,
+        "semantics_left_to_human": true,
+        "skill_actually_loaded": true,
+        "skill_loaded_first": true
+      },
+      "metrics": {
+        "missing_path_errors": 0,
+        "repeated_missing_path_errors": 0,
+        "schema_argument_errors": 0,
+        "identical_input_repeats": 0,
+        "final_words": 113,
+        "tool_output_characters": 18457,
+        "last_step_finish_reason": "stop",
+        "step_cap_response": false,
+        "final_fixture_path_mentions": 0,
+        "unverified_final_fixture_citations": 0
+      },
+      "initial_fixture_tree_sha256": "95f92f5e8d96445c7a797bbf37844c9890e8e4fd61a01d6453476828b8984514",
+      "source_hashes": {
+        "requirements-dev.lock": "f732873a536ff8164d6a71c950b95c90ecff06c7d75093846b994a25c64b1a24",
+        "evaluation/processes.py": "abfac5d5d3640f818b3c06dbfa046acdcfcf8968071a6dc3e6dccfa17e583539",
+        "src/kodi_agent_toolkit/paths.py": "11ee799e48b27f23abd441dcad8a68ca6946d2857d19f2f7ea986a8c61e1e057",
+        "src/kodi_agent_toolkit/checker_runner.py": "6cb1fd2aa142d84e09eab81d7038efc8537302cefb3e49f1e917757bdcbe97b2",
+        "src/kodi_agent_toolkit/__init__.py": "c63b5d6b312154e486bff8aea06976f0a7f949186fe99d0a4ec28df00c381000",
+        "src/kodi_agent_toolkit/cli.py": "1226e180fcb5305627a41b182c257f8ac398e9dbf191d95208d8c10952af0ba0",
+        "src/kodi_agent_toolkit/review.py": "8fe894ae20132982deeb32b6b9053f7ca9b89d23595f939cb388e36c8344ad2f",
+        "src/kodi_agent_toolkit/validate.py": "263240f37261c786ed0a47e9b11bc935a12b8ab644a86a09b4fadda53f6f3527",
+        "src/kodi_agent_toolkit/compose.py": "a30a2104524504f7de8b4238e137635475ab18e50af5ecc0db2db1785f12562b",
+        ".opencode/tools/kodi_review.ts": "8494f2e7e3a0b6913a5e5e84ef3489deec0ef6bf77bb5431fab91ba65635e1f4",
+        ".opencode/tools/kodi_validate.ts": "ec0475c0604d3db54e5916f586ed4b17f770fbbb28d3d23d5116db3757440638",
+        ".opencode/lib/process-tree.ts": "bc41ca5f686d07aa1756b5b8469bbd3f2f2680c11ef7b8526492be808cbdf3fd",
+        ".opencode/lib/fixture-path.ts": "588b0fc96bfc483333d41f32f7738727913b5f296c9ef3646adbf3da0ef2794a",
+        "evaluation/run.py": "11845491f3802ad5adb1c872a7619d4bb51aebd5e5ba46415ec9b315d0920ad6",
+        "evaluation/tasks.json": "d4e2fdc1a27b11857f54b4f78c056c88d926ac095919c83bf67d3b4c1a4b26a3",
+        "AGENTS.md": "09ae1c3e7cf83941171b5f078d51f23c7670dd1628fd6f69b4a5b485ce70c365"
+      },
+      "copied_skill_hashes": {
+        ".agents/skills/kodi-addon-validation/SKILL.md": "d442fe322e5cfe9e61c9907b4fdbc456bef93110ae3707a7fc34d900474d39c8",
+        ".agents/skills/kodi-addon-validation/references/review.md": "78febaeaa1b732adf8488028dd85f82ff14b206b4883547b3049070d21583735",
+        ".agents/skills/kodi-addon-validation/references/validation.md": "a32019b396d9df373405f77774eb3ac6277e28f40bc05b6a2cfefa0d77167df7"
+      },
+      "cache_manifest_sha256": "1dcbcdf2fd2832a28cd0618fda35bceda263aa71f64be51a98dac22ca0757c62",
+      "independent_review": {
+        "verdict": "PARTIAL",
+        "note": "Recovered one JSON parse error; trace/static composition passed, but invented reproduction.observed exposure and omitted related supporting anchors.",
+        "reviewer": "Codex independent artifact inspection; not user human sign-off",
+        "criteria": [
+          "Required workflow steps actually completed, not just independent post-hoc acceptance",
+          "Existing artifact paths and source locations",
+          "Correct warnings/infrastructure failures retained",
+          "Source supports mechanism, proportional severity and applicable Kodi rule",
+          "Static and runtime claims separated; no invented observed outcomes",
+          "Task/skill word bounds and useful recovery",
+          "Granted scope and no operator intervention within trial"
+        ],
+        "judgment_limits": "Semantic explanation/severity judgments are explicit but not blinded or statistically definitive. Automatic gates are separate."
+      }
+    },
+    {
+      "label": "p5-coder-review-C2",
+      "model": "qwen3-coder-next",
+      "task": "review-composed",
+      "condition": "C",
+      "skill_revision": "working-tree",
+      "skill_catalog": "relevant-only",
+      "skill_routing": "forced",
+      "tool_scope": "narrow",
+      "mcp_scope": "narrow",
+      "duration_seconds": 44.504,
+      "completed_tool_events": 3,
+      "failed_tool_events": 0,
+      "usage": {
+        "input": 7061,
+        "output": 696,
+        "cached_read": 10850
+      },
+      "skill_loaded": [
+        "kodi-addon-validation"
+      ],
+      "automatic_gates": {
+        "execution_completed": true,
+        "final_response_complete": true,
+        "explicit_final_fixture_paths_verified": true,
+        "native_file_paths_within_trial_project": true,
+        "agent_composition_called": true,
+        "composition_submission_valid": true,
+        "composition_passed": true,
+        "composition_static_passed": true,
+        "composition_contract_passed": true,
+        "semantics_left_to_human": true,
+        "skill_actually_loaded": true,
+        "skill_loaded_first": true
+      },
+      "metrics": {
+        "missing_path_errors": 0,
+        "repeated_missing_path_errors": 0,
+        "schema_argument_errors": 0,
+        "identical_input_repeats": 0,
+        "final_words": 116,
+        "tool_output_characters": 20662,
+        "last_step_finish_reason": "stop",
+        "step_cap_response": false,
+        "final_fixture_path_mentions": 0,
+        "unverified_final_fixture_citations": 0
+      },
+      "initial_fixture_tree_sha256": "95f92f5e8d96445c7a797bbf37844c9890e8e4fd61a01d6453476828b8984514",
+      "source_hashes": {
+        "requirements-dev.lock": "f732873a536ff8164d6a71c950b95c90ecff06c7d75093846b994a25c64b1a24",
+        "evaluation/processes.py": "abfac5d5d3640f818b3c06dbfa046acdcfcf8968071a6dc3e6dccfa17e583539",
+        "src/kodi_agent_toolkit/paths.py": "33459b4dd576830a5d6a92adad2f3f8ca2a39d61e3e3cb78adec3c798e8110ec",
+        "src/kodi_agent_toolkit/checker_runner.py": "6cb1fd2aa142d84e09eab81d7038efc8537302cefb3e49f1e917757bdcbe97b2",
+        "src/kodi_agent_toolkit/__init__.py": "c63b5d6b312154e486bff8aea06976f0a7f949186fe99d0a4ec28df00c381000",
+        "src/kodi_agent_toolkit/cli.py": "1226e180fcb5305627a41b182c257f8ac398e9dbf191d95208d8c10952af0ba0",
+        "src/kodi_agent_toolkit/review.py": "21ae590028eb787ccbffd3d44921e7e46424180438545af663b587b630c8d176",
+        "src/kodi_agent_toolkit/validate.py": "263240f37261c786ed0a47e9b11bc935a12b8ab644a86a09b4fadda53f6f3527",
+        "src/kodi_agent_toolkit/compose.py": "a30a2104524504f7de8b4238e137635475ab18e50af5ecc0db2db1785f12562b",
+        ".opencode/tools/kodi_review.ts": "8494f2e7e3a0b6913a5e5e84ef3489deec0ef6bf77bb5431fab91ba65635e1f4",
+        ".opencode/tools/kodi_validate.ts": "b482be6cac9be4a0cd29800549b366748f28231adda9447f4d5b92621903c051",
+        ".opencode/lib/process-tree.ts": "bc41ca5f686d07aa1756b5b8469bbd3f2f2680c11ef7b8526492be808cbdf3fd",
+        ".opencode/lib/fixture-path.ts": "588b0fc96bfc483333d41f32f7738727913b5f296c9ef3646adbf3da0ef2794a",
+        "evaluation/run.py": "11845491f3802ad5adb1c872a7619d4bb51aebd5e5ba46415ec9b315d0920ad6",
+        "evaluation/tasks.json": "d4e2fdc1a27b11857f54b4f78c056c88d926ac095919c83bf67d3b4c1a4b26a3",
+        "AGENTS.md": "09ae1c3e7cf83941171b5f078d51f23c7670dd1628fd6f69b4a5b485ce70c365"
+      },
+      "copied_skill_hashes": {
+        ".agents/skills/kodi-addon-validation/SKILL.md": "d442fe322e5cfe9e61c9907b4fdbc456bef93110ae3707a7fc34d900474d39c8",
+        ".agents/skills/kodi-addon-validation/references/review.md": "2f6596a35fa4efb5c57186bab580ca94b3af3e91014cc9d02d50da3f798b11d3",
+        ".agents/skills/kodi-addon-validation/references/validation.md": "a32019b396d9df373405f77774eb3ac6277e28f40bc05b6a2cfefa0d77167df7"
+      },
+      "cache_manifest_sha256": "1dcbcdf2fd2832a28cd0618fda35bceda263aa71f64be51a98dac22ca0757c62",
+      "independent_review": {
+        "verdict": "PARTIAL",
+        "note": "Stricter schema omitted invented reproduction; supported trace and related anchors retained, static/contract pass. Conditional sensitivity still overstated as confirmed secret/privacy issue in draft/final. Subjective severity/sensitivity caution remains.",
+        "reviewer": "Codex independent artifact inspection; not user human sign-off",
+        "criteria": [
+          "Required workflow steps actually completed, not just independent post-hoc acceptance",
+          "Existing artifact paths and source locations",
+          "Correct warnings/infrastructure failures retained",
+          "Source supports mechanism, proportional severity and applicable Kodi rule",
+          "Static and runtime claims separated; no invented observed outcomes",
+          "Task/skill word bounds and useful recovery",
+          "Granted scope and no operator intervention within trial"
+        ],
+        "judgment_limits": "Semantic explanation/severity judgments explicit but not blinded or statistically definitive; automatic gates separate."
+      }
+    },
+    {
+      "label": "p5-compat-auto-C",
+      "model": "qwen3-coder-next",
+      "task": "version-ambiguous",
+      "condition": "C",
+      "skill_revision": "working-tree",
+      "skill_catalog": "all",
+      "skill_routing": "auto",
+      "tool_scope": "narrow",
+      "mcp_scope": "narrow",
+      "duration_seconds": 22.915,
+      "completed_tool_events": 3,
+      "failed_tool_events": 0,
+      "usage": {
+        "input": 2580,
+        "output": 264,
+        "cached_read": 6386
+      },
+      "skill_loaded": [],
+      "automatic_gates": {
+        "execution_completed": true,
+        "final_response_complete": true,
+        "explicit_final_fixture_paths_verified": true,
+        "native_file_paths_within_trial_project": true,
+        "no_edit_attempted": true,
+        "no_unrequested_validation_target": true,
+        "skill_actually_loaded": false,
+        "skill_loaded_first": false
+      },
+      "metrics": {
+        "missing_path_errors": 0,
+        "repeated_missing_path_errors": 0,
+        "schema_argument_errors": 0,
+        "identical_input_repeats": 0,
+        "final_words": 65,
+        "tool_output_characters": 2308,
+        "last_step_finish_reason": "stop",
+        "step_cap_response": false,
+        "final_fixture_path_mentions": 1,
+        "unverified_final_fixture_citations": 0
+      },
+      "initial_fixture_tree_sha256": "8217d84b3b80ec472ca9e80a4b284484784a979a1434b3284375c729c2efa71a",
+      "source_hashes": {
+        "requirements-dev.lock": "f732873a536ff8164d6a71c950b95c90ecff06c7d75093846b994a25c64b1a24",
+        "evaluation/processes.py": "abfac5d5d3640f818b3c06dbfa046acdcfcf8968071a6dc3e6dccfa17e583539",
+        "src/kodi_agent_toolkit/paths.py": "11ee799e48b27f23abd441dcad8a68ca6946d2857d19f2f7ea986a8c61e1e057",
+        "src/kodi_agent_toolkit/checker_runner.py": "6cb1fd2aa142d84e09eab81d7038efc8537302cefb3e49f1e917757bdcbe97b2",
+        "src/kodi_agent_toolkit/__init__.py": "c63b5d6b312154e486bff8aea06976f0a7f949186fe99d0a4ec28df00c381000",
+        "src/kodi_agent_toolkit/cli.py": "1226e180fcb5305627a41b182c257f8ac398e9dbf191d95208d8c10952af0ba0",
+        "src/kodi_agent_toolkit/review.py": "8fe894ae20132982deeb32b6b9053f7ca9b89d23595f939cb388e36c8344ad2f",
+        "src/kodi_agent_toolkit/validate.py": "263240f37261c786ed0a47e9b11bc935a12b8ab644a86a09b4fadda53f6f3527",
+        "src/kodi_agent_toolkit/compose.py": "a30a2104524504f7de8b4238e137635475ab18e50af5ecc0db2db1785f12562b",
+        ".opencode/tools/kodi_review.ts": "8494f2e7e3a0b6913a5e5e84ef3489deec0ef6bf77bb5431fab91ba65635e1f4",
+        ".opencode/tools/kodi_validate.ts": "ec0475c0604d3db54e5916f586ed4b17f770fbbb28d3d23d5116db3757440638",
+        ".opencode/lib/process-tree.ts": "bc41ca5f686d07aa1756b5b8469bbd3f2f2680c11ef7b8526492be808cbdf3fd",
+        ".opencode/lib/fixture-path.ts": "588b0fc96bfc483333d41f32f7738727913b5f296c9ef3646adbf3da0ef2794a",
+        "evaluation/run.py": "11845491f3802ad5adb1c872a7619d4bb51aebd5e5ba46415ec9b315d0920ad6",
+        "evaluation/tasks.json": "d4e2fdc1a27b11857f54b4f78c056c88d926ac095919c83bf67d3b4c1a4b26a3",
+        "AGENTS.md": "09ae1c3e7cf83941171b5f078d51f23c7670dd1628fd6f69b4a5b485ce70c365"
+      },
+      "copied_skill_hashes": {
+        ".agents/skills/kodi-addon-debugging/SKILL.md": "4797d0281b1bc2bf1775ae5614cd218a49503bf0926ad85a0de411b51d25b843",
+        ".agents/skills/kodi-addon-debugging/references/debugging.md": "f6baca8f06d982097116c993a61b7511dec13332f1152bae5434f291a5c2fdbc",
+        ".agents/skills/kodi-addon-development/SKILL.md": "3666d0e4efcb4a0cd17ad3eed94dcf75f1e005844f6e65dd6c1e4f90d007cdcf",
+        ".agents/skills/kodi-addon-development/references/development.md": "6d92ecf85b0a19fbdccf2a4a2741be24813c8052251b0ea44c237cf26d4005c4",
+        ".agents/skills/kodi-addon-validation/SKILL.md": "d442fe322e5cfe9e61c9907b4fdbc456bef93110ae3707a7fc34d900474d39c8",
+        ".agents/skills/kodi-addon-validation/references/review.md": "78febaeaa1b732adf8488028dd85f82ff14b206b4883547b3049070d21583735",
+        ".agents/skills/kodi-addon-validation/references/validation.md": "a32019b396d9df373405f77774eb3ac6277e28f40bc05b6a2cfefa0d77167df7",
+        ".agents/skills/kodi-mcp-testing/SKILL.md": "66edc9fc462dfedabded9c55c5a381a3ad2c89274fef84ef41effb01315790e4",
+        ".agents/skills/kodi-mcp-testing/references/mcp.md": "46be9e4696859e8eb369798c332a16983973ff4569dbefb06affe941f9f432ea",
+        ".agents/skills/kodi-version-compatibility/SKILL.md": "a3acd5d3016059cd8348cad17135c7e30982599a1c41724b13ba0ec0ee6f3262",
+        ".agents/skills/kodi-version-compatibility/references/versions.md": "72f5c4e3bb5f90bf5174d3f31fce5c8a5cebdb98be2b1e838781fdad301ccd70"
+      },
+      "cache_manifest_sha256": "1dcbcdf2fd2832a28cd0618fda35bceda263aa71f64be51a98dac22ca0757c62",
+      "independent_review": {
+        "verdict": "PARTIAL",
+        "note": "Correct main conclusion that dependency does not uniquely select release and no guessed validation branch; no skill load and unsupported version-bound/example restriction claims. Routing failure separated from task result.",
+        "reviewer": "Codex independent artifact inspection; not user human sign-off",
+        "criteria": [
+          "Required workflow steps actually completed, not just independent post-hoc acceptance",
+          "Existing artifact paths and source locations",
+          "Correct warnings/infrastructure failures retained",
+          "Source supports mechanism, proportional severity and applicable Kodi rule",
+          "Static and runtime claims separated; no invented observed outcomes",
+          "Task/skill word bounds and useful recovery",
+          "Granted scope and no operator intervention within trial"
+        ],
+        "judgment_limits": "Semantic explanation/severity judgments are explicit but not blinded or statistically definitive. Automatic gates are separate."
+      }
+    },
+    {
+      "label": "p5-compat-forced-C2",
+      "model": "qwen3-coder-next",
+      "task": "version-ambiguous",
+      "condition": "C",
+      "skill_revision": "working-tree",
+      "skill_catalog": "relevant-only",
+      "skill_routing": "forced",
+      "tool_scope": "narrow",
+      "mcp_scope": "narrow",
+      "duration_seconds": 27.672,
+      "completed_tool_events": 4,
+      "failed_tool_events": 0,
+      "usage": {
+        "input": 3625,
+        "output": 339,
+        "cached_read": 10325
+      },
+      "skill_loaded": [
+        "kodi-version-compatibility"
+      ],
+      "automatic_gates": {
+        "execution_completed": true,
+        "final_response_complete": true,
+        "explicit_final_fixture_paths_verified": true,
+        "native_file_paths_within_trial_project": true,
+        "no_edit_attempted": true,
+        "no_unrequested_validation_target": true,
+        "skill_actually_loaded": true,
+        "skill_loaded_first": true
+      },
+      "metrics": {
+        "missing_path_errors": 0,
+        "repeated_missing_path_errors": 0,
+        "schema_argument_errors": 0,
+        "identical_input_repeats": 0,
+        "final_words": 75,
+        "tool_output_characters": 6606,
+        "last_step_finish_reason": "stop",
+        "step_cap_response": false,
+        "final_fixture_path_mentions": 1,
+        "unverified_final_fixture_citations": 0
+      },
+      "initial_fixture_tree_sha256": "8217d84b3b80ec472ca9e80a4b284484784a979a1434b3284375c729c2efa71a",
+      "source_hashes": {
+        "requirements-dev.lock": "f732873a536ff8164d6a71c950b95c90ecff06c7d75093846b994a25c64b1a24",
+        "evaluation/processes.py": "abfac5d5d3640f818b3c06dbfa046acdcfcf8968071a6dc3e6dccfa17e583539",
+        "src/kodi_agent_toolkit/paths.py": "33459b4dd576830a5d6a92adad2f3f8ca2a39d61e3e3cb78adec3c798e8110ec",
+        "src/kodi_agent_toolkit/checker_runner.py": "6cb1fd2aa142d84e09eab81d7038efc8537302cefb3e49f1e917757bdcbe97b2",
+        "src/kodi_agent_toolkit/__init__.py": "c63b5d6b312154e486bff8aea06976f0a7f949186fe99d0a4ec28df00c381000",
+        "src/kodi_agent_toolkit/cli.py": "1226e180fcb5305627a41b182c257f8ac398e9dbf191d95208d8c10952af0ba0",
+        "src/kodi_agent_toolkit/review.py": "21ae590028eb787ccbffd3d44921e7e46424180438545af663b587b630c8d176",
+        "src/kodi_agent_toolkit/validate.py": "263240f37261c786ed0a47e9b11bc935a12b8ab644a86a09b4fadda53f6f3527",
+        "src/kodi_agent_toolkit/compose.py": "a30a2104524504f7de8b4238e137635475ab18e50af5ecc0db2db1785f12562b",
+        ".opencode/tools/kodi_review.ts": "8494f2e7e3a0b6913a5e5e84ef3489deec0ef6bf77bb5431fab91ba65635e1f4",
+        ".opencode/tools/kodi_validate.ts": "b482be6cac9be4a0cd29800549b366748f28231adda9447f4d5b92621903c051",
+        ".opencode/lib/process-tree.ts": "bc41ca5f686d07aa1756b5b8469bbd3f2f2680c11ef7b8526492be808cbdf3fd",
+        ".opencode/lib/fixture-path.ts": "588b0fc96bfc483333d41f32f7738727913b5f296c9ef3646adbf3da0ef2794a",
+        "evaluation/run.py": "11845491f3802ad5adb1c872a7619d4bb51aebd5e5ba46415ec9b315d0920ad6",
+        "evaluation/tasks.json": "d4e2fdc1a27b11857f54b4f78c056c88d926ac095919c83bf67d3b4c1a4b26a3",
+        "AGENTS.md": "09ae1c3e7cf83941171b5f078d51f23c7670dd1628fd6f69b4a5b485ce70c365"
+      },
+      "copied_skill_hashes": {
+        ".agents/skills/kodi-version-compatibility/SKILL.md": "a3acd5d3016059cd8348cad17135c7e30982599a1c41724b13ba0ec0ee6f3262",
+        ".agents/skills/kodi-version-compatibility/references/versions.md": "72f5c4e3bb5f90bf5174d3f31fce5c8a5cebdb98be2b1e838781fdad301ccd70"
+      },
+      "cache_manifest_sha256": "1dcbcdf2fd2832a28cd0618fda35bceda263aa71f64be51a98dac22ca0757c62",
+      "independent_review": {
+        "verdict": "PARTIAL",
+        "note": "Native compatibility skill loaded; main ambiguity conclusion correct, but incorrectly says minimum 3.0.0 excludes later releases and overstates API support. No guessed validation branch.",
+        "reviewer": "Codex independent artifact inspection; not user human sign-off",
+        "criteria": [
+          "Required workflow steps actually completed, not just independent post-hoc acceptance",
+          "Existing artifact paths and source locations",
+          "Correct warnings/infrastructure failures retained",
+          "Source supports mechanism, proportional severity and applicable Kodi rule",
+          "Static and runtime claims separated; no invented observed outcomes",
+          "Task/skill word bounds and useful recovery",
+          "Granted scope and no operator intervention within trial"
+        ],
+        "judgment_limits": "Semantic explanation/severity judgments explicit but not blinded or statistically definitive; automatic gates separate."
+      }
+    },
+    {
+      "label": "p5-compat-forced-C3",
+      "model": "qwen3-coder-next",
+      "task": "version-ambiguous",
+      "condition": "C",
+      "skill_revision": "working-tree",
+      "skill_catalog": "relevant-only",
+      "skill_routing": "forced",
+      "tool_scope": "narrow",
+      "mcp_scope": "narrow",
+      "duration_seconds": 27.222,
+      "completed_tool_events": 4,
+      "failed_tool_events": 0,
+      "usage": {
+        "input": 3760,
+        "output": 312,
+        "cached_read": 7433
+      },
+      "skill_loaded": [
+        "kodi-version-compatibility"
+      ],
+      "automatic_gates": {
+        "execution_completed": true,
+        "final_response_complete": true,
+        "explicit_final_fixture_paths_verified": true,
+        "native_file_paths_within_trial_project": true,
+        "no_edit_attempted": true,
+        "no_unrequested_validation_target": true,
+        "skill_actually_loaded": true,
+        "skill_loaded_first": true
+      },
+      "metrics": {
+        "missing_path_errors": 0,
+        "repeated_missing_path_errors": 0,
+        "schema_argument_errors": 0,
+        "identical_input_repeats": 0,
+        "final_words": 86,
+        "tool_output_characters": 7266,
+        "last_step_finish_reason": "stop",
+        "step_cap_response": false,
+        "final_fixture_path_mentions": 0,
+        "unverified_final_fixture_citations": 0
+      },
+      "initial_fixture_tree_sha256": "8217d84b3b80ec472ca9e80a4b284484784a979a1434b3284375c729c2efa71a",
+      "source_hashes": {
+        "requirements-dev.lock": "f732873a536ff8164d6a71c950b95c90ecff06c7d75093846b994a25c64b1a24",
+        "evaluation/processes.py": "abfac5d5d3640f818b3c06dbfa046acdcfcf8968071a6dc3e6dccfa17e583539",
+        "src/kodi_agent_toolkit/paths.py": "33459b4dd576830a5d6a92adad2f3f8ca2a39d61e3e3cb78adec3c798e8110ec",
+        "src/kodi_agent_toolkit/checker_runner.py": "6cb1fd2aa142d84e09eab81d7038efc8537302cefb3e49f1e917757bdcbe97b2",
+        "src/kodi_agent_toolkit/__init__.py": "c63b5d6b312154e486bff8aea06976f0a7f949186fe99d0a4ec28df00c381000",
+        "src/kodi_agent_toolkit/cli.py": "1226e180fcb5305627a41b182c257f8ac398e9dbf191d95208d8c10952af0ba0",
+        "src/kodi_agent_toolkit/review.py": "21ae590028eb787ccbffd3d44921e7e46424180438545af663b587b630c8d176",
+        "src/kodi_agent_toolkit/validate.py": "263240f37261c786ed0a47e9b11bc935a12b8ab644a86a09b4fadda53f6f3527",
+        "src/kodi_agent_toolkit/compose.py": "a30a2104524504f7de8b4238e137635475ab18e50af5ecc0db2db1785f12562b",
+        ".opencode/tools/kodi_review.ts": "d6439b0961511d8477b4cdf96db9adc970ec6028f2bc3331438c2832dca2c674",
+        ".opencode/tools/kodi_validate.ts": "b482be6cac9be4a0cd29800549b366748f28231adda9447f4d5b92621903c051",
+        ".opencode/lib/process-tree.ts": "bc41ca5f686d07aa1756b5b8469bbd3f2f2680c11ef7b8526492be808cbdf3fd",
+        ".opencode/lib/fixture-path.ts": "588b0fc96bfc483333d41f32f7738727913b5f296c9ef3646adbf3da0ef2794a",
+        "evaluation/run.py": "11845491f3802ad5adb1c872a7619d4bb51aebd5e5ba46415ec9b315d0920ad6",
+        "evaluation/tasks.json": "d4e2fdc1a27b11857f54b4f78c056c88d926ac095919c83bf67d3b4c1a4b26a3",
+        "AGENTS.md": "09ae1c3e7cf83941171b5f078d51f23c7670dd1628fd6f69b4a5b485ce70c365"
+      },
+      "copied_skill_hashes": {
+        ".agents/skills/kodi-version-compatibility/SKILL.md": "45dd17ac0314d16929cd1eada3a749fef3c0d5cb221d2039f8ae0db7668b9427",
+        ".agents/skills/kodi-version-compatibility/references/versions.md": "a12558062cc9cedbe51d9c5709178f7b41b14b94fdfc049ca80f484def6cb155"
+      },
+      "cache_manifest_sha256": "1dcbcdf2fd2832a28cd0618fda35bceda263aa71f64be51a98dac22ca0757c62",
+      "independent_review": {
+        "verdict": "PASS",
+        "note": "Minimum-dependency guidance applied; correctly distinguishes minimum API from unique release or all-API compatibility, asks for actual target/coverage and avoids guessed branch. Supplemental reference range approximate; manifest line and central conclusion verified.",
+        "reviewer": "Codex independent artifact inspection; not user human sign-off",
+        "criteria": [
+          "Required workflow steps actually completed, not just independent post-hoc acceptance",
+          "Existing artifact paths and source locations",
+          "Correct warnings/infrastructure failures retained",
+          "Source supports mechanism, proportional severity and applicable Kodi rule",
+          "Static and runtime claims separated; no invented observed outcomes",
+          "Task/skill word bounds and useful recovery",
+          "Granted scope and no operator intervention within trial"
+        ],
+        "judgment_limits": "Semantic explanation/severity judgments explicit but not blinded or statistically definitive; automatic gates separate."
+      }
+    },
+    {
+      "label": "p5-generic-auto-C",
+      "model": "qwen3-coder-next",
+      "task": "generic",
+      "condition": "C",
+      "skill_revision": "working-tree",
+      "skill_catalog": "all",
+      "skill_routing": "auto",
+      "tool_scope": "narrow",
+      "mcp_scope": "narrow",
+      "duration_seconds": 13.76,
+      "completed_tool_events": 0,
+      "failed_tool_events": 0,
+      "usage": {
+        "input": 1842,
+        "output": 9,
+        "cached_read": 0
+      },
+      "skill_loaded": [],
+      "automatic_gates": {
+        "execution_completed": true,
+        "final_response_complete": true,
+        "explicit_final_fixture_paths_verified": true,
+        "native_file_paths_within_trial_project": true,
+        "no_tools_or_skills_used": true,
+        "answer_contains_four": true
+      },
+      "metrics": {
+        "missing_path_errors": 0,
+        "repeated_missing_path_errors": 0,
+        "schema_argument_errors": 0,
+        "identical_input_repeats": 0,
+        "final_words": 5,
+        "tool_output_characters": 0,
+        "last_step_finish_reason": "stop",
+        "step_cap_response": false,
+        "final_fixture_path_mentions": 0,
+        "unverified_final_fixture_citations": 0
+      },
+      "initial_fixture_tree_sha256": "8217d84b3b80ec472ca9e80a4b284484784a979a1434b3284375c729c2efa71a",
+      "source_hashes": {
+        "requirements-dev.lock": "f732873a536ff8164d6a71c950b95c90ecff06c7d75093846b994a25c64b1a24",
+        "evaluation/processes.py": "abfac5d5d3640f818b3c06dbfa046acdcfcf8968071a6dc3e6dccfa17e583539",
+        "src/kodi_agent_toolkit/paths.py": "11ee799e48b27f23abd441dcad8a68ca6946d2857d19f2f7ea986a8c61e1e057",
+        "src/kodi_agent_toolkit/checker_runner.py": "6cb1fd2aa142d84e09eab81d7038efc8537302cefb3e49f1e917757bdcbe97b2",
+        "src/kodi_agent_toolkit/__init__.py": "c63b5d6b312154e486bff8aea06976f0a7f949186fe99d0a4ec28df00c381000",
+        "src/kodi_agent_toolkit/cli.py": "1226e180fcb5305627a41b182c257f8ac398e9dbf191d95208d8c10952af0ba0",
+        "src/kodi_agent_toolkit/review.py": "8fe894ae20132982deeb32b6b9053f7ca9b89d23595f939cb388e36c8344ad2f",
+        "src/kodi_agent_toolkit/validate.py": "263240f37261c786ed0a47e9b11bc935a12b8ab644a86a09b4fadda53f6f3527",
+        "src/kodi_agent_toolkit/compose.py": "a30a2104524504f7de8b4238e137635475ab18e50af5ecc0db2db1785f12562b",
+        ".opencode/tools/kodi_review.ts": "8494f2e7e3a0b6913a5e5e84ef3489deec0ef6bf77bb5431fab91ba65635e1f4",
+        ".opencode/tools/kodi_validate.ts": "ec0475c0604d3db54e5916f586ed4b17f770fbbb28d3d23d5116db3757440638",
+        ".opencode/lib/process-tree.ts": "bc41ca5f686d07aa1756b5b8469bbd3f2f2680c11ef7b8526492be808cbdf3fd",
+        ".opencode/lib/fixture-path.ts": "588b0fc96bfc483333d41f32f7738727913b5f296c9ef3646adbf3da0ef2794a",
+        "evaluation/run.py": "11845491f3802ad5adb1c872a7619d4bb51aebd5e5ba46415ec9b315d0920ad6",
+        "evaluation/tasks.json": "d4e2fdc1a27b11857f54b4f78c056c88d926ac095919c83bf67d3b4c1a4b26a3",
+        "AGENTS.md": "09ae1c3e7cf83941171b5f078d51f23c7670dd1628fd6f69b4a5b485ce70c365"
+      },
+      "copied_skill_hashes": {
+        ".agents/skills/kodi-addon-debugging/SKILL.md": "4797d0281b1bc2bf1775ae5614cd218a49503bf0926ad85a0de411b51d25b843",
+        ".agents/skills/kodi-addon-debugging/references/debugging.md": "f6baca8f06d982097116c993a61b7511dec13332f1152bae5434f291a5c2fdbc",
+        ".agents/skills/kodi-addon-development/SKILL.md": "3666d0e4efcb4a0cd17ad3eed94dcf75f1e005844f6e65dd6c1e4f90d007cdcf",
+        ".agents/skills/kodi-addon-development/references/development.md": "6d92ecf85b0a19fbdccf2a4a2741be24813c8052251b0ea44c237cf26d4005c4",
+        ".agents/skills/kodi-addon-validation/SKILL.md": "d442fe322e5cfe9e61c9907b4fdbc456bef93110ae3707a7fc34d900474d39c8",
+        ".agents/skills/kodi-addon-validation/references/review.md": "78febaeaa1b732adf8488028dd85f82ff14b206b4883547b3049070d21583735",
+        ".agents/skills/kodi-addon-validation/references/validation.md": "a32019b396d9df373405f77774eb3ac6277e28f40bc05b6a2cfefa0d77167df7",
+        ".agents/skills/kodi-mcp-testing/SKILL.md": "66edc9fc462dfedabded9c55c5a381a3ad2c89274fef84ef41effb01315790e4",
+        ".agents/skills/kodi-mcp-testing/references/mcp.md": "46be9e4696859e8eb369798c332a16983973ff4569dbefb06affe941f9f432ea",
+        ".agents/skills/kodi-version-compatibility/SKILL.md": "a3acd5d3016059cd8348cad17135c7e30982599a1c41724b13ba0ec0ee6f3262",
+        ".agents/skills/kodi-version-compatibility/references/versions.md": "72f5c4e3bb5f90bf5174d3f31fce5c8a5cebdb98be2b1e838781fdad301ccd70"
+      },
+      "cache_manifest_sha256": "1dcbcdf2fd2832a28cd0618fda35bceda263aa71f64be51a98dac22ca0757c62",
+      "independent_review": {
+        "verdict": "PASS",
+        "note": "Unrelated arithmetic answered correctly with zero tool/skill calls.",
+        "reviewer": "Codex independent artifact inspection; not user human sign-off",
+        "criteria": [
+          "Required workflow steps actually completed, not just independent post-hoc acceptance",
+          "Existing artifact paths and source locations",
+          "Correct warnings/infrastructure failures retained",
+          "Source supports mechanism, proportional severity and applicable Kodi rule",
+          "Static and runtime claims separated; no invented observed outcomes",
+          "Task/skill word bounds and useful recovery",
+          "Granted scope and no operator intervention within trial"
+        ],
+        "judgment_limits": "Semantic explanation/severity judgments are explicit but not blinded or statistically definitive. Automatic gates are separate."
+      }
+    },
+    {
+      "label": "p5-mcp-auto-C",
+      "model": "qwen3-coder-next",
+      "task": "mcp-health",
+      "condition": "C",
+      "skill_revision": "working-tree",
+      "skill_catalog": "all",
+      "skill_routing": "auto",
+      "tool_scope": "narrow",
+      "mcp_scope": "narrow",
+      "duration_seconds": 20.796,
+      "completed_tool_events": 2,
+      "failed_tool_events": 0,
+      "usage": {
+        "input": 2398,
+        "output": 206,
+        "cached_read": 4471
+      },
+      "skill_loaded": [],
+      "automatic_gates": {
+        "execution_completed": true,
+        "final_response_complete": true,
+        "explicit_final_fixture_paths_verified": true,
+        "native_file_paths_within_trial_project": true,
+        "health_tools_completed": true,
+        "health_scope_respected": true,
+        "skill_actually_loaded": false,
+        "skill_loaded_first": false
+      },
+      "metrics": {
+        "missing_path_errors": 0,
+        "repeated_missing_path_errors": 0,
+        "schema_argument_errors": 0,
+        "identical_input_repeats": 0,
+        "final_words": 54,
+        "tool_output_characters": 966,
+        "last_step_finish_reason": "stop",
+        "step_cap_response": false,
+        "final_fixture_path_mentions": 0,
+        "unverified_final_fixture_citations": 0
+      },
+      "initial_fixture_tree_sha256": "8217d84b3b80ec472ca9e80a4b284484784a979a1434b3284375c729c2efa71a",
+      "source_hashes": {
+        "requirements-dev.lock": "f732873a536ff8164d6a71c950b95c90ecff06c7d75093846b994a25c64b1a24",
+        "evaluation/processes.py": "abfac5d5d3640f818b3c06dbfa046acdcfcf8968071a6dc3e6dccfa17e583539",
+        "src/kodi_agent_toolkit/paths.py": "11ee799e48b27f23abd441dcad8a68ca6946d2857d19f2f7ea986a8c61e1e057",
+        "src/kodi_agent_toolkit/checker_runner.py": "6cb1fd2aa142d84e09eab81d7038efc8537302cefb3e49f1e917757bdcbe97b2",
+        "src/kodi_agent_toolkit/__init__.py": "c63b5d6b312154e486bff8aea06976f0a7f949186fe99d0a4ec28df00c381000",
+        "src/kodi_agent_toolkit/cli.py": "1226e180fcb5305627a41b182c257f8ac398e9dbf191d95208d8c10952af0ba0",
+        "src/kodi_agent_toolkit/review.py": "8fe894ae20132982deeb32b6b9053f7ca9b89d23595f939cb388e36c8344ad2f",
+        "src/kodi_agent_toolkit/validate.py": "263240f37261c786ed0a47e9b11bc935a12b8ab644a86a09b4fadda53f6f3527",
+        "src/kodi_agent_toolkit/compose.py": "a30a2104524504f7de8b4238e137635475ab18e50af5ecc0db2db1785f12562b",
+        ".opencode/tools/kodi_review.ts": "8494f2e7e3a0b6913a5e5e84ef3489deec0ef6bf77bb5431fab91ba65635e1f4",
+        ".opencode/tools/kodi_validate.ts": "ec0475c0604d3db54e5916f586ed4b17f770fbbb28d3d23d5116db3757440638",
+        ".opencode/lib/process-tree.ts": "bc41ca5f686d07aa1756b5b8469bbd3f2f2680c11ef7b8526492be808cbdf3fd",
+        ".opencode/lib/fixture-path.ts": "588b0fc96bfc483333d41f32f7738727913b5f296c9ef3646adbf3da0ef2794a",
+        "evaluation/run.py": "11845491f3802ad5adb1c872a7619d4bb51aebd5e5ba46415ec9b315d0920ad6",
+        "evaluation/tasks.json": "d4e2fdc1a27b11857f54b4f78c056c88d926ac095919c83bf67d3b4c1a4b26a3",
+        "AGENTS.md": "09ae1c3e7cf83941171b5f078d51f23c7670dd1628fd6f69b4a5b485ce70c365"
+      },
+      "copied_skill_hashes": {
+        ".agents/skills/kodi-addon-debugging/SKILL.md": "4797d0281b1bc2bf1775ae5614cd218a49503bf0926ad85a0de411b51d25b843",
+        ".agents/skills/kodi-addon-debugging/references/debugging.md": "f6baca8f06d982097116c993a61b7511dec13332f1152bae5434f291a5c2fdbc",
+        ".agents/skills/kodi-addon-development/SKILL.md": "3666d0e4efcb4a0cd17ad3eed94dcf75f1e005844f6e65dd6c1e4f90d007cdcf",
+        ".agents/skills/kodi-addon-development/references/development.md": "6d92ecf85b0a19fbdccf2a4a2741be24813c8052251b0ea44c237cf26d4005c4",
+        ".agents/skills/kodi-addon-validation/SKILL.md": "d442fe322e5cfe9e61c9907b4fdbc456bef93110ae3707a7fc34d900474d39c8",
+        ".agents/skills/kodi-addon-validation/references/review.md": "78febaeaa1b732adf8488028dd85f82ff14b206b4883547b3049070d21583735",
+        ".agents/skills/kodi-addon-validation/references/validation.md": "a32019b396d9df373405f77774eb3ac6277e28f40bc05b6a2cfefa0d77167df7",
+        ".agents/skills/kodi-mcp-testing/SKILL.md": "66edc9fc462dfedabded9c55c5a381a3ad2c89274fef84ef41effb01315790e4",
+        ".agents/skills/kodi-mcp-testing/references/mcp.md": "46be9e4696859e8eb369798c332a16983973ff4569dbefb06affe941f9f432ea",
+        ".agents/skills/kodi-version-compatibility/SKILL.md": "a3acd5d3016059cd8348cad17135c7e30982599a1c41724b13ba0ec0ee6f3262",
+        ".agents/skills/kodi-version-compatibility/references/versions.md": "72f5c4e3bb5f90bf5174d3f31fce5c8a5cebdb98be2b1e838781fdad301ccd70"
+      },
+      "cache_manifest_sha256": "1dcbcdf2fd2832a28cd0618fda35bceda263aa71f64be51a98dac22ca0757c62",
+      "independent_review": {
+        "verdict": "PASS",
+        "note": "Requested health-only result grounded in list/status with no unrelated calls. Automatic skill was not loaded; task completion does not demonstrate triggering.",
+        "reviewer": "Codex independent artifact inspection; not user human sign-off",
+        "criteria": [
+          "Required workflow steps actually completed, not just independent post-hoc acceptance",
+          "Existing artifact paths and source locations",
+          "Correct warnings/infrastructure failures retained",
+          "Source supports mechanism, proportional severity and applicable Kodi rule",
+          "Static and runtime claims separated; no invented observed outcomes",
+          "Task/skill word bounds and useful recovery",
+          "Granted scope and no operator intervention within trial"
+        ],
+        "judgment_limits": "Semantic explanation/severity judgments are explicit but not blinded or statistically definitive. Automatic gates are separate."
+      }
+    },
+    {
+      "label": "p5-mcp-forced-C2",
+      "model": "qwen3-coder-next",
+      "task": "mcp-health",
+      "condition": "C",
+      "skill_revision": "working-tree",
+      "skill_catalog": "relevant-only",
+      "skill_routing": "forced",
+      "tool_scope": "narrow",
+      "mcp_scope": "narrow",
+      "duration_seconds": 21.99,
+      "completed_tool_events": 3,
+      "failed_tool_events": 0,
+      "usage": {
+        "input": 2505,
+        "output": 214,
+        "cached_read": 6592
+      },
+      "skill_loaded": [
+        "kodi-mcp-testing"
+      ],
+      "automatic_gates": {
+        "execution_completed": true,
+        "final_response_complete": true,
+        "explicit_final_fixture_paths_verified": true,
+        "native_file_paths_within_trial_project": true,
+        "health_tools_completed": true,
+        "health_scope_respected": true,
+        "skill_actually_loaded": true,
+        "skill_loaded_first": true
+      },
+      "metrics": {
+        "missing_path_errors": 0,
+        "repeated_missing_path_errors": 0,
+        "schema_argument_errors": 0,
+        "identical_input_repeats": 0,
+        "final_words": 37,
+        "tool_output_characters": 2782,
+        "last_step_finish_reason": "stop",
+        "step_cap_response": false,
+        "final_fixture_path_mentions": 0,
+        "unverified_final_fixture_citations": 0
+      },
+      "initial_fixture_tree_sha256": "8217d84b3b80ec472ca9e80a4b284484784a979a1434b3284375c729c2efa71a",
+      "source_hashes": {
+        "requirements-dev.lock": "f732873a536ff8164d6a71c950b95c90ecff06c7d75093846b994a25c64b1a24",
+        "evaluation/processes.py": "abfac5d5d3640f818b3c06dbfa046acdcfcf8968071a6dc3e6dccfa17e583539",
+        "src/kodi_agent_toolkit/paths.py": "33459b4dd576830a5d6a92adad2f3f8ca2a39d61e3e3cb78adec3c798e8110ec",
+        "src/kodi_agent_toolkit/checker_runner.py": "6cb1fd2aa142d84e09eab81d7038efc8537302cefb3e49f1e917757bdcbe97b2",
+        "src/kodi_agent_toolkit/__init__.py": "c63b5d6b312154e486bff8aea06976f0a7f949186fe99d0a4ec28df00c381000",
+        "src/kodi_agent_toolkit/cli.py": "1226e180fcb5305627a41b182c257f8ac398e9dbf191d95208d8c10952af0ba0",
+        "src/kodi_agent_toolkit/review.py": "21ae590028eb787ccbffd3d44921e7e46424180438545af663b587b630c8d176",
+        "src/kodi_agent_toolkit/validate.py": "263240f37261c786ed0a47e9b11bc935a12b8ab644a86a09b4fadda53f6f3527",
+        "src/kodi_agent_toolkit/compose.py": "a30a2104524504f7de8b4238e137635475ab18e50af5ecc0db2db1785f12562b",
+        ".opencode/tools/kodi_review.ts": "8494f2e7e3a0b6913a5e5e84ef3489deec0ef6bf77bb5431fab91ba65635e1f4",
+        ".opencode/tools/kodi_validate.ts": "b482be6cac9be4a0cd29800549b366748f28231adda9447f4d5b92621903c051",
+        ".opencode/lib/process-tree.ts": "bc41ca5f686d07aa1756b5b8469bbd3f2f2680c11ef7b8526492be808cbdf3fd",
+        ".opencode/lib/fixture-path.ts": "588b0fc96bfc483333d41f32f7738727913b5f296c9ef3646adbf3da0ef2794a",
+        "evaluation/run.py": "11845491f3802ad5adb1c872a7619d4bb51aebd5e5ba46415ec9b315d0920ad6",
+        "evaluation/tasks.json": "d4e2fdc1a27b11857f54b4f78c056c88d926ac095919c83bf67d3b4c1a4b26a3",
+        "AGENTS.md": "09ae1c3e7cf83941171b5f078d51f23c7670dd1628fd6f69b4a5b485ce70c365"
+      },
+      "copied_skill_hashes": {
+        ".agents/skills/kodi-mcp-testing/SKILL.md": "66edc9fc462dfedabded9c55c5a381a3ad2c89274fef84ef41effb01315790e4",
+        ".agents/skills/kodi-mcp-testing/references/mcp.md": "46be9e4696859e8eb369798c332a16983973ff4569dbefb06affe941f9f432ea"
+      },
+      "cache_manifest_sha256": "1dcbcdf2fd2832a28cd0618fda35bceda263aa71f64be51a98dac22ca0757c62",
+      "independent_review": {
+        "verdict": "PASS",
+        "note": "MCP skill loaded first; list/status only, returned actual process/readiness/RPC/version fields and no unrelated operations. Healthy wording applies only to these observed fields, not unseen logs.",
+        "reviewer": "Codex independent artifact inspection; not user human sign-off",
+        "criteria": [
+          "Required workflow steps actually completed, not just independent post-hoc acceptance",
+          "Existing artifact paths and source locations",
+          "Correct warnings/infrastructure failures retained",
+          "Source supports mechanism, proportional severity and applicable Kodi rule",
+          "Static and runtime claims separated; no invented observed outcomes",
+          "Task/skill word bounds and useful recovery",
+          "Granted scope and no operator intervention within trial"
+        ],
+        "judgment_limits": "Semantic explanation/severity judgments explicit but not blinded or statistically definitive; automatic gates separate."
+      }
+    },
+    {
+      "label": "p5-mellum-clean-C",
+      "model": "mellum2.1-q4-trial",
+      "task": "review-clean",
+      "condition": "C",
+      "skill_revision": "working-tree",
+      "skill_catalog": "relevant-only",
+      "skill_routing": "forced",
+      "tool_scope": "narrow",
+      "mcp_scope": "narrow",
+      "duration_seconds": 141.893,
+      "completed_tool_events": 4,
+      "failed_tool_events": 2,
+      "usage": {
+        "input": 7183,
+        "output": 12762,
+        "cached_read": 61806
+      },
+      "skill_loaded": [
+        "kodi-addon-validation"
+      ],
+      "automatic_gates": {
+        "execution_completed": true,
+        "final_response_complete": true,
+        "explicit_final_fixture_paths_verified": true,
+        "native_file_paths_within_trial_project": true,
+        "agent_composition_called": false,
+        "composition_submission_valid": false,
+        "composition_passed": false,
+        "composition_static_passed": false,
+        "composition_contract_passed": false,
+        "semantics_left_to_human": false,
+        "no_edit_attempted": true,
+        "skill_actually_loaded": true,
+        "skill_loaded_first": true
+      },
+      "metrics": {
+        "missing_path_errors": 0,
+        "repeated_missing_path_errors": 0,
+        "schema_argument_errors": 0,
+        "identical_input_repeats": 0,
+        "final_words": 267,
+        "tool_output_characters": 20160,
+        "last_step_finish_reason": "stop",
+        "step_cap_response": false,
+        "final_fixture_path_mentions": 1,
+        "unverified_final_fixture_citations": 0
+      },
+      "initial_fixture_tree_sha256": "463a0819c89e143934667e2753fddf21c683bb88ae16d18facbccaa10920a6e7",
+      "source_hashes": {
+        "requirements-dev.lock": "f732873a536ff8164d6a71c950b95c90ecff06c7d75093846b994a25c64b1a24",
+        "evaluation/processes.py": "abfac5d5d3640f818b3c06dbfa046acdcfcf8968071a6dc3e6dccfa17e583539",
+        "src/kodi_agent_toolkit/paths.py": "11ee799e48b27f23abd441dcad8a68ca6946d2857d19f2f7ea986a8c61e1e057",
+        "src/kodi_agent_toolkit/checker_runner.py": "6cb1fd2aa142d84e09eab81d7038efc8537302cefb3e49f1e917757bdcbe97b2",
+        "src/kodi_agent_toolkit/__init__.py": "c63b5d6b312154e486bff8aea06976f0a7f949186fe99d0a4ec28df00c381000",
+        "src/kodi_agent_toolkit/cli.py": "1226e180fcb5305627a41b182c257f8ac398e9dbf191d95208d8c10952af0ba0",
+        "src/kodi_agent_toolkit/review.py": "8fe894ae20132982deeb32b6b9053f7ca9b89d23595f939cb388e36c8344ad2f",
+        "src/kodi_agent_toolkit/validate.py": "263240f37261c786ed0a47e9b11bc935a12b8ab644a86a09b4fadda53f6f3527",
+        "src/kodi_agent_toolkit/compose.py": "a30a2104524504f7de8b4238e137635475ab18e50af5ecc0db2db1785f12562b",
+        ".opencode/tools/kodi_review.ts": "8494f2e7e3a0b6913a5e5e84ef3489deec0ef6bf77bb5431fab91ba65635e1f4",
+        ".opencode/tools/kodi_validate.ts": "ec0475c0604d3db54e5916f586ed4b17f770fbbb28d3d23d5116db3757440638",
+        ".opencode/lib/process-tree.ts": "bc41ca5f686d07aa1756b5b8469bbd3f2f2680c11ef7b8526492be808cbdf3fd",
+        ".opencode/lib/fixture-path.ts": "588b0fc96bfc483333d41f32f7738727913b5f296c9ef3646adbf3da0ef2794a",
+        "evaluation/run.py": "11845491f3802ad5adb1c872a7619d4bb51aebd5e5ba46415ec9b315d0920ad6",
+        "evaluation/tasks.json": "d4e2fdc1a27b11857f54b4f78c056c88d926ac095919c83bf67d3b4c1a4b26a3",
+        "AGENTS.md": "09ae1c3e7cf83941171b5f078d51f23c7670dd1628fd6f69b4a5b485ce70c365"
+      },
+      "copied_skill_hashes": {
+        ".agents/skills/kodi-addon-validation/SKILL.md": "d442fe322e5cfe9e61c9907b4fdbc456bef93110ae3707a7fc34d900474d39c8",
+        ".agents/skills/kodi-addon-validation/references/review.md": "78febaeaa1b732adf8488028dd85f82ff14b206b4883547b3049070d21583735",
+        ".agents/skills/kodi-addon-validation/references/validation.md": "a32019b396d9df373405f77774eb3ac6277e28f40bc05b6a2cfefa0d77167df7"
+      },
+      "cache_manifest_sha256": "1dcbcdf2fd2832a28cd0618fda35bceda263aa71f64be51a98dac22ca0757c62",
+      "independent_review": {
+        "verdict": "FAIL",
+        "note": "Compose never completed: malformed JSON followed by missing report argument; fallback standalone validation passed but does not replace required composed review. Unsupported criticism of ordinary hidden-setting access and 267 words over task 250-word cap.",
+        "reviewer": "Codex independent artifact inspection; not user human sign-off",
+        "criteria": [
+          "Required workflow steps actually completed, not just independent post-hoc acceptance",
+          "Existing artifact paths and source locations",
+          "Correct warnings/infrastructure failures retained",
+          "Source supports mechanism, proportional severity and applicable Kodi rule",
+          "Static and runtime claims separated; no invented observed outcomes",
+          "Task/skill word bounds and useful recovery",
+          "Granted scope and no operator intervention within trial"
+        ],
+        "judgment_limits": "Semantic explanation/severity judgments are explicit but not blinded or statistically definitive. Automatic gates are separate."
+      }
+    },
+    {
+      "label": "p5-mellum-clean-C3",
+      "model": "mellum2.1-q4-trial",
+      "task": "review-clean",
+      "condition": "C",
+      "skill_revision": "working-tree",
+      "skill_catalog": "relevant-only",
+      "skill_routing": "forced",
+      "tool_scope": "narrow",
+      "mcp_scope": "narrow",
+      "duration_seconds": 76.076,
+      "completed_tool_events": 4,
+      "failed_tool_events": 0,
+      "usage": {
+        "input": 17435,
+        "output": 5038,
+        "cached_read": 9731
+      },
+      "skill_loaded": [
+        "kodi-addon-validation"
+      ],
+      "automatic_gates": {
+        "execution_completed": true,
+        "final_response_complete": true,
+        "explicit_final_fixture_paths_verified": true,
+        "native_file_paths_within_trial_project": true,
+        "agent_composition_called": true,
+        "composition_submission_valid": true,
+        "composition_passed": false,
+        "composition_static_passed": true,
+        "composition_contract_passed": false,
+        "semantics_left_to_human": true,
+        "no_edit_attempted": true,
+        "skill_actually_loaded": true,
+        "skill_loaded_first": true
+      },
+      "metrics": {
+        "missing_path_errors": 0,
+        "repeated_missing_path_errors": 0,
+        "schema_argument_errors": 0,
+        "identical_input_repeats": 0,
+        "final_words": 246,
+        "tool_output_characters": 22592,
+        "last_step_finish_reason": "stop",
+        "step_cap_response": false,
+        "final_fixture_path_mentions": 1,
+        "unverified_final_fixture_citations": 0
+      },
+      "initial_fixture_tree_sha256": "463a0819c89e143934667e2753fddf21c683bb88ae16d18facbccaa10920a6e7",
+      "source_hashes": {
+        "requirements-dev.lock": "f732873a536ff8164d6a71c950b95c90ecff06c7d75093846b994a25c64b1a24",
+        "evaluation/processes.py": "abfac5d5d3640f818b3c06dbfa046acdcfcf8968071a6dc3e6dccfa17e583539",
+        "src/kodi_agent_toolkit/paths.py": "33459b4dd576830a5d6a92adad2f3f8ca2a39d61e3e3cb78adec3c798e8110ec",
+        "src/kodi_agent_toolkit/checker_runner.py": "6cb1fd2aa142d84e09eab81d7038efc8537302cefb3e49f1e917757bdcbe97b2",
+        "src/kodi_agent_toolkit/__init__.py": "c63b5d6b312154e486bff8aea06976f0a7f949186fe99d0a4ec28df00c381000",
+        "src/kodi_agent_toolkit/cli.py": "1226e180fcb5305627a41b182c257f8ac398e9dbf191d95208d8c10952af0ba0",
+        "src/kodi_agent_toolkit/review.py": "21ae590028eb787ccbffd3d44921e7e46424180438545af663b587b630c8d176",
+        "src/kodi_agent_toolkit/validate.py": "263240f37261c786ed0a47e9b11bc935a12b8ab644a86a09b4fadda53f6f3527",
+        "src/kodi_agent_toolkit/compose.py": "a30a2104524504f7de8b4238e137635475ab18e50af5ecc0db2db1785f12562b",
+        ".opencode/tools/kodi_review.ts": "d6439b0961511d8477b4cdf96db9adc970ec6028f2bc3331438c2832dca2c674",
+        ".opencode/tools/kodi_validate.ts": "b482be6cac9be4a0cd29800549b366748f28231adda9447f4d5b92621903c051",
+        ".opencode/lib/process-tree.ts": "bc41ca5f686d07aa1756b5b8469bbd3f2f2680c11ef7b8526492be808cbdf3fd",
+        ".opencode/lib/fixture-path.ts": "588b0fc96bfc483333d41f32f7738727913b5f296c9ef3646adbf3da0ef2794a",
+        "evaluation/run.py": "11845491f3802ad5adb1c872a7619d4bb51aebd5e5ba46415ec9b315d0920ad6",
+        "evaluation/tasks.json": "d4e2fdc1a27b11857f54b4f78c056c88d926ac095919c83bf67d3b4c1a4b26a3",
+        "AGENTS.md": "09ae1c3e7cf83941171b5f078d51f23c7670dd1628fd6f69b4a5b485ce70c365"
+      },
+      "copied_skill_hashes": {
+        ".agents/skills/kodi-addon-validation/SKILL.md": "ca9a798a300f9b2b30541e1924a3452a07ada1c9e2ac79e3b0abdd8b077092b7",
+        ".agents/skills/kodi-addon-validation/references/review.md": "4050d289e17b7199e30c6610c2fb853247ec23ea6b6fdf2f6c0fff1d6810cdba",
+        ".agents/skills/kodi-addon-validation/references/validation.md": "a32019b396d9df373405f77774eb3ac6277e28f40bc05b6a2cfefa0d77167df7"
+      },
+      "cache_manifest_sha256": "1dcbcdf2fd2832a28cd0618fda35bceda263aa71f64be51a98dac22ca0757c62",
+      "independent_review": {
+        "verdict": "FAIL",
+        "note": "Structured transport works and static checker passes, but malformed draft rejected. Final invents hidden-setting definition in addon.xml:8 and still implies private value logging despite literal-message counterevidence; no valid contextual report.",
+        "reviewer": "Codex independent artifact inspection; not user human sign-off",
+        "criteria": [
+          "Required workflow steps actually completed, not just independent post-hoc acceptance",
+          "Existing artifact paths and source locations",
+          "Correct warnings/infrastructure failures retained",
+          "Source supports mechanism, proportional severity and applicable Kodi rule",
+          "Static and runtime claims separated; no invented observed outcomes",
+          "Task/skill word bounds and useful recovery",
+          "Granted scope and no operator intervention within trial"
+        ],
+        "judgment_limits": "Semantic explanation/severity judgments explicit but not blinded or statistically definitive; automatic gates separate."
+      }
+    },
+    {
+      "label": "p5-mellum-path-B",
+      "model": "mellum2.1-q4-trial",
+      "task": "path-recovery",
+      "condition": "B",
+      "skill_revision": "a6860ccb1d7bb18cfe4809782133c65d9e770265",
+      "skill_catalog": "relevant-only",
+      "skill_routing": "forced",
+      "tool_scope": "narrow",
+      "mcp_scope": "narrow",
+      "duration_seconds": 27.671,
+      "completed_tool_events": 5,
+      "failed_tool_events": 0,
+      "usage": {
+        "input": 4012,
+        "output": 1325,
+        "cached_read": 14713
+      },
+      "skill_loaded": [
+        "kodi-addon-development"
+      ],
+      "automatic_gates": {
+        "execution_completed": true,
+        "final_response_complete": true,
+        "explicit_final_fixture_paths_verified": true,
+        "native_file_paths_within_trial_project": true,
+        "no_edit_attempted": true,
+        "observed_expected_type_defect": true,
+        "skill_actually_loaded": true,
+        "skill_loaded_first": true
+      },
+      "metrics": {
+        "missing_path_errors": 0,
+        "repeated_missing_path_errors": 0,
+        "schema_argument_errors": 0,
+        "identical_input_repeats": 0,
+        "final_words": 92,
+        "tool_output_characters": 7799,
+        "last_step_finish_reason": "stop",
+        "step_cap_response": false,
+        "final_fixture_path_mentions": 1,
+        "unverified_final_fixture_citations": 0
+      },
+      "initial_fixture_tree_sha256": "9faa967c8ee6081dfb72b3b94139407b8e0da980a63339b548420cd217af0a56",
+      "source_hashes": {
+        "requirements-dev.lock": "f732873a536ff8164d6a71c950b95c90ecff06c7d75093846b994a25c64b1a24",
+        "evaluation/processes.py": "abfac5d5d3640f818b3c06dbfa046acdcfcf8968071a6dc3e6dccfa17e583539",
+        "src/kodi_agent_toolkit/paths.py": "11ee799e48b27f23abd441dcad8a68ca6946d2857d19f2f7ea986a8c61e1e057",
+        "src/kodi_agent_toolkit/checker_runner.py": "6cb1fd2aa142d84e09eab81d7038efc8537302cefb3e49f1e917757bdcbe97b2",
+        "src/kodi_agent_toolkit/__init__.py": "c63b5d6b312154e486bff8aea06976f0a7f949186fe99d0a4ec28df00c381000",
+        "src/kodi_agent_toolkit/cli.py": "1226e180fcb5305627a41b182c257f8ac398e9dbf191d95208d8c10952af0ba0",
+        "src/kodi_agent_toolkit/review.py": "8fe894ae20132982deeb32b6b9053f7ca9b89d23595f939cb388e36c8344ad2f",
+        "src/kodi_agent_toolkit/validate.py": "263240f37261c786ed0a47e9b11bc935a12b8ab644a86a09b4fadda53f6f3527",
+        "src/kodi_agent_toolkit/compose.py": "a30a2104524504f7de8b4238e137635475ab18e50af5ecc0db2db1785f12562b",
+        ".opencode/tools/kodi_review.ts": "8494f2e7e3a0b6913a5e5e84ef3489deec0ef6bf77bb5431fab91ba65635e1f4",
+        ".opencode/tools/kodi_validate.ts": "ec0475c0604d3db54e5916f586ed4b17f770fbbb28d3d23d5116db3757440638",
+        ".opencode/lib/process-tree.ts": "bc41ca5f686d07aa1756b5b8469bbd3f2f2680c11ef7b8526492be808cbdf3fd",
+        ".opencode/lib/fixture-path.ts": "588b0fc96bfc483333d41f32f7738727913b5f296c9ef3646adbf3da0ef2794a",
+        "evaluation/run.py": "11845491f3802ad5adb1c872a7619d4bb51aebd5e5ba46415ec9b315d0920ad6",
+        "evaluation/tasks.json": "d4e2fdc1a27b11857f54b4f78c056c88d926ac095919c83bf67d3b4c1a4b26a3",
+        "AGENTS.md": "09ae1c3e7cf83941171b5f078d51f23c7670dd1628fd6f69b4a5b485ce70c365"
+      },
+      "copied_skill_hashes": {
+        ".agents/skills/kodi-addon-development/SKILL.md": "165683aa7189627279cc1412959bee921e0eef3f07e770fcf597ca0c961c4e78",
+        ".agents/skills/kodi-addon-development/references/development.md": "6d92ecf85b0a19fbdccf2a4a2741be24813c8052251b0ea44c237cf26d4005c4"
+      },
+      "cache_manifest_sha256": "1dcbcdf2fd2832a28cd0618fda35bceda263aa71f64be51a98dac22ca0757c62",
+      "independent_review": {
+        "verdict": "PASS",
+        "note": "Original skill plus current helper discovered actual root and entry, reported verified line/type defect, no edits or path errors.",
+        "reviewer": "Codex independent artifact inspection; not user human sign-off",
+        "criteria": [
+          "Required workflow steps actually completed, not just independent post-hoc acceptance",
+          "Existing artifact paths and source locations",
+          "Correct warnings/infrastructure failures retained",
+          "Source supports mechanism, proportional severity and applicable Kodi rule",
+          "Static and runtime claims separated; no invented observed outcomes",
+          "Task/skill word bounds and useful recovery",
+          "Granted scope and no operator intervention within trial"
+        ],
+        "judgment_limits": "Semantic explanation/severity judgments are explicit but not blinded or statistically definitive. Automatic gates are separate."
+      }
+    },
+    {
+      "label": "p5-mellum-path-C",
+      "model": "mellum2.1-q4-trial",
+      "task": "path-recovery",
+      "condition": "C",
+      "skill_revision": "working-tree",
+      "skill_catalog": "relevant-only",
+      "skill_routing": "forced",
+      "tool_scope": "narrow",
+      "mcp_scope": "narrow",
+      "duration_seconds": 27.91,
+      "completed_tool_events": 5,
+      "failed_tool_events": 0,
+      "usage": {
+        "input": 3951,
+        "output": 1305,
+        "cached_read": 15153
+      },
+      "skill_loaded": [
+        "kodi-addon-development"
+      ],
+      "automatic_gates": {
+        "execution_completed": true,
+        "final_response_complete": true,
+        "explicit_final_fixture_paths_verified": true,
+        "native_file_paths_within_trial_project": true,
+        "no_edit_attempted": true,
+        "observed_expected_type_defect": true,
+        "skill_actually_loaded": true,
+        "skill_loaded_first": true
+      },
+      "metrics": {
+        "missing_path_errors": 0,
+        "repeated_missing_path_errors": 0,
+        "schema_argument_errors": 0,
+        "identical_input_repeats": 0,
+        "final_words": 88,
+        "tool_output_characters": 7497,
+        "last_step_finish_reason": "stop",
+        "step_cap_response": false,
+        "final_fixture_path_mentions": 2,
+        "unverified_final_fixture_citations": 0
+      },
+      "initial_fixture_tree_sha256": "9faa967c8ee6081dfb72b3b94139407b8e0da980a63339b548420cd217af0a56",
+      "source_hashes": {
+        "requirements-dev.lock": "f732873a536ff8164d6a71c950b95c90ecff06c7d75093846b994a25c64b1a24",
+        "evaluation/processes.py": "abfac5d5d3640f818b3c06dbfa046acdcfcf8968071a6dc3e6dccfa17e583539",
+        "src/kodi_agent_toolkit/paths.py": "11ee799e48b27f23abd441dcad8a68ca6946d2857d19f2f7ea986a8c61e1e057",
+        "src/kodi_agent_toolkit/checker_runner.py": "6cb1fd2aa142d84e09eab81d7038efc8537302cefb3e49f1e917757bdcbe97b2",
+        "src/kodi_agent_toolkit/__init__.py": "c63b5d6b312154e486bff8aea06976f0a7f949186fe99d0a4ec28df00c381000",
+        "src/kodi_agent_toolkit/cli.py": "1226e180fcb5305627a41b182c257f8ac398e9dbf191d95208d8c10952af0ba0",
+        "src/kodi_agent_toolkit/review.py": "8fe894ae20132982deeb32b6b9053f7ca9b89d23595f939cb388e36c8344ad2f",
+        "src/kodi_agent_toolkit/validate.py": "263240f37261c786ed0a47e9b11bc935a12b8ab644a86a09b4fadda53f6f3527",
+        "src/kodi_agent_toolkit/compose.py": "a30a2104524504f7de8b4238e137635475ab18e50af5ecc0db2db1785f12562b",
+        ".opencode/tools/kodi_review.ts": "8494f2e7e3a0b6913a5e5e84ef3489deec0ef6bf77bb5431fab91ba65635e1f4",
+        ".opencode/tools/kodi_validate.ts": "ec0475c0604d3db54e5916f586ed4b17f770fbbb28d3d23d5116db3757440638",
+        ".opencode/lib/process-tree.ts": "bc41ca5f686d07aa1756b5b8469bbd3f2f2680c11ef7b8526492be808cbdf3fd",
+        ".opencode/lib/fixture-path.ts": "588b0fc96bfc483333d41f32f7738727913b5f296c9ef3646adbf3da0ef2794a",
+        "evaluation/run.py": "11845491f3802ad5adb1c872a7619d4bb51aebd5e5ba46415ec9b315d0920ad6",
+        "evaluation/tasks.json": "d4e2fdc1a27b11857f54b4f78c056c88d926ac095919c83bf67d3b4c1a4b26a3",
+        "AGENTS.md": "09ae1c3e7cf83941171b5f078d51f23c7670dd1628fd6f69b4a5b485ce70c365"
+      },
+      "copied_skill_hashes": {
+        ".agents/skills/kodi-addon-development/SKILL.md": "3666d0e4efcb4a0cd17ad3eed94dcf75f1e005844f6e65dd6c1e4f90d007cdcf",
+        ".agents/skills/kodi-addon-development/references/development.md": "6d92ecf85b0a19fbdccf2a4a2741be24813c8052251b0ea44c237cf26d4005c4"
+      },
+      "cache_manifest_sha256": "1dcbcdf2fd2832a28cd0618fda35bceda263aa71f64be51a98dac22ca0757c62",
+      "independent_review": {
+        "verdict": "PASS",
+        "note": "Updated skill plus current helper recovered stale prompt path by discovery; verified actual source line and diagnostic, no edits or path errors. Constant-coverage caveat is imprecise but no false repair claim.",
+        "reviewer": "Codex independent artifact inspection; not user human sign-off",
+        "criteria": [
+          "Required workflow steps actually completed, not just independent post-hoc acceptance",
+          "Existing artifact paths and source locations",
+          "Correct warnings/infrastructure failures retained",
+          "Source supports mechanism, proportional severity and applicable Kodi rule",
+          "Static and runtime claims separated; no invented observed outcomes",
+          "Task/skill word bounds and useful recovery",
+          "Granted scope and no operator intervention within trial"
+        ],
+        "judgment_limits": "Semantic explanation/severity judgments are explicit but not blinded or statistically definitive. Automatic gates are separate."
+      }
+    },
+    {
+      "label": "p5-mellum-repair-A",
+      "model": "mellum2.1-q4-trial",
+      "task": "api-fix-nexus",
+      "condition": "A",
+      "skill_revision": "working-tree",
+      "skill_catalog": "relevant-only",
+      "skill_routing": "forced",
+      "tool_scope": "narrow",
+      "mcp_scope": "narrow",
+      "duration_seconds": 66.025,
+      "completed_tool_events": 7,
+      "failed_tool_events": 0,
+      "usage": {
+        "input": 10744,
+        "output": 4329,
+        "cached_read": 24156
+      },
+      "skill_loaded": [],
+      "automatic_gates": {
+        "execution_completed": true,
+        "final_response_complete": true,
+        "explicit_final_fixture_paths_verified": true,
+        "native_file_paths_within_trial_project": true,
+        "typed_log_level": true,
+        "agent_validation_before_and_after": true,
+        "agent_reproduced_type_defect_before_edit": true,
+        "agent_post_edit_validation_passed": true,
+        "agent_validation_target_consistent": true,
+        "independent_static_pass": true
+      },
+      "metrics": {
+        "missing_path_errors": 0,
+        "repeated_missing_path_errors": 0,
+        "schema_argument_errors": 0,
+        "identical_input_repeats": 2,
+        "final_words": 311,
+        "tool_output_characters": 6696,
+        "last_step_finish_reason": "stop",
+        "step_cap_response": false,
+        "final_fixture_path_mentions": 1,
+        "unverified_final_fixture_citations": 0
+      },
+      "initial_fixture_tree_sha256": "9faa967c8ee6081dfb72b3b94139407b8e0da980a63339b548420cd217af0a56",
+      "source_hashes": {
+        "requirements-dev.lock": "f732873a536ff8164d6a71c950b95c90ecff06c7d75093846b994a25c64b1a24",
+        "evaluation/processes.py": "abfac5d5d3640f818b3c06dbfa046acdcfcf8968071a6dc3e6dccfa17e583539",
+        "src/kodi_agent_toolkit/paths.py": "11ee799e48b27f23abd441dcad8a68ca6946d2857d19f2f7ea986a8c61e1e057",
+        "src/kodi_agent_toolkit/checker_runner.py": "6cb1fd2aa142d84e09eab81d7038efc8537302cefb3e49f1e917757bdcbe97b2",
+        "src/kodi_agent_toolkit/__init__.py": "c63b5d6b312154e486bff8aea06976f0a7f949186fe99d0a4ec28df00c381000",
+        "src/kodi_agent_toolkit/cli.py": "1226e180fcb5305627a41b182c257f8ac398e9dbf191d95208d8c10952af0ba0",
+        "src/kodi_agent_toolkit/review.py": "8fe894ae20132982deeb32b6b9053f7ca9b89d23595f939cb388e36c8344ad2f",
+        "src/kodi_agent_toolkit/validate.py": "263240f37261c786ed0a47e9b11bc935a12b8ab644a86a09b4fadda53f6f3527",
+        "src/kodi_agent_toolkit/compose.py": "a30a2104524504f7de8b4238e137635475ab18e50af5ecc0db2db1785f12562b",
+        ".opencode/tools/kodi_review.ts": "8494f2e7e3a0b6913a5e5e84ef3489deec0ef6bf77bb5431fab91ba65635e1f4",
+        ".opencode/tools/kodi_validate.ts": "ec0475c0604d3db54e5916f586ed4b17f770fbbb28d3d23d5116db3757440638",
+        ".opencode/lib/process-tree.ts": "bc41ca5f686d07aa1756b5b8469bbd3f2f2680c11ef7b8526492be808cbdf3fd",
+        ".opencode/lib/fixture-path.ts": "588b0fc96bfc483333d41f32f7738727913b5f296c9ef3646adbf3da0ef2794a",
+        "evaluation/run.py": "11845491f3802ad5adb1c872a7619d4bb51aebd5e5ba46415ec9b315d0920ad6",
+        "evaluation/tasks.json": "d4e2fdc1a27b11857f54b4f78c056c88d926ac095919c83bf67d3b4c1a4b26a3",
+        "AGENTS.md": "09ae1c3e7cf83941171b5f078d51f23c7670dd1628fd6f69b4a5b485ce70c365"
+      },
+      "copied_skill_hashes": {},
+      "cache_manifest_sha256": "1dcbcdf2fd2832a28cd0618fda35bceda263aa71f64be51a98dac22ca0757c62",
+      "independent_review": {
+        "verdict": "PASS",
+        "note": "No skill; exact repair with actual pre/post checks and retained warnings; 311-word response is verbose but task has no explicit word cap.",
+        "reviewer": "Codex independent artifact inspection; not user human sign-off",
+        "criteria": [
+          "Required workflow steps actually completed, not just independent post-hoc acceptance",
+          "Existing artifact paths and source locations",
+          "Correct warnings/infrastructure failures retained",
+          "Source supports mechanism, proportional severity and applicable Kodi rule",
+          "Static and runtime claims separated; no invented observed outcomes",
+          "Task/skill word bounds and useful recovery",
+          "Granted scope and no operator intervention within trial"
+        ],
+        "judgment_limits": "Semantic explanation/severity judgments are explicit but not blinded or statistically definitive. Automatic gates are separate."
+      }
+    },
+    {
+      "label": "p5-mellum-repair-B",
+      "model": "mellum2.1-q4-trial",
+      "task": "api-fix-nexus",
+      "condition": "B",
+      "skill_revision": "a6860ccb1d7bb18cfe4809782133c65d9e770265",
+      "skill_catalog": "relevant-only",
+      "skill_routing": "forced",
+      "tool_scope": "narrow",
+      "mcp_scope": "narrow",
+      "duration_seconds": 64.809,
+      "completed_tool_events": 8,
+      "failed_tool_events": 1,
+      "usage": {
+        "input": 6042,
+        "output": 4438,
+        "cached_read": 49355
+      },
+      "skill_loaded": [
+        "kodi-addon-development"
+      ],
+      "automatic_gates": {
+        "execution_completed": true,
+        "final_response_complete": true,
+        "explicit_final_fixture_paths_verified": true,
+        "native_file_paths_within_trial_project": true,
+        "typed_log_level": true,
+        "agent_validation_before_and_after": true,
+        "agent_reproduced_type_defect_before_edit": true,
+        "agent_post_edit_validation_passed": true,
+        "agent_validation_target_consistent": true,
+        "independent_static_pass": true,
+        "skill_actually_loaded": true,
+        "skill_loaded_first": true
+      },
+      "metrics": {
+        "missing_path_errors": 1,
+        "repeated_missing_path_errors": 0,
+        "schema_argument_errors": 0,
+        "identical_input_repeats": 1,
+        "final_words": 192,
+        "tool_output_characters": 10630,
+        "last_step_finish_reason": "stop",
+        "step_cap_response": false,
+        "final_fixture_path_mentions": 4,
+        "unverified_final_fixture_citations": 0
+      },
+      "initial_fixture_tree_sha256": "9faa967c8ee6081dfb72b3b94139407b8e0da980a63339b548420cd217af0a56",
+      "source_hashes": {
+        "requirements-dev.lock": "f732873a536ff8164d6a71c950b95c90ecff06c7d75093846b994a25c64b1a24",
+        "evaluation/processes.py": "abfac5d5d3640f818b3c06dbfa046acdcfcf8968071a6dc3e6dccfa17e583539",
+        "src/kodi_agent_toolkit/paths.py": "11ee799e48b27f23abd441dcad8a68ca6946d2857d19f2f7ea986a8c61e1e057",
+        "src/kodi_agent_toolkit/checker_runner.py": "6cb1fd2aa142d84e09eab81d7038efc8537302cefb3e49f1e917757bdcbe97b2",
+        "src/kodi_agent_toolkit/__init__.py": "c63b5d6b312154e486bff8aea06976f0a7f949186fe99d0a4ec28df00c381000",
+        "src/kodi_agent_toolkit/cli.py": "1226e180fcb5305627a41b182c257f8ac398e9dbf191d95208d8c10952af0ba0",
+        "src/kodi_agent_toolkit/review.py": "8fe894ae20132982deeb32b6b9053f7ca9b89d23595f939cb388e36c8344ad2f",
+        "src/kodi_agent_toolkit/validate.py": "263240f37261c786ed0a47e9b11bc935a12b8ab644a86a09b4fadda53f6f3527",
+        "src/kodi_agent_toolkit/compose.py": "a30a2104524504f7de8b4238e137635475ab18e50af5ecc0db2db1785f12562b",
+        ".opencode/tools/kodi_review.ts": "8494f2e7e3a0b6913a5e5e84ef3489deec0ef6bf77bb5431fab91ba65635e1f4",
+        ".opencode/tools/kodi_validate.ts": "ec0475c0604d3db54e5916f586ed4b17f770fbbb28d3d23d5116db3757440638",
+        ".opencode/lib/process-tree.ts": "bc41ca5f686d07aa1756b5b8469bbd3f2f2680c11ef7b8526492be808cbdf3fd",
+        ".opencode/lib/fixture-path.ts": "588b0fc96bfc483333d41f32f7738727913b5f296c9ef3646adbf3da0ef2794a",
+        "evaluation/run.py": "11845491f3802ad5adb1c872a7619d4bb51aebd5e5ba46415ec9b315d0920ad6",
+        "evaluation/tasks.json": "d4e2fdc1a27b11857f54b4f78c056c88d926ac095919c83bf67d3b4c1a4b26a3",
+        "AGENTS.md": "09ae1c3e7cf83941171b5f078d51f23c7670dd1628fd6f69b4a5b485ce70c365"
+      },
+      "copied_skill_hashes": {
+        ".agents/skills/kodi-addon-development/SKILL.md": "165683aa7189627279cc1412959bee921e0eef3f07e770fcf597ca0c961c4e78",
+        ".agents/skills/kodi-addon-development/references/development.md": "6d92ecf85b0a19fbdccf2a4a2741be24813c8052251b0ea44c237cf26d4005c4"
+      },
+      "cache_manifest_sha256": "1dcbcdf2fd2832a28cd0618fda35bceda263aa71f64be51a98dac22ca0757c62",
+      "independent_review": {
+        "verdict": "PASS",
+        "note": "Original skill loaded; recovered wrong fixture path once; actual pre/post diagnostic and minimal repair, warnings and runtime limits retained.",
+        "reviewer": "Codex independent artifact inspection; not user human sign-off",
+        "criteria": [
+          "Required workflow steps actually completed, not just independent post-hoc acceptance",
+          "Existing artifact paths and source locations",
+          "Correct warnings/infrastructure failures retained",
+          "Source supports mechanism, proportional severity and applicable Kodi rule",
+          "Static and runtime claims separated; no invented observed outcomes",
+          "Task/skill word bounds and useful recovery",
+          "Granted scope and no operator intervention within trial"
+        ],
+        "judgment_limits": "Semantic explanation/severity judgments are explicit but not blinded or statistically definitive. Automatic gates are separate."
+      }
+    },
+    {
+      "label": "p5-mellum-repair-C",
+      "model": "mellum2.1-q4-trial",
+      "task": "api-fix-nexus",
+      "condition": "C",
+      "skill_revision": "working-tree",
+      "skill_catalog": "relevant-only",
+      "skill_routing": "forced",
+      "tool_scope": "narrow",
+      "mcp_scope": "narrow",
+      "duration_seconds": 55.955,
+      "completed_tool_events": 6,
+      "failed_tool_events": 0,
+      "usage": {
+        "input": 5276,
+        "output": 3655,
+        "cached_read": 29021
+      },
+      "skill_loaded": [
+        "kodi-addon-development"
+      ],
+      "automatic_gates": {
+        "execution_completed": true,
+        "final_response_complete": true,
+        "explicit_final_fixture_paths_verified": true,
+        "native_file_paths_within_trial_project": true,
+        "typed_log_level": true,
+        "agent_validation_before_and_after": true,
+        "agent_reproduced_type_defect_before_edit": true,
+        "agent_post_edit_validation_passed": true,
+        "agent_validation_target_consistent": true,
+        "independent_static_pass": true,
+        "skill_actually_loaded": true,
+        "skill_loaded_first": true
+      },
+      "metrics": {
+        "missing_path_errors": 0,
+        "repeated_missing_path_errors": 0,
+        "schema_argument_errors": 0,
+        "identical_input_repeats": 1,
+        "final_words": 243,
+        "tool_output_characters": 9170,
+        "last_step_finish_reason": "stop",
+        "step_cap_response": false,
+        "final_fixture_path_mentions": 1,
+        "unverified_final_fixture_citations": 0
+      },
+      "initial_fixture_tree_sha256": "9faa967c8ee6081dfb72b3b94139407b8e0da980a63339b548420cd217af0a56",
+      "source_hashes": {
+        "requirements-dev.lock": "f732873a536ff8164d6a71c950b95c90ecff06c7d75093846b994a25c64b1a24",
+        "evaluation/processes.py": "abfac5d5d3640f818b3c06dbfa046acdcfcf8968071a6dc3e6dccfa17e583539",
+        "src/kodi_agent_toolkit/paths.py": "11ee799e48b27f23abd441dcad8a68ca6946d2857d19f2f7ea986a8c61e1e057",
+        "src/kodi_agent_toolkit/checker_runner.py": "6cb1fd2aa142d84e09eab81d7038efc8537302cefb3e49f1e917757bdcbe97b2",
+        "src/kodi_agent_toolkit/__init__.py": "c63b5d6b312154e486bff8aea06976f0a7f949186fe99d0a4ec28df00c381000",
+        "src/kodi_agent_toolkit/cli.py": "1226e180fcb5305627a41b182c257f8ac398e9dbf191d95208d8c10952af0ba0",
+        "src/kodi_agent_toolkit/review.py": "8fe894ae20132982deeb32b6b9053f7ca9b89d23595f939cb388e36c8344ad2f",
+        "src/kodi_agent_toolkit/validate.py": "263240f37261c786ed0a47e9b11bc935a12b8ab644a86a09b4fadda53f6f3527",
+        "src/kodi_agent_toolkit/compose.py": "a30a2104524504f7de8b4238e137635475ab18e50af5ecc0db2db1785f12562b",
+        ".opencode/tools/kodi_review.ts": "8494f2e7e3a0b6913a5e5e84ef3489deec0ef6bf77bb5431fab91ba65635e1f4",
+        ".opencode/tools/kodi_validate.ts": "ec0475c0604d3db54e5916f586ed4b17f770fbbb28d3d23d5116db3757440638",
+        ".opencode/lib/process-tree.ts": "bc41ca5f686d07aa1756b5b8469bbd3f2f2680c11ef7b8526492be808cbdf3fd",
+        ".opencode/lib/fixture-path.ts": "588b0fc96bfc483333d41f32f7738727913b5f296c9ef3646adbf3da0ef2794a",
+        "evaluation/run.py": "11845491f3802ad5adb1c872a7619d4bb51aebd5e5ba46415ec9b315d0920ad6",
+        "evaluation/tasks.json": "d4e2fdc1a27b11857f54b4f78c056c88d926ac095919c83bf67d3b4c1a4b26a3",
+        "AGENTS.md": "09ae1c3e7cf83941171b5f078d51f23c7670dd1628fd6f69b4a5b485ce70c365"
+      },
+      "copied_skill_hashes": {
+        ".agents/skills/kodi-addon-development/SKILL.md": "3666d0e4efcb4a0cd17ad3eed94dcf75f1e005844f6e65dd6c1e4f90d007cdcf",
+        ".agents/skills/kodi-addon-development/references/development.md": "6d92ecf85b0a19fbdccf2a4a2741be24813c8052251b0ea44c237cf26d4005c4"
+      },
+      "cache_manifest_sha256": "1dcbcdf2fd2832a28cd0618fda35bceda263aa71f64be51a98dac22ca0757c62",
+      "independent_review": {
+        "verdict": "PARTIAL",
+        "note": "Updated skill used actual discovery and exact repair with complete pre/post checks and zero errors. Final omitted two warnings, invented third-party-stub coverage limits, and exceeded skill 150-word guidance (243 words).",
+        "reviewer": "Codex independent artifact inspection; not user human sign-off",
+        "criteria": [
+          "Required workflow steps actually completed, not just independent post-hoc acceptance",
+          "Existing artifact paths and source locations",
+          "Correct warnings/infrastructure failures retained",
+          "Source supports mechanism, proportional severity and applicable Kodi rule",
+          "Static and runtime claims separated; no invented observed outcomes",
+          "Task/skill word bounds and useful recovery",
+          "Granted scope and no operator intervention within trial"
+        ],
+        "judgment_limits": "Semantic explanation/severity judgments are explicit but not blinded or statistically definitive. Automatic gates are separate."
+      }
+    },
+    {
+      "label": "p5-mellum-review-C2",
+      "model": "mellum2.1-q4-trial",
+      "task": "review-composed",
+      "condition": "C",
+      "skill_revision": "working-tree",
+      "skill_catalog": "relevant-only",
+      "skill_routing": "forced",
+      "tool_scope": "narrow",
+      "mcp_scope": "narrow",
+      "duration_seconds": 126.511,
+      "completed_tool_events": 8,
+      "failed_tool_events": 5,
+      "usage": {
+        "input": 24039,
+        "output": 8782,
+        "cached_read": 124267
+      },
+      "skill_loaded": [
+        "kodi-addon-validation"
+      ],
+      "automatic_gates": {
+        "execution_completed": true,
+        "final_response_complete": false,
+        "explicit_final_fixture_paths_verified": true,
+        "native_file_paths_within_trial_project": true,
+        "agent_composition_called": true,
+        "composition_submission_valid": true,
+        "composition_passed": false,
+        "composition_static_passed": true,
+        "composition_contract_passed": false,
+        "semantics_left_to_human": true,
+        "skill_actually_loaded": true,
+        "skill_loaded_first": true
+      },
+      "metrics": {
+        "missing_path_errors": 3,
+        "repeated_missing_path_errors": 0,
+        "schema_argument_errors": 0,
+        "identical_input_repeats": 2,
+        "final_words": 295,
+        "tool_output_characters": 39043,
+        "last_step_finish_reason": "stop",
+        "step_cap_response": true,
+        "final_fixture_path_mentions": 0,
+        "unverified_final_fixture_citations": 0
+      },
+      "initial_fixture_tree_sha256": "95f92f5e8d96445c7a797bbf37844c9890e8e4fd61a01d6453476828b8984514",
+      "source_hashes": {
+        "requirements-dev.lock": "f732873a536ff8164d6a71c950b95c90ecff06c7d75093846b994a25c64b1a24",
+        "evaluation/processes.py": "abfac5d5d3640f818b3c06dbfa046acdcfcf8968071a6dc3e6dccfa17e583539",
+        "src/kodi_agent_toolkit/paths.py": "33459b4dd576830a5d6a92adad2f3f8ca2a39d61e3e3cb78adec3c798e8110ec",
+        "src/kodi_agent_toolkit/checker_runner.py": "6cb1fd2aa142d84e09eab81d7038efc8537302cefb3e49f1e917757bdcbe97b2",
+        "src/kodi_agent_toolkit/__init__.py": "c63b5d6b312154e486bff8aea06976f0a7f949186fe99d0a4ec28df00c381000",
+        "src/kodi_agent_toolkit/cli.py": "1226e180fcb5305627a41b182c257f8ac398e9dbf191d95208d8c10952af0ba0",
+        "src/kodi_agent_toolkit/review.py": "21ae590028eb787ccbffd3d44921e7e46424180438545af663b587b630c8d176",
+        "src/kodi_agent_toolkit/validate.py": "263240f37261c786ed0a47e9b11bc935a12b8ab644a86a09b4fadda53f6f3527",
+        "src/kodi_agent_toolkit/compose.py": "a30a2104524504f7de8b4238e137635475ab18e50af5ecc0db2db1785f12562b",
+        ".opencode/tools/kodi_review.ts": "8494f2e7e3a0b6913a5e5e84ef3489deec0ef6bf77bb5431fab91ba65635e1f4",
+        ".opencode/tools/kodi_validate.ts": "b482be6cac9be4a0cd29800549b366748f28231adda9447f4d5b92621903c051",
+        ".opencode/lib/process-tree.ts": "bc41ca5f686d07aa1756b5b8469bbd3f2f2680c11ef7b8526492be808cbdf3fd",
+        ".opencode/lib/fixture-path.ts": "588b0fc96bfc483333d41f32f7738727913b5f296c9ef3646adbf3da0ef2794a",
+        "evaluation/run.py": "11845491f3802ad5adb1c872a7619d4bb51aebd5e5ba46415ec9b315d0920ad6",
+        "evaluation/tasks.json": "d4e2fdc1a27b11857f54b4f78c056c88d926ac095919c83bf67d3b4c1a4b26a3",
+        "AGENTS.md": "09ae1c3e7cf83941171b5f078d51f23c7670dd1628fd6f69b4a5b485ce70c365"
+      },
+      "copied_skill_hashes": {
+        ".agents/skills/kodi-addon-validation/SKILL.md": "d442fe322e5cfe9e61c9907b4fdbc456bef93110ae3707a7fc34d900474d39c8",
+        ".agents/skills/kodi-addon-validation/references/review.md": "2f6596a35fa4efb5c57186bab580ca94b3af3e91014cc9d02d50da3f798b11d3",
+        ".agents/skills/kodi-addon-validation/references/validation.md": "a32019b396d9df373405f77774eb3ac6277e28f40bc05b6a2cfefa0d77167df7"
+      },
+      "cache_manifest_sha256": "1dcbcdf2fd2832a28cd0618fda35bceda263aa71f64be51a98dac22ca0757c62",
+      "independent_review": {
+        "verdict": "FAIL",
+        "note": "Five failed tool events, three guessed paths, length then step-cap; official static pass but report contract rejected. Did not complete valid composition or bounded summary.",
+        "reviewer": "Codex independent artifact inspection; not user human sign-off",
+        "criteria": [
+          "Required workflow steps actually completed, not just independent post-hoc acceptance",
+          "Existing artifact paths and source locations",
+          "Correct warnings/infrastructure failures retained",
+          "Source supports mechanism, proportional severity and applicable Kodi rule",
+          "Static and runtime claims separated; no invented observed outcomes",
+          "Task/skill word bounds and useful recovery",
+          "Granted scope and no operator intervention within trial"
+        ],
+        "judgment_limits": "Semantic explanation/severity judgments explicit but not blinded or statistically definitive; automatic gates separate."
+      }
+    },
+    {
+      "label": "p5-mellum-review-C3",
+      "model": "mellum2.1-q4-trial",
+      "task": "review-composed",
+      "condition": "C",
+      "skill_revision": "working-tree",
+      "skill_catalog": "relevant-only",
+      "skill_routing": "forced",
+      "tool_scope": "narrow",
+      "mcp_scope": "narrow",
+      "duration_seconds": 66.817,
+      "completed_tool_events": 6,
+      "failed_tool_events": 0,
+      "usage": {
+        "input": 17348,
+        "output": 4066,
+        "cached_read": 17484
+      },
+      "skill_loaded": [
+        "kodi-addon-validation"
+      ],
+      "automatic_gates": {
+        "execution_completed": true,
+        "final_response_complete": true,
+        "explicit_final_fixture_paths_verified": true,
+        "native_file_paths_within_trial_project": true,
+        "agent_composition_called": true,
+        "composition_submission_valid": true,
+        "composition_passed": false,
+        "composition_static_passed": true,
+        "composition_contract_passed": false,
+        "semantics_left_to_human": true,
+        "skill_actually_loaded": true,
+        "skill_loaded_first": true
+      },
+      "metrics": {
+        "missing_path_errors": 0,
+        "repeated_missing_path_errors": 0,
+        "schema_argument_errors": 0,
+        "identical_input_repeats": 0,
+        "final_words": 236,
+        "tool_output_characters": 23031,
+        "last_step_finish_reason": "stop",
+        "step_cap_response": false,
+        "final_fixture_path_mentions": 0,
+        "unverified_final_fixture_citations": 0
+      },
+      "initial_fixture_tree_sha256": "95f92f5e8d96445c7a797bbf37844c9890e8e4fd61a01d6453476828b8984514",
+      "source_hashes": {
+        "requirements-dev.lock": "f732873a536ff8164d6a71c950b95c90ecff06c7d75093846b994a25c64b1a24",
+        "evaluation/processes.py": "abfac5d5d3640f818b3c06dbfa046acdcfcf8968071a6dc3e6dccfa17e583539",
+        "src/kodi_agent_toolkit/paths.py": "33459b4dd576830a5d6a92adad2f3f8ca2a39d61e3e3cb78adec3c798e8110ec",
+        "src/kodi_agent_toolkit/checker_runner.py": "6cb1fd2aa142d84e09eab81d7038efc8537302cefb3e49f1e917757bdcbe97b2",
+        "src/kodi_agent_toolkit/__init__.py": "c63b5d6b312154e486bff8aea06976f0a7f949186fe99d0a4ec28df00c381000",
+        "src/kodi_agent_toolkit/cli.py": "1226e180fcb5305627a41b182c257f8ac398e9dbf191d95208d8c10952af0ba0",
+        "src/kodi_agent_toolkit/review.py": "21ae590028eb787ccbffd3d44921e7e46424180438545af663b587b630c8d176",
+        "src/kodi_agent_toolkit/validate.py": "263240f37261c786ed0a47e9b11bc935a12b8ab644a86a09b4fadda53f6f3527",
+        "src/kodi_agent_toolkit/compose.py": "a30a2104524504f7de8b4238e137635475ab18e50af5ecc0db2db1785f12562b",
+        ".opencode/tools/kodi_review.ts": "d6439b0961511d8477b4cdf96db9adc970ec6028f2bc3331438c2832dca2c674",
+        ".opencode/tools/kodi_validate.ts": "b482be6cac9be4a0cd29800549b366748f28231adda9447f4d5b92621903c051",
+        ".opencode/lib/process-tree.ts": "bc41ca5f686d07aa1756b5b8469bbd3f2f2680c11ef7b8526492be808cbdf3fd",
+        ".opencode/lib/fixture-path.ts": "588b0fc96bfc483333d41f32f7738727913b5f296c9ef3646adbf3da0ef2794a",
+        "evaluation/run.py": "11845491f3802ad5adb1c872a7619d4bb51aebd5e5ba46415ec9b315d0920ad6",
+        "evaluation/tasks.json": "d4e2fdc1a27b11857f54b4f78c056c88d926ac095919c83bf67d3b4c1a4b26a3",
+        "AGENTS.md": "09ae1c3e7cf83941171b5f078d51f23c7670dd1628fd6f69b4a5b485ce70c365"
+      },
+      "copied_skill_hashes": {
+        ".agents/skills/kodi-addon-validation/SKILL.md": "ca9a798a300f9b2b30541e1924a3452a07ada1c9e2ac79e3b0abdd8b077092b7",
+        ".agents/skills/kodi-addon-validation/references/review.md": "4050d289e17b7199e30c6610c2fb853247ec23ea6b6fdf2f6c0fff1d6810cdba",
+        ".agents/skills/kodi-addon-validation/references/validation.md": "a32019b396d9df373405f77774eb3ac6277e28f40bc05b6a2cfefa0d77167df7"
+      },
+      "cache_manifest_sha256": "1dcbcdf2fd2832a28cd0618fda35bceda263aa71f64be51a98dac22ca0757c62",
+      "independent_review": {
+        "verdict": "PARTIAL",
+        "note": "Structured object reached checker without JSON framing/path/tool errors or step cap; valid transport but malformed nested finding fields correctly rejected. Final honestly reports contract failure and source-supported potential risk; valid review workflow still incomplete.",
+        "reviewer": "Codex independent artifact inspection; not user human sign-off",
+        "criteria": [
+          "Required workflow steps actually completed, not just independent post-hoc acceptance",
+          "Existing artifact paths and source locations",
+          "Correct warnings/infrastructure failures retained",
+          "Source supports mechanism, proportional severity and applicable Kodi rule",
+          "Static and runtime claims separated; no invented observed outcomes",
+          "Task/skill word bounds and useful recovery",
+          "Granted scope and no operator intervention within trial"
+        ],
+        "judgment_limits": "Semantic explanation/severity judgments explicit but not blinded or statistically definitive; automatic gates separate."
+      }
+    },
+    {
+      "label": "p5-missing-manifest-C",
+      "model": "mellum2.1-q4-trial",
+      "task": "missing-manifest",
+      "condition": "C",
+      "skill_revision": "working-tree",
+      "skill_catalog": "relevant-only",
+      "skill_routing": "forced",
+      "tool_scope": "narrow",
+      "mcp_scope": "narrow",
+      "duration_seconds": 26.56,
+      "completed_tool_events": 5,
+      "failed_tool_events": 1,
+      "usage": {
+        "input": 2714,
+        "output": 1707,
+        "cached_read": 17806
+      },
+      "skill_loaded": [
+        "kodi-addon-validation"
+      ],
+      "automatic_gates": {
+        "execution_completed": true,
+        "final_response_complete": true,
+        "explicit_final_fixture_paths_verified": true,
+        "native_file_paths_within_trial_project": true,
+        "no_edit_attempted": true,
+        "fixture_manifest_absent": true,
+        "missing_manifest_observed": true,
+        "skill_actually_loaded": true,
+        "skill_loaded_first": true
+      },
+      "metrics": {
+        "missing_path_errors": 1,
+        "repeated_missing_path_errors": 0,
+        "schema_argument_errors": 0,
+        "identical_input_repeats": 0,
+        "final_words": 62,
+        "tool_output_characters": 3540,
+        "last_step_finish_reason": "stop",
+        "step_cap_response": false,
+        "final_fixture_path_mentions": 1,
+        "unverified_final_fixture_citations": 0
+      },
+      "initial_fixture_tree_sha256": "df5ed2cc25ca8c869546e2d8a079d9e05241e32ad8e1a77339536a64fd957881",
+      "source_hashes": {
+        "requirements-dev.lock": "f732873a536ff8164d6a71c950b95c90ecff06c7d75093846b994a25c64b1a24",
+        "evaluation/processes.py": "abfac5d5d3640f818b3c06dbfa046acdcfcf8968071a6dc3e6dccfa17e583539",
+        "src/kodi_agent_toolkit/paths.py": "11ee799e48b27f23abd441dcad8a68ca6946d2857d19f2f7ea986a8c61e1e057",
+        "src/kodi_agent_toolkit/checker_runner.py": "6cb1fd2aa142d84e09eab81d7038efc8537302cefb3e49f1e917757bdcbe97b2",
+        "src/kodi_agent_toolkit/__init__.py": "c63b5d6b312154e486bff8aea06976f0a7f949186fe99d0a4ec28df00c381000",
+        "src/kodi_agent_toolkit/cli.py": "1226e180fcb5305627a41b182c257f8ac398e9dbf191d95208d8c10952af0ba0",
+        "src/kodi_agent_toolkit/review.py": "8fe894ae20132982deeb32b6b9053f7ca9b89d23595f939cb388e36c8344ad2f",
+        "src/kodi_agent_toolkit/validate.py": "263240f37261c786ed0a47e9b11bc935a12b8ab644a86a09b4fadda53f6f3527",
+        "src/kodi_agent_toolkit/compose.py": "a30a2104524504f7de8b4238e137635475ab18e50af5ecc0db2db1785f12562b",
+        ".opencode/tools/kodi_review.ts": "8494f2e7e3a0b6913a5e5e84ef3489deec0ef6bf77bb5431fab91ba65635e1f4",
+        ".opencode/tools/kodi_validate.ts": "ec0475c0604d3db54e5916f586ed4b17f770fbbb28d3d23d5116db3757440638",
+        ".opencode/lib/process-tree.ts": "bc41ca5f686d07aa1756b5b8469bbd3f2f2680c11ef7b8526492be808cbdf3fd",
+        ".opencode/lib/fixture-path.ts": "588b0fc96bfc483333d41f32f7738727913b5f296c9ef3646adbf3da0ef2794a",
+        "evaluation/run.py": "11845491f3802ad5adb1c872a7619d4bb51aebd5e5ba46415ec9b315d0920ad6",
+        "evaluation/tasks.json": "d4e2fdc1a27b11857f54b4f78c056c88d926ac095919c83bf67d3b4c1a4b26a3",
+        "AGENTS.md": "09ae1c3e7cf83941171b5f078d51f23c7670dd1628fd6f69b4a5b485ce70c365"
+      },
+      "copied_skill_hashes": {
+        ".agents/skills/kodi-addon-validation/SKILL.md": "d442fe322e5cfe9e61c9907b4fdbc456bef93110ae3707a7fc34d900474d39c8",
+        ".agents/skills/kodi-addon-validation/references/review.md": "78febaeaa1b732adf8488028dd85f82ff14b206b4883547b3049070d21583735",
+        ".agents/skills/kodi-addon-validation/references/validation.md": "a32019b396d9df373405f77774eb3ac6277e28f40bc05b6a2cfefa0d77167df7"
+      },
+      "cache_manifest_sha256": "1dcbcdf2fd2832a28cd0618fda35bceda263aa71f64be51a98dac22ca0757c62",
+      "independent_review": {
+        "verdict": "PARTIAL",
+        "note": "Observed absent manifest and did not claim validation success or edit. Then guessed hyphenated fixture path, failed that call and repeated invented path in final.",
+        "reviewer": "Codex independent artifact inspection; not user human sign-off",
+        "criteria": [
+          "Required workflow steps actually completed, not just independent post-hoc acceptance",
+          "Existing artifact paths and source locations",
+          "Correct warnings/infrastructure failures retained",
+          "Source supports mechanism, proportional severity and applicable Kodi rule",
+          "Static and runtime claims separated; no invented observed outcomes",
+          "Task/skill word bounds and useful recovery",
+          "Granted scope and no operator intervention within trial"
+        ],
+        "judgment_limits": "Semantic explanation/severity judgments are explicit but not blinded or statistically definitive. Automatic gates are separate."
+      }
+    },
+    {
+      "label": "p5-runtime-addon-C",
+      "model": "qwen3-coder-next",
+      "task": "runtime-addon",
+      "condition": "C",
+      "skill_revision": "working-tree",
+      "skill_catalog": "relevant-only",
+      "skill_routing": "forced",
+      "tool_scope": "narrow",
+      "mcp_scope": "narrow",
+      "duration_seconds": 33.366,
+      "completed_tool_events": 5,
+      "failed_tool_events": 0,
+      "usage": {
+        "input": 5657,
+        "output": 396,
+        "cached_read": 13605
+      },
+      "skill_loaded": [
+        "kodi-addon-debugging"
+      ],
+      "automatic_gates": {
+        "execution_completed": true,
+        "final_response_complete": true,
+        "explicit_final_fixture_paths_verified": true,
+        "native_file_paths_within_trial_project": true,
+        "health_tools_completed": true,
+        "addon_inventory_called": true,
+        "skill_actually_loaded": true,
+        "skill_loaded_first": true
+      },
+      "metrics": {
+        "missing_path_errors": 0,
+        "repeated_missing_path_errors": 0,
+        "schema_argument_errors": 0,
+        "identical_input_repeats": 0,
+        "final_words": 92,
+        "tool_output_characters": 12622,
+        "last_step_finish_reason": "stop",
+        "step_cap_response": false,
+        "final_fixture_path_mentions": 0,
+        "unverified_final_fixture_citations": 0
+      },
+      "initial_fixture_tree_sha256": "9faa967c8ee6081dfb72b3b94139407b8e0da980a63339b548420cd217af0a56",
+      "source_hashes": {
+        "requirements-dev.lock": "f732873a536ff8164d6a71c950b95c90ecff06c7d75093846b994a25c64b1a24",
+        "evaluation/processes.py": "abfac5d5d3640f818b3c06dbfa046acdcfcf8968071a6dc3e6dccfa17e583539",
+        "src/kodi_agent_toolkit/paths.py": "11ee799e48b27f23abd441dcad8a68ca6946d2857d19f2f7ea986a8c61e1e057",
+        "src/kodi_agent_toolkit/checker_runner.py": "6cb1fd2aa142d84e09eab81d7038efc8537302cefb3e49f1e917757bdcbe97b2",
+        "src/kodi_agent_toolkit/__init__.py": "c63b5d6b312154e486bff8aea06976f0a7f949186fe99d0a4ec28df00c381000",
+        "src/kodi_agent_toolkit/cli.py": "1226e180fcb5305627a41b182c257f8ac398e9dbf191d95208d8c10952af0ba0",
+        "src/kodi_agent_toolkit/review.py": "8fe894ae20132982deeb32b6b9053f7ca9b89d23595f939cb388e36c8344ad2f",
+        "src/kodi_agent_toolkit/validate.py": "263240f37261c786ed0a47e9b11bc935a12b8ab644a86a09b4fadda53f6f3527",
+        "src/kodi_agent_toolkit/compose.py": "a30a2104524504f7de8b4238e137635475ab18e50af5ecc0db2db1785f12562b",
+        ".opencode/tools/kodi_review.ts": "8494f2e7e3a0b6913a5e5e84ef3489deec0ef6bf77bb5431fab91ba65635e1f4",
+        ".opencode/tools/kodi_validate.ts": "ec0475c0604d3db54e5916f586ed4b17f770fbbb28d3d23d5116db3757440638",
+        ".opencode/lib/process-tree.ts": "bc41ca5f686d07aa1756b5b8469bbd3f2f2680c11ef7b8526492be808cbdf3fd",
+        ".opencode/lib/fixture-path.ts": "588b0fc96bfc483333d41f32f7738727913b5f296c9ef3646adbf3da0ef2794a",
+        "evaluation/run.py": "11845491f3802ad5adb1c872a7619d4bb51aebd5e5ba46415ec9b315d0920ad6",
+        "evaluation/tasks.json": "d4e2fdc1a27b11857f54b4f78c056c88d926ac095919c83bf67d3b4c1a4b26a3",
+        "AGENTS.md": "09ae1c3e7cf83941171b5f078d51f23c7670dd1628fd6f69b4a5b485ce70c365"
+      },
+      "copied_skill_hashes": {
+        ".agents/skills/kodi-addon-debugging/SKILL.md": "4797d0281b1bc2bf1775ae5614cd218a49503bf0926ad85a0de411b51d25b843",
+        ".agents/skills/kodi-addon-debugging/references/debugging.md": "f6baca8f06d982097116c993a61b7511dec13332f1152bae5434f291a5c2fdbc"
+      },
+      "cache_manifest_sha256": "1dcbcdf2fd2832a28cd0618fda35bceda263aa71f64be51a98dac22ca0757c62",
+      "independent_review": {
+        "verdict": "PARTIAL",
+        "note": "Health/status/UI are observed and blocked launch/deployment acknowledged, but only 50/106 inventory entries fetched; absence claim not established by model. Independent read-only three-page inspection later confirmed absence.",
+        "reviewer": "Codex independent artifact inspection; not user human sign-off",
+        "criteria": [
+          "Required workflow steps actually completed, not just independent post-hoc acceptance",
+          "Existing artifact paths and source locations",
+          "Correct warnings/infrastructure failures retained",
+          "Source supports mechanism, proportional severity and applicable Kodi rule",
+          "Static and runtime claims separated; no invented observed outcomes",
+          "Task/skill word bounds and useful recovery",
+          "Granted scope and no operator intervention within trial"
+        ],
+        "judgment_limits": "Semantic explanation/severity judgments are explicit but not blinded or statistically definitive. Automatic gates are separate."
+      }
+    },
+    {
+      "label": "p5-spark-xml-A",
+      "model": "qwen3.8-27b",
+      "task": "xml-bounded",
+      "condition": "A",
+      "skill_revision": "working-tree",
+      "skill_catalog": "relevant-only",
+      "skill_routing": "forced",
+      "tool_scope": "narrow",
+      "mcp_scope": "narrow",
+      "duration_seconds": 29.675,
+      "completed_tool_events": 2,
+      "failed_tool_events": 0,
+      "usage": {
+        "input": 6361,
+        "output": 723,
+        "cached_read": 0
+      },
+      "skill_loaded": [],
+      "automatic_gates": {
+        "execution_completed": true,
+        "final_response_complete": true,
+        "explicit_final_fixture_paths_verified": true,
+        "native_file_paths_within_trial_project": true
+      },
+      "metrics": {
+        "missing_path_errors": 0,
+        "repeated_missing_path_errors": 0,
+        "schema_argument_errors": 0,
+        "identical_input_repeats": 0,
+        "final_words": 73,
+        "tool_output_characters": 4159,
+        "last_step_finish_reason": "stop",
+        "step_cap_response": false,
+        "final_fixture_path_mentions": 1,
+        "unverified_final_fixture_citations": 0
+      },
+      "initial_fixture_tree_sha256": "ad088f8f7673cb1e5ada36fe0e6f6642eb88f0686a08c1444de53690a759eaea",
+      "source_hashes": {
+        "requirements-dev.lock": "f732873a536ff8164d6a71c950b95c90ecff06c7d75093846b994a25c64b1a24",
+        "evaluation/processes.py": "abfac5d5d3640f818b3c06dbfa046acdcfcf8968071a6dc3e6dccfa17e583539",
+        "src/kodi_agent_toolkit/paths.py": "11ee799e48b27f23abd441dcad8a68ca6946d2857d19f2f7ea986a8c61e1e057",
+        "src/kodi_agent_toolkit/checker_runner.py": "6cb1fd2aa142d84e09eab81d7038efc8537302cefb3e49f1e917757bdcbe97b2",
+        "src/kodi_agent_toolkit/__init__.py": "c63b5d6b312154e486bff8aea06976f0a7f949186fe99d0a4ec28df00c381000",
+        "src/kodi_agent_toolkit/cli.py": "1226e180fcb5305627a41b182c257f8ac398e9dbf191d95208d8c10952af0ba0",
+        "src/kodi_agent_toolkit/review.py": "8fe894ae20132982deeb32b6b9053f7ca9b89d23595f939cb388e36c8344ad2f",
+        "src/kodi_agent_toolkit/validate.py": "263240f37261c786ed0a47e9b11bc935a12b8ab644a86a09b4fadda53f6f3527",
+        "src/kodi_agent_toolkit/compose.py": "a30a2104524504f7de8b4238e137635475ab18e50af5ecc0db2db1785f12562b",
+        ".opencode/tools/kodi_review.ts": "8494f2e7e3a0b6913a5e5e84ef3489deec0ef6bf77bb5431fab91ba65635e1f4",
+        ".opencode/tools/kodi_validate.ts": "ec0475c0604d3db54e5916f586ed4b17f770fbbb28d3d23d5116db3757440638",
+        ".opencode/lib/process-tree.ts": "bc41ca5f686d07aa1756b5b8469bbd3f2f2680c11ef7b8526492be808cbdf3fd",
+        ".opencode/lib/fixture-path.ts": "588b0fc96bfc483333d41f32f7738727913b5f296c9ef3646adbf3da0ef2794a",
+        "evaluation/run.py": "11845491f3802ad5adb1c872a7619d4bb51aebd5e5ba46415ec9b315d0920ad6",
+        "evaluation/tasks.json": "d4e2fdc1a27b11857f54b4f78c056c88d926ac095919c83bf67d3b4c1a4b26a3",
+        "AGENTS.md": "09ae1c3e7cf83941171b5f078d51f23c7670dd1628fd6f69b4a5b485ce70c365"
+      },
+      "copied_skill_hashes": {},
+      "cache_manifest_sha256": "1dcbcdf2fd2832a28cd0618fda35bceda263aa71f64be51a98dac22ca0757c62",
+      "independent_review": {
+        "verdict": "PASS",
+        "note": "No skill; precise existing path/line/mismatched tag and correction; accurately retained manifest failure and official checker crash rather than declaring pass.",
+        "reviewer": "Codex independent artifact inspection; not user human sign-off",
+        "criteria": [
+          "Required workflow steps actually completed, not just independent post-hoc acceptance",
+          "Existing artifact paths and source locations",
+          "Correct warnings/infrastructure failures retained",
+          "Source supports mechanism, proportional severity and applicable Kodi rule",
+          "Static and runtime claims separated; no invented observed outcomes",
+          "Task/skill word bounds and useful recovery",
+          "Granted scope and no operator intervention within trial"
+        ],
+        "judgment_limits": "Semantic explanation/severity judgments are explicit but not blinded or statistically definitive. Automatic gates are separate."
+      }
+    },
+    {
+      "label": "p5-spark-xml-B",
+      "model": "qwen3.8-27b",
+      "task": "xml-bounded",
+      "condition": "B",
+      "skill_revision": "a6860ccb1d7bb18cfe4809782133c65d9e770265",
+      "skill_catalog": "relevant-only",
+      "skill_routing": "forced",
+      "tool_scope": "narrow",
+      "mcp_scope": "narrow",
+      "duration_seconds": 32.106,
+      "completed_tool_events": 4,
+      "failed_tool_events": 0,
+      "usage": {
+        "input": 12098,
+        "output": 859,
+        "cached_read": 0
+      },
+      "skill_loaded": [
+        "kodi-addon-validation"
+      ],
+      "automatic_gates": {
+        "execution_completed": true,
+        "final_response_complete": true,
+        "explicit_final_fixture_paths_verified": true,
+        "native_file_paths_within_trial_project": true,
+        "skill_actually_loaded": true,
+        "skill_loaded_first": true
+      },
+      "metrics": {
+        "missing_path_errors": 0,
+        "repeated_missing_path_errors": 0,
+        "schema_argument_errors": 0,
+        "identical_input_repeats": 0,
+        "final_words": 88,
+        "tool_output_characters": 8160,
+        "last_step_finish_reason": "stop",
+        "step_cap_response": false,
+        "final_fixture_path_mentions": 1,
+        "unverified_final_fixture_citations": 0
+      },
+      "initial_fixture_tree_sha256": "ad088f8f7673cb1e5ada36fe0e6f6642eb88f0686a08c1444de53690a759eaea",
+      "source_hashes": {
+        "requirements-dev.lock": "f732873a536ff8164d6a71c950b95c90ecff06c7d75093846b994a25c64b1a24",
+        "evaluation/processes.py": "abfac5d5d3640f818b3c06dbfa046acdcfcf8968071a6dc3e6dccfa17e583539",
+        "src/kodi_agent_toolkit/paths.py": "11ee799e48b27f23abd441dcad8a68ca6946d2857d19f2f7ea986a8c61e1e057",
+        "src/kodi_agent_toolkit/checker_runner.py": "6cb1fd2aa142d84e09eab81d7038efc8537302cefb3e49f1e917757bdcbe97b2",
+        "src/kodi_agent_toolkit/__init__.py": "c63b5d6b312154e486bff8aea06976f0a7f949186fe99d0a4ec28df00c381000",
+        "src/kodi_agent_toolkit/cli.py": "1226e180fcb5305627a41b182c257f8ac398e9dbf191d95208d8c10952af0ba0",
+        "src/kodi_agent_toolkit/review.py": "8fe894ae20132982deeb32b6b9053f7ca9b89d23595f939cb388e36c8344ad2f",
+        "src/kodi_agent_toolkit/validate.py": "263240f37261c786ed0a47e9b11bc935a12b8ab644a86a09b4fadda53f6f3527",
+        "src/kodi_agent_toolkit/compose.py": "a30a2104524504f7de8b4238e137635475ab18e50af5ecc0db2db1785f12562b",
+        ".opencode/tools/kodi_review.ts": "8494f2e7e3a0b6913a5e5e84ef3489deec0ef6bf77bb5431fab91ba65635e1f4",
+        ".opencode/tools/kodi_validate.ts": "ec0475c0604d3db54e5916f586ed4b17f770fbbb28d3d23d5116db3757440638",
+        ".opencode/lib/process-tree.ts": "bc41ca5f686d07aa1756b5b8469bbd3f2f2680c11ef7b8526492be808cbdf3fd",
+        ".opencode/lib/fixture-path.ts": "588b0fc96bfc483333d41f32f7738727913b5f296c9ef3646adbf3da0ef2794a",
+        "evaluation/run.py": "11845491f3802ad5adb1c872a7619d4bb51aebd5e5ba46415ec9b315d0920ad6",
+        "evaluation/tasks.json": "d4e2fdc1a27b11857f54b4f78c056c88d926ac095919c83bf67d3b4c1a4b26a3",
+        "AGENTS.md": "09ae1c3e7cf83941171b5f078d51f23c7670dd1628fd6f69b4a5b485ce70c365"
+      },
+      "copied_skill_hashes": {
+        ".agents/skills/kodi-addon-validation/SKILL.md": "1f2e691d5aed2e5473f150e0719ed87739f84e91fbf2deaefaa543ca033a0849",
+        ".agents/skills/kodi-addon-validation/references/review.md": "5e9e6a2923c9c61ad339b4b65a817e65797cabcfa5ad7d15096a9b70ca311208",
+        ".agents/skills/kodi-addon-validation/references/validation.md": "a32019b396d9df373405f77774eb3ac6277e28f40bc05b6a2cfefa0d77167df7"
+      },
+      "cache_manifest_sha256": "1dcbcdf2fd2832a28cd0618fda35bceda263aa71f64be51a98dac22ca0757c62",
+      "independent_review": {
+        "verdict": "PASS",
+        "note": "Original validation skill loaded; same precise malformed XML diagnosis, no errors, checker crash explicitly incomplete.",
+        "reviewer": "Codex independent artifact inspection; not user human sign-off",
+        "criteria": [
+          "Required workflow steps actually completed, not just independent post-hoc acceptance",
+          "Existing artifact paths and source locations",
+          "Correct warnings/infrastructure failures retained",
+          "Source supports mechanism, proportional severity and applicable Kodi rule",
+          "Static and runtime claims separated; no invented observed outcomes",
+          "Task/skill word bounds and useful recovery",
+          "Granted scope and no operator intervention within trial"
+        ],
+        "judgment_limits": "Semantic explanation/severity judgments are explicit but not blinded or statistically definitive. Automatic gates are separate."
+      }
+    },
+    {
+      "label": "p5-spark-xml-C",
+      "model": "qwen3.8-27b",
+      "task": "xml-bounded",
+      "condition": "C",
+      "skill_revision": "working-tree",
+      "skill_catalog": "relevant-only",
+      "skill_routing": "forced",
+      "tool_scope": "narrow",
+      "mcp_scope": "narrow",
+      "duration_seconds": 30.872,
+      "completed_tool_events": 3,
+      "failed_tool_events": 0,
+      "usage": {
+        "input": 11136,
+        "output": 739,
+        "cached_read": 0
+      },
+      "skill_loaded": [
+        "kodi-addon-validation"
+      ],
+      "automatic_gates": {
+        "execution_completed": true,
+        "final_response_complete": true,
+        "explicit_final_fixture_paths_verified": true,
+        "native_file_paths_within_trial_project": true,
+        "skill_actually_loaded": true,
+        "skill_loaded_first": true
+      },
+      "metrics": {
+        "missing_path_errors": 0,
+        "repeated_missing_path_errors": 0,
+        "schema_argument_errors": 0,
+        "identical_input_repeats": 0,
+        "final_words": 70,
+        "tool_output_characters": 6399,
+        "last_step_finish_reason": "stop",
+        "step_cap_response": false,
+        "final_fixture_path_mentions": 1,
+        "unverified_final_fixture_citations": 0
+      },
+      "initial_fixture_tree_sha256": "ad088f8f7673cb1e5ada36fe0e6f6642eb88f0686a08c1444de53690a759eaea",
+      "source_hashes": {
+        "requirements-dev.lock": "f732873a536ff8164d6a71c950b95c90ecff06c7d75093846b994a25c64b1a24",
+        "evaluation/processes.py": "abfac5d5d3640f818b3c06dbfa046acdcfcf8968071a6dc3e6dccfa17e583539",
+        "src/kodi_agent_toolkit/paths.py": "11ee799e48b27f23abd441dcad8a68ca6946d2857d19f2f7ea986a8c61e1e057",
+        "src/kodi_agent_toolkit/checker_runner.py": "6cb1fd2aa142d84e09eab81d7038efc8537302cefb3e49f1e917757bdcbe97b2",
+        "src/kodi_agent_toolkit/__init__.py": "c63b5d6b312154e486bff8aea06976f0a7f949186fe99d0a4ec28df00c381000",
+        "src/kodi_agent_toolkit/cli.py": "1226e180fcb5305627a41b182c257f8ac398e9dbf191d95208d8c10952af0ba0",
+        "src/kodi_agent_toolkit/review.py": "8fe894ae20132982deeb32b6b9053f7ca9b89d23595f939cb388e36c8344ad2f",
+        "src/kodi_agent_toolkit/validate.py": "263240f37261c786ed0a47e9b11bc935a12b8ab644a86a09b4fadda53f6f3527",
+        "src/kodi_agent_toolkit/compose.py": "a30a2104524504f7de8b4238e137635475ab18e50af5ecc0db2db1785f12562b",
+        ".opencode/tools/kodi_review.ts": "8494f2e7e3a0b6913a5e5e84ef3489deec0ef6bf77bb5431fab91ba65635e1f4",
+        ".opencode/tools/kodi_validate.ts": "ec0475c0604d3db54e5916f586ed4b17f770fbbb28d3d23d5116db3757440638",
+        ".opencode/lib/process-tree.ts": "bc41ca5f686d07aa1756b5b8469bbd3f2f2680c11ef7b8526492be808cbdf3fd",
+        ".opencode/lib/fixture-path.ts": "588b0fc96bfc483333d41f32f7738727913b5f296c9ef3646adbf3da0ef2794a",
+        "evaluation/run.py": "11845491f3802ad5adb1c872a7619d4bb51aebd5e5ba46415ec9b315d0920ad6",
+        "evaluation/tasks.json": "d4e2fdc1a27b11857f54b4f78c056c88d926ac095919c83bf67d3b4c1a4b26a3",
+        "AGENTS.md": "09ae1c3e7cf83941171b5f078d51f23c7670dd1628fd6f69b4a5b485ce70c365"
+      },
+      "copied_skill_hashes": {
+        ".agents/skills/kodi-addon-validation/SKILL.md": "d442fe322e5cfe9e61c9907b4fdbc456bef93110ae3707a7fc34d900474d39c8",
+        ".agents/skills/kodi-addon-validation/references/review.md": "78febaeaa1b732adf8488028dd85f82ff14b206b4883547b3049070d21583735",
+        ".agents/skills/kodi-addon-validation/references/validation.md": "a32019b396d9df373405f77774eb3ac6277e28f40bc05b6a2cfefa0d77167df7"
+      },
+      "cache_manifest_sha256": "1dcbcdf2fd2832a28cd0618fda35bceda263aa71f64be51a98dac22ca0757c62",
+      "independent_review": {
+        "verdict": "PASS",
+        "note": "Updated validation skill loaded; precise XML error and checker crash, no unsupported success, 70-word final.",
+        "reviewer": "Codex independent artifact inspection; not user human sign-off",
+        "criteria": [
+          "Required workflow steps actually completed, not just independent post-hoc acceptance",
+          "Existing artifact paths and source locations",
+          "Correct warnings/infrastructure failures retained",
+          "Source supports mechanism, proportional severity and applicable Kodi rule",
+          "Static and runtime claims separated; no invented observed outcomes",
+          "Task/skill word bounds and useful recovery",
+          "Granted scope and no operator intervention within trial"
+        ],
+        "judgment_limits": "Semantic explanation/severity judgments are explicit but not blinded or statistically definitive. Automatic gates are separate."
+      }
+    },
+    {
+      "label": "p5-wrong-root-C",
+      "model": "mellum2.1-q4-trial",
+      "task": "wrong-root",
+      "condition": "C",
+      "skill_revision": "working-tree",
+      "skill_catalog": "relevant-only",
+      "skill_routing": "forced",
+      "tool_scope": "narrow",
+      "mcp_scope": "narrow",
+      "duration_seconds": 25.528,
+      "completed_tool_events": 3,
+      "failed_tool_events": 0,
+      "usage": {
+        "input": 3357,
+        "output": 1137,
+        "cached_read": 7481
+      },
+      "skill_loaded": [
+        "kodi-addon-validation"
+      ],
+      "automatic_gates": {
+        "execution_completed": true,
+        "final_response_complete": true,
+        "explicit_final_fixture_paths_verified": false,
+        "native_file_paths_within_trial_project": true,
+        "no_edit_attempted": true,
+        "agent_static_validation_passed": true,
+        "skill_actually_loaded": true,
+        "skill_loaded_first": true
+      },
+      "metrics": {
+        "missing_path_errors": 0,
+        "repeated_missing_path_errors": 0,
+        "schema_argument_errors": 0,
+        "identical_input_repeats": 0,
+        "final_words": 71,
+        "tool_output_characters": 5986,
+        "last_step_finish_reason": "stop",
+        "step_cap_response": false,
+        "final_fixture_path_mentions": 1,
+        "unverified_final_fixture_citations": 1
+      },
+      "initial_fixture_tree_sha256": "8217d84b3b80ec472ca9e80a4b284484784a979a1434b3284375c729c2efa71a",
+      "source_hashes": {
+        "requirements-dev.lock": "f732873a536ff8164d6a71c950b95c90ecff06c7d75093846b994a25c64b1a24",
+        "evaluation/processes.py": "abfac5d5d3640f818b3c06dbfa046acdcfcf8968071a6dc3e6dccfa17e583539",
+        "src/kodi_agent_toolkit/paths.py": "11ee799e48b27f23abd441dcad8a68ca6946d2857d19f2f7ea986a8c61e1e057",
+        "src/kodi_agent_toolkit/checker_runner.py": "6cb1fd2aa142d84e09eab81d7038efc8537302cefb3e49f1e917757bdcbe97b2",
+        "src/kodi_agent_toolkit/__init__.py": "c63b5d6b312154e486bff8aea06976f0a7f949186fe99d0a4ec28df00c381000",
+        "src/kodi_agent_toolkit/cli.py": "1226e180fcb5305627a41b182c257f8ac398e9dbf191d95208d8c10952af0ba0",
+        "src/kodi_agent_toolkit/review.py": "8fe894ae20132982deeb32b6b9053f7ca9b89d23595f939cb388e36c8344ad2f",
+        "src/kodi_agent_toolkit/validate.py": "263240f37261c786ed0a47e9b11bc935a12b8ab644a86a09b4fadda53f6f3527",
+        "src/kodi_agent_toolkit/compose.py": "a30a2104524504f7de8b4238e137635475ab18e50af5ecc0db2db1785f12562b",
+        ".opencode/tools/kodi_review.ts": "8494f2e7e3a0b6913a5e5e84ef3489deec0ef6bf77bb5431fab91ba65635e1f4",
+        ".opencode/tools/kodi_validate.ts": "ec0475c0604d3db54e5916f586ed4b17f770fbbb28d3d23d5116db3757440638",
+        ".opencode/lib/process-tree.ts": "bc41ca5f686d07aa1756b5b8469bbd3f2f2680c11ef7b8526492be808cbdf3fd",
+        ".opencode/lib/fixture-path.ts": "588b0fc96bfc483333d41f32f7738727913b5f296c9ef3646adbf3da0ef2794a",
+        "evaluation/run.py": "11845491f3802ad5adb1c872a7619d4bb51aebd5e5ba46415ec9b315d0920ad6",
+        "evaluation/tasks.json": "d4e2fdc1a27b11857f54b4f78c056c88d926ac095919c83bf67d3b4c1a4b26a3",
+        "AGENTS.md": "09ae1c3e7cf83941171b5f078d51f23c7670dd1628fd6f69b4a5b485ce70c365"
+      },
+      "copied_skill_hashes": {
+        ".agents/skills/kodi-addon-validation/SKILL.md": "d442fe322e5cfe9e61c9907b4fdbc456bef93110ae3707a7fc34d900474d39c8",
+        ".agents/skills/kodi-addon-validation/references/review.md": "78febaeaa1b732adf8488028dd85f82ff14b206b4883547b3049070d21583735",
+        ".agents/skills/kodi-addon-validation/references/validation.md": "a32019b396d9df373405f77774eb3ac6277e28f40bc05b6a2cfefa0d77167df7"
+      },
+      "cache_manifest_sha256": "1dcbcdf2fd2832a28cd0618fda35bceda263aa71f64be51a98dac22ca0757c62",
+      "independent_review": {
+        "verdict": "PARTIAL",
+        "note": "Nested-space cwd discovered and validated actual fixture, but final invented hyphenated addon path and fanart warning not present in actual checker output.",
+        "reviewer": "Codex independent artifact inspection; not user human sign-off",
+        "criteria": [
+          "Required workflow steps actually completed, not just independent post-hoc acceptance",
+          "Existing artifact paths and source locations",
+          "Correct warnings/infrastructure failures retained",
+          "Source supports mechanism, proportional severity and applicable Kodi rule",
+          "Static and runtime claims separated; no invented observed outcomes",
+          "Task/skill word bounds and useful recovery",
+          "Granted scope and no operator intervention within trial"
+        ],
+        "judgment_limits": "Semantic explanation/severity judgments are explicit but not blinded or statistically definitive. Automatic gates are separate."
+      }
+    }
+  ],
+  "grade_counts": {
+    "PASS": 14,
+    "FAIL": 5,
+    "PARTIAL": 15
+  },
+  "limits": [
+    "Bounded heterogeneous sequential pilot, not statistical accuracy or model ranking.",
+    "A/B/C compare skills under current tools/harness, not historical inference/server state.",
+    "Contract/static pass never proves model semantics or Kodi runtime behavior.",
+    "Token/cache usage is cumulative SDK reporting, not billing or unique context.",
+    "Repeated inputs are observational and can be necessary.",
+    "No operator intervention inside model trials; between-trial harness fixes are retained with provenance.",
+    "Pre-final runner provenance recorded default metadata snapshot even for intentional missing-cache trial; that is a reference snapshot, not a usable cache. Actual tool result proves infrastructure failure; future runner records configured cache."
+  ],
+  "starting_git_sha": "a6860ccb1d7bb18cfe4809782133c65d9e770265",
+  "scope": "2026-10-13 sequential 34-trial Phase5 pilot; 12 matched A/B/C task/model trials plus targeted cases, corrective reruns and one excluded directory harness failure",
+  "readiness": "NEEDS ANOTHER HARDENING PASS"
+}

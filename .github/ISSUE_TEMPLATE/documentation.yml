@@ -1,0 +1,10 @@
+name: Documentation or beta feedback
+description: Describe unclear instructions or a bounded improvement.
+body:
+  - type: textarea
+    id: feedback
+    attributes:
+      label: Feedback
+      description: Link the relevant instructions, explain the problem and the suggested outcome. Include your platform if installation is affected; omit private configuration.
+    validations:
+      required: true

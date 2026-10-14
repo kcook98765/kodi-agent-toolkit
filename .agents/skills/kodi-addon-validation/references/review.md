@@ -1,0 +1,23 @@
+# Contextual review and severity
+
+Run `kodi_review context` (or `kodi-toolkit review-context ADDON`) once for bounded numbered sources and the exact input schema. Inspect related callers, manifest and settings; check guards, consent, redaction, disabled code and version mismatch. A keyword or hidden UI field alone proves no leak, encryption requirement or Kodi policy violation.
+
+Use `model_findings`, `coverage` (scope, complete, reviewed_files), and nonempty `limitations`. Each finding needs category, title, mechanism (reachable operation and preconditions), reason (consequence), severity, confidence, project-verified add-on-relative path, one-based line and literal quote. Related evidence can support, counter or contextualize. State incomplete coverage. Empty findings are correct when no issue is supported.
+
+| Classification | Criteria |
+|---|---|
+| Confirmed deterministic error | Actual failing syntax/types/manifest/package/checker stage; preserve its original diagnostic. |
+| Evidence-supported contextual issue / material | Independent narrow source check supports a canonical conditional observation. Model prose is retained separately; execution and sensitive content remain unverified. |
+| Recommendation / advisory | Nonbreaking improvement; no claimed validation failure. |
+| Unverified observation | Structurally accepted or rejected claim without independent semantic support; advisory only in the classified output. |
+| Blocker | Demonstrated inability to install/start or serious boundary failure, with bounded reproduction steps, observed and expected outcomes. Source anchoring alone is insufficient. |
+
+Static traces use source-supported, omit reproduction, and describe conditional consequences. Never fill observed outcomes without an actual test. Demonstrated claims require an actual reproduction, which the contract cannot independently certify. A setting-to-log flow may support conditional privacy risk if the value is sensitive, but proves neither a real secret nor execution. Do not describe `xbmc.log` as stdout. WARN/INFO recommendations belong to checker findings unless distinct source behavior establishes a separate issue. Offline URL checks are unverified coverage, not a confirmed broken source.
+
+Prefer `kodi_review compose` or `kodi-toolkit review-compose ADDON DRAFT --branch VERIFIED_BRANCH --cache CACHE`. Supply the draft only, not the context envelope. Prefer the native structured `report` object; the legacy `report_json` string remains supported but needs nested escaping. Never supply both. Composition runs independent checks, derives canonical checker records and discards draft checker claims. No extra validate call is needed. Correct rejected anchors/classification once, then report remaining rejection. `static_passed` describes checks, `contract_passed` describes the report. `passed` covers both only; semantic_verification remains human-required. A rejected model draft never changes a warning-only checker into a deterministic error. A reproduction description is still an author's claim until independently checked.
+
+Primary policy revisions: https://kodi.wiki/index.php?title=Add-on_rules&oldid=263662 and https://kodi.wiki/index.php?title=Submitting_Add-ons&oldid=253238 . General contextual review concepts were researched against https://github.com/xbmc/kodiai/tree/545b9afa96695f7c97bf0e2ab214295ba45dd196 ; no proprietary code or prompts were copied.
+
+Schema 1.3: `accepted_findings` means structural acceptance only. Use composition's `finding_categories`, never a model's confidence label, as the factual view. The small validator supports only an adjacent direct setting read/log pattern; it does not perform general data-flow proof. Literal messages, redaction, rebinding, counterevidence and unsupported patterns do not become supported defects. Canonical observations replace model prose in the supported view; original claims remain diagnostic material. Known `requirement_basis` IDs (`dependency-minimum`, `log-level-integer`) identify documentation only; unknown rules and applicability remain unverified. Duplicate anchors/categories and exact official messages are recorded separately. Paraphrase equivalence is not certified. A model-written reproduction cannot establish blocker severity.
+
+Evaluation produces `final-report.json` and `final-report.md` mechanically from recorded calls, initial/current file hashes and completion gates. Use those for factual status; preserve useful model explanations separately as unverified prose. Incomplete replies/drafts are never PASS. Standalone callers can save CLI JSON and run `report-build`; records must come from trusted tools, not model-authored summaries.
