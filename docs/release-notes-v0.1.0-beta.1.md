@@ -1,6 +1,6 @@
 # Kodi Agent Toolkit v0.1.0-beta.1
 
-First public beta candidate for standalone Kodi add-on development assistance. Publication awaits owner approval. Package metadata uses the corresponding Python prerelease version `0.1.0b1`; no PyPI publication is planned.
+First public beta for standalone Kodi add-on development assistance. The [repository](https://github.com/kcook98765/kodi-agent-toolkit) is public. Package metadata uses the corresponding Python prerelease version `0.1.0b1`; no PyPI publication is planned.
 
 ## Supported standalone functionality
 
@@ -21,4 +21,4 @@ Runtime deployment and reproduction were not validated end-to-end: required regi
 
 Original source is MIT. The lock separately installs Kodistubs 20.0.1 and kodi-addon-checker 0.0.36 under their own GPL-3.0-only notices, plus mypy 2.4.0 and the inventoried transitive dependencies. No third-party dependency wheels, Kodi binaries, proprietary KodiAI code/prompts, private configuration, or raw transcripts are included. See [attribution](licensing.md).
 
-Phase 7 creates a reviewed initial source snapshot while preserving the private development history separately. Sanitized Phase 4–6 scorecards and qualification limitations remain intact. Phase 7 installation/regression results are recorded in [release preparation evidence](phase7-results.md); GitHub-hosted Actions have not run before publication.
+Phase 7 published a reviewed initial source snapshot while preserving the private development history separately. Sanitized Phase 4–6 scorecards and qualification limitations remain intact. Historical installation/regression results are recorded in [release preparation evidence](phase7-results.md). [Hosted GitHub Actions](https://github.com/kcook98765/kodi-agent-toolkit/actions/runs/38495360537) subsequently passed on Ubuntu 24.04 (171 passed, 1 skipped) and Windows 2025 (167 passed, 5 skipped). These deterministic checks do not validate model reliability or runtime deployment.

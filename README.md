@@ -10,8 +10,6 @@ You can use the command-line tools without an AI agent or [Kodi Lab](https://git
 
 Requirements: Git, Python **3.12** with venv support, and internet access for the initial dependency and official metadata downloads. The pinned setup targets **Kodi 20 / Nexus**. Python 3.12 runs the development tools; it is not a claim about Kodi's embedded interpreter.
 
-The clone URL below is the planned public location. This release candidate is local and awaits publication approval; until published, use a supplied local source checkout and start at the venv command.
-
 Linux shell (tested on Ubuntu 24.04 under WSL2):
 
 ```sh
