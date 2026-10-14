@@ -1,8 +1,8 @@
-# GitHub publication plan — approval required
+# GitHub publication record and release procedure
 
-Nothing in this plan has been executed remotely. Repository creation, push, visibility changes, tag publication and a GitHub release require the owner's explicit approval of the final reviewed commit and operations.
+The [public repository](https://github.com/kcook98765/kodi-agent-toolkit) contains the reviewed initial snapshot; its initial public clones and [hosted CI](https://github.com/kcook98765/kodi-agent-toolkit/actions/runs/38495360537) were verified. The owner has approved the final documentation correction and `v0.1.0-beta.1` prerelease after protected-branch publication and successful CI on the corrected main commit. The original development history remains private and unchanged.
 
-## Proposed metadata
+## Repository metadata
 
 | Field | Value |
 |---|---|
@@ -15,18 +15,18 @@ Nothing in this plan has been executed remotely. Repository creation, push, visi
 | Version | GitHub prerelease `v0.1.0-beta.1`; Python package metadata `0.1.0b1` |
 | Funding | `github: [kcook98765]`; authenticated Sponsors listing and public page verified |
 | Issues | Enabled; bug and documentation forms; blank issues disabled |
-| Private vulnerability reporting | Enable before pushing; SECURITY.md links to the proposed private channel |
+| Private vulnerability reporting | Enabled; SECURITY.md links to the private reporting channel |
 | Wiki/projects/discussions | Disabled initially |
 
-Authenticated GitHub account matched the intended owner. The repository API returned 404 and the authenticated owner's listing had no repository with the proposed name. This is an availability check, not a reservation; repeat it immediately before creation. Kodi Lab is a separate related project, not a toolkit prerequisite. No Kodi Lab settings or source are changed.
+The repository was created publicly under the verified owner `kcook98765` after an authenticated availability check. Metadata and private vulnerability reporting were applied and verified. Kodi Lab is a separate related project, not a toolkit prerequisite. No Kodi Lab settings or source are changed.
 
 ## History decision
 
-Publish **only the independent reviewed initial snapshot**, preserving the original development repository and Phase 6 branch/commit locally. The original history audit found no known credentials, personal home paths or removed-file disclosures, but historical evaluation code includes workstation provider aliases, observer routing and implicit token-file discovery. Those assumptions are removed from the public harness. Sanitized Phase 4–6 results, source/skill/cache hashes and failures remain public evidence; old development commit IDs are provenance references and are not public Git objects. No raw transcripts or workstation journal is included.
+Published **only the independent reviewed initial snapshot**, preserving the original development repository and Phase 6 branch/commit locally. Subsequent release documentation corrections retain that snapshot as their ancestor. The original history audit found no known credentials, personal home paths or removed-file disclosures, but historical evaluation code includes workstation provider aliases, observer routing and implicit token-file discovery. Those assumptions are removed from the public harness. Sanitized Phase 4–6 results, source/skill/cache hashes and failures remain public evidence; old development commit IDs are provenance references and are not public Git objects. No raw transcripts or workstation journal is included.
 
-## Approval-gated operations
+## Initial publication commands (historical record)
 
-The full approved SHA and exact local path are recorded in the external Phase 7 workstation report, avoiding personal paths in this public document. Use GitHub CLI and Git in an authenticated shell; replace the two placeholders, verify the candidate is clean, and stop on any command error. These commands are a proposal, not an executable release script.
+The following commands record the completed initial publication procedure, with placeholders for the originally approved snapshot and local path. Do not rerun repository creation or the one-commit initial-snapshot checks against the now-public repository. Exact original source and publication details are retained in the external Phase 7 workstation report.
 
 ```sh
 cd REVIEWED_SNAPSHOT
@@ -49,13 +49,16 @@ git push origin main:main
 gh repo edit kcook98765/kodi-agent-toolkit --default-branch main
 ```
 
-Push only `main` from the snapshot. Do not use `--mirror`, `--all`, or copy the original `.git` directory. Do not initialize a remote README/license/ignore file. GitHub creation starts public as approved; no separate visibility conversion is needed. The original local repository receives no remote.
+Initial publication pushed only snapshot `main`. Do not use `--mirror`, `--all`, or copy the original development `.git` directory. The repository was created public with no generated README/license/ignore commit. The original local development repository still has no remote.
 
-Before tag/release publication, require the initial Actions run to finish successfully, check private reporting, and test a new public clone/README installation. If network acquisition fails, retain evidence and state it explicitly; a separately trusted complete cache is an explicit alternative, never an automatic fallback. Stop if the approved source needs modification and review the new commit before publishing a tag.
+Initial hosted CI, private reporting and fresh public-clone checks passed. Windows public-clone metadata acquisition succeeded; the Linux attempt failed with network unreachable and checker tests explicitly used a trusted complete Phase 6 cache. Earlier HTTP 429/download failures remain documented. Before tagging, publish only the approved documentation correction through normal branch protection, verify its exact remote main commit and require successful hosted CI on that commit. Stop on failed checks, unrelated changes or an existing remote version tag; do not bypass protection.
 
-After approval includes these operations and the above checks pass:
+After the corrected main commit passes those checks, confirm `v0.1.0-beta.1` is absent remotely. Replace the earlier unpublished local annotated tag so it targets that verified commit, then publish only that tag and the approved prerelease notes:
 
 ```sh
+# approved_commit is the corrected, CI-verified main SHA.
+# Delete only the unpublished local tag after confirming no remote version tag exists.
+git tag -d v0.1.0-beta.1
 git tag -a v0.1.0-beta.1 "$approved_commit" -m 'First standalone public beta'
 git push origin refs/tags/v0.1.0-beta.1
 gh release create v0.1.0-beta.1 --repo kcook98765/kodi-agent-toolkit --verify-tag --prerelease --title 'Kodi Agent Toolkit v0.1.0-beta.1' --notes-file docs/release-notes-v0.1.0-beta.1.md
@@ -63,10 +66,10 @@ gh release create v0.1.0-beta.1 --repo kcook98765/kodi-agent-toolkit --verify-ta
 
 Attach no extra binary/dependency/cache assets. GitHub generates source archives. No PyPI or container publication is proposed. Release notes explicitly retain model failures and unvalidated runtime scope.
 
-## Suggested settings
+## Verified settings
 
-Use read-only Actions token permissions and require approval for workflows from outside collaborators. The included Ubuntu/Windows jobs install public hash-locked dependencies, run offline deterministic tests/harness checks and scan public contents/history; they need no secret, private service, paid API, model server, Docker or running Kodi. Actions are pinned to verified official commit SHAs. Local equivalents are tested; GitHub-hosted runner execution is pending publication.
+Use read-only Actions token permissions and require approval for workflows from outside collaborators. The included Ubuntu/Windows jobs install public hash-locked dependencies, run offline deterministic tests/harness checks and scan public contents/history; they need no secret, private service, paid API, model server, Docker or running Kodi. Actions are pinned to verified official commit SHAs. Local equivalents and [GitHub-hosted Ubuntu/Windows jobs](https://github.com/kcook98765/kodi-agent-toolkit/actions/runs/38495360537) passed.
 
-After the first successful run, protect `main` against force pushes/deletion and require the two standalone CI checks for pull requests. Use one approval when a second maintainer is available; avoid a sole-maintainer deadlock. Enable GitHub secret scanning/push protection and dependency alerts where available; do not add complex scheduled release/model automation for this beta. The lock/inventory must be updated deliberately with regression and license review.
+`main` is protected against force pushes/deletion, including admins, and requires both standalone CI checks. No mandatory human review count is configured for the sole maintainer. Secret scanning, push protection and dependency alerts are enabled. No settings are changed by the documentation correction. Future lock/inventory changes require deliberate regression and license review; no complex scheduled release/model automation is needed for this beta.
 
 References: [GitHub private reporting](https://docs.github.com/en/code-security/how-tos/report-and-fix-vulnerabilities/configure-vulnerability-reporting/configure-for-a-repository), [repository REST API](https://docs.github.com/en/rest/repos/repos#enable-private-vulnerability-reporting-for-a-repository), [hosted runners](https://docs.github.com/en/actions/reference/runners/github-hosted-runners), [Sponsors](https://github.com/sponsors/kcook98765).
