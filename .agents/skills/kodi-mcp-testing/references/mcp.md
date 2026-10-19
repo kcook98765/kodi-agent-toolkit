@@ -20,3 +20,17 @@ Use the installed server's exposed schemas and existing grants. Discover the int
 5. Recheck only changed behavior or failed/stale evidence. On an ordinary generation conflict, refresh status and the affected file before editing again; revalidate the new generation before deployment.
 
 For an in-progress operation, retain its request/operation ID and inspect status using the installed server's documented completion mechanism. A timeout or ambiguous result does not prove failure. Preserve the receipt and uncertainty; do not resubmit a mutation, create a replacement workspace or invent a new request ID to force progress. Report any reconciliation or administrator action required. Stop once the requested result is verified.
+
+## Launching and relaunching an add-on
+
+Identify the manifest-declared script/plugin entry point and intended destination before navigating. A package with both extensions can open its plugin directory from a generic Run action even when the test needs its custom script window. Verify the actual destination rather than treating any successful invocation as GUI acceptance.
+
+Prefer an authorized managed launch operation when the installed server supports the intended entry point. `workspace_execute` is a bounded smoke workflow, not a generic launcher: check its documented eligibility before using it for a script or multi-extension package. Record an unsupported entry point once and use the supported fallback; do not repeat the incompatible operation after each edit or change the manifest merely to satisfy it.
+
+When menu navigation is required, find the shortest working route once and retain its labels, starting state and expected destination with the test evidence. Reuse an add-on-provided launch item, or a verified favourite if creating one is within the task's authority. Confirm that the shortcut opens the intended entry point. Before replaying a route, check current UI state; adapt if a dialog, skin or menu changed. Reuse deployment evidence and the route across iterations without rediscovering the whole add-on inventory.
+
+Use structured UI state for navigation decisions and screenshots for visual questions. Keep remote actions ordered; use a bounded action sequence only if the exposed interface explicitly supports it, otherwise call actions sequentially. Observe at state transitions and before a consequential selection; do not add a screenshot/model round trip after every arrow by habit. Neither successful dispatch nor a plugin listing proves the expected custom window loaded. Keep launch latency separate from add-on callback/render measurements.
+
+If an action response already contains fresh, sufficient UI state, use it rather than immediately requesting the same observation again. Reuse an action's screenshot only through a supported authorized retrieval mechanism; capture metadata alone is not an image. For a capture-in-progress result, follow documented status/retry semantics and never resend a navigation action just to recover its image. Generic custom-window state or null labels may still require a visual check.
+
+Keep full receipts, logs and inventories in the appropriate private/project evidence store. Carry a concise checkpoint containing the current/deployed generations, operation IDs, unresolved outcomes, next test and verified launch route across long sessions. Limit routine tool output to results, retained warnings and artifact references; read full details for the failure or visual question being investigated. Preserve required checks and exact-generation provenance.
