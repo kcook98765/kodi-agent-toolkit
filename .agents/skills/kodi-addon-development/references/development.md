@@ -6,3 +6,11 @@ Keep reusable logic separate from Kodi imports so ordinary tests can use explici
 Sources: https://kodi.wiki/view/Addon.xml ; https://xbmc.github.io/docs.kodi.tv/master/kodi-dev-kit/group__python.html ; https://github.com/romanvm/Kodistubs
 
 Observed Nexus logging boundary: installed Kodistubs 20.0.1 defines LOGINFO=1 and LOGWARNING=2; LOGNOTICE is absent; Kodi removed LOGNOTICE in version 19 and directs callers to LOGINFO. To preserve an INFO-level message use xbmc.LOGINFO, not the guessed literal 2. A numeric value can type-check while changing severity. Verify missing names against the target API rather than inventing a mapping. Official Nexus evidence: https://github.com/xbmc/xbmc/blob/4b95737efaddf7c869736e539318f18433413ff1/xbmc/interfaces/legacy/ModuleXbmc.h and ModuleXbmc.cpp .
+
+## Longer development sessions
+
+Keep full validation/test output and synchronization inventories in task-appropriate evidence files. Return the exit status, pass/fail/skip counts, warnings, relevant changed paths and evidence locations to the agent. Read detailed failures when needed instead of repeatedly loading complete successful reports or every file hash. Preserve failure output and command exit codes; reducing transcript size must not hide warnings or turn a failed check into a pass.
+
+Use a compact checkpoint at phase boundaries or before supported context compaction: actual project/skill/toolchain paths, current source revision, unfinished checks, failures, next action and evidence locations. For runtime work also retain target/source/workspace identities, current and deployed generations, operation receipts, current UI state and verified launch route. Reuse valid evidence on resume; recheck what changed or became stale. A checkpoint is not proof that pending checks passed.
+
+Where a canonical tree, registered source mirror and managed workspace are separate, identify each role explicitly. Reuse a task-authorized deterministic synchronization helper when available, then verify the bytes/generation actually deployed. Group related changes before required validation. A proposed bulk import or launcher is not an available capability until the installed interface exposes it. Keep edits within the granted workflow.

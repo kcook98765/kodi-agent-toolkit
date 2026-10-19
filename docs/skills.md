@@ -23,6 +23,8 @@ opencode debug skill --pure
 
 Inspect existing skill directories before copying to avoid overwriting your changes. Ask the agent to load the chosen skill explicitly. Provide the add-on directory, Kodi target, trusted toolkit Python/CLI path, and an existing metadata cache for validation. If the agent cannot call the toolkit, run the CLI yourself and provide its actual results.
 
+When the agent's working directory differs from the add-on directory, record both and the actual installed skill location. Resolve references relative to the skill that was loaded; do not assume every add-on contains its own `.agents` copy. For a named project, check known ancestor instruction paths directly and scope recursive discovery to that project. A drive-wide search for every `AGENTS.md` is unnecessary for resolving that project's instructions.
+
 The optional OpenCode adapters use `.opencode/tools` and `.opencode/lib`; they restrict file operations to the receiving project's `fixtures`. They need a separately installed matching `@opencode-ai/plugin` SDK and `KODI_TOOLKIT_PYTHON`, `KODI_TOOLKIT_CLI`, `KODI_TOOLKIT_INDEX_CACHE` pointing to trusted absolute paths. Copying skills alone does not require this SDK. No agent/provider installation is part of standalone quick start.
 
 Qualified discovery/loading: OpenCode 1.19.0 on Ubuntu. Compatible agents can use the format and independent CLI, but compatibility is an expectation rather than an executed qualification. Native Windows OpenCode execution is not qualified.
