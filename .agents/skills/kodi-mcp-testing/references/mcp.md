@@ -19,18 +19,91 @@ Use the installed server's exposed schemas and existing grants. Discover the int
 4. Run one authorized, relevant smoke test against the same target/generation, using `workspace_execute` when its fixed smoke operation fits the task. Record its completed outcome; deployment alone is not functional acceptance.
 5. Recheck only changed behavior or failed/stale evidence. On an ordinary generation conflict, refresh status and the affected file before editing again; revalidate the new generation before deployment.
 
-For an in-progress operation, retain its request/operation ID and inspect status using the installed server's documented completion mechanism. A timeout or ambiguous result does not prove failure. Preserve the receipt and uncertainty; do not resubmit a mutation, create a replacement workspace or invent a new request ID to force progress. Report any reconciliation or administrator action required. Stop once the requested result is verified.
+For an in-progress operation, retain its request/operation ID and inspect status using the installed server's documented completion mechanism. A timeout or ambiguous result does not prove failure. Preserve the receipt and uncertainty; do not dispatch another mutation, create a replacement workspace or invent a new request ID to force progress. Report any reconciliation or administrator action required. Stop once the requested result is verified.
+
+## Registered-source batch import
+
+When reviewed changes are already in the registered source mirror, prefer
+`workspace_import_preview(workspace_id, expected_generation)` over individual
+file edits. Lab does not read arbitrary paths on the agent's computer. Import
+requires workspace edit and source inspection permissions, the exact source
+grant and the client's workspace binding; an available tool grants none of these.
+
+Review the preview's paths, sizes, hashes and rejections. Pass its `source_digest`
+and `preview_digest` to `workspace_import` with the same workspace/generation and
+a fresh UUID `request_id`. The accepted batch creates one generation; validate
+and deploy that exact returned generation separately. Import does not run Kodi.
+A changed source or workspace requires a fresh preview.
+
+The documented initial limits are 32 changed entries and 48 KiB per UTF-8 file;
+discover the installed contract when it differs. Parents must already exist.
+Deletions, binary files, identity/mode changes and overlapping private edits are
+rejected without partial application. A later import can update a previously
+imported file while its workspace bytes still match the prior import receipt.
+Use `workspace_edit` for eligible focused private changes; preserve existing
+private edits and import history instead of resetting them to force an import.
+
+After a lost import response, repeat only the identical request UUID and
+parameters to recover its receipt through the documented idempotent recovery.
+That recovery does not capture newer source bytes or dispatch the import again.
+Retain `reconciliation_required` outcomes for administrator review; do not replay
+an uncertain import with a new request ID.
 
 ## Launching and relaunching an add-on
 
 Identify the manifest-declared script/plugin entry point and intended destination before navigating. A package with both extensions can open its plugin directory from a generic Run action even when the test needs its custom script window. Verify the actual destination rather than treating any successful invocation as GUI acceptance.
 
-Prefer an authorized managed launch operation when the installed server supports the intended entry point. `workspace_execute` is a bounded smoke workflow, not a generic launcher: check its documented eligibility before using it for a script or multi-extension package. Record an unsupported entry point once and use the supported fallback; do not repeat the incompatible operation after each edit or change the manifest merely to satisfy it.
+For an already deployed add-on on a managed disposable development target, prefer
+`workspace_launch` when exposed and authorized. Use a fresh `request_id`,
+`workspace_id`, exact `expected_generation`, `target_id` and the chosen
+`extension_ordinal` from validation's `launch_entries`. Ordinals follow manifest
+order starting at zero; discover them instead of assuming the script/plugin order.
+Reuse valid validation/deployment evidence for unchanged bytes. A legacy validation
+may need one refresh to publish launch entries.
+
+Launch requires target control and development execution authority, current
+workspace/source bindings, usable Kodi, enabled matching installed bytes and a
+compatible trusted managed Bridge. It cannot launch external/production targets
+or start Kodi. Updating Lab alone does not upgrade an installed Bridge. An
+`accepted` receipt proves dispatch only; inspect the intended destination and
+feature behavior. Recover an uncertain launch using its identical request and
+documented receipt mechanism; do not issue a new launch or menu invocation while
+dispatch remains ambiguous.
+
+If deployment is independently verified and a direct launch is definitively
+rejected before dispatch, such as `launch_not_deployed`, retain the rejection and
+use an already authorized, verified menu route when available. Do not repeatedly
+redeploy unchanged bytes, reset the workspace or alter the manifest to force the
+launcher. Missing authority or unverified deployment remains a blocker.
+
+`workspace_execute` is a bounded smoke workflow, not a generic launcher: check its documented eligibility before using it for a script or multi-extension package. Record an unsupported entry point once and use the supported fallback; do not repeat the incompatible operation after each edit or change the manifest merely to satisfy it.
 
 When menu navigation is required, find the shortest working route once and retain its labels, starting state and expected destination with the test evidence. Reuse an add-on-provided launch item, or a verified favourite if creating one is within the task's authority. Confirm that the shortcut opens the intended entry point. Before replaying a route, check current UI state; adapt if a dialog, skin or menu changed. Reuse deployment evidence and the route across iterations without rediscovering the whole add-on inventory.
 
 Use structured UI state for navigation decisions and screenshots for visual questions. Keep remote actions ordered; use a bounded action sequence only if the exposed interface explicitly supports it, otherwise call actions sequentially. Observe at state transitions and before a consequential selection; do not add a screenshot/model round trip after every arrow by habit. Neither successful dispatch nor a plugin listing proves the expected custom window loaded. Keep launch latency separate from add-on callback/render measurements.
 
-If an action response already contains fresh, sufficient UI state, use it rather than immediately requesting the same observation again. Reuse an action's screenshot only through a supported authorized retrieval mechanism; capture metadata alone is not an image. For a capture-in-progress result, follow documented status/retry semantics and never resend a navigation action just to recover its image. Generic custom-window state or null labels may still require a visual check.
+## Action observations and correlated screenshots
+
+On managed development targets, request `remote_action(observe_ui=true)` when the
+installed schema supports it and the client has inspection authority as well as
+control. Reuse a fresh, sufficient `post_action_observation` for the next decision
+instead of immediately requesting the same UI state again. Observation status,
+time and `changed_during_collection` still determine whether the result is usable;
+observation failure does not change the action's outcome.
+
+When pixels are needed, use `screenshot_retrieve` on the original client connection
+with that action's exact `target_id`, original `request_id` and `capture_id`.
+Current visual authority and the same runtime identity are required. Retrieval
+returns the correlated frame without a new capture or navigation. Images expire
+after two minutes and can be replaced sooner; an unavailable frame is not newer
+visual evidence and does not justify repeating the action. Recover the original
+receipt through its documented mechanism or request a fresh authorized observation
+when needed. These capture-reuse tools initially cover managed development only.
+
+Capture metadata alone is not an image. For a capture-in-progress result, follow
+documented status/retry semantics without resending navigation to recover pixels.
+Generic custom-window state or null labels may still require a visual check.
 
 Keep full receipts, logs and inventories in the appropriate private/project evidence store. Carry a concise checkpoint containing the current/deployed generations, operation IDs, unresolved outcomes, next test and verified launch route across long sessions. Limit routine tool output to results, retained warnings and artifact references; read full details for the failure or visual question being investigated. Preserve required checks and exact-generation provenance.
+
+Contract references: [batch import](https://github.com/kcook98765/kodi-lab/blob/main/docs/WORKSPACE-BATCH-IMPORT.md), [manifest-entry launch](https://github.com/kcook98765/kodi-lab/blob/main/docs/MANIFEST-ENTRY-LAUNCH.md), [action observations](https://github.com/kcook98765/kodi-lab/blob/main/docs/REMOTE-ACTION-OBSERVATIONS.md). Discover the installed schemas and contract when they differ.
