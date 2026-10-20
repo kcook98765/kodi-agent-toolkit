@@ -4,7 +4,7 @@ description: "Verify Kodi Lab MCP runtime workflows on explicitly authorized dis
 license: MIT
 ---
 
-Read references/mcp.md when authority, pagination, deployment, add-on launch/relaunch or UI controls matter. For launch tests, identify the manifest entry point and intended window first; retain a verified launch route across iterations. Discover and verify the disposable target UUID/version. Never invent an ID; recover from a rejected saved UUID by one discovery. Server capabilities are distinct from client grants.
+Read references/mcp.md when authority, pagination, deployment, add-on launch/relaunch or UI controls matter. It covers registered-source batch import, exact manifest-entry launch, and action observations with correlated screenshot retrieval when the installed Lab exposes them. For launch tests, identify the manifest entry point and intended window first; retain a verified launch route across iterations. Discover and verify the disposable target UUID/version. Never invent an ID; recover from a rejected saved UUID by one discovery. Server capabilities are distinct from client grants.
 
 Use only tools needed for the completion criterion: list then status for health; UI state for window/focus; paginated addon_list for inventory; screenshot only for actual image analysis. Null/unassociated fields are unknown. Do not retrieve UI/inventory merely because tools are exposed.
 
