@@ -9,7 +9,7 @@ prefixes names with the configured MCP server name, for example
 
 ## Calls and evidence
 
-All IDs below are discovered UUIDs. `expected_generation` is the existing observed
+Resource IDs below are discovered UUIDs; create a caller-generated request UUID for each genuinely new authorized operation and retain it for recovery. `expected_generation` is the existing observed
 generation, never the desired next generation. Inputs are closed: no `force`,
 arbitrary command, host path or generic JSON-RPC field exists. Successful tools
 normally return `structuredContent`; inspect `isError` and text diagnostics first.
@@ -52,8 +52,8 @@ proves exact installed mirroring.
 
 For unchanged bytes, reuse valid current exact-generation evidence. A separately
 requested same-generation deployment may be supported; it still performs admission
-and verification. Exact duplicate requests return historical receipts without
-probing current runtime. Execution/launch use the latest authoritative deployment
+and verification. Completed successful duplicate requests return historical receipts without
+probing current runtime; failed or unresolved attempts retain their error/ambiguity rather than becoming successful receipts. Execution/launch use the latest authoritative deployment
 for the selected profile: a newer failed, pending, incomplete or ambiguous attempt
 blocks fallback to an older success; tied newest times cannot prove order. Legacy
 unbound receipts need fresh verification through the supported workflow, not a

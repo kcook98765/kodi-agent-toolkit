@@ -4,7 +4,7 @@ Portable instructions for coding agents, plus Python tools that help Kodi add-on
 
 You can use the command-line tools without an AI agent or [Kodi Lab](https://github.com/kcook98765/kodi-lab). Standalone validation needs Python and public dependency downloads; it does not require a running Kodi instance, Docker, WSL2, or a model server.
 
-**Public beta scope:** static development and validation are supported in the tested Python 3.12 environments. AI contextual review, autonomous repair, smaller local-model workflows, Kodi Lab MCP integration, and runtime debugging are experimental. Autonomous add-on development is not consistently reliable. Runtime deployment and reproduction were **not validated end-to-end** in the latest evaluation. See [scope and limits](docs/public-beta.md).
+**Public beta scope:** static development and validation are supported in the tested Python 3.12 environments. AI contextual review, autonomous repair, smaller local-model workflows, Kodi Lab MCP integration, and runtime debugging are experimental. Autonomous add-on development is not consistently reliable. Runtime deployment and reproduction were **not validated end-to-end** in the historical beta evaluation. See [scope and limits](docs/public-beta.md).
 
 ## Quick start
 
