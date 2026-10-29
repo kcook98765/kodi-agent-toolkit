@@ -75,11 +75,16 @@ See [current input/result and recovery reference](../.agents/skills/kodi-mcp-tes
 ## Qualification dates
 
 The original beta and Phase 4–7 evaluations remain historical, including failed
-and blocked runtime trials. The 2026-10-29 contract audit targets Lab
+and blocked runtime trials. The original 2026-10-29 contract audit targeted Lab
 `56517d3abd6faf661b990d58e574a94193f8b532` / schema
-`0088_service_enable_start`; it distinguishes deployed authenticated discovery
+`0088_service_enable_start`; the current source-only refresh targets
+`3015a5c294bfb3140df29ce1717218735b1c396f` / schema `0089`; it distinguishes deployed authenticated discovery
 from source-only and saved native evidence. OpenCode 1.19.3 discovery on Claw
 uses one existing shared skill source. These facts do not retroactively turn
 historical trials into passes or establish new live deployment/agent repair,
 Windows/physical-device or cross-version acceptance. A current stopped target and
 missing source/workspace grants leave those live stages unqualified.
+
+## Optional retained-version development loop (Lab schema 0089)
+
+Newer Kodi Lab can retain four reviewed Kodi profiles while enforcing one running version, but this is **administrator opt-in**, not a default or a runtime acceptance claim. The new `managed_selection_preview` / `managed_select` MCP tools require the exact target/source/workspace grant intersection and both `managed.lifecycle` and `workspace.inspect`; a Web administrator must first select the owned workspace. Finish a test, release the use hold, confirm all instances stopped, resolve pending/ambiguous work, preview exact target/profile identity, then select with a fresh request UUID and preview `latest_generation`. Selection does not provision/start/stop/retire. After an independently authorized `managed_ensure_ready`, establish that version's own Bridge/baseline/deployment evidence and rerun appropriate runtime tests. Replay of a historical selection does not restore it. Read [the current contract](../.agents/skills/kodi-mcp-testing/references/current-contract.md) and [Lab workflow](https://github.com/kcook98765/kodi-lab/blob/main/docs/RETAINED-DEVELOPMENT-WORKFLOW.md); discover the installed tool list and local agent allowlist.
