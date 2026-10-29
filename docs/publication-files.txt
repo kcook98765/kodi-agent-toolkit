@@ -6,6 +6,7 @@
 .agents/skills/kodi-addon-validation/references/review.md
 .agents/skills/kodi-addon-validation/references/validation.md
 .agents/skills/kodi-mcp-testing/SKILL.md
+.agents/skills/kodi-mcp-testing/references/current-contract.md
 .agents/skills/kodi-mcp-testing/references/mcp.md
 .agents/skills/kodi-version-compatibility/SKILL.md
 .agents/skills/kodi-version-compatibility/references/versions.md
@@ -29,6 +30,7 @@ LICENSE
 README.md
 SECURITY.md
 docs/dependency-inventory.json
+docs/development-workflow.md
 docs/evaluation.md
 docs/github-publication.md
 docs/installation.md

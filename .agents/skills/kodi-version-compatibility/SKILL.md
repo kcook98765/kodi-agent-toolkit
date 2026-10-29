@@ -12,3 +12,5 @@ Read references/versions.md for dated, pinned evidence. Match each API/signature
 For a multi-version target prefer the oldest verified common API or a documented guard. Run branch-matched syntax/types/checker tests where available. Do not install a different stub version into an existing validated environment without isolating it.
 
 Completion: identify supported/unsupported or uncertain API use with verified file/line evidence, documentation snapshot, static target and actual runtime-tested versions. Static acceptance does not prove runtime/binary compatibility. Do not claim an untested platform/version passed. Keep the final summary within 150 words unless a matrix or detailed report is requested.
+
+Kodi Lab admitting a runtime or reporting a capability does not qualify the toolkit's static lane or an add-on on that version. Keep Matrix, Nexus, Omega and Kodi 22 preview evidence separate; saved acceptance applies only to its recorded feature, source and environment.

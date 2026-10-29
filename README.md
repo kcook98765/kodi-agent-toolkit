@@ -4,7 +4,7 @@ Portable instructions for coding agents, plus Python tools that help Kodi add-on
 
 You can use the command-line tools without an AI agent or [Kodi Lab](https://github.com/kcook98765/kodi-lab). Standalone validation needs Python and public dependency downloads; it does not require a running Kodi instance, Docker, WSL2, or a model server.
 
-**Public beta scope:** static development and validation are supported in the tested Python 3.12 environments. AI contextual review, autonomous repair, smaller local-model workflows, Kodi Lab MCP integration, and runtime debugging are experimental. Autonomous add-on development is not consistently reliable. Runtime deployment and reproduction were **not validated end-to-end** in the latest evaluation. See [scope and limits](docs/public-beta.md).
+**Public beta scope:** static development and validation are supported in the tested Python 3.12 environments. AI contextual review, autonomous repair, smaller local-model workflows, Kodi Lab MCP integration, and runtime debugging are experimental. Autonomous add-on development is not consistently reliable. Runtime deployment and reproduction were **not validated end-to-end** in the historical beta evaluation. See [scope and limits](docs/public-beta.md).
 
 ## Quick start
 
@@ -80,7 +80,7 @@ The Python CLI is agent independent. `.opencode` custom tools are optional **fix
 
 [Kodi Lab](https://github.com/kcook98765/kodi-lab) is a separate project. A configured Lab instance can extend the workflow with target discovery, health/UI inspection, and authorized runtime diagnostics. It needs its own installation, disposable target, private credentials, and server-side grants. Client tool filtering cannot grant access.
 
-The latest runtime deployment evaluation was blocked because registered development-source infrastructure was absent. No deployment, runtime reproduction, or autonomous runtime repair completed. Read-only inspection does not establish that an add-on runs correctly.
+The historical beta runtime deployment evaluation was blocked because registered development-source infrastructure was absent. No deployment, runtime reproduction, or autonomous runtime repair completed. Read-only inspection does not establish that an add-on runs correctly. The [everyday development guide](docs/development-workflow.md) describes the current optional loop and dated qualification boundaries.
 
 ## Evidence, evaluation, and limitations
 

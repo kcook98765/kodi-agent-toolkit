@@ -1,4 +1,6 @@
 # MCP test boundary
+
+For current input/result shapes, preflight, receipt ordering, activation limits and failure handling, read [current contracts and recovery](current-contract.md).
 The server enforces client preset, exact target grants, credential validity and target policy. Client filtering minimizes schemas and cannot replace those boundaries. Use discovery then stable UUIDs. On a rejected saved UUID, discover once; do not infer existence or bypass authorization.
 Recommended read-only profiles:
 - Health/UI: target_list, target_status, inspect_ui_state.
@@ -7,15 +9,15 @@ Recommended read-only profiles:
 A deployment smoke test requires authorized deployment tools, target isolation, revision receipt, install/launch evidence, observations and a documented cleanup plan. Do not broaden server permissions as part of a skill.
 UI controls are semantic: select can remove a menu item or toggle a setting. A no-settings navigation task needs separate narrowly scoped authority and state guards; read-only defaults never navigate. Stop at arrival. Do not use extra request IDs just because they are supplied.
 Bug evidence: target/version/revision, reproduction, tool and arguments, bounded sanitized result, expected behavior, uncertainty and retry count. Keep sensitive screenshots/logs private.
-Workstation pilot: only Kodi 20.5 was runtime-tested. The external runtime environment and credentials are never copied to this toolkit.
+Historical workstation pilot: only Kodi 20.5 was runtime-tested in that pilot. It predates the current contract audit and does not describe current installed infrastructure. The external runtime environment and credentials are never copied to this toolkit.
 
 ## Efficient development loop
 
 Use the installed server's exposed schemas and existing grants. Discover the intended target/version with `target_list` and the source with `development_source_list`; use `workspace_status` to find or resume the matching owned workspace before creating another. Inspect only the tree/files needed for the task. Missing source registration, grants or target setup is an operator blocker; report it without inventing IDs, changing permissions or recreating infrastructure.
 
-1. Record the workspace, source, target and current generation. For a new workspace, establish its initial validation/deployment baseline before diagnosing a later change; do not repeat a verified baseline on resume.
+1. Record the workspace, source, target and current generation. Record existing validation/deployment evidence and assess current prerequisites. If a source baseline is missing, follow the preflight's stated administrator preparation path only with applicable mutation authority; do not automatically deploy or repeat a verified baseline on resume.
 2. Group related edits, carrying forward the generation returned by each edit. Validate the resulting generation with `workspace_validate`; static validation does not prove runtime behavior.
-3. Deploy that exact validated generation with `workspace_deploy`. Confirm completed deployment and matching target/add-on evidence before executing. An accepted request, healthy target or unchanged add-on version alone is not deployment proof.
+3. Read `workspace_deploy_preflight` for that workspace, exact generation and target. Its durable-prerequisite verdict is blocked or unknown, never ready; follow the stated actor/preconditions without treating it as admission. When separately authorized and eligible, deploy that exact validated generation with `workspace_deploy`. Confirm completed deployment and matching target/add-on evidence before executing. An accepted request, healthy target or unchanged add-on version alone is not deployment proof.
 4. Run one authorized, relevant smoke test against the same target/generation, using `workspace_execute` when its fixed smoke operation fits the task. Record its completed outcome; deployment alone is not functional acceptance.
 5. Recheck only changed behavior or failed/stale evidence. On an ordinary generation conflict, refresh status and the affected file before editing again; revalidate the new generation before deployment.
 
@@ -35,13 +37,13 @@ a fresh UUID `request_id`. The accepted batch creates one generation; validate
 and deploy that exact returned generation separately. Import does not run Kodi.
 A changed source or workspace requires a fresh preview.
 
-The documented initial limits are 32 changed entries and 48 KiB per UTF-8 file;
-discover the installed contract when it differs. Parents must already exist.
-Deletions, binary files, identity/mode changes and overlapping private edits are
-rejected without partial application. A later import can update a previously
+At the audited source revision the limits are 32 changed entries and 256 KiB per UTF-8 file; use the preview's advertised bounds. Parents must already exist.
+Default `changes` mode rejects deletions, binary files, identity/mode changes and overlapping private edits without partial application. A later import can update a previously
 imported file while its workspace bytes still match the prior import receipt.
 Use `workspace_edit` for eligible focused private changes; preserve existing
 private edits and import history instead of resetting them to force an import.
+
+When exposed and explicitly intended, `mode="reviewed_tree"` in both preview and apply supports reviewed workspace file removals and exact per-path conflict choices (`take_source` or `keep_private`). Review the resolved preview and repeat its mode, resolutions, source and preview digests exactly in apply. No wildcard force exists; directory/type/mode/identity changes remain unsupported. `matches_source=true` describes the staged private tree, while retained private choices describe a reviewed merge. These removals do not authorize deletion of installed Kodi destination files. See the maintained [batch-import contract](https://github.com/kcook98765/kodi-lab/blob/main/docs/WORKSPACE-BATCH-IMPORT.md).
 
 After a lost import response, repeat only the identical request UUID and
 parameters to recover its receipt through the documented idempotent recovery.
