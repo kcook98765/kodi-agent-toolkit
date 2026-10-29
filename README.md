@@ -80,7 +80,7 @@ The Python CLI is agent independent. `.opencode` custom tools are optional **fix
 
 [Kodi Lab](https://github.com/kcook98765/kodi-lab) is a separate project. A configured Lab instance can extend the workflow with target discovery, health/UI inspection, and authorized runtime diagnostics. It needs its own installation, disposable target, private credentials, and server-side grants. Client tool filtering cannot grant access.
 
-The latest runtime deployment evaluation was blocked because registered development-source infrastructure was absent. No deployment, runtime reproduction, or autonomous runtime repair completed. Read-only inspection does not establish that an add-on runs correctly.
+The historical beta runtime deployment evaluation was blocked because registered development-source infrastructure was absent. No deployment, runtime reproduction, or autonomous runtime repair completed. Read-only inspection does not establish that an add-on runs correctly. The [everyday development guide](docs/development-workflow.md) describes the current optional loop and dated qualification boundaries.
 
 ## Evidence, evaluation, and limitations
 

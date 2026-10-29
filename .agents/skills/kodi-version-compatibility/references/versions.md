@@ -10,6 +10,9 @@ An `<import version>` declares a minimum dependency version. A higher provided v
 | 21 Omega | 21.3, released | 3.0.1 / 3.0.0 | 21.0.0 (available, not installed here) |
 | 22 Piers | 22.0rc1, prerelease | 3.1.0 / 3.0.0 | no PyPI 22 release verified |
 Kodistubs source declares 22.0.0a3 but is not a published matching distribution. No complete stub coverage or all-platform compatibility is claimed. API dependency values are not CPython versions.
+
+This is a dated reference snapshot, not a current package/release lookup or a multi-version qualification matrix. Preserve the pinned Nexus checker/stub lane unless a separate measured change qualifies another environment. Selecting a different CLI checker branch does not replace the installed stubs. Matrix, Nexus, Omega and Kodi 22 preview each need matching API/type/checker evidence and their own recorded runtime behavior; passing one lane never qualifies another. Kodi Lab's runtime catalog, stored Bridge trust or saved native acceptance cannot fill an unexecuted toolkit/add-on check.
+
 Concrete boundaries: xbmcvfs.translatePath exists across 19-22; deprecated xbmc.translatePath in 19 is removed from 20+. getVideoInfoTag exists in 19, but modern setters such as InfoTagVideo.setTitle and Addon.getSettings are 20+; setVideoAssetTitle is 21+. ListItem.setInfo is retained with partial deprecation, not wholly removed. Selected ListItem setters and HDR details are 22 prerelease additions. Check each signature rather than extending one fact to every method.
 The historical toolkit pilot qualified only a disposable 20.5 runtime. This is not a prerequisite or claim about the current user's environment. A Python 3.12 type check is not proof of the target's interpreter. Current master API docs identify moving 23 development; use tagged evidence for version claims.
 Pinned manifests:

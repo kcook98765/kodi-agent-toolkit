@@ -31,7 +31,7 @@
     "kodi-inspect": {
       "mode": "primary",
       "description": "Read-only disposable Kodi inspection",
-      "prompt": "First load kodi-addon-debugging using the native skill tool. Discover the authorized target, inspect health and UI. Null or associated=false means unknown selection. State diagnostic limits.",
+      "prompt": "First load kodi-addon-debugging using the native skill tool. Discover the authorized target and inspect health. If it is stopped or unusable, report that state and stop; inspect UI only when responsive and authorized. Null or associated=false means unknown selection. State diagnostic limits.",
       "permission": {
         "*": "deny",
         "external_directory": "deny",

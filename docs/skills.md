@@ -30,3 +30,5 @@ The optional OpenCode adapters use `.opencode/tools` and `.opencode/lib`; they r
 Qualified discovery/loading: OpenCode 1.19.0 on Ubuntu. Compatible agents can use the format and independent CLI, but compatibility is an expectation rather than an executed qualification. Native Windows OpenCode execution is not qualified.
 
 Reference: [OpenCode Agent Skills](https://opencode.ai/docs/skills/).
+
+When an existing installation uses `skills.paths` to reference a clean toolkit checkout, update that reviewed source rather than installing duplicate copies. Back up changed skill/reference files with permissions and hashes; preserve local modifications and the existing config. Recheck discovery and actual loading from every normal working directory. OpenCode 1.19.3 discovery on Claw was separately checked in the [workflow refresh](development-workflow.md); earlier reference-agent results remain historical.
