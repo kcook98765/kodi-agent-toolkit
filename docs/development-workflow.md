@@ -30,10 +30,15 @@ with an example configuration.
    next actions; a missing baseline may require the existing stopped-source-copy
    preparation, not another guessed MCP command.
 5. Apply only through an authorized admitted `workspace_deploy`. Managed direct
-   copy uses its guarded stop/copy/restart sequence. Reuse current exact-generation
+   copy uses its guarded stop/copy/restart sequence when application is required.
+   Reuse current exact-generation
    validation/deployment evidence on unchanged bytes; avoid resets, rebuilds or
-   redundant deployment. New same-generation deployments still have checks and
-   lifecycle effects; replayed receipts are historical. Retained destination-only
+   redundant deployment. On servers supporting verified reuse, a new request may
+   return `verified_existing` and `deployment_work_skipped=true` after current
+   byte, identity, readiness and authority checks. Retain its verification proof;
+   it reports zero native restarts and no fresh execution. Missing proof follows
+   the existing full deployment or refusal path. Replayed receipts are historical.
+   Retained destination-only
    files mean selective staging is not exact mirroring or arbitrary deletion.
 6. Use qualified manifest-entry launch or fixed video smoke only where eligible
    and authorized. File application, restart, activation dispatch, fresh code and
@@ -43,8 +48,10 @@ with an example configuration.
    visual authority and actual image analysis. Never navigate under read-only
    authority merely because tools are listed.
 
-Restart is not a routine cure. Current managed direct deployment performs its own
-qualified restart. Live replacement, generic service stop/reload, selected-skin
+Restart is not a routine cure. A full managed direct deployment performs its own
+qualified restart; verified existing-deployment reuse does not restart Kodi.
+Stop/resume, intervening runtime epochs or insufficient current proof can make
+reuse ineligible. Live replacement, generic service stop/reload, selected-skin
 reload, dependent-module invalidation and one-call apply remain unqualified in the
 audited contract. Use a supported stopped-copy/restart route only with authority;
 native code must never be replaced while loaded. Existing Web Python-service
