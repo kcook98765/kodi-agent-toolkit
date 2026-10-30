@@ -7,6 +7,43 @@ Discover `tools/list` on the actual authenticated connection. OpenCode normally
 prefixes names with the configured MCP server name, for example
 `kodi_lab_workspace_deploy_preflight`; use its discovered spelling.
 
+## 2026-10-30 source contract delta
+
+Kodi Lab `b92a14d2c5a2ab292fc0c9100d101b3877fcb1d0`, schema
+`0090_verified_noop_deployment`, adds the following scoped behavior. This source
+reference does not establish that an installed server was upgraded or that a
+particular OpenCode agent received image metadata or passed native acceptance.
+The earlier audit remains a historical checkpoint. Discover the actual
+connection and retain observed receipts.
+
+- A new managed `workspace_deploy` request can return
+  `result_classification=verified_existing`, `deployment_work_skipped=true` and
+  `managed_verification` with the exact reused deployment ID, runtime/container,
+  current source/installed digests, readiness, scanned/hashed/readback counts,
+  zero staged/uploaded bytes and zero native restarts. This is a new verification
+  receipt, not a new native deployment, activation or execution. Authorization,
+  generation, selected session, rate admission, leases and uncertainty fences
+  still apply. Full current installed-tree/ownership and native/Bridge checks
+  are required; an old digest alone is insufficient. Older receipts without
+  proof, stopped Kodi, changed runtime epochs or insufficient eligibility use
+  the existing full deployment/refusal path. Exact UUID replay stays historical.
+- `screenshot_capture` and `screenshot_retrieve` retain the same bounded PNG
+  `ImageContent` and structured metadata, and additionally return identical
+  metadata as text for adapters that discard `structuredContent`. OpenCode
+  1.19.3 kept image attachments but discarded that structured object. Associate
+  image and text from the same tool result; check actual pixels, MIME/dimensions,
+  capture/target/time and, for action-bound retrieval, original request identity,
+  runtime revision and frame age. Retrieval preserves the original capture and
+  existing expiry checks; it does not authorize recapture. Digest and explicit
+  expiry timestamp are not supplied metadata fields; do not invent them.
+- Fixed video smoke recognizes only the reviewed Piers `22.0-rc.1` Python API
+  `3.1.0` / compatible ABI `3.0.0`. Unsupported dependencies, unknown releases
+  and non-video extension shapes retain their refusal. GUI launch alone does
+  not establish fixed-smoke acceptance.
+
+See [verified reuse](https://github.com/kcook98765/kodi-lab/blob/b92a14d2c5a2ab292fc0c9100d101b3877fcb1d0/docs/VERIFIED-NOOP-DEPLOYMENT.md).
+No tool, ordinary client permission or generic execution capability is added.
+
 ## Calls and evidence
 
 Resource IDs below are discovered UUIDs; create a caller-generated request UUID for each genuinely new authorized operation and retain it for recovery. `expected_generation` is the existing observed
@@ -41,8 +78,9 @@ current bytes/liveness. Bridge absence alone is not a managed direct-copy blocke
 Preflight creates no reservation, performs no preparation and cannot guarantee
 later admission. Follow the actor and preconditions in `next_actions`.
 
-Managed direct deployment uses the guarded stopped-copy/restart workflow; it is
-not live apply. Retain the complete receipt with exact target, workspace,
+Full managed direct deployment uses the guarded stopped-copy/restart workflow;
+eligible verified reuse uses the separately described current verification path.
+Retain the complete receipt with exact target, workspace,
 generation, source and server-bound runtime/container evidence. `iteration_evidence`
 separates file application (`verified_at_operation`) and Kodi restart
 (`observed_at_operation`) from unobserved fresh code and unrun functional smoke.
