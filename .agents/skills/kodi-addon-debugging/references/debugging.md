@@ -9,7 +9,7 @@ When logs are available, retain error, surrounding bounded context, timestamp, a
 
 Record the target/version, add-on, deployed workspace generation or revision, symptom and reproduction time. Discover the actual `log_read` schema and authorization before calling it. It requires target inspection authority and a trusted Bridge advertising `log_read`; updating Lab alone does not install or verify that Bridge. Missing exposure, grants, installation or trust is a setup blocker to report to the operator, not permission to change pairing or read host files through another route.
 
-For Kodi Lab's bounded log tool, begin with metadata (`mode: "stats"`, also the default). Then request one relevant excerpt; these are tool arguments, with the discovered target UUID substituted:
+For Kodi Lab's bounded log tool, request one relevant bounded tail directly when it answers the question. Use metadata (`mode: "stats"`, also the default) when metadata/cursor discovery is needed; avoid unnecessary stats reads. These are tool arguments, with the discovered target UUID substituted:
 
 ```json
 {"target_id":"<discovered target UUID>","log":"current","mode":"stats"}

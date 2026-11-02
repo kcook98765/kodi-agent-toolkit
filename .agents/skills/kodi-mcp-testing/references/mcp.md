@@ -15,11 +15,21 @@ Historical workstation pilot: only Kodi 20.5 was runtime-tested in that pilot. I
 
 Use the installed server's exposed schemas and existing grants. Discover the intended target/version with `target_list` and the source with `development_source_list`; use `workspace_status` to find or resume the matching owned workspace before creating another. Inspect only the tree/files needed for the task. Missing source registration, grants or target setup is an operator blocker; report it without inventing IDs, changing permissions or recreating infrastructure.
 
-1. Record the workspace, source, target and current generation. Record existing validation/deployment evidence and assess current prerequisites. If a source baseline is missing, follow the preflight's stated administrator preparation path only with applicable mutation authority; do not automatically deploy or repeat a verified baseline on resume.
+1. Record the workspace, source, target and current generation. Reuse current validation/deployment evidence and assess prerequisites. Expected source-baseline staleness after workspace deployment is distinct from missing provenance; follow [workspace provenance and failure decisions](current-contract.md#calls-and-evidence). If a source baseline is genuinely missing, follow the preflight's stated administrator preparation path only with applicable mutation authority; do not automatically deploy or repeat a verified baseline on resume.
 2. Group related edits, carrying forward the generation returned by each edit. Validate the resulting generation with `workspace_validate`; static validation does not prove runtime behavior.
 3. Read `workspace_deploy_preflight` for that workspace, exact generation and target. Its durable-prerequisite verdict is blocked or unknown, never ready; follow the stated actor/preconditions without treating it as admission. When separately authorized and eligible, deploy that exact validated generation with `workspace_deploy`. Confirm completed deployment and matching target/add-on evidence before executing. An accepted request, healthy target or unchanged add-on version alone is not deployment proof.
-4. Run one authorized, relevant smoke test against the same target/generation, using `workspace_execute` when its fixed smoke operation fits the task. Record its completed outcome; deployment alone is not functional acceptance.
+4. Launch the validated manifest entry with authorized `workspace_launch` and observe fresh-code execution and relevant behavior using bounded logs/UI evidence. Use `workspace_execute` when its fixed smoke operation fits the task. Record the observed outcome; deployment or dispatch alone is not functional acceptance.
 5. Recheck only changed behavior or failed/stale evidence. On an ordinary generation conflict, refresh status and the affected file before editing again; revalidate the new generation before deployment.
+
+The direct-workspace lane is **Inspect → Edit → Validate → Deploy → Launch/Observe
+→ Repeat**, retaining the required preflight and mutation-time admission above.
+Use `workspace_edit` in the existing authorized workspace without unnecessary
+source recopy/preparation, whole-tree rereads or repeated status queries. Program
+54's two successful changed-code iterations took about 41.43 and 41.50 seconds,
+eight MCP calls each; observation varies by task, so this is neither a required
+call count nor a reason for a combined tool. Keep original test content/hash;
+restore through a new supported edit, validate/deploy/launch/observe that generation,
+and accept generation advancement rather than reset history (Program 54: 37→40).
 
 For an in-progress operation, retain its request/operation ID and inspect status using the installed server's documented completion mechanism. A timeout or ambiguous result does not prove failure. Preserve the receipt and uncertainty; do not dispatch another mutation, create a replacement workspace or invent a new request ID to force progress. Report any reconciliation or administrator action required. Stop once the requested result is verified.
 
@@ -52,6 +62,17 @@ Retain `reconciliation_required` outcomes for administrator review; do not repla
 an uncertain import with a new request ID.
 
 ## Launching and relaunching an add-on
+
+Before launch, verify the matching installation is enabled and no unresolved
+modal blocks the task. Inspect the exact native dialog and its effects; never
+blindly dismiss confirmations. In the investigated Kodi 21.3 **Disabled add-ons**
+startup dialog, **No** left the add-on disabled, recorded the USER-disabled reason
+and suppressed future prompts. Copy/deploy does not enable a disabled add-on.
+Respect agent interaction restrictions: where needed, hand off guarded enablement
+of the exact intended add-on to an authorized administrator, preserving runtime,
+source/dependency, CSRF and separate service-start consent guards. Verify its
+receipt and enabled inventory before resuming. This grants no arbitrary dialog
+selection or new MCP enable capability.
 
 Identify the manifest-declared script/plugin entry point and intended destination before navigating. A package with both extensions can open its plugin directory from a generic Run action even when the test needs its custom script window. Verify the actual destination rather than treating any successful invocation as GUI acceptance.
 

@@ -97,6 +97,15 @@ blocks fallback to an older success; tied newest times cannot prove order. Legac
 unbound receipts need fresh verification through the supported workflow, not a
 manual receipt edit.
 
+Registered-source copy evidence and workspace deployment evidence describe
+different installed content. After successful workspace deployment, the registered
+source baseline may appropriately be `stale`. Preserve the workspace receipt and
+assess current installed content through supported preflight/deployment admission
+and status evidence, including current runtime/container/tree and authority proof.
+`prior_workspace_requires_container_proof` alone calls for supported live admission,
+not source recopy, workspace reset or reconciliation. Genuinely missing, unknown or
+mismatched provenance and reconciliation fences still require their stated checks.
+
 ## Separate success states
 
 Report each observed stage independently: target exists; runtime responsive;
@@ -117,12 +126,27 @@ bounded Omega policy. It is not an MCP service-enable tool; enabled state leaves
 it is not a generic unattended installation API.
 
 Managed selection/lifecycle and settings tools are separate opt-in capabilities.
-A Web Current Kodi selection neither grants access nor supplies an arbitrary MCP
-selection API. `managed_ensure_ready` / `managed_release`, when exposed, require
-explicit lifecycle authority; Fresh Test/Switch may replace state and is not a
-routine retry. External-development repository approval/installation remains
-separate from managed direct semantics; production/external targets never inherit
-disposable authority.
+For an authorized retained development/testing profile, use
+`managed_selection_preview(target_id, workspace_id)`, then
+`managed_select(request_id, target_id, workspace_id, expected_generation, identity)`
+with the preview's `latest_generation` and exact opaque `identity`. This is the
+selection-session generation, not the workspace generation; a stale preview needs
+a fresh preview. Selection preserves retained profiles and does not install or
+start Kodi. Current policy permits one selected active managed Kodi at a time.
+Absent runtimes require explicit administrator acquisition/provisioning;
+`managed_ensure_ready` starts only an existing provisioned selected target, and
+`managed_release` may retain a protected/busy target. These tools require their
+explicit authority and applicable workspace, source and Bridge prerequisites.
+A Web Current Kodi choice creates no grants. Fresh Test/Switch may replace state
+and is not a routine retry. Standard noVNC is a human viewer, initially view-only;
+Take Control acquires human input ownership and excludes conflicting agent input.
+
+External Kodi uses supported JSON-RPC and narrow reviewed Bridge capabilities
+under separate exact-target grants, permissions, identity and readiness checks.
+Lab has no managed Docker/runtime ownership, retained selection or profile
+lifecycle control over that device. External-development repository approval and
+installation remain separately qualified; external production is excluded from
+workspace deployment/launch and never inherits disposable development authority.
 
 ## Failure decisions
 
@@ -130,10 +154,12 @@ disposable authority.
 |---|---|
 | Empty targets, `target_not_found_or_not_authorized`, absent tools or missing source grant | Report unavailable under this credential. Rediscover a rejected saved ID once; do not change presets/grants, rotate credentials or infer a stopped target caused a permission denial. |
 | Missing source baseline/attachment | Retain preflight checks. An administrator must use the existing exact stopped-source-copy preparation workflow, after resolving leases/reconciliation and with separate mutation authority. Workspace validation does not establish that baseline. |
+| Source baseline `stale` after workspace deployment / `prior_workspace_requires_container_proof` | Preserve qualifying workspace deployment provenance and obtain current supported runtime/container/tree proof at admission. This state alone does not request source recopy, workspace reset or reconciliation; actual missing/mismatched proof still blocks. |
 | `workspace_generation_conflict` / stale validation | Refresh workspace status and affected content; review competing changes. Validate the actual current generation before a new operation. Do not reset or discard private work. |
 | Busy lease, rate limit or selected-session mismatch | Preserve operation identity. Wait/read status as documented, or report administrator review. No forced release, parallel workaround, repeated deployment or target switch. |
 | Bridge unavailable, untrusted, incompatible or identity mismatch | Native responsiveness and stored trust are insufficient. Retain exact identities and report the blocked Bridge-dependent stage. No re-pair, direct RPC, alternate credential or implicit upgrade. |
 | Lost response / pending / ambiguous mutation | Preserve original request and parameters. Read status; use only documented identical-request receipt recovery. Never mint a new identity to replay an unresolved action, deploy, launch or execution. |
+| Client rejects an MCP output schema (observed examples: `deployment_work_skipped`, `managed_verification`) | The server operation may have succeeded. Preserve the original request/parameters; inspect its receipt through supported read-only status tools and determine the server-side outcome before any retry. Avoid duplicate mutations. Compare the returned response with the currently advertised schema. If stale connection metadata is suspected, have the authorized operator refresh/reconnect only that MCP connection through supported controls when idle, then reverify compatibility. A new conversation alone need not refresh metadata. Other validation errors may have other causes; never disable validation, modify responses or rotate credentials to bypass them. |
 | Managed deployment reconciliation required | Web administrator reviews exact retained operation and performs supported stopped-tree inspection. Contained requested/prior tree proves containment only. A later start/deployment needs its own authority and request after resolution. No workspace reset, DB edit or copy around the fence. |
 | Ambiguous execution | Do not re-execute. Explicitly authorized `workspace_execution_recover` addresses the retained execution operation through bounded stop/start and verification, without rerunning the add-on. Its new recovery request is a different operation; retain both identities. `contained_but_not_ready` / `still_requires_admin` are not success. |
 | Repeated completed deployment receipt | Check target/workspace/generation/runtime and newest authoritative attempt; retain historical status. Replay is not a new install or liveness test. |
