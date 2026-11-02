@@ -21,6 +21,8 @@ with an example configuration.
    Confirm the intended source and owned workspace/current generation. A Web
    Current Kodi choice neither creates grants nor authorizes lifecycle actions.
    Stopped Kodi stays stopped without separately applicable lifecycle authority.
+   For retained managed profiles, see [selection/lifecycle and external-device
+   boundaries](../.agents/skills/kodi-mcp-testing/references/current-contract.md#separate-success-states).
 4. Prepare reviewed workspace changes through the exposed edit/import/capture
    workflow. Lab reads registered sources, never arbitrary agent-local paths.
    Keep private work and exact returned generations/digests. Run Lab's structural
@@ -74,6 +76,10 @@ inspection even when the server advertises deployment. Preserve those limits,
 private token-file interpolation, model/provider identities and custom tools.
 Fresh skill loading should be verified before considering an OpenCode restart;
 restart only through its existing service manager when no active work is disrupted.
+For client output-schema rejection after a possibly completed operation, follow
+the [receipt-first failure decisions](../.agents/skills/kodi-mcp-testing/references/current-contract.md#failure-decisions)
+before retrying or refreshing the affected MCP connection. Skill discovery/loading
+and MCP connection metadata are separate checks.
 
 See [current input/result and recovery reference](../.agents/skills/kodi-mcp-testing/references/current-contract.md),
 [Kodi Lab managed loop](https://github.com/kcook98765/kodi-lab/blob/main/docs/MANAGED-AGENT-LOOP.md),
@@ -88,5 +94,9 @@ and blocked runtime trials. The 2026-10-29 contract audit targets Lab
 from source-only and saved native evidence. OpenCode 1.19.3 discovery on Claw
 uses one existing shared skill source. These facts do not retroactively turn
 historical trials into passes or establish new live deployment/agent repair,
-Windows/physical-device or cross-version acceptance. A current stopped target and
-missing source/workspace grants leave those live stages unqualified.
+Windows/physical-device or cross-version acceptance. At that October audit, a
+stopped target and missing source/workspace grants left those live stages unqualified.
+The separate 2026-11-02 Program 54 Omega acceptance observed baseline and two
+changed-code executions plus original-content restoration through the supported
+workspace loop. It does not qualify other versions or external devices; see the
+[observed iteration example](../.agents/skills/kodi-mcp-testing/references/mcp.md#efficient-development-loop).
