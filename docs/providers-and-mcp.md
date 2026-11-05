@@ -1,4 +1,11 @@
 # Private provider and MCP setup
+
+For selectable development, runtime-testing and inspection roles on another
+installation, start with [portable OpenCode agents](opencode-agents.md). It links
+the model-independent presets, disabled private connection template, local setup
+requirements and verification steps. The older inspection example below remains
+a narrower evaluation example.
+
 OpenCode 1.19.0 is the historical beta reference; Claw discovery was rechecked with 1.19.3 in the [workflow refresh](development-workflow.md). Keep real settings in a private OPENCODE_CONFIG or existing user config. Do not replace a working global file with these templates. Configuration objects merge, so a task overlay can retain already-authorized providers/MCP. Inspect the effective agent permissions before testing.
 
 Copy examples/opencode/inspection.json into a private location, replace provider/model placeholders with endpoint-discovered IDs and verified capabilities, and replace REPLACE_WITH_PRIVATE_TOKEN_PATH with the literal path to a mode-0600 token file outside Git. A model's OpenAI-compatible API must pass chat and synthetic tool calls first. Do not guess context sizes, image support or reasoning behavior. Use one explicit model per trial. Authentication, HTTP framing and model tool-selection failures are separate categories.

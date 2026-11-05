@@ -76,6 +76,18 @@ Copy the relevant directory from `.agents/skills/`, **including its references**
 
 The Python CLI is agent independent. `.opencode` custom tools are optional **fixture-scoped evaluation adapters**; ordinary add-on projects can call the CLI directly. The [standalone OpenCode example](examples/opencode/standalone.json) has no MCP or credentials. Model-driven use still needs a separately configured provider/model; existing global OpenCode settings merge with examples. See [optional provider and MCP setup](docs/providers-and-mcp.md).
 
+## Optional OpenCode agent presets
+
+Use the [portable agent presets](examples/opencode/agents.json) to set up another
+OpenCode installation with `kodi-develop`, `kodi-test`, `kodi-readonly`,
+`kodi-inspect`, `kodi-narrow`, `kodi-visual` and `kodi-support`. They define selectable
+roles, permissions and step limits while loading the portable skills on demand.
+Models, credentials, target IDs and workstation-specific authorizations are
+configured separately. Follow the [installation and verification guide](docs/opencode-agents.md)
+for Linux/WSL or PowerShell, private optional Lab connections and configuration
+merge considerations. These are optional OpenCode 1.x templates; runtime workflows
+still need their own authorization and qualification.
+
 ## Optional Kodi Lab MCP
 
 [Kodi Lab](https://github.com/kcook98765/kodi-lab) is a separate project. A configured Lab instance can extend the workflow with target discovery, health/UI inspection, and authorized runtime diagnostics. It needs its own installation, disposable target, private credentials, and server-side grants. Client tool filtering cannot grant access.
