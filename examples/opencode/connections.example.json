@@ -1,0 +1,23 @@
+{
+  "$schema": "https://opencode.ai/config.json",
+  "mcp": {
+    "kodi_lab": {
+      "type": "remote",
+      "url": "{env:KODI_LAB_INSPECT_URL}",
+      "oauth": false,
+      "headers": {
+        "Authorization": "Bearer {env:KODI_LAB_INSPECT_TOKEN}"
+      },
+      "enabled": false
+    },
+    "kodi_lab_dev": {
+      "type": "remote",
+      "url": "{env:KODI_LAB_DEV_URL}",
+      "oauth": false,
+      "headers": {
+        "Authorization": "Bearer {env:KODI_LAB_DEV_TOKEN}"
+      },
+      "enabled": false
+    }
+  }
+}
