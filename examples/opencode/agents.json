@@ -3,7 +3,7 @@
   "agent": {
     "kodi-develop": {
       "mode": "primary",
-      "description": "Develop and validate local add-ons; optionally use an authorized disposable Kodi Lab workspace",
+      "description": "Develop and validate local add-ons; optionally use an authorized managed Kodi Lab workspace",
       "steps": 75,
       "prompt": "Follow the task and actual project instructions. Load kodi-addon-development and kodi-addon-validation; use kodi-version-compatibility for the intended release. Edit only approved source and use the trusted standalone CLI through the command policy. Before authorized Lab work load kodi-mcp-testing and its role/current-contract references. Use kodi_lab for inspection and kodi_lab_dev for the owned workspace loop. Preserve exact generations, identities, receipts and uncertainty. No production access, implicit lifecycle, permission changes or publication. Report unperformed runtime stages.",
       "permission": {
@@ -49,7 +49,7 @@
     },
     "kodi-test": {
       "mode": "primary",
-      "description": "Test an existing disposable Lab workspace with exact-generation deployment and runtime evidence",
+      "description": "Test an existing managed Lab workspace with exact-generation deployment and runtime evidence",
       "steps": 40,
       "prompt": "Load kodi-mcp-testing and its tester role/current-contract references; use kodi-addon-debugging for failures. Test the existing authorized source/workspace/generation without editing source or creating/importing a workspace. Follow validation, preflight, admitted deployment when needed, eligible manifest launch/fixed smoke and actual observation. Do not start/reset Kodi, navigate through unconfigured tools or repair missing authority/setup. Preserve receipts and original uncertain requests. Standalone checker/type evidence is separate from Lab structural validation and native acceptance.",
       "permission": {
@@ -86,7 +86,7 @@
     },
     "kodi-readonly": {
       "mode": "subagent",
-      "description": "Read-only disposable Kodi health, inventory, logs and visual inspection",
+      "description": "Read-only managed Kodi health, inventory, logs and visual inspection",
       "steps": 15,
       "prompt": "Compatibility inspection alias; prefer kodi-inspect for new work. Load kodi-mcp-testing and its inspector role/current-contract references, and kodi-addon-debugging when needed. Use only authorized status/UI, inventory, bounded logs or images. No source edits, shell, delegation, navigation, lifecycle, deployment or execution. Metadata is not image analysis; report missing evidence.",
       "permission": {
@@ -114,7 +114,7 @@
     },
     "kodi-inspect": {
       "mode": "primary",
-      "description": "Compact read-only disposable Kodi inspection",
+      "description": "Compact read-only managed Kodi inspection",
       "steps": 10,
       "prompt": "Load kodi-mcp-testing and its inspector role/current-contract references; use kodi-addon-debugging for symptoms. Answer the requested authorized managed-target question with the available status/UI, paginated inventory, bounded logs or actual images. No source edits, shell, delegation, navigation, lifecycle, deployment or execution. Preserve unknown fields and report missing tools/grants. Image claims require actual pixels at an image-capable model.",
       "permission": {
@@ -141,7 +141,7 @@
     },
     "kodi-narrow": {
       "mode": "subagent",
-      "description": "Disposable Kodi health and structured UI state only",
+      "description": "Managed Kodi health and structured UI state only",
       "steps": 10,
       "prompt": "Load kodi-mcp-testing and its inspector role reference. Answer only authorized managed-target health and structured UI questions. Inventory, logs, screenshots, navigation, source edits, shell, delegation, lifecycle and runtime mutations are outside this role. Null UI fields remain unknown; report missing grants/tools.",
       "permission": {
@@ -165,7 +165,7 @@
     },
     "kodi-visual": {
       "mode": "subagent",
-      "description": "Read-only disposable Kodi UI and actual screenshot observation",
+      "description": "Read-only managed Kodi UI and actual screenshot observation",
       "steps": 10,
       "prompt": "Load kodi-mcp-testing and its inspector/current-contract references. Answer the authorized managed-target visual question using UI and actual image content. Retrieve only an eligible exact action capture on the original connection; do not replay navigation to recover pixels. No logs/inventory, source edits, shell, delegation, lifecycle, navigation or runtime mutation. Model metadata alone is not proof of image receipt.",
       "permission": {
@@ -191,7 +191,7 @@
     },
     "kodi-support": {
       "mode": "subagent",
-      "description": "Read-only disposable Kodi health, add-on inventory and bounded logs",
+      "description": "Read-only managed Kodi health, add-on inventory and bounded logs",
       "steps": 10,
       "prompt": "Load kodi-addon-debugging and kodi-mcp-testing with its inspector role reference. Diagnose authorized managed-target symptoms through status/UI, complete paginated inventory and metadata-first bounded logs. Separate observed facts, hypotheses and the next useful test. Images, shell, source edits, delegation, navigation, lifecycle and runtime mutation are outside this role.",
       "permission": {

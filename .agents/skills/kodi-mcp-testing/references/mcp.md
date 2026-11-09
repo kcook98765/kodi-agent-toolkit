@@ -82,7 +82,7 @@ selection or new MCP enable capability.
 
 Identify the manifest-declared script/plugin entry point and intended destination before navigating. A package with both extensions can open its plugin directory from a generic Run action even when the test needs its custom script window. Verify the actual destination rather than treating any successful invocation as GUI acceptance.
 
-For an already deployed add-on on a managed disposable development target, prefer
+For an already deployed add-on on a managed development profile, prefer
 `workspace_launch` when exposed and authorized. Use a fresh `request_id`,
 `workspace_id`, exact `expected_generation`, `target_id` and the chosen
 `extension_ordinal` from validation's `launch_entries`. Ordinals follow manifest

@@ -17,7 +17,7 @@ Where a canonical tree, registered source mirror and managed workspace are separ
 
 ## Current Kodi Lab iteration
 
-For an existing authorized managed disposable target, discover its UUID/version and resume the matching owned workspace/source. A Current Kodi selection supplies neither grants nor permission to start a stopped instance. Keep production/external targets on their separate supported routes.
+For an existing authorized managed development profile, discover its UUID/version and resume the matching owned workspace/source. A Current Kodi selection supplies neither grants nor permission to start a stopped instance. Keep production/external targets on their separate supported routes.
 
 For direct workspace work, use **Inspect → Edit → Validate → Deploy →
 Launch/Observe → Repeat** through `workspace_edit` and the checks below. Reuse

@@ -1,6 +1,6 @@
 ---
 name: kodi-mcp-testing
-description: "Verify Kodi Lab MCP runtime workflows on explicitly authorized disposable targets, from read-only smoke tests to permitted deployment checks."
+description: "Verify Kodi Lab MCP runtime workflows on explicitly authorized managed development profiles, from read-only smoke tests to permitted deployment checks."
 license: MIT
 ---
 

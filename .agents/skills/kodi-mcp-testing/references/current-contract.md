@@ -249,7 +249,7 @@ under separate exact-target grants, permissions, identity and readiness checks.
 Lab has no managed Docker/runtime ownership, retained selection or profile
 lifecycle control over that device. External-development repository approval and
 installation remain separately qualified; external production is excluded from
-workspace deployment/launch and never inherits disposable development authority.
+workspace deployment/launch and never inherits managed development authority.
 
 ## Failure decisions
 

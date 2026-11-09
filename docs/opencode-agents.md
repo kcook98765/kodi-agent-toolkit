@@ -25,7 +25,7 @@ no embedded provider, endpoint, context-size claim or default-agent override.
 | Agent | Intended use | Extra tools | Step limit |
 |---|---|---|---|
 | `kodi-develop` | Local add-on changes and static validation; optional Lab development | Local edits, shell commands subject to approval, explicit Lab workspace operations | 75 |
-| `kodi-test` | Runtime test of an existing authorized disposable workspace; no source edits | Workspace reads/validation, preflight, deployment, launch and eligible smoke execution | 40 |
+| `kodi-test` | Runtime test of an existing authorized managed workspace; no source edits | Workspace reads/validation, preflight, deployment, launch and eligible smoke execution | 40 |
 | `kodi-readonly` | Hidden compatibility subagent; prefer `kodi-inspect` | Health, UI, inventory, bounded logs and screenshots | 15 |
 | `kodi-inspect` | Preferred read-only inspection | Same inspection tools as `kodi-readonly` | 10 |
 | `kodi-narrow` | Hidden subagent: health and structured UI only | Target list, status and UI state | 10 |
@@ -132,8 +132,8 @@ until its URL, credential and existing server-side grants are configured.
 
 | Connection name | URL variable | Private credential variable | Intended server authority |
 |---|---|---|---|
-| `kodi_lab` | `KODI_LAB_INSPECT_URL` | `KODI_LAB_INSPECT_TOKEN` | Read-only inspection of the selected disposable target |
-| `kodi_lab_dev` | `KODI_LAB_DEV_URL` | `KODI_LAB_DEV_TOKEN` | Development on the exact disposable target/source/workspace |
+| `kodi_lab` | `KODI_LAB_INSPECT_URL` | `KODI_LAB_INSPECT_TOKEN` | Read-only inspection of the selected managed development profile |
+| `kodi_lab_dev` | `KODI_LAB_DEV_URL` | `KODI_LAB_DEV_TOKEN` | Development on the exact managed target/source/workspace |
 
 Supply secrets through private environment/auth storage, not a committed file or
 literal shell command saved in history. Where supported, replace an environment
@@ -154,7 +154,11 @@ matching agent permission and prompt. The inspector must use the inspection
 credential; do not silently substitute the development credential. Unsupported
 tools in a permission list do not become available merely by being named there.
 
-All runtime presets target **managed disposable development instances**. No
+All runtime presets target **managed development profiles, retained by default**.
+Stop preserves settings and installed add-ons; Reset is explicitly destructive
+and requires separate authority. Disposable fixtures and isolated validation
+environments remain useful, but ordinary managed profiles are not implicitly
+throwaway. No
 production/household target ID, control connection, navigation, host command,
 lifecycle grant or standing authorization is copied from the source workstation.
 If testing needs navigation or a different lifecycle operation, the operator must
@@ -199,7 +203,7 @@ Then perform only the applicable authorized smoke checks:
   Confirm actual discovery/status results and no runtime mutation.
 - For visual questions verify receipt of actual image content, not just a capture
   ID. Logs/UI access depends on installed schemas and grants.
-- Test development/runtime only against an explicitly authorized disposable
+- Test development/runtime only against an explicitly authorized managed
   workspace. Record source/target/workspace identity, generation, validation,
   preflight, deployment receipt and observed behavior. Do not call a blocked or
   unperformed stage a pass. The tester does not repair source or prepare a missing
