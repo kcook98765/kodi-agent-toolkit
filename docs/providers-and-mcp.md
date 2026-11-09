@@ -20,6 +20,42 @@ References: [skills](https://opencode.ai/docs/skills/), [configuration](https://
 
 The inspection template leaves MCP disabled and has no selected active model. Replace placeholders privately, choose `--model PROVIDER/MODEL_ID`, and enable MCP only after configuring the intended server-side grant. Optional model trials require a provider; the standalone CLI does not.
 
+## Connection and authority checks
+
+Keep inspection and development on distinct private client credentials, with exact
+managed target grants and no standing production authority. Development also needs
+the explicit source grant and client-owned workspace binding. Source import,
+managed versions, destructive Reset and settings writes are separate opt-ins;
+the built-in Add-on Development preset does not automatically gain them.
+
+Use valid JSON-RPC POST initialization on the installed `/mcp` endpoint for an
+authentication check. A 401 Bearer means authentication failed; a GET/405 is a
+method result. OpenCode can show a final SSE-fallback 405 after an earlier
+streamable-HTTP failure. Check the earlier transport/auth outcome before changing
+the URL. Correct token shape, a saved file or an old successful session does not
+prove that the current installed credential store recognizes it. Preserve secrets
+and disabled client state until an explicitly approved administrative repair.
+
+Connection aliases determine tool prefixes. Portable examples use `kodi_lab` and
+`kodi_lab_dev`; a private alias change must update all matching permission names.
+Compare authenticated discovery with the installed registry; a registered tool,
+client allowlist and server grant are three different facts. If discovery is
+blocked, label the comparison source-only instead of using administrator or
+production credentials as a substitute.
+
+At the 2026-11-09 contract checkpoint screenshots require `target.inspect` with
+exact target policy/grants, not a mandatory extra `target.visual`; external Kodi
+also has its screenshot preference. Follow the receiving contract rather than
+silently broadening grants. Correlated retrieval needs the original client,
+request/capture IDs and runtime identity. Verify actual image delivery to an
+image-capable model; text-only providers cannot analyze capture metadata as pixels.
+
+After a mutation times out or a client rejects its output schema, inspect the
+retained server receipt with the original request identity before retrying.
+An authorized operator may refresh only the affected idle MCP connection and
+recheck its current schemas. A new conversation need not refresh cached tool
+metadata. Do not disable validation or rotate credentials to bypass uncertainty.
+
 ## Longer OpenCode development sessions
 
 Inspect the effective development agent's `steps` setting before a long authorized test/fix loop. A low explicit limit forces a text-only summary even when work remains; repeated "continue" messages do not remove that limit. Operators can raise the limit to suit their budget or omit it to allow iteration until the agent finishes or the user interrupts. Keep deliberately bounded inspection agents separate. Markdown instructions cannot override the engine's configured step limit, and an add-on task does not authorize the agent to rewrite its own configuration. See [OpenCode max steps](https://opencode.ai/docs/agents/#max-steps).

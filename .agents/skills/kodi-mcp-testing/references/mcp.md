@@ -2,6 +2,12 @@
 
 For current input/result shapes, preflight, receipt ordering, activation limits and failure handling, read [current contracts and recovery](current-contract.md).
 The server enforces client preset, exact target grants, credential validity and target policy. Client filtering minimizes schemas and cannot replace those boundaries. Use discovery then stable UUIDs. On a rejected saved UUID, discover once; do not infer existence or bypass authorization.
+
+For version-oriented Status/Start/Stop and destructive Reset, use the current
+contract's [managed lifecycle section](current-contract.md#opt-in-managed-version-lifecycle).
+Stop retains the profile; Reset invalidates profile/Bridge evidence and needs
+separate administrator preparation before workspace development resumes. Neither
+UI selection nor native readiness grants workspace or Bridge authority.
 Recommended read-only profiles:
 - Health/UI: target_list, target_status, inspect_ui_state.
 - Add-on support: those plus addon_list.
@@ -116,7 +122,9 @@ observation failure does not change the action's outcome.
 
 When pixels are needed, use `screenshot_retrieve` on the original client connection
 with that action's exact `target_id`, original `request_id` and `capture_id`.
-Current visual authority and the same runtime identity are required. Retrieval
+Current screenshot authority and the same runtime identity are required. At the
+2026-11-09 checkpoint capture/retrieve use `target.inspect`; do not infer a
+mandatory extra `target.visual` grant from historical wording. Retrieval
 returns the correlated frame without a new capture or navigation. Images expire
 after two minutes and can be replaced sooner; an unavailable frame is not newer
 visual evidence and does not justify repeating the action. Recover the original

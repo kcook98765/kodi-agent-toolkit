@@ -1,5 +1,108 @@
 # Current Kodi Lab contract and recovery
 
+## 2026-11-09 contract checkpoint
+
+Source: Kodi Lab `683738e7fd40d96b671efe7889d4ab2480cbc009`, migration
+`0007_production_navigation`. Installed source/schema inspection found 35
+registered tools; authenticated discovery was unavailable during this checkpoint.
+This is not a 35-tool client acceptance claim. Discover the permission-filtered
+catalog with the receiving installation's own credential before runtime work.
+The October checkpoints below remain historical evidence.
+
+The endpoint uses stateless HTTP POST. The current transport supports
+`2026-07-28` and legacy `2025-11-25`; ordinary OpenCode remote MCP uses its
+streamable-HTTP SDK's compatible initialization flow. Do not substitute a GET SSE
+endpoint after a 405. Connection aliases are private settings: a server tool
+`workspace_status` becomes `kodi_lab_dev_workspace_status` when the configured
+alias is `kodi_lab_dev`. Changing the alias requires matching permission changes.
+
+### Opt-in managed version lifecycle
+
+| Tool | Closed input | Required client and canonical-target policy |
+|---|---|---|
+| `managed_status` | `{}` | `managed.versions`; authorized slot/target state is filtered |
+| `managed_start` | `version`, `request_id` | `managed.versions` and exact target grant |
+| `managed_stop` | `version`, `request_id` | `managed.versions` and exact target grant |
+| `managed_reset` | `version`, `request_id`, optional `restart` (default false) | Both `managed.versions` and destructive `managed.reset`, exact target grant and explicit task authority |
+
+`version` is one of `matrix`, `nexus`, `omega`, `piers`; `request_id` is a UUID.
+No container/path/image/force parameter exists. Persist the original intent and
+use the same UUID/version/restart value for documented polling or lost-response
+recovery. Never retry uncertainty under a new identity.
+
+Start resumes the retained profile or composes an empty approved cached slot;
+it does not download, approve or repin runtimes. Continue native work only when
+`status.native_ready` is true. Bridge trust/capability and source/workspace
+authority remain separate. Stop retains the writable profile; require
+`stop_confirmed`. Release of a use hold is not proof of Stop. Respect other users,
+viewers, input ownership, leases, uncertainty fences and the configured concurrent
+running limit. No automatic eviction/version switch is implied.
+
+Reset deliberately replaces Kodi's writable settings/databases/installed add-ons
+from the approved cached image. It preserves independent Git/source/workspace and
+retained Lab evidence; it is not an ordinary iteration/recovery shortcut. It
+invalidates Bridge and profile-bound deployment/enablement evidence and closes
+a disposed Current Kodi selection. Default Reset leaves the replacement stopped;
+`restart:true` requests native Start, not full agent readiness.
+
+After Reset, existing MCP selection cannot bootstrap the disposed Current Kodi
+binding. An authorized Web administrator must select the replacement/workspace
+while Kodi are stopped, copy a fresh registered-source baseline, establish
+reviewed Bridge trust and enable the intended add-on through supported setup.
+Existing grants survive but do not provide those preparation powers. Resume the
+workspace loop only after that separate preparation. Native-ready alone is not
+Bridge-ready or workspace-ready. Preserve original Reset/child receipts if any
+replacement stage is uncertain; neither elapsed time nor an empty inventory
+unlocks an uncertain removal.
+
+Legacy `managed_selection_preview`/`managed_select` and
+`managed_ensure_ready`/`managed_release` remain separately opt-in
+`managed.lifecycle` tools. The version interface requires `managed.versions`;
+old presets do not acquire it, Reset, source-import or settings authority
+automatically. Default Toolkit agents grant none of these lifecycle operations.
+
+### Source, workspace and screenshots
+
+Lab sees only administrator-registered sources below its configured development
+root. Synchronize a reviewed local source mirror explicitly; workspace creation
+takes `source_id`, not an arbitrary workstation path. Source grants, client-owned
+workspace binding, selected-session identity and current generation remain
+independent. Import/preview require `development_source.inspect` plus
+`workspace.edit`; they are not implied by the ordinary Add-on Development preset.
+Preflight still reserves nothing and returns `blocked` or `unknown`, not ready.
+Deployment performs current admission, baseline/ownership/readiness and exact
+runtime/profile checks. A stale source baseline after workspace deployment is
+not by itself a request to overwrite the workspace or recopy source.
+
+At this checkpoint screenshot capture/retrieval registry permissions are
+**`target.inspect`**, not a mandatory extra `target.visual` permission. Exact
+target grants, target policy and technical readiness still apply; external Kodi
+also requires its separate screenshots preference. Do not port older visual
+permission assumptions onto this contract or grant production access for a
+development test. The inspector connection must use its own restricted client.
+
+`screenshot_capture` takes `target_id` and optional `request_id`.
+`screenshot_retrieve` takes exact `target_id`, original action `request_id` and
+`capture_id`, on the original authorized managed-development client. Retrieval
+requires the same current runtime identity and an unexpired retained frame;
+it never recaptures or selects newer pixels. `remote_action` needs control
+authority; `observe_ui:true` adds independently authorized UI/capture evidence.
+Capture/retrieve return image content plus metadata/text. Verify that actual
+image input reaches an image-capable model before making visual claims.
+
+Current deployment/launch inputs in the table below remain applicable. Closed
+schemas reject extra parameters. Preserve exact request/generation/receipt
+identities after timeout or client output-schema rejection, inspect the durable
+server outcome first, then refresh only the affected idle MCP connection when
+needed. A new conversation need not refresh cached schemas. No bypass, automatic
+credential rotation, duplicate deployment or new-UUID recovery is authorized.
+
+Pinned maintained contracts: [managed loop](https://github.com/kcook98765/kodi-lab/blob/683738e7fd40d96b671efe7889d4ab2480cbc009/docs/MANAGED-AGENT-LOOP.md),
+[version lifecycle](https://github.com/kcook98765/kodi-lab/blob/683738e7fd40d96b671efe7889d4ab2480cbc009/docs/MANAGED-VERSION-LIFECYCLE.md),
+[clean Reset](https://github.com/kcook98765/kodi-lab/blob/683738e7fd40d96b671efe7889d4ab2480cbc009/docs/MANAGED-CLEAN-RESET.md).
+
+## Historical source checkpoints
+
 Source audit: Kodi Lab `56517d3abd6faf661b990d58e574a94193f8b532`, schema
 `0088_service_enable_start` (2026-10-29). This is a dated contract reference,
 not a promise that every installed server, client or target exposes these tools.

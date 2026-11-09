@@ -48,7 +48,12 @@ class OpenCodeAgentBoundaryTests(unittest.TestCase):
         for name, agent in AGENTS.items():
             for tool in ["kodi_lab_control_remote_action", "kodi_lab_production_target_status",
                          "kodi_lab_dev_target_restart", "kodi_lab_target_start",
-                         "unrelated_server_workspace_edit"]:
+                         "unrelated_server_workspace_edit",
+                         "kodi_lab_dev_managed_status", "kodi_lab_dev_managed_start",
+                         "kodi_lab_dev_managed_stop", "kodi_lab_dev_managed_reset",
+                         "kodi_lab_dev_managed_select", "kodi_lab_dev_managed_ensure_ready",
+                         "kodi_lab_dev_workspace_execution_recover",
+                         "kodi_lab_dev_promotion_request", "kodi_lab_dev_addon_settings_set"]:
                 with self.subTest(agent=name, tool=tool):
                     self.assertEqual(effect(agent["permission"], tool), "deny")
         self.assertEqual(effect(AGENTS["kodi-develop"]["permission"], "bash"), "ask")
@@ -58,13 +63,24 @@ class OpenCodeAgentBoundaryTests(unittest.TestCase):
         self.assertEqual(set(config), {"$schema", "agent"})
         for name, agent in AGENTS.items():
             with self.subTest(agent=name):
-                self.assertEqual(agent["mode"], "primary")
+                if name in {"kodi-develop", "kodi-test", "kodi-inspect"}:
+                    self.assertEqual(agent["mode"], "primary")
+                    self.assertFalse(agent.get("hidden", False))
+                else:
+                    self.assertEqual(agent["mode"], "subagent")
+                    self.assertTrue(agent["hidden"])
                 self.assertNotIn("model", agent)
                 skill_rules = agent["permission"]["skill"]
                 self.assertEqual(skill_rules["*"], "deny")
                 for skill, action in skill_rules.items():
                     if action == "allow":
                         self.assertTrue((ROOT / ".agents" / "skills" / skill / "SKILL.md").is_file())
+
+    def test_variants_preserve_distinct_capability_boundaries(self):
+        self.assertEqual(AGENTS["kodi-readonly"]["permission"], AGENTS["kodi-inspect"]["permission"])
+        self.assertEqual(effect(AGENTS["kodi-narrow"]["permission"], "kodi_lab_log_read"), "deny")
+        self.assertEqual(effect(AGENTS["kodi-visual"]["permission"], "kodi_lab_addon_list"), "deny")
+        self.assertEqual(effect(AGENTS["kodi-support"]["permission"], "kodi_lab_screenshot_capture"), "deny")
 
     def test_connection_examples_are_disabled_and_have_no_embedded_credentials(self):
         config = json.loads((EXAMPLES / "connections.example.json").read_text(encoding="utf-8"))
