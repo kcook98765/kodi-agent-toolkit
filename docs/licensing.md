@@ -48,6 +48,13 @@ The following versions/licenses match the lock and installed distribution metada
 | [wheel](https://github.com/pypa/wheel) | 0.48.0 | MIT |
 | [xmlschema](https://github.com/sissaschool/xmlschema) | 4.3.2 | MIT |
 
+The optional `requirements-omega.lock` changes only Kodistubs to **21.0.0**,
+GPL-3.0-only as declared in its [PyPI release metadata](https://pypi.org/project/Kodistubs/21.0.0/).
+Its single accepted universal wheel hash and unchanged dependency pins are in
+that lock; [Omega setup](stubs.md#isolated-omega-option) records the provenance
+and scope. The beta dependency inventory above remains the original Nexus
+inventory. No dependency code, wheels or license texts are newly redistributed.
+
 ## Publication review
 
 Only original source, safe fixtures, original helpers, documentation, examples and sanitized numeric evaluation evidence are published. Raw transcripts, private credential/configuration files, Kodi library metadata, runtime diagnostics, dependency packages, generated caches and Kodi binaries are excluded. All included PNG paths share one original generated fixture image. Phase 7's report records the candidate/history scan boundary and the separate initial-snapshot decision.

@@ -1,10 +1,10 @@
 ---
 name: kodi-mcp-testing
-description: "Verify Kodi Lab MCP runtime workflows on explicitly authorized disposable targets, from read-only smoke tests to permitted deployment checks."
+description: "Verify Kodi Lab MCP runtime workflows on explicitly authorized managed development profiles, from read-only smoke tests to permitted deployment checks."
 license: MIT
 ---
 
-Read [the workflow reference](references/mcp.md) when authority, pagination, deployment, add-on launch/relaunch or UI controls matter. Read [current contracts and recovery](references/current-contract.md) for exact inputs, preflight, repeated deployments, activation limits or failure decisions. It covers registered-source batch import, exact manifest-entry launch, and action observations with correlated screenshot retrieval when the installed Lab exposes them. For launch tests, identify the manifest entry point and intended window first; retain a verified launch route across iterations. A stopped managed target is not usable; report its state without starting or replacing it unless lifecycle action is separately authorized. Discover and verify the disposable target UUID/version. Never invent an ID; recover from a rejected saved UUID by one discovery. Server capabilities are distinct from client grants.
+Read [role boundaries](references/agent-roles.md) when choosing developer, tester or inspector responsibilities. Read [the workflow reference](references/mcp.md) for authority, pagination, deployment, launch and UI controls, and [current contracts and recovery](references/current-contract.md) for exact inputs, managed version lifecycle, retained profiles, explicit destructive Reset, admission and uncertainty. For launch tests identify the manifest entry and intended window first. A stopped target is not usable; do not start or replace it without separate lifecycle authority. Discover the exact version/target and current profile identity; recover a rejected saved UUID with one discovery. Server capabilities are distinct from client grants.
 
 Use only tools needed for the completion criterion: list then status for health; UI state for window/focus; paginated addon_list for inventory; screenshot only for actual image analysis. Null/unassociated fields are unknown. Do not retrieve UI/inventory merely because tools are exposed.
 

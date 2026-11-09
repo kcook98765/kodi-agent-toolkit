@@ -12,7 +12,9 @@ with an example configuration.
    add-on manifest/entry points and explicitly selected Kodi version.
 2. Make a focused change. Run standalone discovery and validation with the trusted
    isolated Python environment and explicit metadata cache. Inspect all stages
-   and warnings; our pinned Nexus lane does not qualify Matrix/Omega/22. Static
+   and warnings; the Nexus lock does not qualify another release. Use the
+   [separate Omega option](stubs.md#isolated-omega-option) for its measured static
+   coverage; neither lane qualifies Matrix/22 or native behavior. Static
    PASS leaves runtime untested. Optional fixture adapters accept only their
    documented roots; existing local adapters may have different schemas/scopes.
 3. For Lab work, discover authenticated tools and the authorized exact target UUID,
@@ -25,6 +27,10 @@ with an example configuration.
    boundaries](../.agents/skills/kodi-mcp-testing/references/current-contract.md#separate-success-states).
 4. Prepare reviewed workspace changes through the exposed edit/import/capture
    workflow. Lab reads registered sources, never arbitrary agent-local paths.
+   Synchronize reviewed local bytes into the administrator-registered source
+   mirror through the project's explicit workflow; workspace creation and import
+   do not discover arbitrary workstation paths. Verify source grants and the
+   acting client's workspace binding before reusing a saved workspace ID.
    Keep private work and exact returned generations/digests. Run Lab's structural
    validation separately from toolkit checking, then `workspace_deploy_preflight`
    for the same generation and target. It assesses durable prerequisites, returns
@@ -49,6 +55,32 @@ with an example configuration.
    action observations/captures to avoid repeated navigation. Screenshots need
    visual authority and actual image analysis. Never navigate under read-only
    authority merely because tools are listed.
+
+## Retained profiles and explicit Reset
+
+The current version-oriented opt-in is Status → Start(version) → develop/test →
+Stop(version). Use `managed_status({})`, then separately authorized
+`managed_start`/`managed_stop` with a persisted UUID and version. Both client and
+canonical target policy require `managed.versions` and the exact target grant.
+Old presets and `managed.lifecycle` do not supply it. Start uses approved cached
+runtimes and does not acquire or repin one. Respect the configured running limit.
+Require `native_ready` before native use; Bridge and workspace readiness remain
+separate. `managed_release` releases use and does not prove Kodi stopped.
+
+Stop retains settings and installed add-ons. `managed_reset` instead discards the
+writable Kodi profile and needs explicit destructive task authority plus
+`managed.reset`. It preserves independent source/workspace/Git/evidence, defaults
+to stopped and invalidates Bridge/profile-bound evidence and a disposed Current
+Kodi selection. Reset is not routine iteration or recovery. After Reset, an
+administrator must select the replacement/workspace while Kodi are stopped and
+complete fresh source-copy, reviewed Bridge trust and add-on enablement. Existing
+MCP selection cannot bootstrap that disposed binding. Grants alone do not perform
+this setup. See [current lifecycle inputs and recovery](../.agents/skills/kodi-mcp-testing/references/current-contract.md#opt-in-managed-version-lifecycle).
+
+Keep the original UUID and parameters for lost-response recovery; never repeat
+an uncertain lifecycle/deploy/launch operation with a new UUID. A historical
+receipt, native Start or unchanged add-on version does not establish successor
+profile identity, installed bytes, Bridge readiness or fresh execution.
 
 Restart is not a routine cure. A full managed direct deployment performs its own
 qualified restart; verified existing-deployment reuse does not restart Kodi.
