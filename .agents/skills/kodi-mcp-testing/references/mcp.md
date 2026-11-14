@@ -1,12 +1,13 @@
 # MCP test boundary
 
+For a new Trusted Managed Lab-owned project, use [the managed agent workflow](managed-agent-workflow.md): project_create/project_import (and project_transfer for bounded larger sources), workspace status/edit/validate/preflight, explicit direct deployment, declared-entry launch and observation. Do not require manually registered sources for this route. Registered-source workflows below remain valid for existing sources. Autonomous Reset needs task-level destructive authority, expected_profile and a separately verified Bridge preparation receipt. Original ZIP delivery and repository installation by ID are not equivalent to unattended source deployment.
+
 For current input/result shapes, preflight, receipt ordering, activation limits and failure handling, read [current contracts and recovery](current-contract.md).
 The server enforces client preset, exact target grants, credential validity and target policy. Client filtering minimizes schemas and cannot replace those boundaries. Use discovery then stable UUIDs. On a rejected saved UUID, discover once; do not infer existence or bypass authorization.
 
 For version-oriented Status/Start/Stop and destructive Reset, use the current
 contract's [managed lifecycle section](current-contract.md#opt-in-managed-version-lifecycle).
-Stop retains the profile; Reset invalidates profile/Bridge evidence and needs
-separate administrator preparation before workspace development resumes. Neither
+Stop retains the profile; Reset invalidates profile/Bridge evidence. Trusted Managed Lab Reset includes a separate durable reviewed Bridge-preparation workflow; confirm its checkpoint before resuming. Legacy manually selected sessions may still require administrator re-binding. Neither
 UI selection nor native readiness grants workspace or Bridge authority.
 Recommended read-only profiles:
 - Health/UI: target_list, target_status, inspect_ui_state.

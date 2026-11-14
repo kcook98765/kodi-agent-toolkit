@@ -17,7 +17,7 @@ Where a canonical tree, registered source mirror and managed workspace are separ
 
 ## Current Kodi Lab iteration
 
-For an existing authorized managed development profile, discover its UUID/version and resume the matching owned workspace/source. A Current Kodi selection supplies neither grants nor permission to start a stopped instance. Keep production/external targets on their separate supported routes.
+For a new explicitly authorized Trusted Managed Lab agent-owned add-on, prefer `project_create`/`project_import` (plus `project_transfer` for larger reviewed packages), then owned `workspace_status` → edit → validate → preflight → direct deploy → manifest launch and native observation; see [managed project workflow](../../kodi-mcp-testing/references/managed-agent-workflow.md). It does not require manual Web source registration or Current Kodi selection. Original ZIP delivery is not native installation. For an existing authorized managed development profile, discover its UUID/version and resume the matching owned workspace/source. A Current Kodi selection supplies neither grants nor permission to start a stopped instance. Keep production/external targets on their separate supported routes.
 
 For direct workspace work, use **Inspect → Edit → Validate → Deploy →
 Launch/Observe → Repeat** through `workspace_edit` and the checks below. Reuse
