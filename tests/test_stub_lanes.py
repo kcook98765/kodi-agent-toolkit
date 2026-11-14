@@ -1,7 +1,7 @@
 """Read-only stub lanes: pin consistency, no implicit environment qualification."""
 import importlib.metadata as metadata
 from pathlib import Path
-import re
+import sys
 import unittest
 from unittest.mock import patch
 
@@ -11,6 +11,22 @@ ROOT = Path(__file__).resolve().parents[1]
 
 
 class StubLaneTests(unittest.TestCase):
+    def setUp(self):
+        self.tools = {"Kodistubs": "20.0.1", "mypy": "2.4.0", "kodi-addon-checker": "0.0.36"}
+        def version(package):
+            if self.tools.get(package) is None:
+                raise metadata.PackageNotFoundError(package)
+            return self.tools[package]
+        for target, kwargs in (
+            ("metadata.version", {"side_effect": version}),
+            ("platform.python_implementation", {"return_value": "CPython"}),
+            ("sys.version_info", {"new": (3, 12, 3)}),
+            ("sys.platform", {"new": "linux"}),
+        ):
+            patcher = patch("kodi_agent_toolkit.stub_lanes." + target, **kwargs)
+            patcher.start()
+            self.addCleanup(patcher.stop)
+
     def test_four_distinct_branches_and_pinned_requirements(self):
         self.assertEqual([x[0] for x in LANES], ["matrix", "nexus", "omega", "piers"])
         for branch, version, expected, filename, qualified in LANES:
@@ -32,19 +48,41 @@ class StubLaneTests(unittest.TestCase):
                             for x in result["lanes"]))
 
     def test_correct_major_without_qualification_remains_pending(self):
-        with patch("kodi_agent_toolkit.stub_lanes.metadata.version", return_value="22.0.1rc1"):
-            result = stub_lanes()
-        piers = next(x for x in result["lanes"] if x["branch"] == "piers")
+        self.tools["Kodistubs"] = "22.0.1rc1"
+        piers = stub_lanes()["lanes"][3]
         self.assertTrue(piers["installed_in_this_interpreter"])
         self.assertFalse(piers["ready_for_qualified_static_checks"])
         self.assertEqual(piers["static_qualification"], "pending")
 
     def test_nexus_only_when_matching_exact_pin(self):
-        with patch("kodi_agent_toolkit.stub_lanes.metadata.version", return_value="20.0.1"):
-            result = stub_lanes()
+        result = stub_lanes()
+        self.assertEqual(result["python_executable"], sys.executable)
+        self.assertTrue(result["python_version"])
         ready = [x["branch"] for x in result["lanes"]
                  if x["ready_for_qualified_static_checks"]]
         self.assertEqual(ready, ["nexus"])
+        self.tools["Kodistubs"] = "20.0.2"
+        self.assertFalse(stub_lanes()["lanes"][1]["ready_for_qualified_static_checks"])
+
+    def test_missing_or_mismatched_tools_cannot_report_ready(self):
+        for package in ("mypy", "kodi-addon-checker"):
+            for value in (None, "0.0.0"):
+                with self.subTest(package=package, value=value):
+                    old = self.tools[package]
+                    self.tools[package] = value
+                    lane = stub_lanes()["lanes"][1]
+                    self.assertFalse(lane["ready_for_qualified_static_checks"])
+                    self.assertTrue(any(package in x for x in lane["readiness_limits"]))
+                    self.tools[package] = old
+
+    def test_unqualified_interpreter_or_platform_cannot_report_ready(self):
+        with patch("kodi_agent_toolkit.stub_lanes.sys.version_info", (3, 11, 0)):
+            self.assertFalse(stub_lanes()["lanes"][1]["ready_for_qualified_static_checks"])
+        with patch("kodi_agent_toolkit.stub_lanes.sys.platform", "darwin"):
+            self.assertFalse(stub_lanes()["lanes"][1]["ready_for_qualified_static_checks"])
+        self.tools["Kodistubs"] = "21.0.0"
+        with patch("kodi_agent_toolkit.stub_lanes.sys.platform", "win32"):
+            self.assertFalse(stub_lanes()["lanes"][2]["ready_for_qualified_static_checks"])
 
     def test_no_mutation_in_lane_module(self):
         source = (ROOT / "src/kodi_agent_toolkit/stub_lanes.py").read_text()

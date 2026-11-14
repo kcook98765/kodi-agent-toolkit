@@ -2,7 +2,7 @@
 
 ## Four Kodi Lab target lanes (2026-11-14)
 
-Use `kodi-toolkit stub-lanes` to inspect **this interpreter's** installed Kodistubs version, the four supported Kodi Lab branch names, the expected package pins and the current qualification state. It performs no downloads, mutations or version switching. `--branch` selects the official checker branch; it **does not** change Python environments or install matching type stubs. Use an isolated Python interpreter for each lane and execute validation with that interpreter. A wrong-major installation is a type-coverage failure.
+Use `kodi-toolkit stub-lanes` to inspect **this interpreter's** installed Kodistubs version, the four supported Kodi Lab branch names, the expected package pins and the current qualification state. It also reports the actual Python version, platform, mypy and official checker versions. Readiness requires the recorded CPython 3.12/platform scope and pinned tools; it does not verify the full dependency lock, index cache or an add-on. It performs no downloads, mutations or version switching. `--branch` selects the official checker branch; it **does not** change Python environments or install matching type stubs. Use an isolated Python interpreter for each lane and execute validation with that interpreter. A wrong-major installation is a type-coverage failure.
 
 | Managed Kodi | Candidate Kodistubs | Toolkit environment | Qualification |
 | --- | --- | --- | --- |
