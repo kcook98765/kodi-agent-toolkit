@@ -3,8 +3,7 @@
 ## Unreleased
 
 Add read-only four-version `stub-lanes` discovery with observed interpreter/tool
-versions and explicit candidate versus qualified static coverage. Matrix and
-Piers pins remain candidates pending isolated qualification.
+versions and explicit candidate versus qualified static coverage. Matrix now has an isolated hash-locked CPython 3.12 environment and real positive/negative static tests. Two source-verified Matrix metadata annotation corrections use temporary, hash-guarded mypy shadows. Existing Nexus/Omega locks remain unchanged. Piers remains a candidate pending qualification.
 
 Added portable OpenCode 1.x presets for development, runtime testing and five
 read-only inspection roles, plus a disabled private MCP connection template and
