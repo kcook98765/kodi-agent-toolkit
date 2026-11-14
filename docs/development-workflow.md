@@ -25,7 +25,7 @@ with an example configuration.
    Stopped Kodi stays stopped without separately applicable lifecycle authority.
    For retained managed profiles, see [selection/lifecycle and external-device
    boundaries](../.agents/skills/kodi-mcp-testing/references/current-contract.md#separate-success-states).
-4. Prepare reviewed workspace changes through the exposed edit/import/capture
+4. For a **Trusted Managed Lab agent-owned project**, prefer [new project/import → owned workspace → validate → direct deploy → launch](../.agents/skills/kodi-mcp-testing/references/managed-agent-workflow.md), without manual Web source registration. The following registered-source mirror path is an **alternative** for existing manually registered source workspaces. Prepare reviewed workspace changes through the exposed edit/import/capture
    workflow. Lab reads registered sources, never arbitrary agent-local paths.
    Synchronize reviewed local bytes into the administrator-registered source
    mirror through the project's explicit workflow; workspace creation and import
@@ -71,11 +71,7 @@ Stop retains settings and installed add-ons. `managed_reset` instead discards th
 writable Kodi profile and needs explicit destructive task authority plus
 `managed.reset`. It preserves independent source/workspace/Git/evidence, defaults
 to stopped and invalidates Bridge/profile-bound evidence and a disposed Current
-Kodi selection. Reset is not routine iteration or recovery. After Reset, an
-administrator must select the replacement/workspace while Kodi are stopped and
-complete fresh source-copy, reviewed Bridge trust and add-on enablement. Existing
-MCP selection cannot bootstrap that disposed binding. Grants alone do not perform
-this setup. See [current lifecycle inputs and recovery](../.agents/skills/kodi-mcp-testing/references/current-contract.md#opt-in-managed-version-lifecycle).
+Kodi selection. Reset is not routine iteration or recovery. For a trusted agent, Reset requires the observed exact `expected_profile` and creates a separate durable Bridge-preparation receipt; inspect completion and live trust before new deployment. Agent-owned private workspaces survive Reset and do not require legacy Web selection. Older selected Current Kodi sessions may require administrator re-binding, source-copy and preparation. Grants alone do not prove any setup succeeded. See [current lifecycle inputs and recovery](../.agents/skills/kodi-mcp-testing/references/current-contract.md#opt-in-managed-version-lifecycle).
 
 Keep the original UUID and parameters for lost-response recovery; never repeat
 an uncertain lifecycle/deploy/launch operation with a new UUID. A historical
@@ -89,8 +85,7 @@ reuse ineligible. Live replacement, generic service stop/reload, selected-skin
 reload, dependent-module invalidation and one-call apply remain unqualified in the
 audited contract. Use a supported stopped-copy/restart route only with authority;
 native code must never be replaced while loaded. Existing Web Python-service
-enablement has separate verified consent and does not prove execution. ZIP and
-repository installation/publication retain their separate human gates.
+enablement has separate verified consent and does not prove execution. Original-ZIP receipt/delivery does not prove native ZIP GUI installation (#305), and unattended repository-by-ID installation is unsupported (#339). Direct source deployment is the supported agent-owned route.
 
 On timeout or ambiguous outcome, keep the original request UUID, parameters and
 receipt. Read status or use documented same-request recovery; do not generate a

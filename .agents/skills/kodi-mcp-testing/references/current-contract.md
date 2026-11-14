@@ -1,5 +1,23 @@
 # Current Kodi Lab contract and recovery
 
+## 2026-11-14 current Kodi Lab source contract (supersedes historical checkpoints below)
+
+Kodi Lab main `574eeee5b3dd444ab651cab3b73071714bd95ff6` exposes **44 MCP tools** in its source registry and [canonical tool/permissions matrix](https://github.com/kcook98765/kodi-lab/blob/main/docs/MCP-TOOLS-AND-PERMISSIONS.md). These are source checks, not authenticated installed-server verification. Review [current managed agent workflow](managed-agent-workflow.md) first for new work; historical November 9 and October material below is retained as dated background. Discover the actual installation's permission-filtered `tools/list` and each live schema before calling. A listed tool does not grant its use.
+
+A Trusted Managed Lab agent with administrator-enabled Full Development role can create/import its own private project, prepare/edit/validate its workspace, directly deploy and launch to an installed approved managed version, and (only when the task explicitly authorizes disposing that profile) Reset with original-UUID recovery and separate Bridge preparation. **Do not require registered source/Current Kodi Web selection for an agent-owned project.** The role does not install missing runtimes or authorize external Kodi. A narrow client still requires exact policies/grants and `managed.reset` for native-only Reset. Reset must carry the version's observed `expected_profile`; profile replacement and Bridge readiness are separate results. The current Piers qualification is **22.0 RC2**, while an existing retained profile may still pin an older runtime.
+
+Production inspection has a current inspect scope and exact target grant; external screenshots and production navigation are per-Kodi opt-ins (default Off), not a visual scope. Production navigation is restricted to Up/Down/Left/Right/Back/Home/Info; Select/Context prohibited. External Development has separate verified capability maxima. No external deployment/reset inherits the managed role. Original ZIP delivery is not native GUI installation; unattended repository-by-ID installation remains unsupported.
+
+### Current source inventory (44)
+
+- Inspection/GUI (8): `target_list`, `target_status`, `addon_list`, `inspect_ui_state`, `log_read`, `screenshot_capture`, `screenshot_retrieve`, `remote_action`.
+- Managed lifecycle (8): `managed_status`, `managed_start`, `managed_stop`, `managed_reset`, `managed_ensure_ready`, `managed_release`, `managed_selection_preview`, `managed_select`.
+- Target-bound development (11): `workspace_deploy_preflight`, `workspace_deploy`, `workspace_execute`, `workspace_launch`, `development_launch`, `workspace_execution_recover`, `addon_settings_set`, `addon_settings_result`, `promotion_request`, `package_install`, `package_install_status`.
+- Projects/packages (6): `project_create`, `project_transfer`, `project_import`, `project_status`, `package_import`, `package_status`.
+- Sources/workspaces (11): `development_source_list`, `workspace_create`, `workspace_import_preview`, `workspace_import`, `workspace_source_scan`, `workspace_capture`, `workspace_status`, `workspace_tree`, `workspace_read`, `workspace_edit`, `workspace_validate`.
+
+---
+
 ## 2026-11-09 contract checkpoint
 
 Source: Kodi Lab `683738e7fd40d96b671efe7889d4ab2480cbc009`, migration

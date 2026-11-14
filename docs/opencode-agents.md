@@ -55,6 +55,14 @@ Those adapters require the documented SDK/tool setup and accept only fixture
 paths. The new developer preset instead calls the ordinary Python CLI for real
 add-on projects and does not require those adapters.
 
+## Optional Trusted Managed Lab agent
+
+The standalone [`trusted-managed-lab.json`](../examples/opencode/trusted-managed-lab.json) is a **separate opt-in** OpenCode role (`kodi-managed-lab`), not part of the standard daily `agents.json` presets. It exposes managed lifecycle, agent-owned project/source editing, direct deployment, declared launch, scoped GUI control, and destructive Reset through the `kodi_lab_dev` MCP alias. It does not install a server, enable credentials, change Kodi grants, or start Kodi automatically. Use it only for an operator-authorized disposable managed development task after explicitly enabling **Trusted Managed Lab — Full Development** for the client in Kodi Lab. Inspect the resolved configuration and effective permissions before selecting the role; merging configurations may preserve other permissions.
+
+The role deliberately denies unknown tools and unrelated servers, keeps shell commands in ask mode, includes no credentials or model, and does not expose original-ZIP installation, publication/promotion, or external management tools. **`managed_reset` remains technically exposed in this optional role**: its use requires explicit task-level approval to dispose of the selected profile, `expected_profile`, the original request UUID and verification of the separate Bridge preparation. It is not an automatic self-recovery shortcut. See [the maintained managed workflow](../.agents/skills/kodi-mcp-testing/references/managed-agent-workflow.md).
+
+To use the opt-in role, merge its `agent` object into your existing private OpenCode configuration alongside the separately configured `kodi_lab_dev` MCP connection, rather than replacing your current agents or connection definitions. Verify alias names against live `tools/list`, skill discovery with `opencode debug skill --pure`, effective agent permissions, and actual runtime setup separately. Production/external Kodi access remains outside this role; server permissions and target guards are authoritative.
+
 ## Install on another OpenCode instance
 
 1. Install the toolkit with its [standalone quick start](../README.md#quick-start)
