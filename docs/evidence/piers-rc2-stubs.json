@@ -1,0 +1,170 @@
+{
+  "recorded_at": "2026-11-14",
+  "scope": "Representative static comparison only; native execution not performed",
+  "lab_source_revision": "574eeee5b3dd444ab651cab3b73071714bd95ff6",
+  "kodi_source_revision": "d686683a55d50e576dd282f53fb2bf9914931b38",
+  "recipe_id": "piers-22.0-rc2-r4",
+  "python_api": "3.1.1",
+  "wheel": {
+    "name": "kodistubs-22.0.1rc1-py3-none-any.whl",
+    "sha256": "a211fcb3215f2c8891f4f1efb4f1aaf562d85172efbe439ef68f95af0152ea6d",
+    "pypi_json": "https://pypi.org/pypi/Kodistubs/22.0.1rc1/json",
+    "attestation": null
+  },
+  "upstream_module_comparison": {
+    "tag": "22.0.1rc1",
+    "revision": "0cef502d791481f85e89909704a446bd43c8eed7",
+    "modules": [
+      {
+        "module": "xbmc",
+        "path": "src/xbmc/__init__.py",
+        "sha256": "fb935ccd6c70ceaf13c78a7fb461d55d5ad0e6821594a7ca6dd9282145a9ec7f",
+        "matches_tag_bytes": true
+      },
+      {
+        "module": "xbmcaddon",
+        "path": "src/xbmcaddon/__init__.py",
+        "sha256": "d2cf126dbb3d3503664f15a4cbc100334d9925614af3a9195d9ba4aefb3a5cc3",
+        "matches_tag_bytes": true
+      },
+      {
+        "module": "xbmcgui",
+        "path": "src/xbmcgui/__init__.py",
+        "sha256": "862e5f74fa2893efc96c95aa470c15ecf8648c3353c49e0217941219e6ca8e5f",
+        "matches_tag_bytes": true
+      },
+      {
+        "module": "xbmcplugin",
+        "path": "src/xbmcplugin/__init__.py",
+        "sha256": "2eb50897fc199ebb1ddfb314d8055038f7bbbdab327678b2a2a96735eb45f5e5",
+        "matches_tag_bytes": true
+      },
+      {
+        "module": "xbmcvfs",
+        "path": "src/xbmcvfs/__init__.py",
+        "sha256": "a864dc23c750393ba24f38dc0e6ff0ab55cfc1750c064b6af3174c2161d66e74",
+        "matches_tag_bytes": true
+      },
+      {
+        "module": "xbmcdrm",
+        "path": "src/xbmcdrm/__init__.py",
+        "sha256": "603679a6108f556268debc60a6784914133377c210d3fb4b6013b42f36855447",
+        "matches_tag_bytes": true
+      }
+    ]
+  },
+  "rc1_rc2_interface_trees": {
+    "22.0rc1-Piers": {
+      "xbmc/interfaces/legacy": "546c101dcec6af70d97f87eb5060660c6427784b",
+      "xbmc/interfaces/python": "573aed9099b5d99ed302a6e804abe65bcc1fef25",
+      "xbmc/interfaces/swig": "1856b0757685401bf0d740f1d77e4344a5ab8b7d"
+    },
+    "d686683a55d50e576dd282f53fb2bf9914931b38": {
+      "xbmc/interfaces/legacy": "942346d0b84fd8c3ff8f6e2f7c24a48296940807",
+      "xbmc/interfaces/python": "61c3a774445904c4f3847e0b6aa1b7d1057d3ca8",
+      "xbmc/interfaces/swig": "6ffc7b39d309f213202d90e207badaa50d70a667"
+    }
+  },
+  "changed_interface_blobs": {
+    "xbmc/interfaces/AnnouncementManager.cpp": {
+      "rc1": "fe842b406922897371a1719a5b87564847b55972",
+      "rc2": "2a5c83fafd6aff847e03082acb6a4a3782d34e42"
+    },
+    "xbmc/interfaces/AnnouncementManager.h": {
+      "rc1": "162a80d3bc66ecd4b5caca2cbc6e9ec5ec88a4b3",
+      "rc2": "37e96a6e8a774d112b8fc61859d68c77e46ffb20"
+    },
+    "xbmc/interfaces/builtins/LibraryBuiltins.cpp": {
+      "rc1": "83519827824ecb925fb05af891f9582c5f2d3f63",
+      "rc2": "b23c5599a3272a17426583cc3d122d0939b32711"
+    },
+    "xbmc/interfaces/generic/ScriptInvocationManager.cpp": {
+      "rc1": "c6fe84593ac5c7635382015193decec20b90b40f",
+      "rc2": "952f379b0e75fef09c2b69064547977c69af28d7"
+    },
+    "xbmc/interfaces/generic/ScriptInvocationManager.h": {
+      "rc1": "6ae97a48eea77ac540a6ae8590d4af92b42320f9",
+      "rc2": "4ade3a6e8755ed49e97fbbec34de4b8d75eda925"
+    },
+    "xbmc/interfaces/json-rpc/AudioLibrary.cpp": {
+      "rc1": "e1280dd775215b14a5c2e2490b6a3f19cbea8482",
+      "rc2": "e24e7f412e3fcd8b38ad96cac752e422e2630e13"
+    },
+    "xbmc/interfaces/json-rpc/VideoLibrary.cpp": {
+      "rc1": "1e118f27e12a2499522e8a238afb8fd475d91fe5",
+      "rc2": "072a138fcbe22c793277d33c5a5f4da70c8c9031"
+    },
+    "xbmc/interfaces/json-rpc/VideoLibrary.h": {
+      "rc1": "56c348391f2ab9fb09ad4b35fdfd1e97712db319",
+      "rc2": "d6c902a8671f89d0a789d7d4aa5e331af77e3cc1"
+    },
+    "xbmc/interfaces/json-rpc/schema/version.txt": {
+      "rc1": "cf2784fd934fb5f1d5b19f06608db5acc87797ce",
+      "rc2": "75def2afd9decef9a5872d8186744da4d8a7bdb2"
+    },
+    "xbmc/interfaces/json-rpc/test/CMakeLists.txt": {
+      "rc1": "b27c9fa512f442d4ad9e993f6c3e11c09268e292",
+      "rc2": "94487544325eef98c0c4d75d1658c1fea8eb8ff3"
+    },
+    "xbmc/interfaces/json-rpc/test/TestAudioLibrary.cpp": {
+      "rc1": "2aa4d92912b249dac9a9cfeecf29f6115b4ec9cc",
+      "rc2": "9debaf543957c10cecb125e39f784fc045485168"
+    },
+    "xbmc/interfaces/json-rpc/test/TestVideoLibraryPlaybackState.cpp": {
+      "rc1": null,
+      "rc2": "08fbfa5580af52fc47d508e991e8eb201b50804d"
+    },
+    "xbmc/interfaces/legacy/CallbackHandler.cpp": {
+      "rc1": "f2f9854f9f83915b56c4b7b4a3e59a953321dbc6",
+      "rc2": "4c184c4ad1af920cb9d642bd5419a48e22516eff"
+    },
+    "xbmc/interfaces/legacy/CallbackHandler.h": {
+      "rc1": "223c74ad28b1b8196c9bb6abac7868b4dc148ba2",
+      "rc2": "9377bf57f56a68d31562a2c5c00f646cfb67035d"
+    },
+    "xbmc/interfaces/legacy/InfoTagGame.cpp": {
+      "rc1": "697247b27d9d83dececcaeb672a1fafc37376651",
+      "rc2": "e210c23e7c0419ba87a0f85311650a95d96ecebc"
+    },
+    "xbmc/interfaces/legacy/InfoTagGame.h": {
+      "rc1": "23571d18cf8eb45910d92a9dd87c7068a2c0fb63",
+      "rc2": "39f6b12eaac0e018bf0912112577b24cc1d1999c"
+    },
+    "xbmc/interfaces/legacy/ModuleXbmc.cpp": {
+      "rc1": "44bcde21e66b2fc6ea96be4ad37108ec72ff3e0c",
+      "rc2": "0ffb3b347d16d9020fabb94a4913e932bb47b04d"
+    },
+    "xbmc/interfaces/legacy/Window.cpp": {
+      "rc1": "4a5ed694f2ac35a92a6bde00718b354ac42f911a",
+      "rc2": "dbf63f82a84824893e26f3c1efb892a8216f984d"
+    },
+    "xbmc/interfaces/python/XBPython.cpp": {
+      "rc1": "5acd7d1af0b82cb48b7980ede386101ad0431e01",
+      "rc2": "21af8ccece2ca3fce9b36292baf9172e06a248f7"
+    },
+    "xbmc/interfaces/swig/kodi_common.i": {
+      "rc1": "f90a6b9b282cf082994c0bce20f8e55c1d76c0b7",
+      "rc2": "ed6b9b54142f9470d337d8c020c35fbc0208cbbc"
+    },
+    "xbmc/interfaces/test/CMakeLists.txt": {
+      "rc1": null,
+      "rc2": "9fb2f060aab4b70fe7aafbf5c5eaa3ba60fd735f"
+    },
+    "xbmc/interfaces/test/TestAnnouncementManager.cpp": {
+      "rc1": null,
+      "rc2": "6ea9f4b5ed8df5fc456ad90c39fb9ea5e45f9fc5"
+    }
+  },
+  "reviewed_header_sha256": {
+    "ListItem.h": "324350c36dac843f829730238b30a6353f05b67a19395e2fda56eee7b0e267a8",
+    "InfoTagVideo.h": "257d700888d4125c082f91f27d1f46c16b6075d17a3bc8e9bdcfd8a2ee8ce934",
+    "InfoTagGame.h": "466f08ab6bcc0062d2f7128d56dd61c4d5bcf9251d52c72ea17bc19da7aa9cd6",
+    "ModuleXbmc.h": "14fbfb87815d86f894a385ca9026f9ec83fedcb2c5e7e6be59ca1f80e7a06808"
+  },
+  "limitations": [
+    "Prerelease; representative signatures only",
+    "Checker 0.0.36 xbmc.python advice predates RC2",
+    "No native Kodi execution",
+    "No macOS qualification"
+  ]
+}

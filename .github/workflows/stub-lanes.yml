@@ -13,7 +13,7 @@ jobs:
     strategy:
       fail-fast: false
       matrix:
-        lane: [matrix]
+        lane: [matrix, piers]
         os: [ubuntu-24.04, windows-2025]
         include:
           - os: ubuntu-24.04

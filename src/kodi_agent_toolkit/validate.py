@@ -63,8 +63,9 @@ def _types(root: Path, python_files: list[Path], branch: str) -> dict:
         target = {"matrix": 19, "nexus": 20, "omega": 21, "piers": 22}.get(branch)
         if target is None or int(stub_version.split(".")[0]) != target:
             raise ValueError(f"Kodistubs {stub_version} does not match branch {branch}")
-        if branch == "matrix" and stub_version != "19.0.3":
-            raise ValueError(f"Matrix qualification requires Kodistubs==19.0.3; observed {stub_version}")
+        reviewed = {"matrix": "19.0.3", "piers": "22.0.1rc1"}.get(branch)
+        if reviewed is not None and stub_version != reviewed:
+            raise ValueError(f"{branch.title()} qualification requires Kodistubs=={reviewed}; observed {stub_version}")
         distribution = metadata.distribution("Kodistubs")
         stub = next((distribution.locate_file(file) for file in distribution.files or []
                      if str(file) in ("xbmc.py", "xbmc/__init__.py")), None)
@@ -108,6 +109,10 @@ def validate(addon: Path, branch: str = "nexus", cache: Path | None = None) -> d
                     "returncode": 1, "exit_code": 1, "checks": {},
                     "coverage_limits": list(LIMITS), "config_input": {"status": "not_inspected"},
                     "type_status": "skipped"}
+    if branch == "piers":
+        result["coverage_limits"].append(
+            "Checker 0.0.36 advises xbmc.python 3.0.1, predating RC2 API 3.1.1. "
+            "Retain that warning; do not lower a required API dependency to silence it.")
     checks = result["checks"]
     for name in ("syntax", "manifest", "paths", "package", "types", "official_checker"):
         checks[name] = {"status": "skipped", "passed": False,

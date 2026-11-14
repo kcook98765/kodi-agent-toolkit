@@ -4,14 +4,14 @@
 
 Use `kodi-toolkit stub-lanes` to inspect **this interpreter's** installed Kodistubs version, the four supported Kodi Lab branch names, the expected package pins and the current qualification state. It also reports the actual Python version, platform, mypy and official checker versions. Readiness requires the recorded CPython 3.12/platform scope and pinned tools; it does not verify the full dependency lock, index cache or an add-on. It performs no downloads, mutations or version switching. `--branch` selects the official checker branch; it **does not** change Python environments or install matching type stubs. Use an isolated Python interpreter for each lane and execute validation with that interpreter. A wrong-major installation is a type-coverage failure.
 
-| Managed Kodi | Candidate Kodistubs | Toolkit environment | Qualification |
+| Managed Kodi | Expected Kodistubs | Toolkit environment | Qualification |
 | --- | --- | --- | --- |
 | Matrix 19.5 | 19.0.3 | `requirements-matrix.lock` | [Bounded static qualification with two reviewed annotation corrections](matrix-stubs.md) |
 | Nexus 20.5 | 20.0.1 | `requirements-dev.lock` | Existing validated default |
 | Omega 21.3 | 21.0.0 | `requirements-omega.lock` | Existing separately validated static lane |
-| Piers 22 RC2 | 22.0.1rc1 (prerelease candidate) | `requirements-piers.in` | Pending artifact verification, exact RC2 signature comparison and tests (#14) |
+| Piers 22 RC2 | 22.0.1rc1 (prerelease) | `requirements-piers.lock` | [Bounded exact-RC2 static comparison; checker advice limitation retained](piers-stubs.md) |
 
-**Create a new environment for each lock; never replace a qualified environment's stubs.** The Piers `.in` file remains a candidate pin only, pending its own hash-locked qualification. Matrix installation, source comparison and the narrow validator-only annotation corrections are documented in [the Matrix guide](matrix-stubs.md). No version is automatically selected by the toolkit or OpenCode. Preserve checker warnings and distinguish static validation from actual native Kodi behavior.
+**Create a new environment for each lock; never replace a qualified environment's stubs.** Piers has a separate prerelease lock; see [the Piers guide](piers-stubs.md) for source evidence and pending coverage. Matrix installation, source comparison and the narrow validator-only annotation corrections are documented in [the Matrix guide](matrix-stubs.md). No version is automatically selected by the toolkit or OpenCode. Preserve checker warnings and distinguish static validation from actual native Kodi behavior.
 
 The tested environment uses Kodistubs==20.0.1 for the Kodi 20/Nexus target, installed from PyPI inside .venv. Mypy 2.4.0 with --follow-untyped-imports passes the representative fixture and reports that xbmc.log's second argument must be int when the invalid fixture supplies a string.
 ```sh

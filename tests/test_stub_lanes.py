@@ -47,12 +47,23 @@ class StubLaneTests(unittest.TestCase):
         self.assertTrue(all(not x["ready_for_qualified_static_checks"]
                             for x in result["lanes"]))
 
-    def test_correct_major_without_qualification_remains_pending(self):
+    def test_piers_prerelease_has_explicit_bounded_qualification(self):
         self.tools["Kodistubs"] = "22.0.1rc1"
         piers = stub_lanes()["lanes"][3]
         self.assertTrue(piers["installed_in_this_interpreter"])
-        self.assertFalse(piers["ready_for_qualified_static_checks"])
-        self.assertEqual(piers["static_qualification"], "pending")
+        self.assertTrue(piers["ready_for_qualified_static_checks"])
+        self.assertTrue(piers["prerelease"])
+        self.assertEqual(piers["static_qualification"], "qualified")
+        self.tools["Kodistubs"] = "22.0.0"
+        self.assertFalse(stub_lanes()["lanes"][3]["ready_for_qualified_static_checks"])
+
+    def test_installed_pin_cannot_qualify_a_pending_source_lane(self):
+        pending = (("nexus", "20.5", "20.0.1", "requirements-dev.in", None),)
+        with patch("kodi_agent_toolkit.stub_lanes.LANES", pending):
+            lane = stub_lanes()["lanes"][0]
+        self.assertTrue(lane["installed_in_this_interpreter"])
+        self.assertEqual(lane["static_qualification"], "pending")
+        self.assertFalse(lane["ready_for_qualified_static_checks"])
 
     def test_nexus_only_when_matching_exact_pin(self):
         result = stub_lanes()
