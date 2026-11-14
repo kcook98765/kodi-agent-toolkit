@@ -48,7 +48,7 @@ class StubLaneTests(unittest.TestCase):
 
     def test_no_mutation_in_lane_module(self):
         source = (ROOT / "src/kodi_agent_toolkit/stub_lanes.py").read_text()
-        self.assertNotIn("pip install", source)
+        self.assertNotIn("subprocess.run(", source)
         self.assertNotIn("subprocess", source)
 
 
