@@ -60,7 +60,12 @@ expects only `Dict[str, str]`; `setCast` similarly rejects integer `order`.
 The exact 19.5 [ListItem.h](https://github.com/xbmc/xbmc/blob/f8fdeb6b1b1a7b753e1559d34a98cea62b4920d9/xbmc/interfaces/legacy/ListItem.h)
 and [ListItem.cpp](https://github.com/xbmc/xbmc/blob/f8fdeb6b1b1a7b753e1559d34a98cea62b4920d9/xbmc/interfaces/legacy/ListItem.cpp)
 document/implement numeric, list and cast tuple info labels and integer cast order.
-The original false-positive mypy failure was reproduced before correction.
+The original false-positive mypy failure was reproduced before correction. The
+[vector binding](https://github.com/xbmc/xbmc/blob/f8fdeb6b1b1a7b753e1559d34a98cea62b4920d9/xbmc/interfaces/python/typemaps/python.vector.intm)
+accepts lists and tuples. Covariant `Sequence`/`Mapping` annotations preserve
+ordinary variable-based calls without weakening element types. Use concrete
+lists/tuples at runtime; custom Sequence/Mapping implementations are outside
+this static qualification.
 
 For Matrix validation only, the toolkit generates a temporary mypy `--shadow-file`
 with two corrected value annotations. It checks the exact upstream `xbmcgui.py`
