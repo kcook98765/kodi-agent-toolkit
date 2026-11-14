@@ -8,6 +8,8 @@ Find the actual project and add-on root before reading or editing. Use `kodi-too
 
 For a named project, check applicable instruction files at its known ancestor paths directly; keep recursive searches inside the relevant project instead of scanning an entire drive or home directory. Resolve installed skill references from the loaded skill's location, which can differ from the add-on and agent working directories.
 
+For multi-version work, inspect `kodi-toolkit stub-lanes` when the CLI is available. Match the requested Kodi branch to a separately isolated Kodistubs interpreter; a `--branch` checker option alone does not change installed stubs. Matrix and Piers candidate pins are not yet a qualified static lane. Keep recorded runtime evidence distinct from type-checking.
+
 Read `addon.xml` and its verified declared entry files. Confirm the requested Kodi release: `xbmc.python` alone does not uniquely select it. For manifest/lifecycle/API details or longer test/fix loops read references/development.md; use version-compatibility when release differences matter.
 
 Reproduce a repair with static validation before editing. Preserve behavior, dependencies and intended logging severity; use a verified target symbolic constant, never a guessed number or deleted level. Kodi modules/stubs must not be executed outside Kodi.

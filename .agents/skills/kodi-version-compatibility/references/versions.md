@@ -8,12 +8,13 @@ An `<import version>` declares a minimum dependency version. A higher provided v
 | 19 Matrix | 19.5, released | 3.0.0 / 3.0.0 | 19.0.3 |
 | 20 Nexus | 20.5, released | 3.0.1 / 3.0.0 | 20.0.1 (tested toolkit environment) |
 | 21 Omega | 21.3, released | 3.0.1 / 3.0.0 | 21.0.0 (separate static option measured below) |
-| 22 Piers | 22.0rc1, prerelease | 3.1.0 / 3.0.0 | no PyPI 22 release verified |
-Kodistubs source declares 22.0.0a3 but is not a published matching distribution. No complete stub coverage or all-platform compatibility is claimed. API dependency values are not CPython versions.
+| 22 Piers | 22.0rc1 historical prerelease; Kodi Lab now uses RC2 | 3.1.0 / 3.0.0 for RC1; verify RC2 separately | 22.0.1rc1 prerelease candidate (not toolkit-qualified) |
+The older October snapshot did not verify a PyPI 22 distribution. The later published Kodistubs 22.0.1rc1 is a **candidate** for a dedicated Piers lane, not a validated exact match for Kodi Lab Piers RC2. Validate upstream artifact provenance, the RC2 source APIs, and a fresh isolated interpreter before making compatibility claims. No complete stub coverage or all-platform compatibility is claimed. API dependency values are not CPython versions.
 
 This is a dated reference snapshot, not a current package/release lookup or a multi-version qualification matrix. Preserve the pinned Nexus checker/stub lane unless a separate measured change qualifies another environment. Selecting a different CLI checker branch does not replace the installed stubs. Matrix, Nexus, Omega and Kodi 22 preview each need matching API/type/checker evidence and their own recorded runtime behavior; passing one lane never qualifies another. Kodi Lab's runtime catalog, stored Bridge trust or saved native acceptance cannot fill an unexecuted toolkit/add-on check.
 
-2026-11-09 static update: stable PyPI Kodistubs 21.0.0 with official checker
+2026-11-14 lane selection update: `kodi-toolkit stub-lanes` reports Matrix/Nexus/Omega/Piers candidate pins and the active interpreter without switching environments. Matrix/Piers remain pending qualification; see [four-lane status](../../../../docs/stubs.md#four-kodi-lab-target-lanes-2026-11-14).
+\n2026-11-09 static update: stable PyPI Kodistubs 21.0.0 with official checker
 0.0.36 and mypy 2.4.0 has a separate CPython 3.12/Linux hash-locked option in
 `requirements-omega.lock`. Valid/invalid API fixtures and wrong-major rejection
 measure limited static coverage; this does not establish native Omega behavior.

@@ -1,4 +1,18 @@
 # Static Kodi API support
+
+## Four Kodi Lab target lanes (2026-11-14)
+
+Use `kodi-toolkit stub-lanes` to inspect **this interpreter's** installed Kodistubs version, the four supported Kodi Lab branch names, the expected package pins and the current qualification state. It performs no downloads, mutations or version switching. `--branch` selects the official checker branch; it **does not** change Python environments or install matching type stubs. Use an isolated Python interpreter for each lane and execute validation with that interpreter. A wrong-major installation is a type-coverage failure.
+
+| Managed Kodi | Candidate Kodistubs | Toolkit environment | Qualification |
+| --- | --- | --- | --- |
+| Matrix 19.5 | 19.0.3 | `requirements-matrix.in` (candidate pin) | Pending independent hash-locked install and real tests (#13) |
+| Nexus 20.5 | 20.0.1 | `requirements-dev.lock` | Existing validated default |
+| Omega 21.3 | 21.0.0 | `requirements-omega.lock` | Existing separately validated static lane |
+| Piers 22 RC2 | 22.0.1rc1 (prerelease candidate) | `requirements-piers.in` | Pending artifact verification, exact RC2 signature comparison and tests (#14) |
+
+**Do not install the candidate `.in` requirements into an existing qualified venv.** The Matrix/Piers files specify candidate pins only, not reviewed wheel hashes, an installable reproducibility guarantee or a completed qualification. Once checks finish, add separate SHA-256 pinned `requirements-matrix.lock` and `requirements-piers.lock` and isolated tests. No version is automatically selected by the toolkit or OpenCode. Preserve checker warnings and distinguish static validation from actual native Kodi behavior.
+
 The tested environment uses Kodistubs==20.0.1 for the Kodi 20/Nexus target, installed from PyPI inside .venv. Mypy 2.4.0 with --follow-untyped-imports passes the representative fixture and reports that xbmc.log's second argument must be int when the invalid fixture supplies a string.
 ```sh
 .venv/bin/python -m mypy --no-incremental --follow-untyped-imports fixtures/valid/script.toolkit.sample/default.py
