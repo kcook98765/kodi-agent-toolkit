@@ -8,6 +8,7 @@ import sys
 def main() -> int:
     parser = argparse.ArgumentParser(prog="kodi-toolkit")
     sub = parser.add_subparsers(dest="command", required=True)
+    sub.add_parser("stub-lanes", help="Report the active interpreter and four Kodi stub lanes without installing anything")
     discovery = sub.add_parser("discover")
     discovery.add_argument("directory", type=Path, nargs="?", default=Path("."))
     val = sub.add_parser("validate")
@@ -33,6 +34,10 @@ def main() -> int:
     final.add_argument('--markdown', action='store_true')
     args = parser.parse_args()
     try:
+        if args.command == 'stub-lanes':
+            from .stub_lanes import stub_lanes
+            print(json.dumps(stub_lanes(), indent=2))
+            return 0
         if args.command == 'report-build':
             from .reporting import build_report, render_report
             records = {k: json.loads(getattr(args, k).read_bytes())

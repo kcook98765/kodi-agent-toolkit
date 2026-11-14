@@ -48,6 +48,9 @@ To check your own add-on, replace the sample path with the directory containing 
 
 ## Kodi Python stubs and official addon-check
 
+Run `kodi-toolkit stub-lanes` to see the four Kodi Lab target versions, expected Kodistubs packages and the active interpreter's matching status. Nexus and Omega have separately validated static environments; Matrix and Piers candidate pins are tracked in [the stub lanes guide](docs/stubs.md#four-kodi-lab-target-lanes-2026-11-14) until hash-locked installs and real tests are completed. Choosing a checker `--branch` does not select stubs or a Python environment. The command does not download or alter anything.
+
+
 The lock installs **Kodistubs 20.0.1**, **mypy 2.4.0**, and **kodi-addon-checker 0.0.36**. Select `.venv` as your editor's Python interpreter for Kodi API completion. Stubs describe signatures; they do not implement Kodi and must not be used to run an add-on outside Kodi.
 
 For a reproducible failing control, run this after the quick start:

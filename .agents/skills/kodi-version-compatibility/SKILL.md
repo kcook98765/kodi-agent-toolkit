@@ -7,6 +7,8 @@ license: MIT
 Verify the actual add-on root/files and read its manifest and relevant source. A Python API dependency version is not the runtime CPython version and does not uniquely select a Kodi release. If the target is missing, state the ambiguity and required information; do not guess a checker branch or advertise broad compatibility.
 An import version is a minimum dependency, not an exact release or upper bound. A higher provided API version can satisfy it; do not exclude later Kodi releases from this field alone.
 
+Run `kodi-toolkit stub-lanes` (if installed) to identify the active interpreter, candidate stub pin and verified/pending lane. A checker branch argument never selects an interpreter or replaces Kodistubs. Do not silently use Nexus/Omega type results for Matrix or Piers; those two additional lanes still require isolated hash-locked qualification.
+
 Read references/versions.md for dated, pinned evidence. Match each API/signature and installed stub major to the requested release; verify removals rather than infer them from release names. Moving master docs and prerelease evidence do not prove stable support. Missing/mismatched stubs are a coverage failure.
 
 For a multi-version target prefer the oldest verified common API or a documented guard. Run branch-matched syntax/types/checker tests where available. Do not install a different stub version into an existing validated environment without isolating it.

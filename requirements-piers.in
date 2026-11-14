@@ -1,0 +1,7 @@
+# Candidate prerelease lane. Do not install into the Nexus or Omega venv.
+# Pending wheel-hash verification and actual static qualification (issue #14).
+Kodistubs==22.0.1rc1
+kodi-addon-checker==0.0.36
+mypy==2.4.0
+setuptools==84.0.0
+wheel==0.48.0
