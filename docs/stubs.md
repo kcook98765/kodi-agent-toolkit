@@ -13,6 +13,44 @@ Use `kodi-toolkit stub-lanes` to inspect **this interpreter's** installed Kodist
 
 **Create a new environment for each lock; never replace a qualified environment's stubs.** Piers has a separate prerelease lock; see [the Piers guide](piers-stubs.md) for source evidence and pending coverage. Matrix installation, source comparison and the narrow validator-only annotation corrections are documented in [the Matrix guide](matrix-stubs.md). No version is automatically selected by the toolkit or OpenCode. Preserve checker warnings and distinguish static validation from actual native Kodi behavior.
 
+## Everyday validation workflow
+
+1. Identify the intended Kodi release from the development task and project
+   documentation. An `xbmc.python` import is only a minimum API dependency;
+   it does not uniquely identify a release.
+2. Find the project's documented interpreter for that release. Match it to the
+   lock in the table above. If setup is needed, create a new environment using
+   the lane guide; preserve every existing environment.
+3. Run that interpreter's `-m kodi_agent_toolkit.cli stub-lanes`. Record its
+   executable, Python version/platform, installed Kodistubs/mypy/checker and
+   source qualification. A matching major alone is insufficient: require the
+   reviewed pin and toolchain scope. Read all readiness limits. Discovery is
+   read-only and does not search for or switch other virtual environments.
+4. Use **the same interpreter** for validation with the intended checker branch
+   and an explicitly acquired index cache. For example, after selecting Matrix:
+
+   ```sh
+   .local/matrix/bin/python -m kodi_agent_toolkit.cli stub-lanes
+   .local/matrix/bin/python -m kodi_agent_toolkit.cli validate /path/to/addon --branch matrix --cache .local/index-cache
+   ```
+
+   On Windows use `.local/matrix/Scripts/python.exe`. Refer to the
+   [quick start](../README.md#quick-start) for Nexus, [Omega setup](#isolated-omega-option),
+   [Matrix setup](matrix-stubs.md), or [Piers setup](piers-stubs.md). If the
+   interpreter, required package or cache is unavailable, report incomplete
+   validation and the needed setup instead of substituting another lane.
+5. Inspect all six stages. Keep original errors, warnings, output and coverage
+   limits together with the source/cache and tool identities. Matrix's reviewed
+   annotation correction applies only in the validator. Piers remains a
+   prerelease, and the checker's stale dependency advice must remain visible.
+6. If runtime testing is requested and authorized, optionally use Kodi Lab MCP
+   with the exact intended runtime/target and existing grants. Static success
+   does not authorize starting, deploying to or controlling a Kodi instance.
+7. Report static validation and native runtime results separately. A static
+   PASS never fills an unexecuted runtime stage, a pending platform or an
+   unsupported API check. Standalone static validation needs no Kodi Lab,
+   OpenCode or AI model.
+
 The tested environment uses Kodistubs==20.0.1 for the Kodi 20/Nexus target, installed from PyPI inside .venv. Mypy 2.4.0 with --follow-untyped-imports passes the representative fixture and reports that xbmc.log's second argument must be int when the invalid fixture supplies a string.
 ```sh
 .venv/bin/python -m mypy --no-incremental --follow-untyped-imports fixtures/valid/script.toolkit.sample/default.py
