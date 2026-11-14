@@ -63,6 +63,8 @@ def _types(root: Path, python_files: list[Path], branch: str) -> dict:
         target = {"matrix": 19, "nexus": 20, "omega": 21, "piers": 22}.get(branch)
         if target is None or int(stub_version.split(".")[0]) != target:
             raise ValueError(f"Kodistubs {stub_version} does not match branch {branch}")
+        if branch == "matrix" and stub_version != "19.0.3":
+            raise ValueError(f"Matrix qualification requires Kodistubs==19.0.3; observed {stub_version}")
         distribution = metadata.distribution("Kodistubs")
         stub = next((distribution.locate_file(file) for file in distribution.files or []
                      if str(file) in ("xbmc.py", "xbmc/__init__.py")), None)
@@ -77,6 +79,12 @@ def _types(root: Path, python_files: list[Path], branch: str) -> dict:
                        "--cache-dir", str(work / "cache"), "--show-error-codes",
                        "--check-untyped-defs", "--follow-imports=silent", "--follow-untyped-imports",
                        *[str(root / path) for path in python_files]]
+            overlay = None
+            if branch == "matrix":
+                from .matrix_stubs import matrix_shadow
+                gui = distribution.locate_file("xbmcgui.py")
+                shadow, overlay = matrix_shadow(gui, work)
+                command.extend(["--shadow-file", str(gui), str(shadow)])
             env = {key: value for key, value in os.environ.items()
                    if not key.startswith(("PYTHON", "MYPY"))}
             result = subprocess.run(command, cwd=work, env=env, capture_output=True,
@@ -87,6 +95,7 @@ def _types(root: Path, python_files: list[Path], branch: str) -> dict:
                     "stderr": result.stderr, "output": result.stdout + result.stderr,
                     "errors": [] if result.returncode == 0 else [result.stdout + result.stderr],
                     "stub_version": stub_version, "mypy_version": mypy_version,
+                    "compatibility_overlay": overlay,
                     "command": command, "config": "explicit empty-plugin mypy config; Python target 3.10"}
     except (metadata.PackageNotFoundError, ValueError, OSError, subprocess.TimeoutExpired) as exc:
         return {"status": "error", "passed": False, "errors": [str(exc)],

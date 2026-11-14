@@ -282,9 +282,12 @@ class ValidationTests(unittest.TestCase):
         self.assertFalse(run_checker(addon, cache=alias)["passed"])
 
     def test_stub_target_mismatch_cannot_pass(self):
-        result = validate(self.addon(), branch="omega", cache=self.cache)
-        self.assertFalse(result["passed"])
-        self.assertIn("does not match", result["checks"]["types"]["errors"][0])
+        addon = self.addon()
+        for branch in ("matrix", "omega", "piers"):
+            with self.subTest(branch=branch):
+                result = validate(addon, branch=branch, cache=self.cache)
+                self.assertFalse(result["passed"])
+                self.assertIn("does not match", result["checks"]["types"]["errors"][0])
 
     def test_deterministic_missing_dependency_finding_preserved(self):
         addon = self.addon()

@@ -84,6 +84,11 @@ class StubLaneTests(unittest.TestCase):
         with patch("kodi_agent_toolkit.stub_lanes.sys.platform", "win32"):
             self.assertFalse(stub_lanes()["lanes"][2]["ready_for_qualified_static_checks"])
 
+    def test_matrix_only_when_matching_reviewed_pin(self):
+        self.tools["Kodistubs"] = "19.0.3"
+        self.assertEqual([x["branch"] for x in stub_lanes()["lanes"]
+                          if x["ready_for_qualified_static_checks"]], ["matrix"])
+
     def test_no_mutation_in_lane_module(self):
         source = (ROOT / "src/kodi_agent_toolkit/stub_lanes.py").read_text()
         self.assertNotIn("subprocess.run(", source)

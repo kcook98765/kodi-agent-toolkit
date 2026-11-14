@@ -10,14 +10,14 @@ import platform
 import sys
 
 LANES = (
-    ("matrix", "19.5", "19.0.3", "requirements-matrix.in", None),
+    ("matrix", "19.5", "19.0.3", "requirements-matrix.lock", "qualified"),
     ("nexus", "20.5", "20.0.1", "requirements-dev.lock", "qualified"),
     ("omega", "21.3", "21.0.0", "requirements-omega.lock", "qualified"),
     ("piers", "22.0 RC2", "22.0.1rc1", "requirements-piers.in", None),
 )
 TOOL_PINS = {"mypy": "2.4.0", "kodi-addon-checker": "0.0.36"}
 # Platforms with recorded static fixtures, not native Kodi qualification.
-QUALIFIED_PLATFORMS = {"nexus": ("linux", "win32"), "omega": ("linux",)}
+QUALIFIED_PLATFORMS = {"matrix": ("linux", "win32"), "nexus": ("linux", "win32"), "omega": ("linux",)}
 
 
 def stub_lanes() -> dict:
@@ -70,7 +70,7 @@ def stub_lanes() -> dict:
         "notes": [
             "A --branch argument does not install or select Kodistubs or change Python interpreters.",
             "Use a separate interpreter and the lane's complete hash-locked dependencies.",
-            "Matrix and Piers have candidate version pins only; hash-locked setup and real checks remain pending.",
+            "Piers has a candidate version pin only; hash-locked setup and real checks remain pending.",
             "Readiness reports observed tool versions, not verification of the full lock, cache or add-on.",
             "A static pass is not native Kodi qualification, even when the stub major matches.",
         ],
