@@ -30,6 +30,7 @@
         "kodi_lab_inspect_ui_state": "allow",
         "kodi_lab_addon_list": "allow",
         "kodi_lab_log_read": "allow",
+        "kodi_lab_log_scan": "allow",
         "kodi_lab_screenshot_capture": "allow",
         "kodi_lab_screenshot_retrieve": "allow",
         "kodi_lab_dev_development_source_list": "allow",
@@ -71,6 +72,7 @@
         "kodi_lab_inspect_ui_state": "allow",
         "kodi_lab_addon_list": "allow",
         "kodi_lab_log_read": "allow",
+        "kodi_lab_log_scan": "allow",
         "kodi_lab_screenshot_capture": "allow",
         "kodi_lab_screenshot_retrieve": "allow",
         "kodi_lab_dev_development_source_list": "allow",
@@ -107,6 +109,7 @@
         "kodi_lab_inspect_ui_state": "allow",
         "kodi_lab_addon_list": "allow",
         "kodi_lab_log_read": "allow",
+        "kodi_lab_log_scan": "allow",
         "kodi_lab_screenshot_capture": "allow",
         "kodi_lab_screenshot_retrieve": "allow"
       },
@@ -135,6 +138,7 @@
         "kodi_lab_inspect_ui_state": "allow",
         "kodi_lab_addon_list": "allow",
         "kodi_lab_log_read": "allow",
+        "kodi_lab_log_scan": "allow",
         "kodi_lab_screenshot_capture": "allow",
         "kodi_lab_screenshot_retrieve": "allow"
       }
@@ -211,7 +215,8 @@
         "kodi_lab_target_status": "allow",
         "kodi_lab_inspect_ui_state": "allow",
         "kodi_lab_addon_list": "allow",
-        "kodi_lab_log_read": "allow"
+        "kodi_lab_log_read": "allow",
+        "kodi_lab_log_scan": "allow"
       },
       "hidden": true
     }

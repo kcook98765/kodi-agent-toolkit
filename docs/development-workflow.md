@@ -51,7 +51,7 @@ with an example configuration.
 6. Use qualified manifest-entry launch or fixed video smoke only where eligible
    and authorized. File application, restart, activation dispatch, fresh code and
    feature acceptance are distinct. Observe the intended result and correlate
-   bounded logs/UI evidence with exact source/runtime identity. Reuse valid
+   bounded logs/UI evidence with exact source/runtime identity. Prefer `log_scan` for large-log error searches/counts; resume with the unchanged query and cursor, replacing cumulative results. Use `log_read` for quick tails/metadata or older Bridges. Exact final counts, provisional coverage and truncated samples are distinct; see [log diagnostics](../.agents/skills/kodi-addon-debugging/references/debugging.md#search-and-count-large-logs). Reuse valid
    action observations/captures to avoid repeated navigation. Screenshots need
    visual authority and actual image analysis. Never navigate under read-only
    authority merely because tools are listed.

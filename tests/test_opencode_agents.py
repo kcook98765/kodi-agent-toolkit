@@ -20,6 +20,17 @@ def effect(rules, tool):
 
 
 class OpenCodeAgentBoundaryTests(unittest.TestCase):
+    def test_log_scan_is_limited_to_existing_log_readers(self):
+        readers = {"kodi-develop", "kodi-test", "kodi-readonly", "kodi-inspect", "kodi-support"}
+        for name, agent in AGENTS.items():
+            expected = "allow" if name in readers else "deny"
+            for tool in ("kodi_lab_log_read", "kodi_lab_log_scan"):
+                with self.subTest(agent=name, tool=tool):
+                    self.assertEqual(effect(agent["permission"], tool), expected)
+            for tool in ("kodi_lab_dev_log_scan", "kodi_lab_production_log_scan",
+                         "other_server_log_scan", "kodi_lab_log_scan_unknown"):
+                self.assertEqual(effect(agent["permission"], tool), "deny")
+
     def test_inspection_roles_deny_mutations_shell_and_delegation(self):
         forbidden = ["bash", "edit", "task", "external_directory", "new_unknown_tool",
                      "kodi_lab_remote_action", "kodi_lab_workspace_deploy",

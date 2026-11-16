@@ -11,7 +11,7 @@ Stop retains the profile; Reset invalidates profile/Bridge evidence. Trusted Man
 UI selection nor native readiness grants workspace or Bridge authority.
 Recommended read-only profiles:
 - Health/UI: target_list, target_status, inspect_ui_state.
-- Add-on support: those plus addon_list.
+- Add-on support: those plus addon_list, log_read for metadata/short tails and log_scan for bounded searches/counts. Follow [current diagnostics](current-contract.md#read-only-log-diagnostics) and [scan examples](../../kodi-addon-debugging/references/debugging.md#search-and-count-large-logs); preserve unchanged-query cursors and replace cumulative results.
 - Visual: target_list, inspect_ui_state, screenshot_capture with a verified image model.
 A deployment smoke test requires authorized deployment tools, target isolation, revision receipt, install/launch evidence, observations and a documented cleanup plan. Do not broaden server permissions as part of a skill.
 UI controls are semantic: select can remove a menu item or toggle a setting. A no-settings navigation task needs separate narrowly scoped authority and state guards; read-only defaults never navigate. Stop at arrival. Do not use extra request IDs just because they are supplied.
