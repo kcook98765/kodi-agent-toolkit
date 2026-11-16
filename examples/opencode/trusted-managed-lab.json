@@ -30,6 +30,7 @@
         "kodi_lab_dev_addon_list": "allow",
         "kodi_lab_dev_inspect_ui_state": "allow",
         "kodi_lab_dev_log_read": "allow",
+        "kodi_lab_dev_log_scan": "allow",
         "kodi_lab_dev_screenshot_capture": "allow",
         "kodi_lab_dev_screenshot_retrieve": "allow",
         "kodi_lab_dev_remote_action": "allow",

@@ -93,7 +93,7 @@ still need their own authorization and qualification.
 
 ## Optional Kodi Lab MCP
 
-[Kodi Lab](https://github.com/kcook98765/kodi-lab) is a separate project. A configured Lab instance can extend the workflow with target discovery, health/UI inspection, and authorized runtime diagnostics. It needs its own installation, authorized managed development profile, private credentials, and server-side grants. Client tool filtering cannot grant access.
+[Kodi Lab](https://github.com/kcook98765/kodi-lab) is a separate project. A configured Lab instance can extend the workflow with target discovery, health/UI inspection, and authorized runtime diagnostics. It needs its own installation, authorized managed development profile, private credentials, and server-side grants. Client tool filtering cannot grant access. For large-log error searches and complete counts, prefer the read-only `log_scan` workflow with bounded samples and unchanged-query continuation; retain `log_read` for quick tails, metadata and older Bridges. See [log diagnostics](.agents/skills/kodi-addon-debugging/references/debugging.md#search-and-count-large-logs).
 
 The historical beta runtime deployment evaluation was blocked because registered development-source infrastructure was absent. No deployment, runtime reproduction, or autonomous runtime repair completed. Read-only inspection does not establish that an add-on runs correctly. The [everyday development guide](docs/development-workflow.md) describes the current optional loop and dated qualification boundaries.
 

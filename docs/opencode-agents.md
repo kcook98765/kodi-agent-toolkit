@@ -39,6 +39,8 @@ the operator configures a trusted, appropriately scoped command policy. Runtime
 development/testing uses explicit tool names, not a blanket MCP allowlist. Server
 grants and task authorization are still required for each mutation.
 
+Only roles already permitted `log_read` also allow `log_scan`: developer, tester, readonly, inspector and support use `kodi_lab_log_scan`; the separate opt-in managed role uses `kodi_lab_dev_log_scan`. Narrow/visual and the older health/UI-only inspection example remain log-free. Use the actual discovered alias, not a guessed spelling. Prefer counts-only/small samples and unchanged-query continuation; replace cumulative responses and report provisional coverage if the existing step budget ends. See [log diagnostics](../.agents/skills/kodi-addon-debugging/references/debugging.md#search-and-count-large-logs). Merge these individual permission additions into an existing configuration; do not overwrite providers, models, credentials, connections, role limits or sessions. A shared `skills.paths` installation needs its source refreshed, not duplicate skills. Verify shell/project and Web-service effective configuration separately; refresh only an idle affected connection/instance when needed.
+
 `kodi-test` is a new convenience role, not an export of a workstation agent named
 `kodi-tester`. `kodi-inspect` retains the familiar name with a shorter budget;
 the old `kodi-readonly` name remains available as a hidden subagent. Do not
