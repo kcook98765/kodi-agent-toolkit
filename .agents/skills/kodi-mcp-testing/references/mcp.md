@@ -91,9 +91,7 @@ order starting at zero; discover them instead of assuming the script/plugin orde
 Reuse valid validation/deployment evidence for unchanged bytes. A legacy validation
 may need one refresh to publish launch entries.
 
-Launch requires target control and development execution authority, current
-workspace/source bindings, usable Kodi, enabled matching installed bytes and a
-compatible trusted managed Bridge. It cannot launch external/production targets
+`workspace_launch` requires `target.control` and `development.execute` in the applicable client/target policy, exact target access and current workspace/source bindings. The distinct `development_launch` path requires `development.launch` and `workspace.inspect`, plus the exact bound Current Kodi project or Trusted Managed Lab authority for an agent-owned project; it does not require `target.control` or imply navigation authority. Both require usable Kodi, eligible enabled matching installed bytes and the current reviewed managed Bridge. Choose only an exposed, already authorized path; this is not a universal fallback. It cannot launch external/production targets
 or start Kodi. Updating Lab alone does not upgrade an installed Bridge. An
 `accepted` receipt proves dispatch only; inspect the intended destination and
 feature behavior. Recover an uncertain launch using its identical request and
@@ -106,11 +104,17 @@ use an already authorized, verified menu route when available. Do not repeatedly
 redeploy unchanged bytes, reset the workspace or alter the manifest to force the
 launcher. Missing authority or unverified deployment remains a blocker.
 
-`workspace_execute` is a bounded smoke workflow, not a generic launcher: check its documented eligibility before using it for a script or multi-extension package. Record an unsupported entry point once and use the supported fallback; do not repeat the incompatible operation after each edit or change the manifest merely to satisfy it.
+`workspace_execute` is a bounded eligible-video smoke workflow (and fixed diagnostic), not a generic Program launcher. An ineligible Program or mixed-manifest refusal is expected. Inspect/resume the existing workspace → validate exact generation → preflight → authorized deployment when needed → authorized declared-entry launch → fresh native observation. Inspect `launch_entries` before selecting `extension_ordinal`. Do not Reset, redeploy unchanged bytes, alter the manifest or navigate menus merely because fixed smoke refused. An accepted launch is dispatch only; fresh logs, intended UI state or independent output establish execution and the relevant GUI/functional result.
 
 When menu navigation is required, find the shortest working route once and retain its labels, starting state and expected destination with the test evidence. Reuse an add-on-provided launch item, or a verified favourite if creating one is within the task's authority. Confirm that the shortcut opens the intended entry point. Before replaying a route, check current UI state; adapt if a dialog, skin or menu changed. Reuse deployment evidence and the route across iterations without rediscovering the whole add-on inventory.
 
 Use structured UI state for navigation decisions and screenshots for visual questions. Keep remote actions ordered; use a bounded action sequence only if the exposed interface explicitly supports it, otherwise call actions sequentially. Observe at state transitions and before a consequential selection; do not add a screenshot/model round trip after every arrow by habit. Neither successful dispatch nor a plugin listing proves the expected custom window loaded. Keep launch latency separate from add-on callback/render measurements.
+
+## Promotion and authentication boundaries
+
+For an authorized registered-source `promotion_request`, inspect the stored sanitized `invalidation_reason` and `next_action`, retain original UUID/plan/receipt, and distinguish `promotion_source_not_writable` from authority/identity failures. Readability does not prove service-account promotion writability. Report the operator prerequisite without changing filesystem permissions or source protections; no approval/publication is implied. Agent-owned projects are ineligible. See [promotion diagnostic decisions](managed-agent-workflow.md#registered-source-promotion-diagnostics).
+
+Browser administration login redirects do not describe MCP/API authentication: unauthenticated MCP/API requests still return 401. Do not replace credentials or reconfigure clients based on a browser login redirect ([#385](https://github.com/kcook98765/kodi-lab/pull/390)).
 
 ## Action observations and correlated screenshots
 

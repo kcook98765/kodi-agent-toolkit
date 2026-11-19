@@ -48,8 +48,7 @@ with an example configuration.
    the existing full deployment or refusal path. Replayed receipts are historical.
    Retained destination-only
    files mean selective staging is not exact mirroring or arbitrary deletion.
-6. Use qualified manifest-entry launch or fixed video smoke only where eligible
-   and authorized. File application, restart, activation dispatch, fresh code and
+6. For Program add-ons: inspect existing project/workspace → validate exact generation → deployment preflight → authorized deployment when needed → declared-entry launch → fresh native observation. `workspace_execute` is not a generic Program launcher; an ineligible Program/mixed-manifest smoke refusal is legitimate and does not justify Reset, unchanged redeployment or menu navigation. `development_launch` uses `development.launch` + `workspace.inspect` with exact bound project/owned-project authority; `workspace_launch` uses separate `development.execute` + `target.control`. Use only existing granted/exposed paths. See [launch requirements](../.agents/skills/kodi-mcp-testing/references/mcp.md#launching-and-relaunching-an-add-on). File application, restart, activation dispatch, fresh code and
    feature acceptance are distinct. Observe the intended result and correlate
    bounded logs/UI evidence with exact source/runtime identity. Prefer `log_scan` for large-log error searches/counts; resume with the unchanged query and cursor, replacing cumulative results. Use `log_read` for quick tails/metadata or older Bridges. Exact final counts, provisional coverage and truncated samples are distinct; see [log diagnostics](../.agents/skills/kodi-addon-debugging/references/debugging.md#search-and-count-large-logs). Reuse valid
    action observations/captures to avoid repeated navigation. Screenshots need
@@ -85,7 +84,9 @@ reuse ineligible. Live replacement, generic service stop/reload, selected-skin
 reload, dependent-module invalidation and one-call apply remain unqualified in the
 audited contract. Use a supported stopped-copy/restart route only with authority;
 native code must never be replaced while loaded. Existing Web Python-service
-enablement has separate verified consent and does not prove execution. Original-ZIP receipt/delivery does not prove native ZIP GUI installation (#305), and unattended repository-by-ID installation is unsupported (#339). Direct source deployment is the supported agent-owned route.
+enablement has separate verified consent and does not prove execution. Original-ZIP receipt/delivery does not prove native ZIP GUI installation ([#305, closed Not planned](https://github.com/kcook98765/kodi-lab/issues/305)), and unattended repository-by-ID installation is unsupported ([#339, closed Not planned](https://github.com/kcook98765/kodi-lab/issues/339)). Neither is a pending supported feature. Direct source deployment is the supported agent-owned route.
+
+For separately authorized registered-source promotion, inspect sanitized `invalidation_reason`/`next_action` and retain the original UUID/plan receipt. `promotion_source_not_writable` means the operator must check the source's promotion write prerequisite under the Lab service account, even if source reads pass. It grants no filesystem-permission changes, approval or publication; agent-owned projects are ineligible. See [promotion decisions](../.agents/skills/kodi-mcp-testing/references/managed-agent-workflow.md#registered-source-promotion-diagnostics).
 
 On timeout or ambiguous outcome, keep the original request UUID, parameters and
 receipt. Read status or use documented same-request recovery; do not generate a
