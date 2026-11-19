@@ -2,6 +2,8 @@
 
 This toolkit assists an individual Kodi add-on developer. It cannot guarantee AI-generated code correctness, repository acceptance, runtime behavior, or compatibility with every Kodi release.
 
+The table below records the **historical beta classification**, including its original runtime limitations. For newer successful integration in a specific environment, read [2026-11-18 Kodi Lab/OpenCode acceptance](evaluation.md#2026-11-18-kodi-labopencode-integration-acceptance). That evidence does not qualify every Toolkit role/model or autonomous repair; it does not change the historical results.
+
 | Scope | Capabilities and evidence |
 |---|---|
 | Supported | Five portable Agent Skills with valid discovery/frontmatter and documented explicit loading; Kodi 20 stubs setup; pinned official addon-check integration; standalone static validation/discovery; deterministic fixtures and regression tests; reports built from trusted recorded results. |

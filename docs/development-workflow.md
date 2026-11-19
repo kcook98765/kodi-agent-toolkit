@@ -128,3 +128,5 @@ The separate 2026-11-02 Program 54 Omega acceptance observed baseline and two
 changed-code executions plus original-content restoration through the supported
 workspace loop. It does not qualify other versions or external devices; see the
 [observed iteration example](../.agents/skills/kodi-mcp-testing/references/mcp.md#efficient-development-loop).
+
+The separate [2026-11-18 integration acceptance](evaluation.md#2026-11-18-kodi-labopencode-integration-acceptance) records successful native Lab/OpenCode Program iterations on four versions, disposable external security and Web-control authorization interaction. Its initial 44/46-tool campaign remained PARTIAL; later remediation PASS concerns four fixes and 32 additional calls. This supersedes an assumption that integration was never tested, while leaving historical beta outcomes, Toolkit-specific agent/model qualification and arbitrary application correctness separate.
