@@ -27,6 +27,7 @@
         "bash": "ask",
         "kodi_lab_dev_target_list": "allow",
         "kodi_lab_dev_target_status": "allow",
+        "kodi_lab_dev_system_info": "allow",
         "kodi_lab_dev_addon_list": "allow",
         "kodi_lab_dev_inspect_ui_state": "allow",
         "kodi_lab_dev_log_read": "allow",

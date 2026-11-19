@@ -5,6 +5,10 @@ For add-ons, follow next_cursor to null and count actual unique records. Unknown
 A screenshot claim needs an actual image-capable model request containing the image. Text metadata/filename is not visual evidence. Distinguish a screen message from an inferred cause.
 When logs are available, retain error, surrounding bounded context, timestamp, add-on/revision, reproduced steps and source coordinates; redact credentials and user content. Record checker errors separately from runtime hypotheses. Verify fixes against the original reproduction and relevant regression, not just absence of a log line.
 
+## Inspect system diagnostics when relevant
+
+Discover `system_info` on the original authorized inspection connection and use the exact target UUID. It needs `target.inspect` plus target access and, for External Production, its current inspect scope. The 54 native metrics need no Bridge. Seven optional Narrow Bridge fields require trusted reviewed `system_snapshot` (1.1.35, Piers overlay 1.1.36); missing enrichment is not native failure. Keep `complete`/`partial`/`unavailable`, per-field availability and `raw_only` normalization distinct. Preserve `native_jsonrpc` versus `narrow_bridge` provenance and nulls. Kodi-visible/container resources are not physical host hardware or quota measurements. Do not install/pair/upgrade a Bridge or change authority to fill missing fields. See [system diagnostics and compatibility](../../kodi-mcp-testing/references/current-contract.md#read-only-system-diagnostics).
+
 ## Start with relevant log evidence
 
 Record the target/version, add-on, deployed workspace generation or revision, symptom and reproduction time. Discover the actual `log_read` and `log_scan` schemas and authorization before calling it. Each operation requires target inspection authority and a trusted Bridge advertising its corresponding `log_read` or `log_scan` capability; updating Lab alone does not install or verify that Bridge. Missing exposure, grants, installation or trust is a setup blocker to report to the operator, not permission to change pairing or read host files through another route.
