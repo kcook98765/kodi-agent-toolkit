@@ -2,6 +2,11 @@
 
 ## Unreleased
 
+Add opt-in Linux/WSL `screenshot-export` for verified local PNG/JPEG artwork or a
+selected PNG attachment from a private OpenCode 1.19.3 session export. An explicit
+flag adds a relative screenshot declaration while preserving existing metadata.
+No new dependencies, runtime capture, permission changes or automatic publishing.
+
 Align all five development/validation/compatibility/debugging/MCP skills with explicit target discovery, observed interpreter/tool qualification and same-interpreter validation, while keeping static and native evidence separate.
 
 Add read-only four-version `stub-lanes` discovery with observed interpreter/tool
