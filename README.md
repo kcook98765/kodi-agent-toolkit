@@ -6,6 +6,12 @@ You can use the command-line tools without an AI agent or [Kodi Lab](https://git
 
 **Public beta scope:** static development and validation are supported in the tested Python 3.12 environments. AI contextual review, autonomous repair, smaller local-model workflows, Kodi Lab MCP integration, and runtime debugging are experimental. Autonomous add-on development is not consistently reliable. Runtime deployment and reproduction were **not validated end-to-end** in the historical beta evaluation. See [scope and limits](docs/public-beta.md).
 
+## Current integration acceptance (2026-11-18)
+
+A newer, separate [Kodi Lab/OpenCode campaign](https://github.com/kcook98765/kodi-lab/issues/384) verified integration in its tested Claw environment: OpenCode **1.19.3**, **509 actual MCP calls**, **38 scenarios**, **19 sessions**, and **44 of 46 tools meaningfully exercised**. Native Program iteration passed on Matrix **19.4**, Nexus **20.5**, Omega **21.3** and Piers **22.0 RC2**; disposable external security and Web/OpenCode authorization interaction were also tested. A later four-fix remediation verified **32 additional MCP calls**.
+
+The initial campaign remained **PARTIAL**; remediation PASS covers those four fixes. This is integration evidence, not independent qualification of every Toolkit agent, skill, model or autonomous repair workflow, universal native compatibility, or functional correctness of arbitrary add-ons. Historical beta failures above and below remain unchanged. See [evidence provenance and remaining limits](docs/evaluation.md#2026-11-18-kodi-labopencode-integration-acceptance).
+
 ## Quick start
 
 Requirements: Git, Python **3.12** with venv support, and internet access for the initial dependency and official metadata downloads. The pinned setup targets **Kodi 20 / Nexus**. Python 3.12 runs the development tools; it is not a claim about Kodi's embedded interpreter.
@@ -95,7 +101,7 @@ still need their own authorization and qualification.
 
 [Kodi Lab](https://github.com/kcook98765/kodi-lab) is a separate project. A configured Lab instance can extend the workflow with target discovery, health/UI inspection, and authorized runtime diagnostics. It needs its own installation, authorized managed development profile, private credentials, and server-side grants. Client tool filtering cannot grant access. For large-log error searches and complete counts, prefer the read-only `log_scan` workflow with bounded samples and unchanged-query continuation; retain `log_read` for quick tails, metadata and older Bridges. See [log diagnostics](.agents/skills/kodi-addon-debugging/references/debugging.md#search-and-count-large-logs).
 
-The historical beta runtime deployment evaluation was blocked because registered development-source infrastructure was absent. No deployment, runtime reproduction, or autonomous runtime repair completed. Read-only inspection does not establish that an add-on runs correctly. The [everyday development guide](docs/development-workflow.md) describes the current optional loop and dated qualification boundaries.
+For newer tested integration scope, see [current integration acceptance](#current-integration-acceptance-2026-11-18). The historical beta runtime deployment evaluation was blocked because registered development-source infrastructure was absent. No deployment, runtime reproduction, or autonomous runtime repair completed. Read-only inspection does not establish that an add-on runs correctly. The [everyday development guide](docs/development-workflow.md) describes the current optional loop and dated qualification boundaries.
 
 ## Evidence, evaluation, and limitations
 
