@@ -12,6 +12,8 @@ Before static checks, match the intended release to the project's documented iso
 
 Read `addon.xml` and its verified declared entry files. Confirm the requested Kodi release: `xbmc.python` alone does not uniquely select it. For manifest/lifecycle/API details or longer test/fix loops read references/development.md; use version-compatibility when release differences matter.
 
+For requested distribution screenshots, read [screenshot artwork](references/screenshots.md). Use the local `screenshot-export` helper with an explicit add-on root and safe relative image path. Only `--update-manifest` authorizes XML changes; a capture visible to the model is not a filesystem asset.
+
 Reproduce a repair with static validation before editing. Preserve behavior, dependencies and intended logging severity; use a verified target symbolic constant, never a guessed number or deleted level. Kodi modules/stubs must not be executed outside Kodi.
 
 Make one focused correction, then rerun relevant checks and official validation. For an authorized Kodi Lab loop, read references/development.md and use `kodi-mcp-testing` when installed for the detailed MCP contracts: prepare the owned workspace, validate its current generation, read deployment prerequisites, deploy through the admitted workflow, then launch only a qualified entry point and observe the changed behavior. Reuse valid receipts for unchanged bytes; do not reset Kodi to force progress.

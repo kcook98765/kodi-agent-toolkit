@@ -14,4 +14,6 @@ Use only tools needed for the completion criterion: list then status for health;
 
 Read-only grants do not permit navigation, Python execution, profile changes or deployment. Generic select can mutate settings. Deployment requires task authorization plus existing server grants, isolated target, exact revision receipt and reproducible smoke/cleanup evidence. Report an unavailable stage without broadening permissions or bypassing policy.
 
+For local screenshot artwork, capture pixels only through existing screenshot authority, then use the Toolkit's local `screenshot-export` CLI. OpenCode 1.19.3 session export can retain a PNG attachment selected by exact call ID; model-visible images and capture metadata are not local files. The browser/local-file fallback and commands are in `kodi-addon-development`'s `references/screenshots.md`. Export and optional manifest declaration do not prove capture provenance, correct UI or package validity.
+
 Stop when the requested goal is verified or a required step is unavailable. State target/version, actual observations, failed operations, tested revision and uncertainty; concise summaries normally fit within 150 words. Keep credentials, user media, sensitive screenshots and logs outside shared artifacts. Standalone development/validation does not require Kodi Lab.

@@ -69,6 +69,11 @@ On Windows use `.venv\Scripts\python.exe` with the same arguments. Exit **1** is
 
 Validation checks Python syntax, the manifest, declared paths, packaging, types, and the installed official checker. The toolkit calls the original checker in a subprocess, replays the explicitly acquired indexes, and preserves its diagnostics and warnings. Missing cache, crashes, timeouts, and incomplete checks are never passes. Neither static success nor offline URL checks guarantee acceptance into Kodi's repository.
 
+To save local screenshot artwork and optionally add its `addon.xml` declaration,
+use the [screenshot export workflow](docs/screenshots.md) (Linux/WSL). It accepts
+PNG/JPEG files or one selected PNG attachment from a private OpenCode session
+export; it does not capture images or change runtime permissions.
+
 ## Use the Agent Skills
 
 Copy the relevant directory from `.agents/skills/`, **including its references**, into your add-on project's agent-supported skill location. No toolkit installation is needed to read the portable instructions; the validation steps need the Python setup above.
