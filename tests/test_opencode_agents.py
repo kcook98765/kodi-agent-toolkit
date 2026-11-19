@@ -31,6 +31,25 @@ class OpenCodeAgentBoundaryTests(unittest.TestCase):
                          "other_server_log_scan", "kodi_lab_log_scan_unknown"):
                 self.assertEqual(effect(agent["permission"], tool), "deny")
 
+    def test_system_info_uses_only_the_intended_connection_and_roles(self):
+        diagnostics = {"kodi-develop", "kodi-test", "kodi-readonly", "kodi-inspect", "kodi-support"}
+        for name, agent in AGENTS.items():
+            rules = agent["permission"]
+            with self.subTest(agent=name):
+                self.assertEqual(effect(rules, "kodi_lab_system_info"),
+                                 "allow" if name in diagnostics else "deny")
+                for tool in ("kodi_lab_dev_system_info", "other_server_system_info",
+                             "kodi_lab_production_system_info", "kodi_lab_system_info_unknown"):
+                    self.assertEqual(effect(rules, tool), "deny")
+        managed = json.loads((EXAMPLES / "trusted-managed-lab.json").read_text(encoding="utf-8"))
+        rules = managed["agent"]["kodi-managed-lab"]["permission"]
+        self.assertEqual(effect(rules, "kodi_lab_dev_system_info"), "allow")
+        for tool in ("kodi_lab_system_info", "other_server_system_info",
+                     "kodi_lab_dev_system_info_unknown"):
+            self.assertEqual(effect(rules, tool), "deny")
+        legacy = json.loads((EXAMPLES / "inspection.json").read_text(encoding="utf-8"))
+        self.assertNotIn("system_info", json.dumps(legacy))
+
     def test_inspection_roles_deny_mutations_shell_and_delegation(self):
         forbidden = ["bash", "edit", "task", "external_directory", "new_unknown_tool",
                      "kodi_lab_remote_action", "kodi_lab_workspace_deploy",
