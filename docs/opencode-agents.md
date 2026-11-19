@@ -232,3 +232,5 @@ References: [OpenCode agents](https://opencode.ai/docs/agents/),
 [configuration precedence and variables](https://opencode.ai/docs/config/),
 [skills](https://opencode.ai/docs/skills/) and
 [MCP servers](https://opencode.ai/docs/mcp-servers/).
+
+For an opt-in check of a configured installation, follow the [bounded integration smoke recipe and evidence checklist](integration-smoke.md). It preserves existing permissions/settings, separates read-only from explicitly authorized managed development, and does not run on installation.

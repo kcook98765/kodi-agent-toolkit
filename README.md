@@ -103,6 +103,8 @@ still need their own authorization and qualification.
 
 For newer tested integration scope, see [current integration acceptance](#current-integration-acceptance-2026-11-18). The historical beta runtime deployment evaluation was blocked because registered development-source infrastructure was absent. No deployment, runtime reproduction, or autonomous runtime repair completed. Read-only inspection does not establish that an add-on runs correctly. The [everyday development guide](docs/development-workflow.md) describes the current optional loop and dated qualification boundaries.
 
+Follow the opt-in [bounded integration smoke recipe](docs/integration-smoke.md) for your own authorized environment. Read-only checks come first; managed fixture/deploy/launch and cleanup require separate operator authorization. The recipe is not evidence that those tests ran.
+
 ## Evidence, evaluation, and limitations
 
 Reports distinguish deterministic errors, independently supported conditional issues, recommendations, and unverified claims. Source anchors do not prove general semantics; `report-build` needs trusted tool records, and source hashes detect staleness rather than forged input.
