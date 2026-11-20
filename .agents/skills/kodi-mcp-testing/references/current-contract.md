@@ -268,7 +268,7 @@ Live replacement, generic service stop/reload, selected-skin reload, exact obsol
 file removal and one-call `workspace_apply` are unavailable here. Do not synthesize
 them from builtins or direct Bridge access. Existing copied-source Web enablement
 has a separate explicit Python-service consent, installed-descriptor proof and
-bounded Omega policy. It is not an MCP service-enable tool; enabled state leaves
+[mixed-Python registered-source policy](mixed-python-addons.md). It is not an MCP service-enable tool; enabled state leaves
 `service_execution=not_observed`. Native ZIP install retains its human gates;
 it is not a generic unattended installation API.
 

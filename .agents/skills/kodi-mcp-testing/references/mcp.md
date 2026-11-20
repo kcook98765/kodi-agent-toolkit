@@ -68,6 +68,8 @@ That recovery does not capture newer source bytes or dispatch the import again.
 Retain `reconciliation_required` outcomes for administrator review; do not replay
 an uncertain import with a new request ID.
 
+For script/plugin/service combinations, follow [mixed Python sources and service consent](mixed-python-addons.md). Discovery is not launch eligibility; services run only through Kodi lifecycle.
+
 ## Launching and relaunching an add-on
 
 Before launch, verify the matching installation is enabled and no unresolved
