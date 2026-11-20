@@ -126,7 +126,8 @@ def inspect_manifest_paths(root: Path) -> None:
     references = []
     for extension in manifest.findall("extension"):
         references.extend(extension.attrib[key] for key in ("library", "start", "folder")
-                          if key in extension.attrib)
+                          if key in extension.attrib
+                          and not (key == "start" and extension.get("point") == "xbmc.service"))
         references.extend(asset.text or "" for asset in extension.findall("assets/*"))
     for text in references:
         normalized = text.replace("\\", "/")

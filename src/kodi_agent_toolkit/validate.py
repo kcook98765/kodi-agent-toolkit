@@ -179,6 +179,8 @@ def validate(addon: Path, branch: str = "nexus", cache: Path | None = None) -> d
                     references = []
                     for extension in manifest.findall("extension"):
                         for name in ("library", "start", "folder"):
+                            if name == "start" and extension.get("point") == "xbmc.service":
+                                continue  # Legacy service timing, not a filename.
                             if extension.get(name) is not None:
                                 references.append(extension.attrib[name])
                         for asset in extension.findall("assets/*"):

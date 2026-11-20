@@ -108,6 +108,8 @@ def discover(directory: Path = Path(".")) -> dict:
             record["python_requirement"] = [item.get("version") for item in xml.findall("requires/import") if item.get("addon") == "xbmc.python"]
             for extension in xml.findall("extension"):
                 for key in ("library", "start"):
+                    if key == "start" and extension.get("point") == "xbmc.service":
+                        continue  # Legacy service timing, not an entry point.
                     declared = extension.get(key)
                     if declared is None:
                         continue

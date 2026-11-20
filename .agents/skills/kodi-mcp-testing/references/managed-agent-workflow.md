@@ -1,6 +1,6 @@
 # Current trusted managed Kodi agent workflow
 
-Source checkpoint: Kodi Lab main `fa7eb39044aae4bde4b3db721cf96590faf9c575` (2026-11-18). Read the [server's tool and permissions matrix](https://github.com/kcook98765/kodi-lab/blob/main/docs/MCP-TOOLS-AND-PERMISSIONS.md), [unattended source installation](https://github.com/kcook98765/kodi-lab/blob/main/docs/MANAGED-ADDON-INSTALLATION.md), [agent project contracts](https://github.com/kcook98765/kodi-lab/blob/main/docs/AGENT-PROJECTS.md), and [Reset/Bridge recovery](https://github.com/kcook98765/kodi-lab/blob/main/docs/MANAGED-AGENT-RESET.md) for exact schemas and limits. This guide does not grant permissions. An installed server may differ: discover its authenticated tool schemas before runtime work.
+Source checkpoint: Kodi Lab main `3d1d4594a0f10d39fbeab6aa2829a691761922cc` (#394). Read the [server's tool and permissions matrix](https://github.com/kcook98765/kodi-lab/blob/main/docs/MCP-TOOLS-AND-PERMISSIONS.md), [unattended source installation](https://github.com/kcook98765/kodi-lab/blob/main/docs/MANAGED-ADDON-INSTALLATION.md), [agent project contracts](https://github.com/kcook98765/kodi-lab/blob/main/docs/AGENT-PROJECTS.md), and [Reset/Bridge recovery](https://github.com/kcook98765/kodi-lab/blob/main/docs/MANAGED-AGENT-RESET.md) for exact schemas and limits. This guide does not grant permissions. An installed server may differ: discover its authenticated tool schemas before runtime work.
 
 ## Select the environment
 
@@ -8,6 +8,8 @@ Source checkpoint: Kodi Lab main `fa7eb39044aae4bde4b3db721cf96590faf9c575` (202
 - **Managed read-only/custom client:** require applicable client/Kodi policies, exact target grant, and specific permissions. `managed.versions`, `managed.lifecycle` and `managed.reset` are not synonyms. A read-only credential must not mutate.
 - **External Production:** inspect scope and exact grant; screenshots and restricted navigation separately default Off on each Kodi. Select/Context are prohibited. No source deployment, lifecycle or agent-owned managed role.
 - **External Development:** exact grant plus verified capability maxima; no assumption that managed launch or project authority transfers. Never widen the role to work around a missing tool.
+
+Service-bearing imports require the [registered-source cold workflow and explicit Web consent](mixed-python-addons.md). Private service deployment refuses before attachment/copy/restart; the preferred private loop below applies only to eligible sources without a service.
 
 ## Preferred agent-owned source loop
 

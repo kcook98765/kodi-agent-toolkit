@@ -4,6 +4,8 @@ description: "Verify Kodi Lab MCP runtime workflows on explicitly authorized man
 license: MIT
 ---
 
+For script/plugin/service combinations, read [the mixed Python workflow](references/mixed-python-addons.md): services require explicit administrator consent and are never launchable script entries.
+
 For current Kodi Lab (46 documented MCP tools), first read [the trusted managed agent workflow](references/managed-agent-workflow.md) when an explicitly authorized agent-owned project, autonomous Reset or Bridge preparation is involved. Default inspection and testing roles remain narrow; no additional permission is implied by loading a skill. Discover the installed server's credential-filtered schemas and source/runtime identity.
 
 Read [role boundaries](references/agent-roles.md) when choosing developer, tester or inspector responsibilities. Read [the workflow reference](references/mcp.md) for authority, pagination, deployment, launch and UI controls, and [current contracts and recovery](references/current-contract.md) for exact inputs, managed version lifecycle, retained profiles, explicit destructive Reset, admission and uncertainty. For launch tests identify the manifest entry and intended window first. A stopped target is not usable; do not start or replace it without separate lifecycle authority. Discover the exact version/target and current profile identity; recover a rejected saved UUID with one discovery. Server capabilities are distinct from client grants.
