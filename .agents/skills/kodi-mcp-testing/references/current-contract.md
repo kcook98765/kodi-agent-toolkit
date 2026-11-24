@@ -1,6 +1,6 @@
 # Kodi Lab managed-v2 MCP contract
 
-Authenticated `tools/list` establishes the actual credential-filtered capabilities. These are the contracts at Kodi Lab commit `ee67ff5730d6ac2e8282948913212d67758972d9`. Tools are listed here without their OpenCode connection prefix.
+Authenticated `tools/list` establishes the actual credential-filtered capabilities. These are the managed-v2 contracts. Bulk transfer and workspace replacement require the matching Stage 11 Lab candidate. Tools are listed here without their OpenCode connection prefix.
 
 ## Managed tools
 
@@ -26,7 +26,7 @@ The server needs a Trusted Managed Lab credential. Acquire the one shared owner 
 | `managed_snapshot_save` | `name` | Yes | `name`, `bytes`, `entries`, `sha256`. The exact image is bound in private metadata. |
 | `managed_snapshot_load` | `name` | Yes | Restored snapshot and profile state |
 | `managed_snapshot_delete` | `name` | Global | Snapshot deletion result |
-| `managed_workspace_open` | `digest` | Global | `addon`, `version` |
+| `managed_workspace_open` | `digest` | Global | `addon`, `version`. Optional `replace` is the string `true` for a full replacement of the existing private workspace. |
 | `managed_workspace_tree` | `addon` | Global | Array of relative file path strings |
 | `managed_workspace_read` | `addon`, `path` | Global | `content`, `digest` |
 | `managed_workspace_edit` | `addon`, `path`, `content`, `expected_digest` | Global | `digest` |

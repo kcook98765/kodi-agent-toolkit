@@ -11,7 +11,9 @@ kodi-toolkit managed-package-import ./script.example.zip \
   --url "$KODI_LAB_MANAGED_URL" --token-file "$KODI_LAB_MANAGED_TOKEN_FILE"
 ```
 
-The command sends one authenticated `managed_package_import` call and prints the add-on ID, version and confirmed digest. It keeps encoded bytes and the bearer token out of agent output. The Stage 8 server caps the entire request at 64 KiB, leaving just under 48 KiB for the ZIP. Use the lab's approved intake path for larger packages if available. Workspace packages already live in the lab and have a separate admission operation.
+The command sends one authenticated binary upload using the configured Lab MCP address. It prints the admitted add-on ID, version and verified digest. The server accepts ZIPs up to 32 MiB and expanded trees up to 64 MiB. The separate 64 KiB JSON request limit still applies.
+
+For an intentional full source refresh, admit the complete updated ZIP, then open it with `managed_workspace_open` using the digest and `replace="true"`. This exchanges only the private workspace. Deploy separately if needed. Use digest-guarded workspace edits for ordinary text changes.
 
 Save a stopped snapshot when a configured environment is worth reusing. One shared working profile per version can be reset or restored explicitly. Stop the running version before starting a different prepared one. Keep add-on source outside the profile.
 

@@ -31,7 +31,7 @@ class ManagedContractTests(unittest.TestCase):
 
     def test_default_workflow_uses_current_install_and_source_operations(self):
         workflow = (REF / "managed-agent-workflow.md").read_text()
-        for name in ("managed_acquire", "managed_release", "managed_package_import",
+        for name in ("managed_acquire", "managed_release", "managed-package-import",
                      "managed_addon_install", "managed_workspace_deploy",
                      "managed_snapshot_save", "managed_snapshot_load"):
             self.assertIn(name, workflow)

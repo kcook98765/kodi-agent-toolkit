@@ -9,7 +9,7 @@ def main() -> int:
     parser = argparse.ArgumentParser(prog="kodi-toolkit")
     sub = parser.add_subparsers(dest="command", required=True)
     sub.add_parser("stub-lanes", help="Report the active interpreter and four Kodi stub lanes without installing anything")
-    admission = sub.add_parser("managed-package-import", help="Admit a local ZIP through authenticated Kodi Lab MCP")
+    admission = sub.add_parser("managed-package-import", help="Admit a local ZIP through authenticated Kodi Lab transfer")
     admission.add_argument("package", type=Path)
     admission.add_argument("--url", required=True, help="Authorized Kodi Lab MCP endpoint")
     admission.add_argument("--token-file", type=Path, required=True, help="Private Trusted Managed Lab bearer token file")

@@ -1,5 +1,4 @@
 """A local HTTP fixture checks exact-byte admission and bounded failures."""
-import base64
 import hashlib
 from http.server import BaseHTTPRequestHandler, HTTPServer
 import json
@@ -16,7 +15,7 @@ class AdmissionTests(unittest.TestCase):
         root = tempfile.TemporaryDirectory()
         self.addCleanup(root.cleanup)
         self.package = Path(root.name) / "fixture.zip"
-        self.raw = bytes(range(256)) * 5
+        self.raw = bytes(range(256)) * 14_000
         self.package.write_bytes(self.raw)
         self.token = Path(root.name) / "token"
         self.token.write_text("fixture_only\n")
@@ -31,22 +30,22 @@ class AdmissionTests(unittest.TestCase):
                 return
 
             def do_POST(self):
-                req = json.loads(self.rfile.read(int(self.headers["Content-Length"])))
-                case.requests.append((self.path, self.headers["Authorization"], req))
+                raw = self.rfile.read(int(self.headers["Content-Length"]))
+                digest = self.headers["X-Kodi-Lab-Package-SHA256"]
+                case.requests.append(
+                    (self.path, self.headers["Authorization"], self.headers["Content-Type"], digest, raw)
+                )
                 if case.redirect:
                     self.send_response(302)
                     self.send_header("Location", self.path)
                     self.end_headers()
                     return
-                digest = req["params"]["arguments"]["digest"]
-                text = ("permission_denied" if case.refuse else json.dumps({"result": {
+                reply = {"code": "permission_denied"} if case.refuse else {"result": {
                     "addon": "script.fixture", "version": "1.0.0",
                     "digest": "0" * 64 if case.wrong_digest else digest,
-                }}))
-                data = json.dumps({"jsonrpc": "2.0", "id": req["id"], "result": {
-                    "content": [{"type": "text", "text": text}], "isError": case.refuse,
-                }}).encode()
-                self.send_response(200)
+                }}
+                data = json.dumps(reply).encode()
+                self.send_response(403 if case.refuse else 200)
                 self.send_header("Content-Length", str(len(data)))
                 self.end_headers()
                 self.wfile.write(data)
@@ -61,21 +60,22 @@ class AdmissionTests(unittest.TestCase):
     def admit(self):
         return admit_package(self.package, self.endpoint, self.token)
 
-    def test_one_tool_call_uses_exact_zip_and_digest(self):
+    def test_one_binary_request_uses_exact_zip_and_digest(self):
         result = self.admit()
         self.assertEqual(len(self.requests), 1)
-        path, auth, rpc = self.requests[0]
+        path, auth, media, sent_digest, raw = self.requests[0]
         self.assertEqual(path, "/mcp")
         self.assertEqual(auth, "Bearer fixture_only")
-        self.assertEqual(rpc["method"], "tools/call")
-        self.assertEqual(rpc["params"]["name"], "managed_package_import")
-        self.assertEqual(base64.b64decode(rpc["params"]["arguments"]["encoded"]), self.raw)
+        self.assertEqual(media, "application/zip")
+        self.assertEqual(raw, self.raw)
         digest = hashlib.sha256(self.raw).hexdigest()
+        self.assertEqual(sent_digest, digest)
         self.assertEqual(result, {"addon": "script.fixture", "version": "1.0.0", "digest": digest})
 
     def test_oversized_and_insecure_destinations_are_rejected_locally(self):
-        self.package.write_bytes(b"x" * (48 * 1024))
-        with self.assertRaisesRegex(ValueError, "request limit"):
+        with self.package.open("wb") as file:
+            file.truncate(32 * 1024**2 + 1)
+        with self.assertRaisesRegex(ValueError, "32 MiB"):
             self.admit()
         with self.assertRaisesRegex(ValueError, "authorized"):
             admit_package(self.package, "http://example.invalid/mcp", self.token)
