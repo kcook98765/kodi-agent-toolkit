@@ -18,13 +18,7 @@ Use 1280x720 or 1920x1080 opaque, single-frame PNG/JPEG, <=750,000 bytes.
 Compliant bytes are preserved. Fix dimensions, transparency or size in an image
 editor first. Source paths and add-on tree must not traverse symlinks.
 
-Manual: sign in to Kodi Lab Web, select the already authorized running managed
-development instance, expand **Alternative viewers, screenshots and browser
-remote** → **Saved screenshot**, refresh only if authorized, then use the
-browser's image menu to save its PNG. This uses authenticated
-`/api/instances/INSTANCE_ID/screenshots/latest`; it is latest-only, managed-only
-storage. Transfer a laptop download to the Toolkit host if necessary. Never use
-Lab cache paths, credentials in commands, or `workspace_edit` for image bytes.
+Acquire a local capture through the authorized Kodi viewer or a real MCP PNG attachment. See the Toolkit's screenshot documentation for the session export and local-file requirements. For artwork, use a compatible local image copy when the runtime capture dimensions are smaller.
 
 OpenCode 1.19.3 retains MCP PNG attachments in its supported session export:
 
@@ -36,11 +30,10 @@ kodi-toolkit screenshot-export ./script.example \
   --opencode-export /private/session.json --call-id EXACT_CALL_ID --update-manifest
 ```
 
-Select the exact completed `*_screenshot_capture` call with one PNG attachment.
+Select the exact completed `*_screenshot_capture` or `*_managed_screen` call with one PNG attachment.
 `--sanitize` removes image data; text/metadata-only results cannot be exported.
 Keep JSON/transcripts/pixels outside Git. No plugin, database access, URL download
-or configuration change is needed. Extraction from a supplied export is supported;
-live Kodi-to-OpenCode-to-add-on capture has not been qualified by this feature.
+or configuration change is needed. Export verifies the decoded file and its artwork eligibility. Observe runtime pixels separately.
 
 Capture still requires existing authentication, exact-target grant, screenshot
 permission/capability and permitted runtime state. Do not broaden grants, access

@@ -3,131 +3,34 @@
   "agent": {
     "kodi-develop": {
       "mode": "primary",
-      "description": "Develop and validate local add-ons; optionally use an authorized managed Kodi Lab workspace",
-      "steps": 75,
-      "prompt": "Follow the task and actual project instructions. Load kodi-addon-development and kodi-addon-validation; use kodi-version-compatibility for the intended release. Edit only approved source and use the trusted standalone CLI through the command policy. Before authorized Lab work load kodi-mcp-testing and its role/current-contract references. Use kodi_lab for inspection and kodi_lab_dev for the owned workspace loop. Preserve exact generations, identities, receipts and uncertainty. No production access, implicit lifecycle, permission changes or publication. Report unperformed runtime stages.",
+      "description": "Develop and validate local Kodi add-ons",
+      "prompt": "Load kodi-addon-development and the relevant validation and version skills. Work on the requested add-on and preserve its target APIs and manifest. Run release-matched static checks and report incomplete stages.",
       "permission": {
         "*": "deny",
         "external_directory": "deny",
         "read": "allow",
-        "list": "allow",
         "glob": "allow",
         "grep": "allow",
         "skill": {
           "*": "deny",
+          "kodi-addon-debugging": "allow",
           "kodi-addon-development": "allow",
           "kodi-addon-validation": "allow",
-          "kodi-version-compatibility": "allow",
-          "kodi-addon-debugging": "allow",
-          "kodi-mcp-testing": "allow"
-        },
-        "question": "allow",
-        "edit": "allow",
-        "todowrite": "allow",
-        "bash": "ask",
-        "kodi_lab_target_list": "allow",
-        "kodi_lab_target_status": "allow",
-        "kodi_lab_system_info": "allow",
-        "kodi_lab_inspect_ui_state": "allow",
-        "kodi_lab_addon_list": "allow",
-        "kodi_lab_log_read": "allow",
-        "kodi_lab_log_scan": "allow",
-        "kodi_lab_screenshot_capture": "allow",
-        "kodi_lab_screenshot_retrieve": "allow",
-        "kodi_lab_dev_development_source_list": "allow",
-        "kodi_lab_dev_workspace_status": "allow",
-        "kodi_lab_dev_workspace_tree": "allow",
-        "kodi_lab_dev_workspace_read": "allow",
-        "kodi_lab_dev_workspace_import_preview": "allow",
-        "kodi_lab_dev_workspace_deploy_preflight": "allow",
-        "kodi_lab_dev_workspace_create": "allow",
-        "kodi_lab_dev_workspace_edit": "allow",
-        "kodi_lab_dev_workspace_import": "allow",
-        "kodi_lab_dev_workspace_validate": "allow",
-        "kodi_lab_dev_workspace_deploy": "allow",
-        "kodi_lab_dev_workspace_launch": "allow",
-        "kodi_lab_dev_workspace_execute": "allow"
-      }
-    },
-    "kodi-test": {
-      "mode": "primary",
-      "description": "Test an existing managed Lab workspace with exact-generation deployment and runtime evidence",
-      "steps": 40,
-      "prompt": "Load kodi-mcp-testing and its tester role/current-contract references; use kodi-addon-debugging for failures. Test the existing authorized source/workspace/generation without editing source or creating/importing a workspace. Follow validation, preflight, admitted deployment when needed, eligible manifest launch/fixed smoke and actual observation. Do not start/reset Kodi, navigate through unconfigured tools or repair missing authority/setup. Preserve receipts and original uncertain requests. Standalone checker/type evidence is separate from Lab structural validation and native acceptance.",
-      "permission": {
-        "*": "deny",
-        "external_directory": "deny",
-        "read": "allow",
-        "list": "allow",
-        "glob": "allow",
-        "grep": "allow",
-        "skill": {
-          "*": "deny",
           "kodi-mcp-testing": "allow",
-          "kodi-addon-debugging": "allow",
-          "kodi-addon-validation": "allow"
+          "kodi-version-compatibility": "allow"
         },
-        "question": "allow",
-        "kodi_lab_target_list": "allow",
-        "kodi_lab_target_status": "allow",
-        "kodi_lab_system_info": "allow",
-        "kodi_lab_inspect_ui_state": "allow",
-        "kodi_lab_addon_list": "allow",
-        "kodi_lab_log_read": "allow",
-        "kodi_lab_log_scan": "allow",
-        "kodi_lab_screenshot_capture": "allow",
-        "kodi_lab_screenshot_retrieve": "allow",
-        "kodi_lab_dev_development_source_list": "allow",
-        "kodi_lab_dev_workspace_status": "allow",
-        "kodi_lab_dev_workspace_tree": "allow",
-        "kodi_lab_dev_workspace_read": "allow",
-        "kodi_lab_dev_workspace_validate": "allow",
-        "kodi_lab_dev_workspace_deploy_preflight": "allow",
-        "kodi_lab_dev_workspace_deploy": "allow",
-        "kodi_lab_dev_workspace_launch": "allow",
-        "kodi_lab_dev_workspace_execute": "allow"
+        "edit": "allow",
+        "bash": "ask"
       }
-    },
-    "kodi-readonly": {
-      "mode": "subagent",
-      "description": "Read-only managed Kodi health, inventory, logs and visual inspection",
-      "steps": 15,
-      "prompt": "Compatibility inspection alias; prefer kodi-inspect for new work. Load kodi-mcp-testing and its inspector role/current-contract references, and kodi-addon-debugging when needed. Use only authorized status/UI, inventory, bounded logs or images. No source edits, shell, delegation, navigation, lifecycle, deployment or execution. Metadata is not image analysis; report missing evidence.",
-      "permission": {
-        "*": "deny",
-        "external_directory": "deny",
-        "read": "allow",
-        "list": "allow",
-        "glob": "allow",
-        "grep": "allow",
-        "skill": {
-          "*": "deny",
-          "kodi-addon-debugging": "allow",
-          "kodi-mcp-testing": "allow"
-        },
-        "question": "allow",
-        "kodi_lab_target_list": "allow",
-        "kodi_lab_target_status": "allow",
-        "kodi_lab_system_info": "allow",
-        "kodi_lab_inspect_ui_state": "allow",
-        "kodi_lab_addon_list": "allow",
-        "kodi_lab_log_read": "allow",
-        "kodi_lab_log_scan": "allow",
-        "kodi_lab_screenshot_capture": "allow",
-        "kodi_lab_screenshot_retrieve": "allow"
-      },
-      "hidden": true
     },
     "kodi-inspect": {
       "mode": "primary",
-      "description": "Compact read-only managed Kodi inspection",
-      "steps": 10,
-      "prompt": "Load kodi-mcp-testing and its inspector role/current-contract references; use kodi-addon-debugging for symptoms. Answer the requested authorized managed-target question with the available status/UI, paginated inventory, bounded logs or actual images. No source edits, shell, delegation, navigation, lifecycle, deployment or execution. Preserve unknown fields and report missing tools/grants. Image claims require actual pixels at an image-capable model.",
+      "description": "Inspect separately authorized external Kodi targets",
+      "prompt": "Load kodi-addon-debugging. Discover the granted external target and use relevant status, UI, bounded logs or an actual screenshot. Report missing evidence. Inspection carries no navigation, source modification or lifecycle authority.",
       "permission": {
         "*": "deny",
         "external_directory": "deny",
         "read": "allow",
-        "list": "allow",
         "glob": "allow",
         "grep": "allow",
         "skill": {
@@ -135,78 +38,24 @@
           "kodi-addon-debugging": "allow",
           "kodi-mcp-testing": "allow"
         },
-        "question": "allow",
-        "kodi_lab_target_list": "allow",
-        "kodi_lab_target_status": "allow",
-        "kodi_lab_system_info": "allow",
-        "kodi_lab_inspect_ui_state": "allow",
         "kodi_lab_addon_list": "allow",
+        "kodi_lab_inspect_ui_state": "allow",
         "kodi_lab_log_read": "allow",
         "kodi_lab_log_scan": "allow",
         "kodi_lab_screenshot_capture": "allow",
-        "kodi_lab_screenshot_retrieve": "allow"
+        "kodi_lab_system_info": "allow",
+        "kodi_lab_target_list": "allow",
+        "kodi_lab_target_status": "allow"
       }
     },
-    "kodi-narrow": {
-      "mode": "subagent",
-      "description": "Managed Kodi health and structured UI state only",
-      "steps": 10,
-      "prompt": "Load kodi-mcp-testing and its inspector role reference. Answer only authorized managed-target health and structured UI questions. Inventory, logs, screenshots, navigation, source edits, shell, delegation, lifecycle and runtime mutations are outside this role. Null UI fields remain unknown; report missing grants/tools.",
-      "permission": {
-        "*": "deny",
-        "external_directory": "deny",
-        "read": "allow",
-        "list": "allow",
-        "glob": "allow",
-        "grep": "allow",
-        "skill": {
-          "*": "deny",
-          "kodi-addon-debugging": "allow",
-          "kodi-mcp-testing": "allow"
-        },
-        "question": "allow",
-        "kodi_lab_target_list": "allow",
-        "kodi_lab_target_status": "allow",
-        "kodi_lab_inspect_ui_state": "allow"
-      },
-      "hidden": true
-    },
-    "kodi-visual": {
-      "mode": "subagent",
-      "description": "Read-only managed Kodi UI and actual screenshot observation",
-      "steps": 10,
-      "prompt": "Load kodi-mcp-testing and its inspector/current-contract references. Answer the authorized managed-target visual question using UI and actual image content. Retrieve only an eligible exact action capture on the original connection; do not replay navigation to recover pixels. No logs/inventory, source edits, shell, delegation, lifecycle, navigation or runtime mutation. Model metadata alone is not proof of image receipt.",
-      "permission": {
-        "*": "deny",
-        "external_directory": "deny",
-        "read": "allow",
-        "list": "allow",
-        "glob": "allow",
-        "grep": "allow",
-        "skill": {
-          "*": "deny",
-          "kodi-addon-debugging": "allow",
-          "kodi-mcp-testing": "allow"
-        },
-        "question": "allow",
-        "kodi_lab_target_list": "allow",
-        "kodi_lab_target_status": "allow",
-        "kodi_lab_inspect_ui_state": "allow",
-        "kodi_lab_screenshot_capture": "allow",
-        "kodi_lab_screenshot_retrieve": "allow"
-      },
-      "hidden": true
-    },
     "kodi-support": {
-      "mode": "subagent",
-      "description": "Read-only managed Kodi health, add-on inventory and bounded logs",
-      "steps": 10,
-      "prompt": "Load kodi-addon-debugging and kodi-mcp-testing with its inspector role reference. Diagnose authorized managed-target symptoms through status/UI, complete paginated inventory and metadata-first bounded logs. Separate observed facts, hypotheses and the next useful test. Images, shell, source edits, delegation, navigation, lifecycle and runtime mutation are outside this role.",
+      "mode": "primary",
+      "description": "Investigate external Kodi health and logs",
+      "prompt": "Load kodi-addon-debugging. Use relevant structured evidence and bounded logs for the exact authorized target. Record what the available diagnostics establish.",
       "permission": {
         "*": "deny",
         "external_directory": "deny",
         "read": "allow",
-        "list": "allow",
         "glob": "allow",
         "grep": "allow",
         "skill": {
@@ -214,16 +63,49 @@
           "kodi-addon-debugging": "allow",
           "kodi-mcp-testing": "allow"
         },
-        "question": "allow",
-        "kodi_lab_target_list": "allow",
-        "kodi_lab_target_status": "allow",
-        "kodi_lab_system_info": "allow",
-        "kodi_lab_inspect_ui_state": "allow",
         "kodi_lab_addon_list": "allow",
+        "kodi_lab_inspect_ui_state": "allow",
         "kodi_lab_log_read": "allow",
-        "kodi_lab_log_scan": "allow"
-      },
-      "hidden": true
+        "kodi_lab_log_scan": "allow",
+        "kodi_lab_system_info": "allow",
+        "kodi_lab_target_list": "allow",
+        "kodi_lab_target_status": "allow"
+      }
+    },
+    "kodi-external-develop": {
+      "mode": "primary",
+      "description": "Develop on explicitly authorized external Kodi development targets",
+      "prompt": "Load kodi-mcp-testing and read its external workflow. Use the exact authorized target, workspace and source generation. Verify native application and fresh execution separately. External production and managed profile mutations are outside this role.",
+      "permission": {
+        "*": "deny",
+        "external_directory": "deny",
+        "read": "allow",
+        "glob": "allow",
+        "grep": "allow",
+        "skill": {
+          "*": "deny",
+          "kodi-addon-debugging": "allow",
+          "kodi-addon-development": "allow",
+          "kodi-addon-validation": "allow",
+          "kodi-mcp-testing": "allow",
+          "kodi-version-compatibility": "allow"
+        },
+        "edit": "allow",
+        "bash": "ask",
+        "kodi_lab_external_dev_addon_list": "allow",
+        "kodi_lab_external_dev_inspect_ui_state": "allow",
+        "kodi_lab_external_dev_log_read": "allow",
+        "kodi_lab_external_dev_log_scan": "allow",
+        "kodi_lab_external_dev_remote_action": "allow",
+        "kodi_lab_external_dev_screenshot_capture": "allow",
+        "kodi_lab_external_dev_system_info": "allow",
+        "kodi_lab_external_dev_target_list": "allow",
+        "kodi_lab_external_dev_target_status": "allow",
+        "kodi_lab_external_dev_workspace_deploy": "allow",
+        "kodi_lab_external_dev_workspace_deploy_preflight": "allow",
+        "kodi_lab_external_dev_workspace_execute": "allow",
+        "kodi_lab_external_dev_workspace_validate": "allow"
+      }
     }
   }
 }

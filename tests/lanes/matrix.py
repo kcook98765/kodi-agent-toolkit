@@ -53,7 +53,20 @@ class MatrixStaticTests(unittest.TestCase):
         result = self.check((ROOT / "fixtures/matrix-api.py").read_text())
         self.assertTrue(result["passed"], result)
         self.assertEqual(result["checks"]["types"]["compatibility_overlay"]["id"],
-                         "matrix-19.0.3-setinfo")
+                         "matrix-19.0.3-xbmcgui")
+
+    def test_control_position_has_the_native_binding_type(self):
+        result = self.check("from xbmcgui import Control\n"
+                            "def position(control: Control) -> list[int]:\n"
+                            "    return control.getPosition()\n")
+        self.assertTrue(result["checks"]["types"]["passed"], result)
+
+    def test_wrong_control_position_return_type_fails(self):
+        result = self.check("from xbmcgui import Control\n"
+                            "def position(control: Control) -> str:\n"
+                            "    return control.getPosition()\n")
+        self.assertFalse(result["checks"]["types"]["passed"], result)
+        self.assertIn("[return-value]", result["checks"]["types"]["output"])
 
     def test_string_log_severity_fails(self):
         result = self.check('import xbmc\nxbmc.log("bad", "INFO")\n')

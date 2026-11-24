@@ -44,9 +44,9 @@ def image_bytes(image_format="PNG", mode="RGB", size=(1280, 720), **save_options
     return output.getvalue()
 
 
-def session_export(data):
+def session_export(data, tool="kodi_lab_screenshot_capture"):
     return {"info": {"id": "ses_fixture"}, "messages": [{"info": {"role": "assistant"}, "parts": [{
-        "type": "tool", "tool": "kodi_lab_screenshot_capture", "callID": "call_fixture",
+        "type": "tool", "tool": tool, "callID": "call_fixture",
         "state": {"status": "completed", "attachments": [{
             "type": "file", "mime": "image/png",
             "url": "data:image/png;base64," + base64.b64encode(data).decode("ascii")}]}}]}]}
@@ -323,6 +323,14 @@ class ScreenshotExportTests(unittest.TestCase):
             call_id="call_fixture", update_manifest=True)
         self.assertEqual(result["source"], "opencode_export")
         self.assertEqual((self.addon / DESTINATION).read_bytes(), self.input.read_bytes())
+
+    def test_opencode_export_supports_managed_v2_capture(self):
+        exported = self.work / "session.json"
+        data = self.input.read_bytes()
+        exported.write_text(json.dumps(session_export(data, "kodi_lab_dev_managed_screen")))
+        shot.export_screenshot(self.addon, DESTINATION, opencode_export=exported,
+                               call_id="call_fixture")
+        self.assertEqual((self.addon / DESTINATION).read_bytes(), data)
 
     def test_opencode_export_rejects_missing_ambiguous_redacted_or_remote_bytes(self):
         exported = self.work / "session.json"

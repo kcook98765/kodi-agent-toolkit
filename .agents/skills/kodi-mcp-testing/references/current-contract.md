@@ -1,323 +1,65 @@
-# Current Kodi Lab contract and recovery
+# Kodi Lab managed-v2 MCP contract
 
-## 2026-11-19 current Kodi Lab source contract (supersedes historical checkpoints below)
+Authenticated `tools/list` establishes the actual credential-filtered capabilities. These are the contracts at Kodi Lab commit `ee67ff5730d6ac2e8282948913212d67758972d9`. Tools are listed here without their OpenCode connection prefix.
 
-Kodi Lab main `3d1d4594a0f10d39fbeab6aa2829a691761922cc`, schema `0017_system_snapshot_capability`, exposes **46 MCP tools** in its source registry and [canonical tool/permissions matrix](https://github.com/kcook98765/kodi-lab/blob/main/docs/MCP-TOOLS-AND-PERMISSIONS.md). These are source checks, not authenticated installed-server verification. Review [current managed agent workflow](managed-agent-workflow.md) first for new work; historical November 9 and October material below is retained as dated background. Discover the actual installation's permission-filtered `tools/list` and each live schema before calling. A listed tool does not grant its use.
+## Managed tools
 
-A Trusted Managed Lab agent with administrator-enabled Full Development role can create/import its own private project, prepare/edit/validate its workspace, directly deploy and launch to an installed approved managed version, and (only when the task explicitly authorizes disposing that profile) Reset with original-UUID recovery and separate Bridge preparation. **Eligible agent-owned projects without services do not require registered source/Current Kodi Web selection.** Private service imports preserve the manifest but refuse deployment pending a separately reviewed consent workflow; use the [registered-source cold path and explicit Web service consent](mixed-python-addons.md) for service-bearing add-ons. The role does not install missing runtimes or authorize external Kodi. A narrow client still requires exact policies/grants and `managed.reset` for native-only Reset. Reset must carry the version's observed `expected_profile`; profile replacement and Bridge readiness are separate results. The current Piers qualification is **22.0 RC2**, while an existing retained profile may still pin an older runtime.
+Every argument is a string. Runtime-scoped operations take optional `generation` with one of `matrix`, `nexus`, `omega`, or preview `piers`. Omission selects Omega. For installation, `version` means the add-on version. Arguments are closed. Text replies contain JSON with `result` and `elapsed_seconds`. The screen tool returns PNG content.
 
-Production inspection has a current inspect scope and exact target grant; external screenshots and production navigation are per-Kodi opt-ins (default Off), not a visual scope. Production navigation is restricted to Up/Down/Left/Right/Back/Home/Info; Select/Context prohibited. External Development has separate verified capability maxima. No external deployment/reset inherits the managed role. Original ZIP delivery is not native GUI installation; unattended repository-by-ID installation remains unsupported.
+The server needs a Trusted Managed Lab credential. Acquire the one shared owner for runtime actions and native inspection. Source workspaces, package admissions and named snapshots are private to the credential's agent. Native startup reports the Kodi version and authenticated Bridge. The global status and private lookups can establish which work is needed before making a runtime change.
 
-### Current source inventory (46)
+| Tool | Required inputs | Runtime scoped | Result |
+| --- | --- | --- | --- |
+| `managed_status` | — | Yes | `state`, `generation`, `available_generations[]`, `owner`, `view_control`, `view_target`, optional authorized `operation`, native `version` and `bridge` when ready |
+| `managed_acquire` | — | Global | `owner`, `idle_timeout_seconds` |
+| `managed_release` | — | Global | `owner` |
+| `managed_prepare` | — | Yes | `state`, `profile` |
+| `managed_start` | — | Yes | `state`, native `version`, authenticated `bridge` |
+| `managed_stop` | — | Yes | `state` |
+| `managed_reset` | — | Yes | `state`, `profile` |
+| `managed_logs` | — | Yes | `text` from bounded Kodi log tail |
+| `managed_gui` | — | Yes | Kodi `currentwindow`, `currentcontrol`, `skin` |
+| `managed_screen` | — | Yes | PNG image content |
+| `managed_navigate` | `action` | Yes | `state=dispatched` |
+| `managed_skin` | `addon` | Yes | Skin activation result for an enabled development skin. The stock Estuary ID is reserved. Native installation switches internally when needed. |
+| `managed_snapshot_list` | — | Global | Array of private entries with `name` and `bytes` |
+| `managed_snapshot_save` | `name` | Yes | `name`, `bytes`, `entries`, `sha256`. The exact image is bound in private metadata. |
+| `managed_snapshot_load` | `name` | Yes | Restored snapshot and profile state |
+| `managed_snapshot_delete` | `name` | Global | Snapshot deletion result |
+| `managed_workspace_open` | `digest` | Global | `addon`, `version` |
+| `managed_workspace_tree` | `addon` | Global | Array of relative file path strings |
+| `managed_workspace_read` | `addon`, `path` | Global | `content`, `digest` |
+| `managed_workspace_edit` | `addon`, `path`, `content`, `expected_digest` | Global | `digest` |
+| `managed_workspace_package` | `addon` | Global | `addon`, `version`, `digest` |
+| `managed_workspace_deploy` | `addon` | Yes | `state=applied`, `files_verified`, `version` |
+| `managed_package_import` | `encoded`, `digest` | Global | `addon`, `version`, `digest` |
+| `managed_addon_install` | `addon`, `version`, `digest` | Yes | `state`, verified `package`, verified `dependencies[]`, and native action/skin observations. Optional `allow_services` takes string `true` or `false`. |
+| `managed_addon_inventory` | — | Yes | Native Kodi add-on rows including `addonid`, `name`, `version`, `enabled` |
+| `managed_addon_launch` | `addon` | Yes | Bounded native launch dispatch result |
+| `managed_addon_setting` | `addon`, `key`, `value` | Yes | Signed add-on setting result |
 
-- Inspection/GUI (10): `target_list`, `target_status`, `system_info`, `addon_list`, `inspect_ui_state`, `log_read`, `log_scan`, `screenshot_capture`, `screenshot_retrieve`, `remote_action`.
-- Managed lifecycle (8): `managed_status`, `managed_start`, `managed_stop`, `managed_reset`, `managed_ensure_ready`, `managed_release`, `managed_selection_preview`, `managed_select`.
-- Target-bound development (11): `workspace_deploy_preflight`, `workspace_deploy`, `workspace_execute`, `workspace_launch`, `development_launch`, `workspace_execution_recover`, `addon_settings_set`, `addon_settings_result`, `promotion_request`, `package_install`, `package_install_status`.
-- Projects/packages (6): `project_create`, `project_transfer`, `project_import`, `project_status`, `package_import`, `package_status`.
-- Sources/workspaces (11): `development_source_list`, `workspace_create`, `workspace_import_preview`, `workspace_import`, `workspace_source_scan`, `workspace_capture`, `workspace_status`, `workspace_tree`, `workspace_read`, `workspace_edit`, `workspace_validate`.
+`managed_addon_install` can report unconfirmed or failed installation. Check the verified bytes, origin, enablement, dependency results and native observations. `managed_addon_launch` reports dispatch. Observe fresh execution through relevant logs or UI. Settings readback uses add-on behavior or authorized Kodi inspection.
 
-### Read-only system diagnostics
+## External tools
 
-`system_info({"target_id":"<discovered exact target UUID>"})` requires `target.inspect` and existing exact target access (or the explicitly enabled managed role for eligible managed targets). External Production additionally requires its fixed production inspection preset, exact target grant and current inspect scope. Client allowlisting cannot supply server authority. No screenshot, development or Bridge permission is required for the **54 native metrics**.
+These use external grants independently of managed authorization. Discover exact nested actions, limits and input shapes from the connected server before use.
 
-This non-atomic snapshot reports native `status` as `complete`, `partial` or `unavailable`. Inspect each field's `availability`, `source`, `scope`, `value`, `unit`, `raw` and `normalization`. Missing/invalid values stay null, never zero; false can be an available boolean. Meaningful `raw_only` text counts as available despite a null normalized value, so complete does not mean all numeric. Partial is a successful read; unreachable Kodi, identity or authorization failures remain typed errors.
+| Tool | Required fields | Optional fields |
+| --- | --- | --- |
+| `addon_list` | `target_id` | `cursor`, `limit` |
+| `inspect_ui_state` | `target_id` | — |
+| `log_read` | `target_id` | `before`, `log`, `max_bytes`, `max_lines`, `mode`, `snapshot_id` |
+| `log_scan` | `target_id` | `context_records`, `cursor`, `end_time`, `logs`, `max_matches`, `severities`, `start_time`, `text` |
+| `remote_action` | `request_id`, `target_id`, `action` | — |
+| `screenshot_capture` | `target_id` | `request_id` |
+| `system_info` | `target_id` | — |
+| `target_list` | — | `cursor`, `limit` |
+| `target_status` | `target_id` | — |
+| `workspace_deploy` | `request_id`, `workspace_id`, `expected_generation`, `target_id` | `deployment_mode` |
+| `workspace_deploy_preflight` | `workspace_id`, `expected_generation`, `target_id` | `deployment_mode` |
+| `workspace_execute` | `request_id`, `workspace_id`, `expected_generation`, `target_id` | `execution_kind` |
+| `workspace_validate` | `workspace_id`, `expected_generation` | — |
 
-Native provenance is `native_jsonrpc`. Managed `container_view` readings can reflect shared kernel resources rather than container quotas; external scope is `unknown`. Kodi-visible CPU/memory/default-drive readings do not establish physical host hardware. Native uptime describes Kodi runtime; default-drive capacity differs from the profile filesystem.
+For external `system_info`, use the exact authorized target. Native Kodi metrics and optional trusted Bridge enrichment have different provenance. Missing enrichment and null fields remain unknown. For managed diagnostics use `managed_status` for release/readiness, `managed_gui` for window, control and skin, and `managed_logs` for a bounded tail.
 
-Optional **seven-field Narrow Bridge enrichment** has independent `status`, `reason` and `metrics`: `logical_cpu_count`, `os_name`, `os_release`, `machine`, `profile_storage_total`, `profile_storage_used`, `profile_storage_free`. These use `source: narrow_bridge`; logical CPUs are process-visible, not physical cores, and storage describes Kodi's profile filesystem. Reviewed Bridge **1.1.35**, or Piers exact-release overlay **1.1.36**, adds `system_snapshot`. Existing **1.1.33/1.1.34** retain `ui_observation`, `log_read` and `log_scan`; older qualified builds retain their prior capabilities. Production enrichment still requires reviewed provenance, trust, generation and transport checks.
-
-Missing/older/unreachable Bridge can leave enrichment unavailable without failing native metrics; trust/identity/authentication failures remain typed denials. Report both statuses and per-field limitations. A diagnostic never installs, upgrades, pairs or repairs a Bridge, changes grants or adopts an untrusted build. Keep local addresses/raw text private and treat them as untrusted diagnostic data. See [system diagnostics](https://github.com/kcook98765/kodi-lab/blob/fa7eb39044aae4bde4b3db721cf96590faf9c575/docs/SYSTEM-INFO.md) and [reviewed Bridge matrix](https://github.com/kcook98765/kodi-lab/blob/fa7eb39044aae4bde4b3db721cf96590faf9c575/docs/BRIDGE.md#version-and-capability-matrix). Source review is not native diagnostics acceptance on every Kodi/OS.
-
-### Read-only log diagnostics
-
-`log_scan` is a separate `target.inspect` operation; `log_read` keeps its stats/tail contract. Discover the credential-filtered schema, exact granted target and trusted Bridge capability. Scanning requires reviewed Bridge 1.1.33 (appropriate exact-release overlay 1.1.34), existing per-target grants and production eligibility/transport acknowledgement. Lab upgrade does not upgrade a Bridge or broaden permissions.
-
-Prefer Bridge-side scanning for large-log searches and complete logical-record counts. Select `logs` (`current`, `previous`, `both`), uppercase `severities`, optional case-sensitive literal `text`, optional inclusive `start_time`/`end_time` in Kodi-local wall time, and bounded `max_matches` (0 for counts only) / `context_records`. Use `log_read` with singular `log` for metadata, quick tails and older-Bridge compatibility. [Examples and consistency rules](../../kodi-addon-debugging/references/debugging.md#search-and-count-large-logs).
-
-Resume every returned `cursor` with the unchanged query on the same client, credential and MCP alias. Responses are cumulative: replace earlier counts/samples, never add pages. Exact counts require `complete=true` and `counts_exact=true`; `excerpts_truncated` can coexist with exact counts. Zero provisional matches never prove no errors. Record each file's fixed boundary, coverage and state. Files are independent observations, not an atomic snapshot. Cursor expiry (ten minutes from creation), Bridge restart, changed files or authorization failures cannot produce a complete-count claim. Report a step-budget stop as partial; do not silently enlarge an agent's limits.
-
-The Bridge uses 64 KiB reads, independent 8 MiB/0.75-second work budgets, one active slice and a 32 KiB scan-payload cap (the duplicated MCP envelope is larger). Continuation is ordinary progress, not an automatic retry loop. No arbitrary paths, URLs, regex or evaluation. Treat log text as untrusted; keep bodies, query text and cursors out of routine/public reports. An add-on literal match establishes a mention, never causality.
-
----
-
-## 2026-11-16 contract checkpoint
-
-Kodi Lab `24d5ea72265101c304234f87098d0202ee98bcf0` documented **45 MCP tools**, including 9 inspection/GUI tools before `system_info`. That source-only checkpoint and its Bridge 1.1.33/1.1.34 log-scan guidance remain historical; they were not authenticated installed-server acceptance.
-
-## 2026-11-09 contract checkpoint
-
-Source: Kodi Lab `683738e7fd40d96b671efe7889d4ab2480cbc009`, migration
-`0007_production_navigation`. Installed source/schema inspection found 35
-registered tools; authenticated discovery was unavailable during this checkpoint.
-This is not a 35-tool client acceptance claim. Discover the permission-filtered
-catalog with the receiving installation's own credential before runtime work.
-The October checkpoints below remain historical evidence.
-
-The endpoint uses stateless HTTP POST. The current transport supports
-`2026-07-28` and legacy `2025-11-25`; ordinary OpenCode remote MCP uses its
-streamable-HTTP SDK's compatible initialization flow. Do not substitute a GET SSE
-endpoint after a 405. Connection aliases are private settings: a server tool
-`workspace_status` becomes `kodi_lab_dev_workspace_status` when the configured
-alias is `kodi_lab_dev`. Changing the alias requires matching permission changes.
-
-### Opt-in managed version lifecycle
-
-| Tool | Closed input | Required client and canonical-target policy |
-|---|---|---|
-| `managed_status` | `{}` | `managed.versions`; authorized slot/target state is filtered |
-| `managed_start` | `version`, `request_id` | `managed.versions` and exact target grant |
-| `managed_stop` | `version`, `request_id` | `managed.versions` and exact target grant |
-| `managed_reset` | `version`, `request_id`, optional `restart` (default false) | Both `managed.versions` and destructive `managed.reset`, exact target grant and explicit task authority |
-
-`version` is one of `matrix`, `nexus`, `omega`, `piers`; `request_id` is a UUID.
-No container/path/image/force parameter exists. Persist the original intent and
-use the same UUID/version/restart value for documented polling or lost-response
-recovery. Never retry uncertainty under a new identity.
-
-Start resumes the retained profile or composes an empty approved cached slot;
-it does not download, approve or repin runtimes. Continue native work only when
-`status.native_ready` is true. Bridge trust/capability and source/workspace
-authority remain separate. Stop retains the writable profile; require
-`stop_confirmed`. Release of a use hold is not proof of Stop. Respect other users,
-viewers, input ownership, leases, uncertainty fences and the configured concurrent
-running limit. No automatic eviction/version switch is implied.
-
-Reset deliberately replaces Kodi's writable settings/databases/installed add-ons
-from the approved cached image. It preserves independent Git/source/workspace and
-retained Lab evidence; it is not an ordinary iteration/recovery shortcut. It
-invalidates Bridge and profile-bound deployment/enablement evidence and closes
-a disposed Current Kodi selection. Default Reset leaves the replacement stopped;
-`restart:true` requests native Start, not full agent readiness.
-
-After Reset, existing MCP selection cannot bootstrap the disposed Current Kodi
-binding. An authorized Web administrator must select the replacement/workspace
-while Kodi are stopped, copy a fresh registered-source baseline, establish
-reviewed Bridge trust and enable the intended add-on through supported setup.
-Existing grants survive but do not provide those preparation powers. Resume the
-workspace loop only after that separate preparation. Native-ready alone is not
-Bridge-ready or workspace-ready. Preserve original Reset/child receipts if any
-replacement stage is uncertain; neither elapsed time nor an empty inventory
-unlocks an uncertain removal.
-
-Legacy `managed_selection_preview`/`managed_select` and
-`managed_ensure_ready`/`managed_release` remain separately opt-in
-`managed.lifecycle` tools. The version interface requires `managed.versions`;
-old presets do not acquire it, Reset, source-import or settings authority
-automatically. Default Toolkit agents grant none of these lifecycle operations.
-
-### Source, workspace and screenshots
-
-Lab sees only administrator-registered sources below its configured development
-root. Synchronize a reviewed local source mirror explicitly; workspace creation
-takes `source_id`, not an arbitrary workstation path. Source grants, client-owned
-workspace binding, selected-session identity and current generation remain
-independent. Import/preview require `development_source.inspect` plus
-`workspace.edit`; they are not implied by the ordinary Add-on Development preset.
-Preflight still reserves nothing and returns `blocked` or `unknown`, not ready.
-Deployment performs current admission, baseline/ownership/readiness and exact
-runtime/profile checks. A stale source baseline after workspace deployment is
-not by itself a request to overwrite the workspace or recopy source.
-
-At this checkpoint screenshot capture/retrieval registry permissions are
-**`target.inspect`**, not a mandatory extra `target.visual` permission. Exact
-target grants, target policy and technical readiness still apply; external Kodi
-also requires its separate screenshots preference. Do not port older visual
-permission assumptions onto this contract or grant production access for a
-development test. The inspector connection must use its own restricted client.
-
-`screenshot_capture` takes `target_id` and optional `request_id`.
-`screenshot_retrieve` takes exact `target_id`, original action `request_id` and
-`capture_id`, on the original authorized managed-development client. Retrieval
-requires the same current runtime identity and an unexpired retained frame;
-it never recaptures or selects newer pixels. `remote_action` needs control
-authority; `observe_ui:true` adds independently authorized UI/capture evidence.
-Capture/retrieve return image content plus metadata/text. Verify that actual
-image input reaches an image-capable model before making visual claims.
-
-Current deployment/launch inputs in the table below remain applicable. Closed
-schemas reject extra parameters. Preserve exact request/generation/receipt
-identities after timeout or client output-schema rejection, inspect the durable
-server outcome first, then refresh only the affected idle MCP connection when
-needed. A new conversation need not refresh cached schemas. No bypass, automatic
-credential rotation, duplicate deployment or new-UUID recovery is authorized.
-
-Pinned maintained contracts: [managed loop](https://github.com/kcook98765/kodi-lab/blob/683738e7fd40d96b671efe7889d4ab2480cbc009/docs/MANAGED-AGENT-LOOP.md),
-[version lifecycle](https://github.com/kcook98765/kodi-lab/blob/683738e7fd40d96b671efe7889d4ab2480cbc009/docs/MANAGED-VERSION-LIFECYCLE.md),
-[clean Reset](https://github.com/kcook98765/kodi-lab/blob/683738e7fd40d96b671efe7889d4ab2480cbc009/docs/MANAGED-CLEAN-RESET.md).
-
-## Historical source checkpoints
-
-Source audit: Kodi Lab `56517d3abd6faf661b990d58e574a94193f8b532`, schema
-`0088_service_enable_start` (2026-10-29). This is a dated contract reference,
-not a promise that every installed server, client or target exposes these tools.
-Discover `tools/list` on the actual authenticated connection. OpenCode normally
-prefixes names with the configured MCP server name, for example
-`kodi_lab_workspace_deploy_preflight`; use its discovered spelling.
-
-## 2026-10-30 source contract delta
-
-Kodi Lab `b92a14d2c5a2ab292fc0c9100d101b3877fcb1d0`, schema
-`0090_verified_noop_deployment`, adds the following scoped behavior. This source
-reference does not establish that an installed server was upgraded or that a
-particular OpenCode agent received image metadata or passed native acceptance.
-The earlier audit remains a historical checkpoint. Discover the actual
-connection and retain observed receipts.
-
-- A new managed `workspace_deploy` request can return
-  `result_classification=verified_existing`, `deployment_work_skipped=true` and
-  `managed_verification` with the exact reused deployment ID, runtime/container,
-  current source/installed digests, readiness, scanned/hashed/readback counts,
-  zero staged/uploaded bytes and zero native restarts. This is a new verification
-  receipt, not a new native deployment, activation or execution. Authorization,
-  generation, selected session, rate admission, leases and uncertainty fences
-  still apply. Full current installed-tree/ownership and native/Bridge checks
-  are required; an old digest alone is insufficient. Older receipts without
-  proof, stopped Kodi, changed runtime epochs or insufficient eligibility use
-  the existing full deployment/refusal path. Exact UUID replay stays historical.
-- `screenshot_capture` and `screenshot_retrieve` retain the same bounded PNG
-  `ImageContent` and structured metadata, and additionally return identical
-  metadata as text for adapters that discard `structuredContent`. OpenCode
-  1.19.3 kept image attachments but discarded that structured object. Associate
-  image and text from the same tool result; check actual pixels, MIME/dimensions,
-  capture/target/time and, for action-bound retrieval, original request identity,
-  runtime revision and frame age. Retrieval preserves the original capture and
-  existing expiry checks; it does not authorize recapture. Digest and explicit
-  expiry timestamp are not supplied metadata fields; do not invent them.
-- Fixed video smoke recognizes only the reviewed Piers `22.0-rc.1` Python API
-  `3.1.0` / compatible ABI `3.0.0`. Unsupported dependencies, unknown releases
-  and non-video extension shapes retain their refusal. GUI launch alone does
-  not establish fixed-smoke acceptance.
-
-See [verified reuse](https://github.com/kcook98765/kodi-lab/blob/b92a14d2c5a2ab292fc0c9100d101b3877fcb1d0/docs/VERIFIED-NOOP-DEPLOYMENT.md).
-No tool, ordinary client permission or generic execution capability is added.
-
-## Calls and evidence
-
-Resource IDs below are discovered UUIDs; create a caller-generated request UUID for each genuinely new authorized operation and retain it for recovery. `expected_generation` is the existing observed
-generation, never the desired next generation. Inputs are closed: no `force`,
-arbitrary command, host path or generic JSON-RPC field exists. Successful tools
-normally return `structuredContent`; inspect `isError` and text diagnostics first.
-An error may have no success-shaped structured content. Preserve unknown/null
-fields rather than fabricating a successful receipt.
-
-| Tool | Inputs to use | Result to retain |
-|---|---|---|
-| `target_list` / `target_status` | Optional list cursor; status `target_id` | `targets[]` / `target`, `target_id`, class/profile/version, process/JSON-RPC/usability/readiness states, capabilities. Discovery is grant-filtered. |
-| `development_source_list` | Optional `cursor`, `limit` | `sources[]`, `source_id`, add-on identity, `availability`, `next_cursor`; registration is not current byte validation. |
-| `workspace_status` | Optional `workspace_id`, `cursor`, `limit` | `workspaces[]`, generation, source binding and latest operation evidence. Complete pagination; an empty list supplies no deployable workspace. |
-| `workspace_create` | `request_id`, `source_id` | Workspace UUID, creation operation/state and owner binding; no local-path argument. |
-| `workspace_tree` / `workspace_read` | `workspace_id`; tree relative path/cursor/limit; read `relative_path`, optional `start_line`, `max_lines` | Observed generation; read SHA-256, truncation/next line; tree next cursor. |
-| `workspace_edit` | `workspace_id`, `expected_generation`, `relative_path`, `operation` | `prior_generation`, `new_generation`; create/replace uses only `content`, exact_patch uses only full `expected_text` and `replacement_text`. |
-| `workspace_source_scan` / `workspace_capture` (opt-in) | Scan `workspace_id`; capture also `expected_generation` | Source/workspace/capture digests and private-edit indication; capture result operation UUID, generation, tree digest and changed flag. Refresh only through the installed admitted source-capture contract; preserve private edits and history. |
-| `workspace_import_preview` / `workspace_import` (opt-in) | Workspace/current generation, mode and exact resolutions; apply additionally request UUID and resolved source/preview digests | Advertised bounds, paths/preimages/rejections and exact staged generation/receipt. See [import workflow](mcp.md#registered-source-batch-import); workspace removals do not imply destination removal. |
-| `workspace_validate` | `workspace_id`, `expected_generation` | `observed_generation`, identity classifications, `launch_entries`, `fixed_smoke_eligible`, unsupported reason. Closed structural validation is separate from toolkit official checker/types and runtime testing. |
-| `workspace_deploy_preflight` | `workspace_id`, `expected_generation`, `target_id`, optional `deployment_mode` (`auto`/`direct`/`repository`) | `requested_generation`, `current_generation`, `verdict`, typed `checks`, `next_actions`, trust/live-readiness distinctions, optional `activation_assessment`, `reservation_created=false`. |
-| `workspace_deploy` | Same scope/mode plus `request_id` | `deployment_id`, source/workspace/target/generation/add-on identities, state/classification, phase/failure/recovery, reconciliation flag, inventory/enabled state and optional `iteration_evidence`. |
-| `workspace_launch` | `request_id`, workspace/generation/target, validated `extension_ordinal` | `launch_id`, dispatch/state, completion/UI classifications, replay flag/code/next action. Dispatch is not fresh execution. |
-| `workspace_execute` | `request_id`, workspace/generation/target; optional `execution_kind` from discovered enum | `execution_id`, linked `deployment_id`, exact generation, state/classifications, item count and reconciliation flag. `smoke` is the fixed eligible video-plugin check, not generic Python execution. |
-| `workspace_execution_recover` | `request_id`, existing `execution_operation_id` | Separate recovery operation UUID and `outcome`; this can stop/start Kodi and is a mutation, not a receipt read. |
-
-Deployment preflight reports durable prerequisites only. Its verdict is **blocked
-or unknown**, never ready. It checks stored workspace/validation/source/baseline,
-leases, reconciliation and selected-session scope; native/add-on/live Bridge state
-remains unobserved. Historical trust and `verified_at_last_operation` do not prove
-current bytes/liveness. Bridge absence alone is not a managed direct-copy blocker.
-Preflight creates no reservation, performs no preparation and cannot guarantee
-later admission. Follow the actor and preconditions in `next_actions`.
-
-Full managed direct deployment uses the guarded stopped-copy/restart workflow;
-eligible verified reuse uses the separately described current verification path.
-Retain the complete receipt with exact target, workspace,
-generation, source and server-bound runtime/container evidence. `iteration_evidence`
-separates file application (`verified_at_operation`) and Kodi restart
-(`observed_at_operation`) from unobserved fresh code and unrun functional smoke.
-Selective staging still hashes/compares full trees, retains destination-only files
-and refuses type replacement. Neither a no-op transfer nor a workspace removal
-proves exact installed mirroring.
-
-For unchanged bytes, reuse valid current exact-generation evidence. A separately
-requested same-generation deployment may be supported; it still performs admission
-and verification. Completed successful duplicate requests return historical receipts without
-probing current runtime; failed or unresolved attempts retain their error/ambiguity rather than becoming successful receipts. Execution/launch use the latest authoritative deployment
-for the selected profile: a newer failed, pending, incomplete or ambiguous attempt
-blocks fallback to an older success; tied newest times cannot prove order. Legacy
-unbound receipts need fresh verification through the supported workflow, not a
-manual receipt edit.
-
-Registered-source copy evidence and workspace deployment evidence describe
-different installed content. After successful workspace deployment, the registered
-source baseline may appropriately be `stale`. Preserve the workspace receipt and
-assess current installed content through supported preflight/deployment admission
-and status evidence, including current runtime/container/tree and authority proof.
-`prior_workspace_requires_container_proof` alone calls for supported live admission,
-not source recopy, workspace reset or reconciliation. Genuinely missing, unknown or
-mismatched provenance and reconciliation fences still require their stated checks.
-
-## Separate success states
-
-Report each observed stage independently: target exists; runtime responsive;
-Bridge authenticated/trusted/capable; source/workspace validated; durable
-prerequisites assessed; deployment admitted; source files applied; activation
-dispatched; fresh code observed; functional smoke passed. A stage does not imply
-the next one. UI arrival, enabled inventory, restart and unchanged version strings
-do not prove fresh callbacks, interpreter state, dependent-module reload or service
-health. Use a changed-code marker or task-specific behavior when authorized.
-
-Script/plugin manifest launch is qualified only within its discovered constraints.
-Live replacement, generic service stop/reload, selected-skin reload, exact obsolete
-file removal and one-call `workspace_apply` are unavailable here. Do not synthesize
-them from builtins or direct Bridge access. Existing copied-source Web enablement
-has a separate explicit Python-service consent, installed-descriptor proof and
-[mixed-Python registered-source policy](mixed-python-addons.md). It is not an MCP service-enable tool; enabled state leaves
-`service_execution=not_observed`. Native ZIP install retains its human gates;
-it is not a generic unattended installation API.
-
-Managed selection/lifecycle and settings tools are separate opt-in capabilities.
-For an authorized retained development/testing profile, use
-`managed_selection_preview(target_id, workspace_id)`, then
-`managed_select(request_id, target_id, workspace_id, expected_generation, identity)`
-with the preview's `latest_generation` and exact opaque `identity`. This is the
-selection-session generation, not the workspace generation; a stale preview needs
-a fresh preview. Selection preserves retained profiles and does not install or
-start Kodi. Current policy permits one selected active managed Kodi at a time.
-Absent runtimes require explicit administrator acquisition/provisioning;
-`managed_ensure_ready` starts only an existing provisioned selected target, and
-`managed_release` may retain a protected/busy target. These tools require their
-explicit authority and applicable workspace, source and Bridge prerequisites.
-A Web Current Kodi choice creates no grants. Fresh Test/Switch may replace state
-and is not a routine retry. Standard noVNC is a human viewer, initially view-only;
-Take Control acquires human input ownership and excludes conflicting agent input.
-
-External Kodi uses supported JSON-RPC and narrow reviewed Bridge capabilities
-under separate exact-target grants, permissions, identity and readiness checks.
-Lab has no managed Docker/runtime ownership, retained selection or profile
-lifecycle control over that device. External-development repository approval and
-installation remain separately qualified; external production is excluded from
-workspace deployment/launch and never inherits managed development authority.
-
-## Failure decisions
-
-| Observed condition | Safe next step |
-|---|---|
-| Empty targets, `target_not_found_or_not_authorized`, absent tools or missing source grant | Report unavailable under this credential. Rediscover a rejected saved ID once; do not change presets/grants, rotate credentials or infer a stopped target caused a permission denial. |
-| Missing source baseline/attachment | Retain preflight checks. An administrator must use the existing exact stopped-source-copy preparation workflow, after resolving leases/reconciliation and with separate mutation authority. Workspace validation does not establish that baseline. |
-| Source baseline `stale` after workspace deployment / `prior_workspace_requires_container_proof` | Preserve qualifying workspace deployment provenance and obtain current supported runtime/container/tree proof at admission. This state alone does not request source recopy, workspace reset or reconciliation; actual missing/mismatched proof still blocks. |
-| `workspace_generation_conflict` / stale validation | Refresh workspace status and affected content; review competing changes. Validate the actual current generation before a new operation. Do not reset or discard private work. |
-| Busy lease, rate limit or selected-session mismatch | Preserve operation identity. Wait/read status as documented, or report administrator review. No forced release, parallel workaround, repeated deployment or target switch. |
-| Bridge unavailable, untrusted, incompatible or identity mismatch | Native responsiveness and stored trust are insufficient. Retain exact identities and report the blocked Bridge-dependent stage. No re-pair, direct RPC, alternate credential or implicit upgrade. |
-| Lost response / pending / ambiguous mutation | Preserve original request and parameters. Read status; use only documented identical-request receipt recovery. Never mint a new identity to replay an unresolved action, deploy, launch or execution. |
-| Client rejects an MCP output schema (observed examples: `deployment_work_skipped`, `managed_verification`) | The server operation may have succeeded. Preserve the original request/parameters; inspect its receipt through supported read-only status tools and determine the server-side outcome before any retry. Avoid duplicate mutations. Compare the returned response with the currently advertised schema. If stale connection metadata is suspected, have the authorized operator refresh/reconnect only that MCP connection through supported controls when idle, then reverify compatibility. A new conversation alone need not refresh metadata. Other validation errors may have other causes; never disable validation, modify responses or rotate credentials to bypass them. |
-| Managed deployment reconciliation required | Web administrator reviews exact retained operation and performs supported stopped-tree inspection. Contained requested/prior tree proves containment only. A later start/deployment needs its own authority and request after resolution. No workspace reset, DB edit or copy around the fence. |
-| Ambiguous execution | Do not re-execute. Explicitly authorized `workspace_execution_recover` addresses the retained execution operation through bounded stop/start and verification, without rerunning the add-on. Its new recovery request is a different operation; retain both identities. `contained_but_not_ready` / `still_requires_admin` are not success. |
-| Repeated completed deployment receipt | Check target/workspace/generation/runtime and newest authoritative attempt; retain historical status. Replay is not a new install or liveness test. |
-| Unsupported live activation or execution entry point | Report the stage unqualified. Use only an already authorized supported route after a definite pre-dispatch refusal; never fall back while outcome is ambiguous. Restart requires separate applicable authority. |
-
-Maintained contracts: [preflight](https://github.com/kcook98765/kodi-lab/blob/main/docs/DEPLOYMENT-PREFLIGHT.md),
-[managed loop](https://github.com/kcook98765/kodi-lab/blob/main/docs/MANAGED-AGENT-LOOP.md),
-[recovery](https://github.com/kcook98765/kodi-lab/blob/main/docs/MANAGED-DEPLOYMENT-RECOVERY.md),
-[lifecycle qualification](https://github.com/kcook98765/kodi-lab/blob/main/docs/FAST-LOOP-LIFECYCLE-QUALIFICATION.md),
-[selective staging](https://github.com/kcook98765/kodi-lab/blob/main/docs/FAST-LOOP-SELECTIVE-STAGING.md),
-[service consent](https://github.com/kcook98765/kodi-lab/blob/main/docs/FAST-LOOP-SERVICE-ENABLEMENT.md).
-These moving documents contain historical checkpoints; installed schemas and exact
-current implementation determine availability. Source/native test evidence remains
-separate from authenticated MCP and agent acceptance.
+[Managed workflow](managed-agent-workflow.md) · [External workflow and grants](mcp.md)

@@ -92,23 +92,11 @@ The Python CLI is agent independent. `.opencode` custom tools are optional **fix
 
 ## Optional OpenCode agent presets
 
-Use the [portable agent presets](examples/opencode/agents.json) to set up another
-OpenCode installation with `kodi-develop`, `kodi-test`, `kodi-readonly`,
-`kodi-inspect`, `kodi-narrow`, `kodi-visual` and `kodi-support`. They define selectable
-roles, permissions and step limits while loading the portable skills on demand.
-Models, credentials, target IDs and workstation-specific authorizations are
-configured separately. Follow the [installation and verification guide](docs/opencode-agents.md)
-for Linux/WSL or PowerShell, private optional Lab connections and configuration
-merge considerations. These are optional OpenCode 1.x templates; runtime workflows
-still need their own authorization and qualification.
+Use [OpenCode presets and setup](docs/opencode-agents.md) with the five portable skills. Run local development as `kodi-develop`. Select the opt-in `kodi-managed-lab` profile only with a disposable managed-v2 site and a Trusted Managed Lab credential. Independent external inspection and external development use their own connections and grants. Presets inherit the existing model and provider.
 
 ## Optional Kodi Lab MCP
 
-[Kodi Lab](https://github.com/kcook98765/kodi-lab) is a separate project. A configured Lab instance can extend the workflow with target discovery, health/UI inspection, and authorized runtime diagnostics. It needs its own installation, authorized managed development profile, private credentials, and server-side grants. Client tool filtering cannot grant access. For large-log error searches and complete counts, prefer the read-only `log_scan` workflow with bounded samples and unchanged-query continuation; retain `log_read` for quick tails, metadata and older Bridges. See [log diagnostics](.agents/skills/kodi-addon-debugging/references/debugging.md#search-and-count-large-logs).
-
-For newer tested integration scope, see [current integration acceptance](#current-integration-acceptance-2026-11-18). The historical beta runtime deployment evaluation was blocked because registered development-source infrastructure was absent. No deployment, runtime reproduction, or autonomous runtime repair completed. Read-only inspection does not establish that an add-on runs correctly. The [everyday development guide](docs/development-workflow.md) describes the current optional loop and dated qualification boundaries.
-
-Follow the opt-in [bounded integration smoke recipe](docs/integration-smoke.md) for your own authorized environment. Read-only checks come first; managed fixture/deploy/launch and cleanup require separate operator authorization. The recipe is not evidence that those tests ran.
+Use the [managed-v2 development workflow](docs/development-workflow.md) for repository-first native install, direct workspace deployment, version switching and private snapshots. Check the [client smoke recipe](docs/integration-smoke.md) and the authenticated tool schemas against the installed server. The older integration campaigns above are historical evidence for their recorded versions.
 
 ## Evidence, evaluation, and limitations
 

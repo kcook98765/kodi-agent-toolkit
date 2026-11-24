@@ -30,19 +30,27 @@
   "agent": {
     "kodi-inspect": {
       "mode": "primary",
-      "description": "Read-only managed Kodi inspection",
-      "prompt": "First load kodi-addon-debugging using the native skill tool. Discover the authorized target and inspect health. If it is stopped or unusable, report that state and stop; inspect UI only when responsive and authorized. Null or associated=false means unknown selection. State diagnostic limits.",
+      "description": "Inspect separately authorized external Kodi targets",
+      "prompt": "Load kodi-addon-debugging. Discover the granted external target and use relevant status, UI, bounded logs or an actual screenshot. Report missing evidence. Inspection carries no navigation, source modification or lifecycle authority.",
       "permission": {
         "*": "deny",
         "external_directory": "deny",
+        "read": "allow",
+        "glob": "allow",
+        "grep": "allow",
         "skill": {
           "*": "deny",
-          "kodi-addon-debugging": "allow"
+          "kodi-addon-debugging": "allow",
+          "kodi-mcp-testing": "allow"
         },
-        "read": "allow",
+        "kodi_lab_addon_list": "allow",
+        "kodi_lab_inspect_ui_state": "allow",
+        "kodi_lab_log_read": "allow",
+        "kodi_lab_log_scan": "allow",
+        "kodi_lab_screenshot_capture": "allow",
+        "kodi_lab_system_info": "allow",
         "kodi_lab_target_list": "allow",
-        "kodi_lab_target_status": "allow",
-        "kodi_lab_inspect_ui_state": "allow"
+        "kodi_lab_target_status": "allow"
       }
     }
   }

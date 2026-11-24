@@ -12,10 +12,19 @@
     },
     "kodi_lab_dev": {
       "type": "remote",
-      "url": "{env:KODI_LAB_DEV_URL}",
+      "url": "{env:KODI_LAB_MANAGED_URL}",
       "oauth": false,
       "headers": {
-        "Authorization": "Bearer {env:KODI_LAB_DEV_TOKEN}"
+        "Authorization": "Bearer {env:KODI_LAB_MANAGED_TOKEN}"
+      },
+      "enabled": false
+    },
+    "kodi_lab_external_dev": {
+      "type": "remote",
+      "url": "{env:KODI_LAB_EXTERNAL_DEV_URL}",
+      "oauth": false,
+      "headers": {
+        "Authorization": "Bearer {env:KODI_LAB_EXTERNAL_DEV_TOKEN}"
       },
       "enabled": false
     }

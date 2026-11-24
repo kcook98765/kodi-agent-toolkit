@@ -1,67 +1,9 @@
-# Private provider and MCP setup
+# OpenCode providers and Kodi Lab connections
 
-For selectable development, runtime-testing and inspection roles on another
-installation, start with [portable OpenCode agents](opencode-agents.md). It links
-the model-independent presets, disabled private connection template, local setup
-requirements and verification steps. The older inspection example below remains
-a narrower evaluation example.
+The Toolkit CLI works without an AI provider or Kodi Lab. For OpenCode use the provider and exact model already authorized for the project. The example provider configurations are optional starting points. Keep actual endpoints and credentials in a private configuration and preserve working provider settings.
 
-OpenCode 1.19.0 is the historical beta reference; Claw discovery was rechecked with 1.19.3 in the [workflow refresh](development-workflow.md). Keep real settings in a private OPENCODE_CONFIG or existing user config. Do not replace a working global file with these templates. Configuration objects merge, so a task overlay can retain already-authorized providers/MCP. Inspect the effective agent permissions before testing.
+[Connection examples](../examples/opencode/connections.example.json) deliberately start disabled. Enable only the required connection. `kodi_lab_dev` needs a Trusted Managed Lab credential from the intended disposable lab. Use `kodi_lab` for authorized external inspection and `kodi_lab_external_dev` for a separately granted external development target. Endpoint placeholders expect the complete MCP URL. Keep bearer tokens private.
 
-Copy examples/opencode/inspection.json into a private location, replace provider/model placeholders with endpoint-discovered IDs and verified capabilities, and replace REPLACE_WITH_PRIVATE_TOKEN_PATH with the literal path to a mode-0600 token file outside Git. A model's OpenAI-compatible API must pass chat and synthetic tool calls first. Do not guess context sizes, image support or reasoning behavior. Use one explicit model per trial. Authentication, HTTP framing and model tool-selection failures are separate categories.
+Review [roles and effective configuration](opencode-agents.md) before calling a tool. Verify actual authenticated discovery and keep an external production inspection role separate from development. OpenCode tool allowlists and server grants are independent.
 
-Read-only security requires BOTH an existing Kodi Lab server-side target-scoped grant and client tool permissions. Client tool filtering alone is not authorization. Establish grants using the installed Lab's documented client registration; this toolkit creates none automatically. The narrow inspection agent allows target discovery, health and UI state only. Screenshots require a separately exposed authorized tool and actual visual input to a vision-capable model. Null UI fields do not prove absence.
-
-For file validation, set KODI_TOOLKIT_PYTHON, KODI_TOOLKIT_CLI and KODI_TOOLKIT_INDEX_CACHE to trusted absolute paths. Copy the optional custom tools into the disposable evaluation project. The bundled adapter only accepts add-ons under its fixtures. Portable skills and the Python CLI also work without OpenCode or Kodi Lab; other agents can call the CLI using their own bounded tools.
-
-Cloud examples are credential-free preparation only. Put credentials in private environment/auth storage and use supported built-in providers. No cloud account, authentication workaround or billable comparison is enabled by this toolkit. Verify the selected model/provider's current terms and capabilities before an authorized trial.
-
-References: [skills](https://opencode.ai/docs/skills/), [configuration](https://opencode.ai/docs/config/), [providers](https://opencode.ai/docs/providers/), [MCP](https://opencode.ai/docs/mcp-servers/), [custom tools](https://opencode.ai/docs/custom-tools/).
-
-The inspection template leaves MCP disabled and has no selected active model. Replace placeholders privately, choose `--model PROVIDER/MODEL_ID`, and enable MCP only after configuring the intended server-side grant. Optional model trials require a provider; the standalone CLI does not.
-
-## Connection and authority checks
-
-Keep inspection and development on distinct private client credentials, with exact
-managed target grants and no standing production authority. Development also needs
-the explicit source grant and client-owned workspace binding. Source import,
-managed versions, destructive Reset and settings writes are separate opt-ins;
-the built-in Add-on Development preset does not automatically gain them.
-
-Use valid JSON-RPC POST initialization on the installed `/mcp` endpoint for an
-authentication check. A 401 Bearer means authentication failed; a GET/405 is a
-method result. OpenCode can show a final SSE-fallback 405 after an earlier
-streamable-HTTP failure. Check the earlier transport/auth outcome before changing
-the URL. Correct token shape, a saved file or an old successful session does not
-prove that the current installed credential store recognizes it. Preserve secrets
-and disabled client state until an explicitly approved administrative repair.
-
-Connection aliases determine tool prefixes. Portable examples use `kodi_lab` and
-`kodi_lab_dev`; a private alias change must update all matching permission names.
-Compare authenticated discovery with the installed registry; a registered tool,
-client allowlist and server grant are three different facts. If discovery is
-blocked, label the comparison source-only instead of using administrator or
-production credentials as a substitute.
-
-At the 2026-11-09 contract checkpoint screenshots require `target.inspect` with
-exact target policy/grants, not a mandatory extra `target.visual`; external Kodi
-also has its screenshot preference. Follow the receiving contract rather than
-silently broadening grants. Correlated retrieval needs the original client,
-request/capture IDs and runtime identity. Verify actual image delivery to an
-image-capable model; text-only providers cannot analyze capture metadata as pixels.
-
-After a mutation times out or a client rejects its output schema, inspect the
-retained server receipt with the original request identity before retrying.
-An authorized operator may refresh only the affected idle MCP connection and
-recheck its current schemas. A new conversation need not refresh cached tool
-metadata. Do not disable validation or rotate credentials to bypass uncertainty.
-
-## Longer OpenCode development sessions
-
-Inspect the effective development agent's `steps` setting before a long authorized test/fix loop. A low explicit limit forces a text-only summary even when work remains; repeated "continue" messages do not remove that limit. Operators can raise the limit to suit their budget or omit it to allow iteration until the agent finishes or the user interrupts. Keep deliberately bounded inspection agents separate. Markdown instructions cannot override the engine's configured step limit, and an add-on task does not authorize the agent to rewrite its own configuration. See [OpenCode max steps](https://opencode.ai/docs/agents/#max-steps).
-
-Keep the working context focused: retain full check output and inventories in evidence files, return concise status/warnings/artifact locations, and compact or start a focused continuation at a suitable phase boundary when supported. First checkpoint the task scope, paths, current revisions/generations, receipts, unresolved results and next action. OpenCode's documented `compaction.auto` controls compaction near capacity and `compaction.prune` controls removal of old tool output; inspect the installed version and effective settings before choosing an operator override. No universal context-size threshold or measured speedup is implied. See [OpenCode compaction](https://opencode.ai/docs/config/#compaction).
-
-Use the actual add-on project as the working directory where practical; when sharing a workstation project, supply explicit add-on and installed-skill locations. Keep routine command permissions scoped to the approved project and known tooling. Limit enabled MCP tools to the task's needs without changing server grants. These setup choices are operator configuration, not permission to broaden an agent's authority.
-
-For current deployment prerequisites, exact-generation receipts, source staging and recovery decisions, use the [everyday development workflow](development-workflow.md) and the MCP skill's linked contract reference. Prefer native installed MCP tools over wrappers. Preserve project-specific disabled MCP, conservative agent allowlists and private credential files; updating skills does not authorize enabling missing tools or grants.
+[OpenCode MCP documentation](https://opencode.ai/docs/mcp-servers/)

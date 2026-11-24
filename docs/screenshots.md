@@ -13,49 +13,17 @@ The destination suffix must match the actual image format. Compliant bytes are
 copied unchanged. Resize, flatten transparency or compress in your image editor
 first if necessary; the helper does not change image quality.
 
-## Manual route: Kodi Lab Web → local image → add-on
+## Local screenshot file
 
-1. Sign in to your existing Kodi Lab Web interface. Use an already authorized,
-   running **managed development** instance displaying the intended add-on UI.
-   This workflow grants no new target access or lifecycle permission.
-2. On the instance detail page, expand **Alternative viewers, screenshots and
-   browser remote**, then find **Saved screenshot**. Use **Refresh screenshot**
-   only within your existing authorization. Open/save the displayed image using
-   your browser's image menu, keeping the PNG extension. The authenticated
-   same-origin image URL is `/api/instances/INSTANCE_ID/screenshots/latest`.
-   It serves the latest retained PNG inline; there is no dedicated export API.
-   A new capture replaces the prior image. External targets do not provide this
-   managed Web cache. Do not copy server cache paths or browser credentials.
-3. Save/transfer the file to the machine and filesystem running the Toolkit.
-   A browser download on a laptop is not automatically a file on a remote
-   OpenCode host. Inspect the downloaded image before selecting it.
-4. Export and explicitly request a manifest update:
+Capture a screenshot on an authorized target and save or transfer it as a local PNG or JPEG. Inspect its pixels and size. Apply the existing artwork requirements before export.
 
 ```sh
 kodi-toolkit screenshot-export ./script.example \
   resources/screenshots/screenshot-01.png \
-  --input ./downloaded-screenshot.png --update-manifest
+  --input ./saved.png --update-manifest
 ```
 
-The image now lives at
-`script.example/resources/screenshots/screenshot-01.png`. Its existing
-`addon.xml` metadata receives:
-
-```xml
-<extension point="xbmc.addon.metadata">
-  <!-- existing summary, description, license and other metadata stay here -->
-  <assets>
-    <icon>resources/icon.png</icon>
-    <screenshot>resources/screenshots/screenshot-01.png</screenshot>
-  </assets>
-</extension>
-```
-
-Omit `--update-manifest` to **export only**, leaving `addon.xml` byte-for-byte
-unchanged. The command prints the exact entry you can add later. When updating,
-missing `<assets>` is added, existing icon/fanart/screenshots remain, an already
-declared path is not duplicated, and at most ten screenshots may be declared.
-An existing destination file is always rejected, even if its bytes match.
+Omit `--update-manifest` to keep the manifest unchanged. An existing asset path is rejected. An explicit metadata update adds an asset declaration to the existing metadata and preserves other entries.
 
 ## OpenCode 1.19.3: authorized capture → private export → add-on
 
@@ -68,7 +36,7 @@ No plugin or OpenCode settings change is required.
 
 With an existing authenticated Kodi Lab MCP connection, exact target grant,
 screenshot permission/capability and permitted runtime state, request an
-authorized `screenshot_capture`. Do not start a stopped target or broaden grants
+authorized external `screenshot_capture` or managed `managed_screen`. Do not start a stopped target or broaden grants
 to obtain artwork. Select that session and its **exact tool call ID**:
 
 ```sh
@@ -77,7 +45,7 @@ umask 077
 opencode export SESSION_ID > /private/session.json
 
 # List screenshot call IDs without printing their images or transcripts.
-python3 -c 'import json,sys; d=json.load(open(sys.argv[1])); print("\n".join(p["callID"] for m in d["messages"] for p in m["parts"] if p.get("type")=="tool" and p.get("tool", "").endswith("_screenshot_capture")))' /private/session.json
+python3 -c 'import json,sys; d=json.load(open(sys.argv[1])); print("\n".join(p["callID"] for m in d["messages"] for p in m["parts"] if p.get("type")=="tool" and p.get("tool", "").endswith(("_screenshot_capture","_managed_screen"))))' /private/session.json
 
 kodi-toolkit screenshot-export ./script.example \
   resources/screenshots/screenshot-01.png \
@@ -86,16 +54,13 @@ kodi-toolkit screenshot-export ./script.example \
 ```
 
 The helper reads only the supplied local JSON (maximum 32 MiB), requires exactly
-one completed `*_screenshot_capture` call with that ID and exactly one PNG data
+one completed `*_screenshot_capture` or `*_managed_screen` call with that ID and exactly one PNG data
 attachment, then validates the decoded image. It never contacts OpenCode, reads
 its database, downloads URLs or calls Kodi. This is explicit extraction from a
 session export, not automatic saving on capture. The export's claims do not
 authenticate its origin or prove what UI the image depicts.
 
-Qualification used synthetic image fixtures and an isolated installed OpenCode
-1.19.3 import/export roundtrip. **Live Kodi capture → OpenCode → add-on was not
-tested.** The local image workflow and attachment extraction are separate from
-live capture acceptance. Other OpenCode versions need their export shape checked.
+The runtime capture dimensions can differ from add-on artwork requirements. Preserve the original evidence. Convert a local copy to artwork dimensions when the task calls for distribution artwork. Export validation still checks opacity, format, size and dimensions. Other OpenCode versions need their session attachment shape verified.
 
 ## Verify and troubleshoot
 
