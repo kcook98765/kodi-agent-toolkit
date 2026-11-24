@@ -6,7 +6,7 @@ Use `kodi-toolkit stub-lanes` to inspect **this interpreter's** installed Kodist
 
 | Managed Kodi | Expected Kodistubs | Toolkit environment | Qualification |
 | --- | --- | --- | --- |
-| Matrix 19.5 | 19.0.3 | `requirements-matrix.lock` | [Bounded static qualification with two reviewed annotation corrections](matrix-stubs.md) |
+| Matrix 19.4 managed runtime (19.5 static baseline) | 19.0.3 | `requirements-matrix.lock` | [Bounded static qualification with reviewed annotations and the Control position signature](matrix-stubs.md) |
 | Nexus 20.5 | 20.0.1 | `requirements-dev.lock` | Existing validated default |
 | Omega 21.3 | 21.0.0 | `requirements-omega.lock` | Existing separately validated static lane |
 | Piers 22 RC2 | 22.0.1rc1 (prerelease) | `requirements-piers.lock` | [Bounded exact-RC2 static comparison; checker advice limitation retained](piers-stubs.md) |

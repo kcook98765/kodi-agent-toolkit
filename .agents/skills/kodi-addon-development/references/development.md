@@ -11,34 +11,10 @@ Observed Nexus logging boundary: installed Kodistubs 20.0.1 defines LOGINFO=1 an
 
 Keep full validation/test output and synchronization inventories in task-appropriate evidence files. Return the exit status, pass/fail/skip counts, warnings, relevant changed paths and evidence locations to the agent. Read detailed failures when needed instead of repeatedly loading complete successful reports or every file hash. Preserve failure output and command exit codes; reducing transcript size must not hide warnings or turn a failed check into a pass.
 
-Use a compact checkpoint at phase boundaries or before supported context compaction: actual project/skill/toolchain paths, current source revision, unfinished checks, failures, next action and evidence locations. For runtime work also retain target/source/workspace identities, current and deployed generations, operation receipts, current UI state and verified launch route. Reuse valid evidence on resume; recheck what changed or became stale. A checkpoint is not proof that pending checks passed.
+Use a compact checkpoint at phase boundaries or before supported context compaction: actual project/skill/toolchain paths, current source revision, unfinished checks, failures, next action and evidence locations. For runtime work retain the selected version, exact package or edited source, and fresh native observations. Reuse valid checks for unchanged source; rerun the checks affected by an edit.
 
-Where a canonical tree, registered source mirror and managed workspace are separate, identify each role explicitly. Reuse a task-authorized deterministic synchronization helper when available, then verify the bytes/generation actually deployed. Group related changes before required validation. A proposed bulk import or launcher is not an available capability until the installed interface exposes it. Keep edits within the granted workflow.
+## Managed-v2 iteration
 
-## Current Kodi Lab iteration
+Start with the [managed workflow](../../kodi-mcp-testing/references/managed-agent-workflow.md). Use Kodi's native installer for a clean package or dependency change. For regular source edits, use the private workspace, matched static validation and direct deployment. Preserve the existing package version and settings for a source-only edit.
 
-For a new explicitly authorized Trusted Managed Lab agent-owned add-on, prefer `project_create`/`project_import` (plus `project_transfer` for larger reviewed packages), then owned `workspace_status` → edit → validate → preflight → direct deploy → manifest launch and native observation; see [managed project workflow](../../kodi-mcp-testing/references/managed-agent-workflow.md). It does not require manual Web source registration or Current Kodi selection. Original ZIP delivery is not native installation. For an existing authorized managed development profile, discover its UUID/version and resume the matching owned workspace/source. A Current Kodi selection supplies neither grants nor permission to start a stopped instance. Keep production/external targets on their separate supported routes.
-
-For direct workspace work, use **Inspect → Edit → Validate → Deploy →
-Launch/Observe → Repeat** through `workspace_edit` and the checks below. Reuse
-the authorized workspace and current deployment provenance; source recopy or
-preparation is needed only when supported checks require it. Structural
-`workspace_validate` is separate from official checker/types validation; report
-unperformed standalone stages. See the [direct-workspace loop](../../kodi-mcp-testing/references/mcp.md#efficient-development-loop).
-
-1. Discover the actual add-on manifest and entry points, choose the intended Kodi version, make a focused source change and run the appropriate standalone static checks.
-2. Prepare or update the authorized workspace using its existing source binding and the installed edit/import contract. Retain the returned generation and digests. Source-mirror synchronization does not itself update workspace or installed bytes.
-3. Run `workspace_validate` for that generation, then `workspace_deploy_preflight` with the exact workspace/generation/target. Its durable assessment returns `blocked` or `unknown`, never a guarantee of readiness or admission. Missing source baselines, leases and reconciliation use their stated operator/recovery paths.
-4. Use the authorized `workspace_deploy` route and inspect its exact target/runtime/workspace/generation receipt. An identical-request replay recovers historical evidence without new application or restart. A genuinely new unchanged-generation deployment still runs admission and can restart Kodi; reuse valid current evidence when possible. Selective staging retains destination-only files and does not establish an exact mirror.
-5. Use a supported authorized manifest entry via `workspace_launch`, or the bounded video-plugin `workspace_execute` smoke when eligible. Inspect the intended UI and feature result and, when relevant, a source-specific runtime marker. Accepted dispatch, enabled inventory and successful file application do not prove fresh code execution or functional behavior.
-6. Diagnose with relevant logs/UI evidence, change only what the evidence supports, then repeat the affected checks. Keep ambiguous requests under their original identity for documented recovery; do not force progress with new IDs, workspace resets or lifecycle changes.
-
-Retain original content/hash for temporary tests. Restore with supported workspace
-edits, then validate/deploy/launch/observe the new generation; restore bytes while
-preserving legitimate generation advancement and history.
-
-Live activation is not universally qualified. Python modules may retain dependent interpreter state; services, skins, resources, repositories, native code and mixed extension sets each need their own supported lifecycle and observation. The existing Python-service enablement route requires its explicit administrator consent and reports enabled state with execution unobserved. A required whole-Kodi restart remains a separately authorized lifecycle action; routine edits need no runtime rebuild or Fresh Test reset.
-
-See the maintained [managed agent loop](https://github.com/kcook98765/kodi-lab/blob/main/docs/MANAGED-AGENT-LOOP.md), [deployment prerequisites](https://github.com/kcook98765/kodi-lab/blob/main/docs/DEPLOYMENT-PREFLIGHT.md) and [lifecycle qualification](https://github.com/kcook98765/kodi-lab/blob/main/docs/FAST-LOOP-LIFECYCLE-QUALIFICATION.md). Discover the installed schemas; documentation and saved native evidence do not establish current runtime readiness.
-
-For common mixed Python manifests use [the mixed-source contract](../../kodi-mcp-testing/references/mixed-python-addons.md). Private service deployment requires the registered-source consent workflow; never invoke a service library as a script or remove an extension to satisfy validation.
+Reproduce the result from the intended add-on with fresh UI, logs or a unique marker. Deployment verifies file application. Launch reports dispatch. Record what actually ran. The Kodi runtime owns services and other extension lifecycles. Review the [mixed Python manifest guidance](../../kodi-mcp-testing/references/mixed-python-addons.md) before changing an add-on with multiple entry types.

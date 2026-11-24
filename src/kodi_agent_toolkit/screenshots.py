@@ -94,8 +94,9 @@ def _opencode_image(path: Path, call_id: str) -> bytes:
         if len(calls) != 1:
             raise ScreenshotError("Select exactly one screenshot tool call with --call-id")
         call = calls[0]
-        if not call["tool"].endswith("_screenshot_capture") or call["state"]["status"] != "completed":
-            raise ScreenshotError("Selected call must be a completed MCP screenshot_capture")
+        if (not call["tool"].endswith(("_screenshot_capture", "_managed_screen"))
+                or call["state"]["status"] != "completed"):
+            raise ScreenshotError("Selected call must be a completed MCP screenshot_capture or managed_screen")
         attachments = call["state"].get("attachments", [])
         if len(attachments) != 1:
             raise ScreenshotError("Selected call needs exactly one image attachment; use a local PNG instead")

@@ -9,13 +9,17 @@ def main() -> int:
     parser = argparse.ArgumentParser(prog="kodi-toolkit")
     sub = parser.add_subparsers(dest="command", required=True)
     sub.add_parser("stub-lanes", help="Report the active interpreter and four Kodi stub lanes without installing anything")
+    admission = sub.add_parser("managed-package-import", help="Admit a local ZIP through authenticated Kodi Lab transfer")
+    admission.add_argument("package", type=Path)
+    admission.add_argument("--url", required=True, help="Authorized Kodi Lab MCP endpoint")
+    admission.add_argument("--token-file", type=Path, required=True, help="Private Trusted Managed Lab bearer token file")
     screenshot = sub.add_parser("screenshot-export", help="Import a local screenshot asset; optionally update addon.xml (Linux/WSL)")
     screenshot.add_argument("addon", type=Path, help="Explicit add-on source directory containing addon.xml")
     screenshot.add_argument("destination", help="Relative image path, e.g. resources/screenshots/screenshot-01.png")
     image_source = screenshot.add_mutually_exclusive_group(required=True)
     image_source.add_argument("--input", type=Path, help="Existing local PNG/JPEG file")
     image_source.add_argument("--opencode-export", type=Path, help="Private OpenCode 1.19.3 session export JSON")
-    screenshot.add_argument("--call-id", help="Exact completed screenshot_capture call ID in the export")
+    screenshot.add_argument("--call-id", help="Exact completed screenshot_capture or managed_screen call ID")
     screenshot.add_argument("--update-manifest", action="store_true", help="Explicitly add the screenshot declaration to existing metadata")
     discovery = sub.add_parser("discover")
     discovery.add_argument("directory", type=Path, nargs="?", default=Path("."))
@@ -42,6 +46,10 @@ def main() -> int:
     final.add_argument('--markdown', action='store_true')
     args = parser.parse_args()
     try:
+        if args.command == "managed-package-import":
+            from .managed_package import admit_package
+            print(json.dumps(admit_package(args.package, args.url, args.token_file)))
+            return 0
         if args.command == "screenshot-export":
             from .screenshots import export_screenshot
             screenshot_result = export_screenshot(args.addon, args.destination, source=args.input,

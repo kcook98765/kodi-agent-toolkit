@@ -93,3 +93,9 @@ unverified online URL checks remain in results.
 
 This is representative static qualification, not complete API fidelity,
 verification of live repository metadata, playback, UI or native Kodi execution.
+
+Matrix 19.4 also exposes `Control.getPosition()`. The official binding converts
+its `std::vector<int>` return to a Python list. The hash-checked Matrix-only
+shadow declares `list[int]` through the stub's existing `List` import. This
+fixes the absent binding in Kodistubs 19.0.3 while preserving type checks and
+the published artifact. [Toolkit #32](https://github.com/kcook98765/kodi-agent-toolkit/issues/32) · [Matrix declaration](https://github.com/xbmc/xbmc/blob/e12e66e019af29ba9d5f5a2614315b15a138b81a/xbmc/interfaces/legacy/Control.h#L122) · [Python list conversion](https://github.com/xbmc/xbmc/blob/e12e66e019af29ba9d5f5a2614315b15a138b81a/xbmc/interfaces/python/typemaps/python.vector.outtm#L23-L30)

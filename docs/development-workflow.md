@@ -1,132 +1,22 @@
-# Everyday add-on development with optional Kodi Lab
+# Kodi add-on development
 
-Use OpenCode → relevant Kodi skill → toolkit validation → authorized Kodi Lab
-MCP inspection/testing. The toolkit CLI and portable skills remain useful without
-OpenCode, a model or Kodi Lab. Do not replace an existing working agent profile
-with an example configuration.
+Choose the target Kodi release and use its [static validation lane](stubs.md). Find the actual add-on root and inspect declared entries before changes. Use `kodi-toolkit discover`, then `kodi-toolkit validate ADDON --branch GENERATION --cache INDEX_DIR` under the matching interpreter. A checker branch does not select a different interpreter or stubs.
 
-1. Load `kodi-addon-development` for edits, `kodi-addon-validation` for static
-   checks, `kodi-version-compatibility` for release questions, and
-   `kodi-addon-debugging` for symptoms. Load `kodi-mcp-testing` before a Lab
-   workflow. Resolve references from the loaded skill directory. Use the actual
-   add-on manifest/entry points and explicitly selected Kodi version.
-2. Make a focused change. Run standalone discovery and validation with the trusted
-   isolated Python environment and explicit metadata cache. Inspect all stages
-   and warnings; the Nexus lock does not qualify another release. Use the
-   [separate Omega option](stubs.md#isolated-omega-option) for its measured static
-   coverage; neither lane qualifies Matrix/22 or native behavior. Static
-   PASS leaves runtime untested. Optional fixture adapters accept only their
-   documented roots; existing local adapters may have different schemas/scopes.
-3. For Lab work, discover authenticated tools and the authorized exact target UUID,
-   version/class/profile and current states. UI selection, native responsiveness,
-   stored Bridge trust and authenticated Bridge capability are separate facts.
-   Confirm the intended source and owned workspace/current generation. A Web
-   Current Kodi choice neither creates grants nor authorizes lifecycle actions.
-   Stopped Kodi stays stopped without separately applicable lifecycle authority.
-   For retained managed profiles, see [selection/lifecycle and external-device
-   boundaries](../.agents/skills/kodi-mcp-testing/references/current-contract.md#separate-success-states).
-4. For a **Trusted Managed Lab agent-owned project**, prefer [new project/import → owned workspace → validate → direct deploy → launch](../.agents/skills/kodi-mcp-testing/references/managed-agent-workflow.md), without manual Web source registration. The following registered-source mirror path is an **alternative** for existing manually registered source workspaces. Prepare reviewed workspace changes through the exposed edit/import/capture
-   workflow. Lab reads registered sources, never arbitrary agent-local paths.
-   Synchronize reviewed local bytes into the administrator-registered source
-   mirror through the project's explicit workflow; workspace creation and import
-   do not discover arbitrary workstation paths. Verify source grants and the
-   acting client's workspace binding before reusing a saved workspace ID.
-   Keep private work and exact returned generations/digests. Run Lab's structural
-   validation separately from toolkit checking, then `workspace_deploy_preflight`
-   for the same generation and target. It assesses durable prerequisites, returns
-   blocked/unknown and reserves nothing. Follow the specified agent/administrator
-   next actions; a missing baseline may require the existing stopped-source-copy
-   preparation, not another guessed MCP command.
-5. Apply only through an authorized admitted `workspace_deploy`. Managed direct
-   copy uses its guarded stop/copy/restart sequence when application is required.
-   Reuse current exact-generation
-   validation/deployment evidence on unchanged bytes; avoid resets, rebuilds or
-   redundant deployment. On servers supporting verified reuse, a new request may
-   return `verified_existing` and `deployment_work_skipped=true` after current
-   byte, identity, readiness and authority checks. Retain its verification proof;
-   it reports zero native restarts and no fresh execution. Missing proof follows
-   the existing full deployment or refusal path. Replayed receipts are historical.
-   Retained destination-only
-   files mean selective staging is not exact mirroring or arbitrary deletion.
-6. For Program add-ons: inspect existing project/workspace → validate exact generation → deployment preflight → authorized deployment when needed → declared-entry launch → fresh native observation. `workspace_execute` is not a generic Program launcher; an ineligible Program/mixed-manifest smoke refusal is legitimate and does not justify Reset, unchanged redeployment or menu navigation. `development_launch` uses `development.launch` + `workspace.inspect` with exact bound project/owned-project authority; `workspace_launch` uses separate `development.execute` + `target.control`. Use only existing granted/exposed paths. See [launch requirements](../.agents/skills/kodi-mcp-testing/references/mcp.md#launching-and-relaunching-an-add-on). File application, restart, activation dispatch, fresh code and
-   feature acceptance are distinct. Observe the intended result and correlate
-   bounded logs/UI evidence with exact source/runtime identity. Prefer `log_scan` for large-log error searches/counts; resume with the unchanged query and cursor, replacing cumulative results. Use `log_read` for quick tails/metadata or older Bridges. Exact final counts, provisional coverage and truncated samples are distinct; see [log diagnostics](../.agents/skills/kodi-addon-debugging/references/debugging.md#search-and-count-large-logs). Reuse valid
-   action observations/captures to avoid repeated navigation. Screenshots need
-   visual authority and actual image analysis. Never navigate under read-only
-   authority merely because tools are listed.
+For managed native work, use the [managed-v2 workflow](../.agents/skills/kodi-mcp-testing/references/managed-agent-workflow.md). Admit a ZIP, install through native Kodi, check the verified package and dependencies, then run and observe it. An ordinary source edit uses the private workspace and direct deploy. Keep matched static checks and fresh native observation with the change.
 
-## Retained profiles and explicit Reset
+For a local ZIP, use an operator-approved endpoint and private token file.
 
-The current version-oriented opt-in is Status → Start(version) → develop/test →
-Stop(version). Use `managed_status({})`, then separately authorized
-`managed_start`/`managed_stop` with a persisted UUID and version. Both client and
-canonical target policy require `managed.versions` and the exact target grant.
-Old presets and `managed.lifecycle` do not supply it. Start uses approved cached
-runtimes and does not acquire or repin one. Respect the configured running limit.
-Require `native_ready` before native use; Bridge and workspace readiness remain
-separate. `managed_release` releases use and does not prove Kodi stopped.
+```sh
+kodi-toolkit managed-package-import ./script.example.zip \
+  --url "$KODI_LAB_MANAGED_URL" --token-file "$KODI_LAB_MANAGED_TOKEN_FILE"
+```
 
-Stop retains settings and installed add-ons. `managed_reset` instead discards the
-writable Kodi profile and needs explicit destructive task authority plus
-`managed.reset`. It preserves independent source/workspace/Git/evidence, defaults
-to stopped and invalidates Bridge/profile-bound evidence and a disposed Current
-Kodi selection. Reset is not routine iteration or recovery. For a trusted agent, Reset requires the observed exact `expected_profile` and creates a separate durable Bridge-preparation receipt; inspect completion and live trust before new deployment. Agent-owned private workspaces survive Reset and do not require legacy Web selection. Older selected Current Kodi sessions may require administrator re-binding, source-copy and preparation. Grants alone do not prove any setup succeeded. See [current lifecycle inputs and recovery](../.agents/skills/kodi-mcp-testing/references/current-contract.md#opt-in-managed-version-lifecycle).
+The command sends one authenticated binary upload using the configured Lab MCP address. It prints the admitted add-on ID, version and verified digest. The server accepts ZIPs up to 32 MiB and expanded trees up to 64 MiB. The separate 64 KiB JSON request limit still applies.
 
-Keep the original UUID and parameters for lost-response recovery; never repeat
-an uncertain lifecycle/deploy/launch operation with a new UUID. A historical
-receipt, native Start or unchanged add-on version does not establish successor
-profile identity, installed bytes, Bridge readiness or fresh execution.
+For an intentional full source refresh, admit the complete updated ZIP, then open it with `managed_workspace_open` using the digest and `replace="true"`. This exchanges only the private workspace. Deploy separately if needed. Use digest-guarded workspace edits for ordinary text changes.
 
-Restart is not a routine cure. A full managed direct deployment performs its own
-qualified restart; verified existing-deployment reuse does not restart Kodi.
-Stop/resume, intervening runtime epochs or insufficient current proof can make
-reuse ineligible. Live replacement, generic service stop/reload, selected-skin
-reload, dependent-module invalidation and one-call apply remain unqualified in the
-audited contract. Use a supported stopped-copy/restart route only with authority;
-native code must never be replaced while loaded. Existing Web Python-service
-enablement has separate verified consent and does not prove execution. Original-ZIP receipt/delivery does not prove native ZIP GUI installation ([#305, closed Not planned](https://github.com/kcook98765/kodi-lab/issues/305)), and unattended repository-by-ID installation is unsupported ([#339, closed Not planned](https://github.com/kcook98765/kodi-lab/issues/339)). Neither is a pending supported feature. Direct source deployment is the supported agent-owned route.
+Save a stopped snapshot when a configured environment is worth reusing. One shared working profile per version can be reset or restored explicitly. Stop the running version before starting a different prepared one. Keep add-on source outside the profile.
 
-For separately authorized registered-source promotion, inspect sanitized `invalidation_reason`/`next_action` and retain the original UUID/plan receipt. `promotion_source_not_writable` means the operator must check the source's promotion write prerequisite under the Lab service account, even if source reads pass. It grants no filesystem-permission changes, approval or publication; agent-owned projects are ineligible. See [promotion decisions](../.agents/skills/kodi-mcp-testing/references/managed-agent-workflow.md#registered-source-promotion-diagnostics).
+Use [OpenCode roles](opencode-agents.md) and the [bounded integration smoke](integration-smoke.md) with a disposable lab. External development has its own credential, target and workflow.
 
-On timeout or ambiguous outcome, keep the original request UUID, parameters and
-receipt. Read status or use documented same-request recovery; do not generate a
-new UUID to retry an unresolved mutation. Recovery can itself mutate lifecycle
-state and requires authority. A containment receipt is not successful deployment
-or execution. Missing grants, Bridge identity mismatch, busy leases and required
-reconciliation remain blockers. Retain a concise checkpoint of target/source/
-workspace/generation, receipts, unresolved outcomes and next test.
-
-OpenCode installation: keep one complete shared skill source (including
-references), inspect config precedence/permissions and verify discovery from each
-actual project with `opencode debug skill --pure`. Ask for explicit loading;
-discovery is not use. Existing project profiles may disable MCP or permit only
-inspection even when the server advertises deployment. Preserve those limits,
-private token-file interpolation, model/provider identities and custom tools.
-Fresh skill loading should be verified before considering an OpenCode restart;
-restart only through its existing service manager when no active work is disrupted.
-For client output-schema rejection after a possibly completed operation, follow
-the [receipt-first failure decisions](../.agents/skills/kodi-mcp-testing/references/current-contract.md#failure-decisions)
-before retrying or refreshing the affected MCP connection. Skill discovery/loading
-and MCP connection metadata are separate checks.
-
-See [current input/result and recovery reference](../.agents/skills/kodi-mcp-testing/references/current-contract.md),
-[Kodi Lab managed loop](https://github.com/kcook98765/kodi-lab/blob/main/docs/MANAGED-AGENT-LOOP.md),
-[OpenCode setup](providers-and-mcp.md) and [qualification scope](public-beta.md).
-
-## Qualification dates
-
-The original beta and Phase 4–7 evaluations remain historical, including failed
-and blocked runtime trials. The 2026-10-29 contract audit targets Lab
-`56517d3abd6faf661b990d58e574a94193f8b532` / schema
-`0088_service_enable_start`; it distinguishes deployed authenticated discovery
-from source-only and saved native evidence. OpenCode 1.19.3 discovery on Claw
-uses one existing shared skill source. These facts do not retroactively turn
-historical trials into passes or establish new live deployment/agent repair,
-Windows/physical-device or cross-version acceptance. At that October audit, a
-stopped target and missing source/workspace grants left those live stages unqualified.
-The separate 2026-11-02 Program 54 Omega acceptance observed baseline and two
-changed-code executions plus original-content restoration through the supported
-workspace loop. It does not qualify other versions or external devices; see the
-[observed iteration example](../.agents/skills/kodi-mcp-testing/references/mcp.md#efficient-development-loop).
-
-The separate [2026-11-18 integration acceptance](evaluation.md#2026-11-18-kodi-labopencode-integration-acceptance) records successful native Lab/OpenCode Program iterations on four versions, disposable external security and Web-control authorization interaction. Its initial 44/46-tool campaign remained PARTIAL; later remediation PASS concerns four fixes and 32 additional calls. This supersedes an assumption that integration was never tested, while leaving historical beta outcomes, Toolkit-specific agent/model qualification and arbitrary application correctness separate.
+The [earlier integration campaign](evaluation.md#2026-11-18-kodi-labopencode-integration-acceptance) records the previous application and tool catalog as historical evidence.

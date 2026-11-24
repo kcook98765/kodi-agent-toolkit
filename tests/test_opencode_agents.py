@@ -1,126 +1,54 @@
-"""Protect the portable presets' permission boundaries without contacting services."""
-import fnmatch
+"""Check the portable roles and independent connection boundaries offline."""
 import json
 from pathlib import Path
+import re
 import unittest
 
 
 ROOT = Path(__file__).resolve().parents[1]
-EXAMPLES = ROOT / "examples" / "opencode"
-AGENTS = json.loads((EXAMPLES / "agents.json").read_text(encoding="utf-8"))["agent"]
+EXAMPLES = ROOT / "examples/opencode"
+AGENTS = json.loads((EXAMPLES / "agents.json").read_text())["agent"]
 
 
-def effect(rules, tool):
-    """Evaluate the ordered flat rules used by these example permission maps."""
-    result = None
-    for pattern, action in rules.items():
-        if fnmatch.fnmatchcase(tool, pattern):
-            result = action
-    return result
+def allowlist(agent):
+    return {name for name, action in AGENTS[agent]["permission"].items() if action == "allow"}
 
 
 class OpenCodeAgentBoundaryTests(unittest.TestCase):
-    def test_log_scan_is_limited_to_existing_log_readers(self):
-        readers = {"kodi-develop", "kodi-test", "kodi-readonly", "kodi-inspect", "kodi-support"}
-        for name, agent in AGENTS.items():
-            expected = "allow" if name in readers else "deny"
-            for tool in ("kodi_lab_log_read", "kodi_lab_log_scan"):
-                with self.subTest(agent=name, tool=tool):
-                    self.assertEqual(effect(agent["permission"], tool), expected)
-            for tool in ("kodi_lab_dev_log_scan", "kodi_lab_production_log_scan",
-                         "other_server_log_scan", "kodi_lab_log_scan_unknown"):
-                self.assertEqual(effect(agent["permission"], tool), "deny")
+    def test_external_permissions_are_current_and_separately_scoped(self):
+        text = (ROOT / ".agents/skills/kodi-mcp-testing/references/current-contract.md").read_text()
+        external = text.split("## External tools", 1)[1]
+        declared = set(re.findall(r"^\| `([a-z_]+)` \|", external, re.M))
+        scoped = {name[len("kodi_lab_external_dev_"):] for name in allowlist("kodi-external-develop")
+                  if name.startswith("kodi_lab_external_dev_")}
+        self.assertEqual(len(declared), 13)
+        self.assertEqual(scoped, declared)
+        for role in ("kodi-inspect", "kodi-support"):
+            allowed = allowlist(role)
+            observed = {name[len("kodi_lab_"):] for name in allowed if name.startswith("kodi_lab_")}
+            self.assertLessEqual(observed, declared)
+            self.assertTrue({"target_status", "system_info", "log_read", "log_scan"} <= observed)
+            self.assertFalse({"remote_action", "workspace_deploy", "workspace_execute"} & observed)
+            self.assertFalse({"bash", "edit", "task", "external_directory"} & allowed)
+        self.assertIn("kodi_lab_screenshot_capture", allowlist("kodi-inspect"))
+        self.assertNotIn("kodi_lab_screenshot_capture", allowlist("kodi-support"))
 
-    def test_system_info_uses_only_the_intended_connection_and_roles(self):
-        diagnostics = {"kodi-develop", "kodi-test", "kodi-readonly", "kodi-inspect", "kodi-support"}
-        for name, agent in AGENTS.items():
-            rules = agent["permission"]
-            with self.subTest(agent=name):
-                self.assertEqual(effect(rules, "kodi_lab_system_info"),
-                                 "allow" if name in diagnostics else "deny")
-                for tool in ("kodi_lab_dev_system_info", "other_server_system_info",
-                             "kodi_lab_production_system_info", "kodi_lab_system_info_unknown"):
-                    self.assertEqual(effect(rules, tool), "deny")
-        managed = json.loads((EXAMPLES / "trusted-managed-lab.json").read_text(encoding="utf-8"))
-        rules = managed["agent"]["kodi-managed-lab"]["permission"]
-        self.assertEqual(effect(rules, "kodi_lab_dev_system_info"), "allow")
-        for tool in ("kodi_lab_system_info", "other_server_system_info",
-                     "kodi_lab_dev_system_info_unknown"):
-            self.assertEqual(effect(rules, tool), "deny")
-        legacy = json.loads((EXAMPLES / "inspection.json").read_text(encoding="utf-8"))
-        self.assertNotIn("system_info", json.dumps(legacy))
+    def test_local_developer_and_common_role_defaults(self):
+        self.assertFalse(any(name.startswith("kodi_lab_") for name in allowlist("kodi-develop")))
+        for agent in AGENTS.values():
+            self.assertNotIn("model", agent)
+            self.assertEqual(agent["permission"]["*"], "deny")
+            self.assertEqual(agent["permission"]["external_directory"], "deny")
+            self.assertEqual(agent["permission"]["skill"]["*"], "deny")
+            for name, action in agent["permission"]["skill"].items():
+                if action == "allow":
+                    self.assertTrue((ROOT / ".agents/skills" / name / "SKILL.md").is_file())
+            self.assertFalse(any("managed_" in name for name in agent["permission"]))
 
-    def test_inspection_roles_deny_mutations_shell_and_delegation(self):
-        forbidden = ["bash", "edit", "task", "external_directory", "new_unknown_tool",
-                     "kodi_lab_remote_action", "kodi_lab_workspace_deploy",
-                     "kodi_lab_dev_workspace_edit", "kodi_lab_dev_workspace_validate",
-                     "kodi_lab_dev_workspace_deploy", "kodi_lab_dev_workspace_launch",
-                     "kodi_lab_dev_workspace_execute"]
-        for name, agent in AGENTS.items():
-            if name in {"kodi-develop", "kodi-test"}:
-                continue
-            for tool in forbidden:
-                with self.subTest(agent=name, tool=tool):
-                    self.assertEqual(effect(agent["permission"], tool), "deny")
-            self.assertEqual(effect(agent["permission"], "kodi_lab_target_status"), "allow")
-
-    def test_tester_cannot_change_source_or_prepare_infrastructure(self):
-        rules = AGENTS["kodi-test"]["permission"]
-        for tool in ["bash", "edit", "task", "kodi_lab_dev_workspace_create",
-                     "kodi_lab_dev_workspace_edit", "kodi_lab_dev_workspace_import",
-                     "kodi_lab_dev_source_prepare", "kodi_lab_remote_action"]:
-            with self.subTest(tool=tool):
-                self.assertEqual(effect(rules, tool), "deny")
-        self.assertEqual(effect(rules, "kodi_lab_dev_workspace_deploy_preflight"), "allow")
-        self.assertEqual(effect(rules, "kodi_lab_dev_workspace_launch"), "allow")
-
-    def test_no_preset_grants_unrelated_servers_or_lifecycle_operations(self):
-        for name, agent in AGENTS.items():
-            for tool in ["kodi_lab_control_remote_action", "kodi_lab_production_target_status",
-                         "kodi_lab_dev_target_restart", "kodi_lab_target_start",
-                         "unrelated_server_workspace_edit",
-                         "kodi_lab_dev_managed_status", "kodi_lab_dev_managed_start",
-                         "kodi_lab_dev_managed_stop", "kodi_lab_dev_managed_reset",
-                         "kodi_lab_dev_managed_select", "kodi_lab_dev_managed_ensure_ready",
-                         "kodi_lab_dev_workspace_execution_recover",
-                         "kodi_lab_dev_promotion_request", "kodi_lab_dev_addon_settings_set"]:
-                with self.subTest(agent=name, tool=tool):
-                    self.assertEqual(effect(agent["permission"], tool), "deny")
-        self.assertEqual(effect(AGENTS["kodi-develop"]["permission"], "bash"), "ask")
-
-    def test_presets_use_installed_skills_and_inherit_model(self):
-        config = json.loads((EXAMPLES / "agents.json").read_text(encoding="utf-8"))
-        self.assertEqual(set(config), {"$schema", "agent"})
-        for name, agent in AGENTS.items():
-            with self.subTest(agent=name):
-                if name in {"kodi-develop", "kodi-test", "kodi-inspect"}:
-                    self.assertEqual(agent["mode"], "primary")
-                    self.assertFalse(agent.get("hidden", False))
-                else:
-                    self.assertEqual(agent["mode"], "subagent")
-                    self.assertTrue(agent["hidden"])
-                self.assertNotIn("model", agent)
-                skill_rules = agent["permission"]["skill"]
-                self.assertEqual(skill_rules["*"], "deny")
-                for skill, action in skill_rules.items():
-                    if action == "allow":
-                        self.assertTrue((ROOT / ".agents" / "skills" / skill / "SKILL.md").is_file())
-
-    def test_variants_preserve_distinct_capability_boundaries(self):
-        self.assertEqual(AGENTS["kodi-readonly"]["permission"], AGENTS["kodi-inspect"]["permission"])
-        self.assertEqual(effect(AGENTS["kodi-narrow"]["permission"], "kodi_lab_log_read"), "deny")
-        self.assertEqual(effect(AGENTS["kodi-visual"]["permission"], "kodi_lab_addon_list"), "deny")
-        self.assertEqual(effect(AGENTS["kodi-support"]["permission"], "kodi_lab_screenshot_capture"), "deny")
-
-    def test_connection_examples_are_disabled_and_have_no_embedded_credentials(self):
-        config = json.loads((EXAMPLES / "connections.example.json").read_text(encoding="utf-8"))
-        self.assertEqual(set(config), {"$schema", "mcp"})
-        self.assertEqual(set(config["mcp"]), {"kodi_lab", "kodi_lab_dev"})
-        for connection in config["mcp"].values():
+    def test_connections_default_disabled_with_private_substitution(self):
+        connections = json.loads((EXAMPLES / "connections.example.json").read_text())["mcp"]
+        self.assertEqual(set(connections), {"kodi_lab", "kodi_lab_dev", "kodi_lab_external_dev"})
+        for connection in connections.values():
             self.assertIs(connection["enabled"], False)
             self.assertRegex(connection["url"], r"^\{env:[A-Z_]+\}$")
             self.assertRegex(connection["headers"]["Authorization"], r"^Bearer \{env:[A-Z_]+\}$")
-
-
-if __name__ == "__main__":
-    unittest.main()

@@ -1,36 +1,25 @@
-"""Offline guardrails for current agent workflow instructions."""
+"""Keep outdated operations out of the current skill entry points."""
 from pathlib import Path
 import unittest
 
+
 ROOT = Path(__file__).resolve().parents[1]
-REF = ROOT / ".agents/skills/kodi-mcp-testing/references"
 
 
 class RuntimeGuidanceTests(unittest.TestCase):
-    def test_both_launch_paths_keep_distinct_authority_and_observation(self):
-        for name in ("managed-agent-workflow.md", "mcp.md"):
-            text = (REF / name).read_text(encoding="utf-8")
-            with self.subTest(reference=name):
-                for term in ("development_launch", "development.launch", "workspace.inspect",
-                             "workspace_launch", "development.execute", "target.control",
-                             "Program", "mixed", "dispatch", "fresh", "unchanged"):
-                    self.assertIn(term, text)
-                self.assertIn("does not require `target.control`", text)
+    def test_ordinary_guidance_has_no_retired_managed_calls(self):
+        current = [*ROOT.glob(".agents/skills/**/*.md"),
+                   ROOT / "docs/development-workflow.md", ROOT / "docs/opencode-agents.md"]
+        retired = ("managed_selection_preview", "managed_ensure_ready", "package_install_status",
+                   "promotion_request", "workspace_launch", "bridge_preparation")
+        for path in current:
+            text = path.read_text()
+            with self.subTest(file=path):
+                for name in retired:
+                    self.assertNotIn(name, text)
 
-    def test_promotion_reports_prerequisite_without_self_repair_authority(self):
-        text = (REF / "managed-agent-workflow.md").read_text(encoding="utf-8")
-        section = text.split("## Registered-source promotion diagnostics", 1)[1].split("\n## ", 1)[0]
-        for term in ("promotion_source_not_writable", "invalidation_reason", "next_action",
-                     "original", "service account", "Do not chmod/chown", "ineligible",
-                     "stays invalidated", "Never replace an unresolved operation's UUID"):
-            self.assertIn(term, section)
-
-    def test_current_installation_limits_are_closed_not_promised(self):
-        text = (REF / "managed-agent-workflow.md").read_text(encoding="utf-8")
-        self.assertNotIn("remains unresolved", text)
-        for number in (305, 339):
-            self.assertIn(f"#{number}, closed Not planned", text)
-
-
-if __name__ == "__main__":
-    unittest.main()
+    def test_mixed_python_notes_preserve_install_and_service_boundaries(self):
+        notes = (ROOT / ".agents/skills/kodi-mcp-testing/references/mixed-python-addons.md").read_text()
+        self.assertIn("Kodi owns the service lifecycle", notes)
+        self.assertIn("allow_services", notes)
+        self.assertIn('start="login"', notes)
