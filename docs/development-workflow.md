@@ -19,4 +19,6 @@ Save a stopped snapshot when a configured environment is worth reusing. One shar
 
 Use [OpenCode roles](opencode-agents.md) and the [bounded integration smoke](integration-smoke.md) with a disposable lab. External development has its own credential, target and workflow.
 
+For the optional [public repository release test](../.agents/skills/kodi-mcp-testing/references/managed-agent-workflow.md#optional-public-repository-release-test), use a separately approved disposable Omega site. The ordinary managed workflow uses the internal network and the operator-reviewed private dependency catalog.
+
 The [earlier integration campaign](evaluation.md#2026-11-18-kodi-labopencode-integration-acceptance) records the previous application and tool catalog as historical evidence.

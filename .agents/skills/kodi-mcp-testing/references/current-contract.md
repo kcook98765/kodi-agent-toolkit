@@ -1,6 +1,6 @@
 # Kodi Lab managed-v2 MCP contract
 
-Authenticated `tools/list` establishes the actual credential-filtered capabilities. These are the managed-v2 contracts. Bulk transfer and workspace replacement require the matching Stage 11 Lab candidate. Tools are listed here without their OpenCode connection prefix.
+Authenticated `tools/list` establishes the actual credential-filtered capabilities. These are the managed-v2 contracts. Use a current compatible Lab revision for bulk transfer, generated-file review and disposable public testing. Tools are listed here without their OpenCode connection prefix.
 
 ## Managed tools
 
@@ -19,7 +19,7 @@ The server needs a Trusted Managed Lab credential. Acquire the one shared owner 
 | `managed_reset` | — | Yes | `state`, `profile` |
 | `managed_logs` | — | Yes | `text` from bounded Kodi log tail |
 | `managed_gui` | — | Yes | Kodi `currentwindow`, `currentcontrol`, `skin` |
-| `managed_screen` | — | Yes | PNG image content |
+| `managed_screen` | — | Yes | PNG image content where native capture is supported. Piers X11/GLES reports `screenshot_capture_failed`. |
 | `managed_navigate` | `action` | Yes | `state=dispatched` |
 | `managed_skin` | `addon` | Yes | Skin activation result for an enabled development skin. The stock Estuary ID is reserved. Native installation switches internally when needed. |
 | `managed_snapshot_list` | — | Global | Array of private entries with `name` and `bytes` |
@@ -31,7 +31,7 @@ The server needs a Trusted Managed Lab credential. Acquire the one shared owner 
 | `managed_workspace_read` | `addon`, `path` | Global | `content`, `digest` |
 | `managed_workspace_edit` | `addon`, `path`, `content`, `expected_digest` | Global | `digest` |
 | `managed_workspace_package` | `addon` | Global | `addon`, `version`, `digest` |
-| `managed_workspace_deploy` | `addon` | Yes | `state=applied`, `files_verified`, `version` |
+| `managed_workspace_deploy` | `addon` | Yes | Applied with verified files and version, or `review_required` with exact generated-file identities. Optional `baseline` and `review` are SHA-256 digests. |
 | `managed_package_import` | `encoded`, `digest` | Global | `addon`, `version`, `digest` |
 | `managed_addon_install` | `addon`, `version`, `digest` | Yes | `state`, verified `package`, verified `dependencies[]`, and native action/skin observations. Optional `allow_services` takes string `true` or `false`. |
 | `managed_addon_inventory` | — | Yes | Native Kodi add-on rows including `addonid`, `name`, `version`, `enabled` |
@@ -39,6 +39,19 @@ The server needs a Trusted Managed Lab credential. Acquire the one shared owner 
 | `managed_addon_setting` | `addon`, `key`, `value` | Yes | Signed add-on setting result |
 
 `managed_addon_install` can report unconfirmed or failed installation. Check the verified bytes, origin, enablement, dependency results and native observations. `managed_addon_launch` reports dispatch. Observe fresh execution through relevant logs or UI. Settings readback uses add-on behavior or authorized Kodi inspection.
+
+### Disposable Omega public repository tools
+
+Use the managed owner and the separate operator approval described in the
+[managed workflow](managed-agent-workflow.md#optional-public-repository-release-test).
+These calls use `generation="omega"`.
+
+| Tool | Required fields | Purpose |
+| --- | --- | --- |
+| `managed_public_repository_status` | — | Read the approval identities and selection state. |
+| `managed_public_repository_select` | `repository` | Select the operator-approved repository on an unprepared disposable site. |
+| `managed_public_catalog` | — | Verify the approved catalog through native Kodi. |
+| `managed_public_install` | `addon`, `version`, `digest` | Install the approved passive repository or exact update. Optional `allow_services` is the string `true` or `false`. |
 
 ## External tools
 
