@@ -45,12 +45,20 @@ and retained checker diagnostics. Rebuild by starting from `requirements-dev.loc
 replacing only its Kodistubs block with the wheel pin/hash above, and rechecking
 the exact metadata at `https://pypi.org/pypi/Kodistubs/19.0.3/json`.
 
-The [Kodi Lab 19.5 catalog at reviewed source 574eeee](https://github.com/kcook98765/kodi-lab/blob/574eeee5b3dd444ab651cab3b73071714bd95ff6/src/kodi_lab/runtime/catalog/kodi-19.5.json)
-pins Team Kodi's Jammy package `6:19.5+git20221224.1006-f8fdeb6b1b-0~jammy`.
-That source abbreviation resolves to
+The [Kodi Lab managed Matrix recipe](https://github.com/kcook98765/kodi-lab/pull/421)
+uses the official Team Kodi Ubuntu Jammy binaries at
+`6:19.5+git20221224.1006-f8fdeb6b1b-0~jammy`. That abbreviation resolves to
 [`f8fdeb6b1b1a7b753e1559d34a98cea62b4920d9`](https://github.com/xbmc/xbmc/commit/f8fdeb6b1b1a7b753e1559d34a98cea62b4920d9).
-Kodi Lab also retains separate 19.4 recipes; this 19.5 comparison does not claim
-those runtimes were tested or selected.
+Linux amd64 managed acceptance used embedded CPython 3.10.12. The Toolkit
+static lane continues to use CPython 3.12 and Kodistubs 19.0.3. Match the
+working profile to the intended release using the managed status before
+deploying. Historical Matrix 19.4 images and snapshots remain recovery inputs.
+Matrix 19.5 Windows/WSL 2 managed support awaits separate native qualification.
+
+Use the Matrix lane for legacy development with reviewed add-ons and trusted
+media. The runtime embeds FFmpeg with known vulnerabilities that Ubuntu
+FFmpeg updates cannot repair.
+[Managed Matrix decision](https://github.com/kcook98765/kodi-lab/issues/415)
 
 ## Narrow compatibility correction
 
