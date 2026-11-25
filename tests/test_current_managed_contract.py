@@ -25,7 +25,16 @@ class ManagedContractTests(unittest.TestCase):
         discovered = {tool.removeprefix("kodi_lab_dev_") for tool, effect in rules.items()
                       if tool.startswith("kodi_lab_dev_") and effect == "allow"}
         self.assertEqual(len(discovered), 27)
-        self.assertEqual(discovered, documented)
+        public_test = {
+            "managed_public_repository_status",
+            "managed_public_repository_select",
+            "managed_public_catalog",
+            "managed_public_install",
+        }
+        self.assertEqual(documented - discovered, public_test)
+        self.assertLessEqual(discovered, documented)
+        self.assertTrue(all(rules.get("kodi_lab_dev_" + tool, rules["*"]) == "deny"
+                            for tool in public_test))
         self.assertFalse(any(name.startswith(("kodi_lab_external_", "kodi_lab_production_"))
                              for name in rules))
 
