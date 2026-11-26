@@ -23,9 +23,11 @@ closeout, record the actual outcome, unresolved operations, Stop and release
 results, and any unique fixtures or logs needed for reproduction. Give that
 private evidence to the exact run owner and verify the saved manifest.
 
-The run owner rechecks the disposable Docker and containerd endpoints, child
-socket mounts, and the site's ownership before infrastructure teardown. They
-retire only the exact run-owned resources and record the closeout result,
+The run owner verifies the disposable Docker and containerd endpoints, any
+child socket mounts, and the site's exact ownership before the run mutates
+infrastructure. Before teardown, repeat the checks and verify the evidence
+manifest. Preserve resources and report the blocker when any check fails.
+Retire only the exact run-owned resources and record the closeout result,
 including on failure, cancellation or a verified stale run. A retained
 environment needs an owner, reason, scope and review date. Reassess the hold on
 that date and obtain an explicit decision before clearing it. An open issue
