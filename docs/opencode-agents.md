@@ -17,3 +17,10 @@ Verify `opencode debug skill --pure`, `opencode debug agent AGENT --pure` and `o
 OpenCode shell policy remains operator-controlled. Use a bounded local packaging or validation command for the known project, and use authenticated MCP for native operations. Active global tool rules may merge into a project overlay. Verify the effective profile and connection before live use. Git, credentials, publication, external navigation and profile replacement require their own task authority.
 
 Use [the smoke recipe](integration-smoke.md) to check actual model tool choices and runtime results. A connected server and discovered skill only establish setup. Retain private tool observations and report failed or untested steps.
+
+For a disposable qualification run, hand off the exact run ID, site, observed
+result, Stop and release outcomes, and verified private evidence to the run
+owner. The run owner owns infrastructure closeout. Leave retained profiles,
+unique source, unrelated OpenCode sessions, and operator configuration under
+their existing ownership. The same handoff applies after failures and
+cancellations. [Qualification closeout](integration-smoke.md#handoff-to-the-qualification-run-owner)
