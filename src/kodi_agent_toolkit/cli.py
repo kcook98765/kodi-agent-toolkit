@@ -9,6 +9,15 @@ def main() -> int:
     parser = argparse.ArgumentParser(prog="kodi-toolkit")
     sub = parser.add_subparsers(dest="command", required=True)
     sub.add_parser("stub-lanes", help="Report the active interpreter and four Kodi stub lanes without installing anything")
+    readiness = sub.add_parser("opencode-readiness", help="Check a local OpenCode role and shared Toolkit skills")
+    readiness.add_argument("--server", default="http://127.0.0.1:4096")
+    readiness.add_argument("--project", required=True, type=Path)
+    readiness.add_argument("--skills-root", required=True, type=Path)
+    readiness.add_argument("--role", required=True)
+    readiness.add_argument("--skill", required=True, action="append")
+    readiness.add_argument("--managed-connection")
+    readiness.add_argument("--managed-tool", default=[], action="append")
+    readiness.add_argument("--mcp-catalog", type=Path)
     admission = sub.add_parser("managed-package-import", help="Admit a local ZIP through authenticated Kodi Lab transfer")
     admission.add_argument("package", type=Path)
     admission.add_argument("--url", required=True, help="Authorized Kodi Lab MCP endpoint")
@@ -66,6 +75,14 @@ def main() -> int:
     final.add_argument('--markdown', action='store_true')
     args = parser.parse_args()
     try:
+        if args.command == "opencode-readiness":
+            from .opencode_readiness import inspect
+            if args.managed_tool and not (args.managed_connection and args.mcp_catalog):
+                parser.error("--managed-tool requires --managed-connection and --mcp-catalog")
+            result = inspect(args.server, args.project, args.skills_root, args.role, args.skill,
+                             args.managed_connection, args.managed_tool, args.mcp_catalog)
+            print(json.dumps(result, indent=2))
+            return 0 if result["passed"] else 1
         if args.command == "video":
             from . import video as recordings
             if args.action == "download":
