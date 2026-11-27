@@ -24,3 +24,33 @@ owner. The run owner owns infrastructure closeout. Leave retained profiles,
 unique source, unrelated OpenCode sessions, and operator configuration under
 their existing ownership. The same handoff applies after failures and
 cancellations. [Qualification closeout](integration-smoke.md#handoff-to-the-qualification-run-owner)
+
+## Check an installed role
+
+Run the readiness command as the OpenCode service user against its local HTTP
+listener. Set the project to the directory in which the role will run and the
+skills root to the reviewed installation that should supply its skills.
+
+```sh
+kodi-toolkit opencode-readiness \
+  --project /path/to/project \
+  --skills-root /path/to/toolkit/.agents/skills \
+  --role kodi-develop \
+  --skill kodi-version-compatibility \
+  --skill kodi-addon-validation
+```
+
+Authenticated local servers use the existing `OPENCODE_SERVER_USERNAME` and
+`OPENCODE_SERVER_PASSWORD` environment variables. The command reads the effective
+skill discovery and role for that project. For a managed role, also provide
+`--managed-connection kodi_lab_dev` and, for each required tool, `--managed-tool
+TOOL` using the Lab name such as `managed_gui`. Pass `--mcp-catalog` pointing to a
+fresh JSON `tools/list` result captured with the same Lab connection and
+credential. The check compares the named capability, current connection status
+and the exact prefixed OpenCode permission. Keep the catalog private.
+
+If discovery resolves to an old installation, correct the selected
+`skills.paths` or project installation. If loading or a linked reference is
+denied, review the exact skill name and reference directory in the intended
+role. Rerun the check and verify an actual skill load, reference read and any
+required MCP call in a new session.
