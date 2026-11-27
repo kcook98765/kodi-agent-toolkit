@@ -5,10 +5,31 @@
 3. Call `managed_addon_install` once with the admitted `addon`, `version` and `digest` and explicit `generation`. The operator provisions the reviewed private dependency catalog. The application stages the private managed repository, selects the exact package, handles authorized native confirmations and any temporary Estuary switch, and asks Kodi to resolve dependencies. Check the verified package, dependency results and enablement. The same operation supports higher versions and changed-content replacements at the same version. A verified package receipt can include `interaction.state=dialog_observed`. Check a known first-run prompt and configure the add-on separately. Confirm execution separately with `managed_addon_launch` and fresh `managed_logs` or UI evidence.
 4. For ordinary source edits, use `managed_workspace_read` and `managed_workspace_edit` with the current file digest. Validate changed source with the matching Toolkit interpreter on a local tree representing the intended edit. When the supplied MCP contract requires a stopped profile, use `managed_stop`, `managed_workspace_deploy`, then `managed_start`. If deploy reports `review_required`, review the exact generated paths and digests before using its `review` digest. Launch and observe fresh results. Keep the version and existing dependencies for ordinary edits. Use native installation again to change dependency declarations or test package behavior.
 5. Configure a setting by declared key with `managed_addon_setting`. Confirm readback using add-on behavior, a purpose-built harmless log marker, or authorized settings UI. The managed operation writes a known value and verifies it. Inspect unexpected first-run dialogs with `managed_gui` and `managed_screen`, then take only authorized interaction actions. Missing dependencies, an unapproved origin or incompatible packages are reasons to inspect the result and correct the inputs.
-6. Before a significant change or project switch, stop Kodi and save a named checkpoint with `managed_snapshot_save`. Save when the profile is worth reusing. `managed_snapshot_list` shows your private snapshots. Stop before `managed_snapshot_load` or `managed_reset`. Load requires the exact compatible runtime image. Reset replaces the working profile with its clean baseline. Your admitted packages, independent source and named snapshots remain available.
+6. Before a significant change or project switch, decide whether you need a [named snapshot](#snapshot-checkpoints). Stop before `managed_snapshot_load` or `managed_reset`. Load requires the exact compatible runtime image. Reset replaces the working profile with its clean baseline. Your admitted packages, independent source and named snapshots remain available.
 7. To switch versions, keep the lease, stop the running generation, and start the other prepared generation. Each has its own working profile. No Bridge pairing step is needed. Stop when the task calls for it, then `managed_release` to let another agent use the lab. A human Take Control conflict requires release of the existing owner through the normal workflow.
 
 An installation result can be unknown even after dispatch. Preserve the observed result and relevant status and report the unresolved step. Ask the operator to recover a pending operation before repeating a mutation. Bootstrap and acquisition of a missing reviewed image belong to the site's normal admin flow.
+
+## Snapshot checkpoints
+
+- Before saving, use `managed_snapshot_list` with `include_capacity="true"`
+  when advertised. Check `remaining` and existing snapshots across your scope.
+  If a legacy server only returns the array, use it to check for reuse and ask
+  the operator for capacity when needed. Reuse a matching checkpoint and skip
+  a save if the profile has no meaningful change.
+- Stop Kodi before `managed_snapshot_save` and pass the exact `generation`.
+  Use a descriptive name with the generation, project or task, and purpose.
+  For example, `baseline-omega-hub-014` is a reusable environment,
+  `checkpoint-nexus-hub-before-migration` is a working rollback point, and
+  `temp-omega-issue479-restore-check` is task-temporary. These are naming
+  conventions. Keep the exact runtime image and useful rollback evidence
+  alongside the name in your task notes.
+- At closeout, review snapshots created for the current task. Keep user-created
+  snapshots, retained baselines, and recovery assets. Explicitly delete a
+  task-temporary snapshot with `managed_snapshot_delete` only when its exact
+  identity and ownership are verified, its recovery purpose is finished, and
+  the owner or task already authorizes deletion. Record the result and retain
+  any snapshot whose need or authority is uncertain.
 
 ## Optional public repository release test
 

@@ -15,7 +15,7 @@ The command sends one authenticated binary upload using the configured Lab MCP a
 
 For an intentional full source refresh, admit the complete updated ZIP, then open it with `managed_workspace_open` using the digest and `replace="true"`. This exchanges only the private workspace. Deploy separately if needed. Use digest-guarded workspace edits for ordinary text changes.
 
-Save a stopped snapshot when a configured environment is worth reusing. One shared working profile per version can be reset or restored explicitly. Stop the running version before starting a different prepared one. Keep add-on source outside the profile.
+Check private snapshot capacity and reuse a matching snapshot before saving a stopped environment. See the managed skill's [snapshot checkpoint workflow](../.agents/skills/kodi-mcp-testing/references/managed-agent-workflow.md#snapshot-checkpoints) for naming and closeout. One shared working profile per version can be reset or restored explicitly. Stop the running version before starting a different prepared one. Keep add-on source outside the profile.
 
 Use [OpenCode roles](opencode-agents.md) and the [bounded integration smoke](integration-smoke.md) with a disposable lab. External development has its own credential, target and workflow.
 
