@@ -11,3 +11,9 @@ For a static reproduction, find the target release's documented isolated interpr
 For managed Kodi use the explicit generation and the acquired lease. Use `managed_status` for release and authenticated Bridge readiness, `managed_gui` for the current window and focus, `managed_logs` for the bounded tail, and `managed_screen` for actual pixels. Record the expected revision or run marker. For external Kodi, discover the separately authorized target UUID and inspect the available capabilities. The [debugging reference](references/debugging.md) describes external native diagnostics and large-log scanning. Read-only grants do not allow navigation or lifecycle changes.
 
 Separate observations, hypotheses, next test and verified outcome. Use only available authorized logs; screenshots require actual image input to an image-capable model. A proposed correction is untested until the original reproduction passes afterward. Report blocked deployment/launch steps accurately. Finish with source/tool evidence and limits in at most 150 words unless more detail is requested.
+
+
+For managed playback qualification, consult the installed `managed_gui`
+schema. When it supports `include_player`, use the structured sample for
+play/pause, media replacement and idle after explicit Stop. See the
+`kodi-mcp-testing` skill's managed contract for the known local path check.

@@ -18,7 +18,7 @@ The server needs a Trusted Managed Lab credential. Acquire the one shared owner 
 | `managed_stop` | — | Yes | `state` |
 | `managed_reset` | — | Yes | `state`, `profile` |
 | `managed_logs` | — | Yes | `text` from bounded Kodi log tail |
-| `managed_gui` | — | Yes | Kodi `currentwindow`, `currentcontrol`, `skin` |
+| `managed_gui` | Optional `include_player: "true"`, `expected_local_media_sha256` when supported | Yes | Kodi window, focus and skin. Opt-in player observation. |
 | `managed_screen` | — | Yes | PNG image content where native capture is supported. Piers X11/GLES reports `screenshot_capture_failed`. |
 | `managed_navigate` | `action` | Yes | `state=dispatched` |
 | `managed_skin` | `addon` | Yes | Skin activation result for an enabled development skin. The stock Estuary ID is reserved. Native installation switches internally when needed. |
@@ -76,3 +76,22 @@ These use external grants independently of managed authorization. Discover exact
 For external `system_info`, use the exact authorized target. Native Kodi metrics and optional trusted Bridge enrichment have different provenance. Missing enrichment and null fields remain unknown. For managed diagnostics use `managed_status` for release/readiness, `managed_gui` for window, control and skin, and `managed_logs` for a bounded tail.
 
 [Managed workflow](managed-agent-workflow.md) · [External workflow and grants](mcp.md)
+
+
+### Managed playback checks
+
+Discover `managed_gui` and check that it declares `include_player`. Use the
+active managed lease and explicit generation. Pass `include_player: "true"`
+before playback, immediately after selection and again after explicit Stop.
+`idle` means the running Kodi reported no active players. `playing` and
+`paused` can include player ID, media type and a stable `media_key`. Compare
+keys within the returned `incarnation` to distinguish a replacement from a
+resume. `unavailable` or `uncertain` is insufficient to confirm playback or Stop.
+
+For known synthetic local media, hash the exact UTF-8 absolute path with no
+trailing newline and pass it as `expected_local_media_sha256`. A true
+`matches_expected_local_media` confirms what Kodi reported for the path.
+The optional keys disclose no raw path, URL or title. A missing key or match
+leaves the media identity unverified. Use supported authorized native
+controls for Pause, replacement and Stop. Verify idle while Kodi is still
+running before requesting managed shutdown.
