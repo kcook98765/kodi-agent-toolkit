@@ -22,7 +22,7 @@ The server needs a Trusted Managed Lab credential. Acquire the one shared owner 
 | `managed_screen` | — | Yes | PNG image content where native capture is supported. Piers X11/GLES reports `screenshot_capture_failed`. |
 | `managed_navigate` | `action` | Yes | `state=dispatched` |
 | `managed_skin` | `addon` | Yes | Skin activation result for an enabled development skin. The stock Estuary ID is reserved. Native installation switches internally when needed. |
-| `managed_snapshot_list` | — | Global | Array of private entries with `name` and `bytes` |
+| `managed_snapshot_list` | Optional `include_capacity: "true"` | Global | Array of private entries with `name` and `bytes` by default. Opt in to `snapshots` and `snapshot_capacity` with `used`, `capacity` and `remaining`. |
 | `managed_snapshot_save` | `name` | Yes | `name`, `bytes`, `entries`, `sha256`. The exact image is bound in private metadata. |
 | `managed_snapshot_load` | `name` | Yes | Restored snapshot and profile state |
 | `managed_snapshot_delete` | `name` | Global | Snapshot deletion result |
@@ -39,6 +39,14 @@ The server needs a Trusted Managed Lab credential. Acquire the one shared owner 
 | `managed_addon_setting` | `addon`, `key`, `value` | Yes | Signed add-on setting result |
 
 `managed_addon_install` can report unconfirmed or failed installation. Check the verified bytes, origin, enablement, dependency results and native observations. `managed_addon_launch` reports dispatch. Observe fresh execution through relevant logs or UI. Settings readback uses add-on behavior or authorized Kodi inspection.
+
+Snapshot names and capacity are shared across versions in each private scope.
+Use the list result to check capacity before saving. Kodi Lab administrators set
+the limits, and agents use the effective capacity returned by their server.
+At or above capacity, `remaining` is zero and a new name returns
+`snapshot_quota_exhausted`. A duplicate name returns `snapshot_name_exists`.
+Existing snapshots remain available to list, restore, and explicitly delete
+with the usual permissions.
 
 ### Disposable Omega public repository tools
 
