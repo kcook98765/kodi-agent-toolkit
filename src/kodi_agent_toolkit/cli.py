@@ -21,6 +21,26 @@ def main() -> int:
     image_source.add_argument("--opencode-export", type=Path, help="Private OpenCode 1.19.3 session export JSON")
     screenshot.add_argument("--call-id", help="Exact completed screenshot_capture or managed_screen call ID")
     screenshot.add_argument("--update-manifest", action="store_true", help="Explicitly add the screenshot declaration to existing metadata")
+    video = sub.add_parser("video", help="Work with private managed Kodi recordings")
+    actions = video.add_subparsers(dest="action", required=True)
+    download = actions.add_parser("download", help="Retrieve a finalized Kodi Lab recording")
+    download.add_argument("recording")
+    download.add_argument("destination", type=Path)
+    download.add_argument("--sha256", required=True)
+    download.add_argument("--url", required=True, help="Authorized Kodi Lab MCP endpoint")
+    download.add_argument("--token-file", type=Path, required=True)
+    inspect = actions.add_parser("verify", help="Inspect a local silent H.264 MP4")
+    inspect.add_argument("video", type=Path)
+    comment = actions.add_parser("comment", help="Append explicitly supplied progress text")
+    comment.add_argument("sidecar", type=Path)
+    comment.add_argument("text")
+    timing = comment.add_mutually_exclusive_group(required=True)
+    timing.add_argument("--at-ms", type=int)
+    timing.add_argument("--started-at", help="UTC started_at returned by Kodi Lab")
+    render = actions.add_parser("compose", help="Compose ordered original segments")
+    render.add_argument("manifest", type=Path)
+    render.add_argument("destination", type=Path)
+    render.add_argument("--captions", action="store_true")
     discovery = sub.add_parser("discover")
     discovery.add_argument("directory", type=Path, nargs="?", default=Path("."))
     val = sub.add_parser("validate")
@@ -46,6 +66,21 @@ def main() -> int:
     final.add_argument('--markdown', action='store_true')
     args = parser.parse_args()
     try:
+        if args.command == "video":
+            from . import video as recordings
+            if args.action == "download":
+                result = recordings.download(args.url, args.token_file, args.recording,
+                                             args.sha256, args.destination)
+            elif args.action == "verify":
+                result = recordings.verify(args.video)
+            elif args.action == "comment":
+                result = recordings.comment(args.sidecar, args.text, ms=args.at_ms,
+                                            started_at=args.started_at)
+            else:
+                result = recordings.compose(args.manifest, args.destination,
+                                            captions=args.captions)
+            print(json.dumps(result, indent=2))
+            return 0
         if args.command == "managed-package-import":
             from .managed_package import admit_package
             print(json.dumps(admit_package(args.package, args.url, args.token_file)))

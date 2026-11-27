@@ -32,3 +32,8 @@ Qualified discovery/loading: OpenCode 1.19.0 on Ubuntu. Compatible agents can us
 Reference: [OpenCode Agent Skills](https://opencode.ai/docs/skills/).
 
 When an existing installation uses `skills.paths` to reference a clean toolkit checkout, update that reviewed source rather than installing duplicate copies. Back up changed skill/reference files with permissions and hashes; preserve local modifications and the existing config. Recheck discovery and actual loading from every normal working directory. OpenCode 1.19.3 discovery on Claw was separately checked in the [workflow refresh](development-workflow.md); earlier reference-agent results remain historical.
+
+The `kodi-addon-demonstration` and `kodi-development-recording` directories
+use this same installation mechanism. Both use the managed Lab recording
+tools and local Toolkit video commands. See the [recording guide](recording.md)
+for prerequisites, privacy boundaries and example prompts.

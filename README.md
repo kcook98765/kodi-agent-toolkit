@@ -92,11 +92,15 @@ The Python CLI is agent independent. `.opencode` custom tools are optional **fix
 
 ## Optional OpenCode agent presets
 
-Use [OpenCode presets and setup](docs/opencode-agents.md) with the five portable skills. Run local development as `kodi-develop`. Select the opt-in `kodi-managed-lab` profile only with a disposable managed-v2 site and a Trusted Managed Lab credential. Independent external inspection and external development use their own connections and grants. Presets inherit the existing model and provider.
+Use [OpenCode presets and setup](docs/opencode-agents.md) with the portable skills. Run local development as `kodi-develop`. Select the opt-in `kodi-managed-lab` profile only with a disposable managed-v2 site and a Trusted Managed Lab credential. Independent external inspection and external development use their own connections and grants. Presets inherit the existing model and provider.
 
 ## Optional Kodi Lab MCP
 
 Use the [managed-v2 development workflow](docs/development-workflow.md) for repository-first native install, direct workspace deployment, version switching and private snapshots. Check the [client smoke recipe](docs/integration-smoke.md) and the authenticated tool schemas against the installed server. The older integration campaigns above are historical evidence for their recorded versions.
+
+Use the [recording skills](docs/recording.md) with a recording-capable Lab to
+capture private add-on demonstrations or real development sessions with
+timestamped captions.
 
 ## Evidence, evaluation, and limitations
 
