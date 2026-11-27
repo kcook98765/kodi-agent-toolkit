@@ -1,6 +1,6 @@
 # Managed Kodi video recording
 
-Use the Toolkit with a Kodi Lab application release that advertises the managed recording tools. FFmpeg and ffprobe must be on the Toolkit host's PATH. Caption composition also needs FFmpeg's subtitles filter and a readable sans-serif font such as DejaVu Sans. The managed Linux broker supplies its own encoder and uses the approved runtime’s existing display. Check the Lab release notes for the exact qualified runtime versions and Windows/WSL2 status.
+Use the Toolkit with a Kodi Lab application release that advertises the managed recording tools. FFmpeg and ffprobe must be on the Toolkit host's PATH. Caption composition also needs FFmpeg's subtitles filter and a readable sans-serif font such as DejaVu Sans. The managed Linux broker supplies its own encoder and uses the approved runtime's existing display. Check the Lab release notes for the exact qualified runtime versions and Windows/WSL2 status.
 
 The Trusted Managed Lab credential that starts a recording must also inspect, stop, retrieve or delete it. Direct Toolkit download accepts the authorized HTTPS MCP endpoint or a loopback HTTP MCP endpoint. Point it at an existing private bearer-token file. No administrator Web session is needed.
 
@@ -50,7 +50,7 @@ Stop capture before displaying credentials, private configuration, personal medi
 
 ## Skill prompts
 
-- “Load `kodi-addon-demonstration`. Record a silent 2 FPS Kodi-only walkthrough of [add-on] on [authorized managed version]. Show [features], hold important screens and return the private MP4 with a forum-ready description.”
-- “Load `kodi-development-recording` while fixing [defect] in [disposable add-on]. Reproduce it, make a focused correction and verify it on managed Kodi. Add timestamped captions at meaningful milestones, keep originals and return a private captioned MP4.”
+- "Load `kodi-addon-demonstration`. Record a silent 2 FPS Kodi-only walkthrough of [add-on] on [authorized managed version]. Show [features], hold important screens and return the private MP4 with a forum-ready description."
+- "Load `kodi-development-recording` while fixing [defect] in [disposable add-on]. Reproduce it, make a focused correction and verify it on managed Kodi. Add timestamped captions at meaningful milestones, keep originals and return a private captioned MP4."
 
 If recording tools are absent, confirm the Lab release and assigned role. If retrieval returns an authorization error, confirm the issuing credential and its current permission. If finalization fails after a stop or quota error, confirm the runtime and source status before starting a new segment. For caption errors, check that offsets increase, fit the original duration and contain short plain text.
